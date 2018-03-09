@@ -21,7 +21,7 @@ export class SearchBangumi implements AfterViewInit {
     @ViewChild('typePicker') typePicker: ElementRef;
 
     name: string;
-    bangumiType: number = 2;
+    bangumiType: number = 1001;
 
     currentPage: number = 1;
     total: number = 0;
