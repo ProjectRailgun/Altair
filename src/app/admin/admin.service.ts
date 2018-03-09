@@ -17,22 +17,22 @@ export class AdminService extends BaseService {
         super();
     }
 
-    queryBangumi(bgmId: number): Observable<BangumiRaw> {
-        let queryUrl = this.baseUrl + '/query/' + bgmId;
-        return this.http.get(queryUrl)
+    queryBangumi(params: {bgmId: number, typeId: number}): Observable<BangumiRaw> {
+        let queryParams = queryString(params);
+        return this.http.get(`${this.baseUrl}/bangumi/query?${queryParams}`)
             .map(res => new BangumiRaw(res.json()))
             .catch(this.handleError);
     }
 
     searchBangumi(params: {name: string, type: number, offset: number, count: number}): Observable<{data: Bangumi[], total: number}> {
         let queryParams = queryString(params);
-        return this.http.get(`${this.baseUrl}/query?${queryParams}`)
+        return this.http.get(`${this.baseUrl}/bangumi/search?${queryParams}`)
             .map(res => <Bangumi[]> res.json())
             .catch(this.handleError);
     }
 
     addBangumi(bangumiRaw: BangumiRaw): Observable<string> {
-        let queryUrl = this.baseUrl + '/bangumi';
+        let queryUrl = this.baseUrl + '/bangumi/add';
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers});
         let body = JSON.stringify(bangumiRaw);
@@ -49,13 +49,13 @@ export class AdminService extends BaseService {
         name?: string,
         type?: number}): Observable<{ data: Bangumi[], total: number }> {
         let queryParams = queryString(params);
-        return this.http.get(`${this.baseUrl}/bangumi?${queryParams}`)
+        return this.http.get(`${this.baseUrl}/bangumi/list?${queryParams}`)
             .map(res => res.json())
             .catch(this.handleError);
     }
 
     getBangumi(id: string): Observable<Bangumi> {
-        let queryUrl = this.baseUrl + '/bangumi/' + id;
+        let queryUrl = this.baseUrl + '/bangumi/entry/' + id;
         return this.http.get(queryUrl)
             .map(res => res.json().data)
             .catch(this.handleError)
@@ -63,7 +63,7 @@ export class AdminService extends BaseService {
 
     updateBangumi(bangumi: Bangumi): Observable<any> {
         let id = bangumi.id;
-        let queryUrl = this.baseUrl + '/bangumi/' + id;
+        let queryUrl = this.baseUrl + '/bangumi/entry/' + id;
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers});
         let body = JSON.stringify(bangumi);
@@ -73,29 +73,29 @@ export class AdminService extends BaseService {
     }
 
     deleteBangumi(bangumi_id: string): Observable<{delete_delay: number}> {
-        return this.http.delete(`${this.baseUrl}/bangumi/${bangumi_id}`)
+        return this.http.delete(`${this.baseUrl}/bangumi/entry/${bangumi_id}`)
             .map(res => res.json().data as {delete_delay: number})
             .catch(this.handleError)
-    }
-
-    getEpisode(episode_id: string): Observable<Episode> {
-        return this.http.get(`${this.baseUrl}/episode/${episode_id}`)
-            .map(res => <Episode> res.json().data)
-            .catch(this.handleError);
     }
 
     addEpisode(episode: Episode): Observable<string> {
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers});
         let body = JSON.stringify(episode);
-        return this.http.post(`${this.baseUrl}/episode`, body, options)
+        return this.http.post(`${this.baseUrl}/episode/add`, body, options)
             .map(res => <string> res.json().data.id)
+            .catch(this.handleError);
+    }
+
+    getEpisode(episode_id: string): Observable<Episode> {
+        return this.http.get(`${this.baseUrl}/episode/entry/${episode_id}`)
+            .map(res => <Episode> res.json().data)
             .catch(this.handleError);
     }
 
     updateEpisode(episode: Episode): Observable<any> {
         let id = episode.id;
-        let queryUrl = this.baseUrl + '/episode/' + id;
+        let queryUrl = this.baseUrl + '/episode/entry/' + id;
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers});
         let body = JSON.stringify(episode);
@@ -105,14 +105,14 @@ export class AdminService extends BaseService {
     }
 
     deleteEpisode(episode_id: string): Observable<any> {
-        return this.http.delete(`${this.baseUrl}/episode/${episode_id}`)
+        return this.http.delete(`${this.baseUrl}/episode/entry/${episode_id}`)
             .map(res => res.json())
             .catch(this.handleError)
     }
 
     updateThumbnail(episode: Episode, time: string): Observable<any> {
         let id = episode.id;
-        let queryUrl = this.baseUrl + '/episode/' + id + '/thumbnail';
+        let queryUrl = this.baseUrl + '/episode/thumbnail/' + id;
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers});
         let body = JSON.stringify({time: time});
@@ -121,24 +121,24 @@ export class AdminService extends BaseService {
             .catch(this.handleError);
     }
 
+    addVideoFile(videoFile: VideoFile): Observable<string> {
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers});
+        let body = JSON.stringify(videoFile);
+        return this.http.post(`${this.baseUrl}/video/add`, body, options)
+            .map(res => res.json().data as string)
+            .catch(this.handleError);
+    }
+
     getEpisodeVideoFiles(episode_id: string): Observable<VideoFile[]> {
-        return this.http.get(`${this.baseUrl}/video-file?episode_id=${episode_id}`)
+        return this.http.get(`${this.baseUrl}/video/list?episode_id=${episode_id}`)
             .map(res => res.json().data as VideoFile[])
             .catch(this.handleError);
     }
 
     deleteVideoFile(video_file_id: string): Observable<any> {
-        return this.http.delete(`${this.baseUrl}/video-file/${video_file_id}`)
+        return this.http.delete(`${this.baseUrl}/video/entry/${video_file_id}`)
             .map(res => res.json())
-            .catch(this.handleError);
-    }
-
-    addVideoFile(videoFile: VideoFile): Observable<string> {
-        let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers});
-        let body = JSON.stringify(videoFile);
-        return this.http.post(`${this.baseUrl}/video-file`, body, options)
-            .map(res => res.json().data as string)
             .catch(this.handleError);
     }
 
@@ -146,7 +146,7 @@ export class AdminService extends BaseService {
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers});
         let body = JSON.stringify(videoFile);
-        return this.http.put(`${this.baseUrl}/video-file/${videoFile.id}`, body, options)
+        return this.http.put(`${this.baseUrl}/video/entry/${videoFile.id}`, body, options)
             .map(res => res.json())
             .catch(this.handleError);
     }
