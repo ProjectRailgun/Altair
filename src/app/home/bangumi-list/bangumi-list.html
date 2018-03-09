@@ -1,16 +1,16 @@
 <div class="bangumi-list-container" *ngIf="!name && !isLoading">
     <div class="filter-container" (click)="onClickFilterContainer()">
         <div class="ui container">
-            <a class="sort-button anchor-button" (click)="onOrderChange($event)" [title]="sort === 'desc' ? '降序': '升序'">
+            <a class="sort-button anchor-button" (click)="onOrderChange($event)" [title]="sort === 'desc' ? 'Descending': 'Ascending'">
                 <i class="sort content icon" [ngClass]="{ascending: sort === 'asc', descending: sort === 'desc'}"></i>
             </a>
             <div class="ui inline dropdown" uiDropdown="click" [stopPropagation]="true">
                 <div class="text">{{typeMenuLabel[type]}}</div>
                 <i class="dropdown icon"></i>
                 <div class="menu">
-                    <div class="item" (click)="onTypeChange(-1)">全部</div>
-                    <div class="item" (click)="onTypeChange(2)">动画</div>
-                    <div class="item" (click)="onTypeChange(6)">电视剧</div>
+                    <div class="item" (click)="onTypeChange(-1)">All</div>
+                    <div class="item" (click)="onTypeChange(1001)">CN</div>
+                    <div class="item" (click)="onTypeChange(1002)">RAW</div>
                 </div>
             </div>
         </div>

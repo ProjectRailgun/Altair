@@ -65,7 +65,7 @@ export class Home implements OnInit, OnDestroy {
             this.currentRouteName = routeName;
 
             if (routeName === 'Bangumi') {
-                titleService.setTitle(`所有新番 - ${this.siteTitle}`);
+                titleService.setTitle(`Bangumi - ${this.siteTitle}`);
             } else if (routeName === 'Default') {
                 titleService.setTitle(this.siteTitle);
             }
@@ -116,17 +116,16 @@ export class Home implements OnInit, OnDestroy {
                 (user: User) => {
                     this.user = user;
                     if (user && (!user.email_confirmed || !user.email)) {
-                        console.log('please input your email');
                         let dialogRef = this._dialogService.open(AlertDialog, {stickyDialog: true, backdrop: true});
                         if (user.email && !user.email_confirmed) {
-                            dialogRef.componentInstance.title = '请验证你的邮箱地址！';
-                            dialogRef.componentInstance.content = '我们已经向您的邮箱地址发送了验证邮件，请前往您的邮箱查看该邮件并完成验证。';
-                            dialogRef.componentInstance.confirmButtonText = '知道了';
+                            dialogRef.componentInstance.title = 'Please verify your mail address!';
+                            dialogRef.componentInstance.content = 'We have sent a verification mail to your email address, please follow the instructions in it to active your account.';
+                            dialogRef.componentInstance.confirmButtonText = 'OK';
                             this._subscription.add(dialogRef.afterClosed().subscribe(() => {}));
                         } else {
-                            dialogRef.componentInstance.title = '请填写您的邮箱地址！';
-                            dialogRef.componentInstance.content = '我们检测到您还没有填写邮箱地址，使用邀请码重置密码功能已经关闭。请务必填写邮箱地址以保证正常使用';
-                            dialogRef.componentInstance.confirmButtonText = '前往用户设置';
+                            dialogRef.componentInstance.title = 'Please set your mail address!';
+                            dialogRef.componentInstance.content = 'Your email address has not been set, please set your email address to active your account.';
+                            dialogRef.componentInstance.confirmButtonText = 'Open Account Settings';
                             this._subscription.add(dialogRef.afterClosed().subscribe(() => {
                                 this._router.navigate(['/settings/user']);
                             }));

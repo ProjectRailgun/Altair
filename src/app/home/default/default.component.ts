@@ -21,7 +21,7 @@ export class DefaultComponent extends HomeChild implements OnInit, OnDestroy {
 
     onAirBangumi: Bangumi[];
 
-    bangumiType = 2; // 2 is anime, 6 is japanese tv drama Series
+    bangumiType = 1001; // 1001 = CN; 1002 = RAW; -1 = ALL
 
     FAVORITE_LABEL = FAVORITE_LABEL;
 
