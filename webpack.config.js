@@ -24,7 +24,7 @@ const ENV = process.env.ENV = process.env.NODE_ENV;
 const METADATA = {
     host: '0.0.0.0',
     port: 3000,
-    title: process.env.SITE_TITLE || 'Deneb',
+    title: process.env.SITE_TITLE || 'Altair',
     baseUrl: '/',
     GA: process.env.GA || '',
     customLoginStyle: loginStyleExsits,
