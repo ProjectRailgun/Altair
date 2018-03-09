@@ -136,9 +136,6 @@ export class SearchBangumi implements AfterViewInit {
     }
 
     viewDetail(bangumi: Bangumi): void {
-        if (bangumi.id) {
-            return;
-        }
         this.selectedBgmId = bangumi.bgm_id;
         this.showDetail = true;
     }
