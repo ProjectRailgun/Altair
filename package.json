@@ -144,10 +144,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/lordfriend/Deneb.git"
+    "url": "https://github.com/ProjectSummerTriangle/Vega.git"
   },
   "bugs": {
-    "url": "https://github.com/lordfriend/Deneb/issues"
+    "url": "https://github.com/ProjectSummerTriangle/Vega/issues"
   },
   "engines": {
     "node": ">= 4.2.1",
