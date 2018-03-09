@@ -7,11 +7,11 @@
                     <div class="text">{{ bangumiType | bangumiTypeName }}</div>
                     <i class="dropdown icon"></i>
                     <div class="menu transition" [ngClass]="{visible: typePickerOpen, hidden: !typePickerOpen}">
-                        <div class="item" (click)="onTypeChanged(2)">动画</div>
-                        <div class="item" (click)="onTypeChanged(6)">电视剧</div>
+                        <div class="item" (click)="onTypeChanged(1001)">CN</div>
+                        <div class="item" (click)="onTypeChanged(1002)">RAW</div>
                     </div>
                 </div>
-                <input type="text" placeholder="请搜索..." #searchBox>
+                <input type="text" placeholder="搜索番組名称..." #searchBox>
                 <i class="search icon"></i>
             </div>
         </div>
