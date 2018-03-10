@@ -25,6 +25,7 @@ const METADATA = {
     host: '0.0.0.0',
     port: 3000,
     title: process.env.SITE_TITLE || 'Altair',
+    description: process.env.SITE_DESC || 'Life is short, let\'s watch anime!',
     baseUrl: '/',
     GA: process.env.GA || '',
     customLoginStyle: loginStyleExsits,
