@@ -1,9 +1,8 @@
 {
-  "name": "Deneb",
-  "version": "3.2.3",
-  "description": "Web client for Albireo",
-  "author": "Nyasoft<about@nya.io>",
-  "homepage": "https://github.com/lordfriend/Deneb",
+  "name": "Altair",
+  "version": "0.9.1",
+  "description": "WEB-UI for https://github.com/ProjectSummerTriangle/Vega",
+  "homepage": "https://github.com/ProjectSummerTriangle/Altair",
   "license": "MIT",
   "scripts": {
     "build:aot:prod": "npm run clean:dist && npm run clean:aot && NODE_ENV=production webpack --config webpack.config.js --progress --profile --bail",
@@ -144,10 +143,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ProjectSummerTriangle/Vega.git"
+    "url": "https://github.com/ProjectSummerTriangle/Altair.git"
   },
   "bugs": {
-    "url": "https://github.com/ProjectSummerTriangle/Vega/issues"
+    "url": "https://github.com/ProjectSummerTriangle/Altair/issues"
   },
   "engines": {
     "node": ">= 4.2.1",
