@@ -33,13 +33,13 @@
         </div>
     </div>
     <div class="ui fluid two item secondary pointing menu">
-        <a class="item" [ngClass]="{active: bangumiType === 1001}" (click)="changeBangumiType(1001)">CN (Chinese subtitled & Behind air)</a>
-        <a class="item" [ngClass]="{active: bangumiType === 1002}" (click)="changeBangumiType(1002)">RAW (No subtitle & Up-to-date)</a>
+        <a class="item" [ngClass]="{active: bangumiType === 1001}" (click)="changeBangumiType(1001)">中文字幕</a>
+        <a class="item" [ngClass]="{active: bangumiType === 1002}" (click)="changeBangumiType(1002)">RAW (No Subtitle)</a>
     </div>
-    <div class="ui active inverted dimmer on-air-loading-wrapper" *ngIf="!onAirBangumi">
+    <div class="ui active inverted dimmer on-air-loading-wrapper" *ngIf="isLoading">
         <div class="ui medium loader"></div>
     </div>
-    <div class="ui five doubling cards" *ngIf="onAirBangumi">
+    <div class="ui five doubling cards" *ngIf="!isLoading">
         <div class="card bangumi-card" *ngFor="let bangumi of onAirBangumi">
             <a class="image" [routerLink]="['/bangumi', bangumi.id]">
                 <responsive-image [src]="bangumi.cover_image.url"
