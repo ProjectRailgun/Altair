@@ -1,5 +1,5 @@
 <div class="header">
-    Subscriptions
+    我{{favoriteLabel[currentStatus]}}
 </div>
 <div class="menu favorite-list" *ngIf="myBangumiList && myBangumiList.length > 0">
     <a class="item favorite-item" *ngFor="let bangumi of myBangumiList" [routerLink]="['/bangumi', bangumi.id]">

@@ -1,12 +1,13 @@
 <div class="email-confirm">
     <div class="loading" *ngIf="isLoading">
-        <p>Just wait a little moment...</p>
+        <p>请稍后...</p>
     </div>
     <div class="confirmed" *ngIf="!isLoading && emailValid">
-        <p>Congratulations! You have completed email address confirmation.</p>
-        <p><button class="ui button" (click)="returnToHome()">Click To Return</button></p>
+        <p>已成功验证您的邮箱。</p>
+        <p><button class="ui button" (click)="returnToHome()">好</button></p>
     </div>
     <div class="failed" *ngIf="!isLoading && !emailValid">
-        <p>Fail to confirm email!</p>
+        <p>邮箱验证事败，请确认链接是否完整。</p>
+        <p><button class="ui button" (click)="returnToHome()">好</button></p>
     </div>
 </div>

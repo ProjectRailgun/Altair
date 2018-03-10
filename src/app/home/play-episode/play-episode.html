@@ -39,11 +39,12 @@
 </div>
 <div class="ui container episode-info-container" *ngIf="!!episode">
     <h3 class=episode-title>
-        <span class="bangumi-name">{{episode.bangumi.name_cn}}</span>
-        <span class="episode-no">{{episode.episode_no}}</span>
-        <span class="episode-name" *ngIf="!!episode.name_cn || !!episode.name">{{episode.name_cn || episode.name}}</span>
+        <span class="bangumi-name" *ngIf="episode.bangumi.type === 1001">{{episode.episode_no}}. {{episode.name_cn || episode.name}}</span>
+        <span class="bangumi-name" *ngIf="episode.bangumi.type === 1002">{{episode.episode_no}}. {{episode.name}}</span>
+        <!--<span class="episode-no"></span>
+        <span class="episode-name" *ngIf="!!episode.name_cn || !!episode.name">{{episode.name_cn || episode.name}}</span>-->
     </h3>
-    <a class="feedback-button" (click)="feedback()" title="报告错误"><i class="icon flag"></i></a>
+    <!--<a class="feedback-button" (click)="feedback()" title="报告错误"><i class="icon flag"></i></a>-->
     <div class="ui divider">
     </div>
     <div class="bangumi-info">
@@ -62,7 +63,7 @@
                     {{episode.bangumi.name_cn}}
                 </a>
                 <a class="external-link" [href]="'https://bgm.tv/subject/' + episode.bangumi.bgm_id" target="_blank"
-                   title="在bgm.tv页面查看">
+                   title="在 Bangumi 查看">
                     <i class="bgm-emo-47 bgm-link-icon"></i>
                 </a>
             </h2>
@@ -73,7 +74,7 @@
             </div>
             <reveal-extra [bangumi]="episode.bangumi"></reveal-extra>
             <h4>
-                各话列表
+                剧集列表
             </h4>
             <div class="episode-list-loading-wrapper" *ngIf="!episode.bangumi.episodes">
                 <div class="ui active inverted dimmer">

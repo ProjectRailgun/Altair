@@ -5,10 +5,9 @@
         <a routerLink="/settings/bangumi" class="item" *ngIf="isBgmEnabled">Bangumi账户</a>
     </div>
     <div class="ui segment">
-        <h4>可用的Web Hook</h4>
+        <h4>添加 Web Hook</h4>
         <div class="ui message">
-            下面列出了{{siteTitle}}的所有可用的Web Hook。如果你想开发Web Hook并在本站使用，请联系管理员注册Web Hook，开发之前请参考
-            <a href="https://github.com/lordfriend/Albireo/wiki/Web-Hook-Guide" target="_blank">Web Hook Guide</a>
+            下面列出了所有可用的 Web Hook 。如果你想开发 Web Hook 并在本站使用，请联系我们。
         </div>
         <div class="web-hook-list">
             <div class="ui segment" *ngFor="let webHook of webHookList">

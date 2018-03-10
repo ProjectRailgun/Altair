@@ -35,8 +35,8 @@ export class BangumiList extends HomeChild implements OnInit, OnDestroy {
 
     typeMenuLabel = {
         '-1': '全部',
-        '2': '动画',
-        '6': '电视剧'
+        '1001': '中文字幕',
+        '1002': 'RAW'
     };
 
     cardHeight: number;

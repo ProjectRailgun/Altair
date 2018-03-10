@@ -9,6 +9,6 @@ export const FAVORITE_LABEL = {
 };
 
 export const BANGUMI_TYPE = {
-  2: '动画',
-  6: '日剧'
+  1001: '中文字幕',
+  1002: 'RAW'
 };

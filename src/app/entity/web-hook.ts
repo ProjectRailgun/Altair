@@ -24,5 +24,5 @@ export class WebHook {
 
 export const PERM_NAME = {
     [WebHook.PERMISSION_FAVORITE]: '用户收藏',
-    [WebHook.PERMISSION_EMAIL]: '用户邮件地址'
+    [WebHook.PERMISSION_EMAIL]: '用户邮箱'
 };

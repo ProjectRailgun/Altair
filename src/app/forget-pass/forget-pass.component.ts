@@ -40,13 +40,13 @@ export class ForgetPass implements OnDestroy {
             .subscribe(
                 () => {
                     this.isPending = false;
-                    this._toastRef.show(`重置密码链接发送到${value}`)
+                    this._toastRef.show(`密码重置邮件将被发送至： ${value}`)
                     this.result = true;
                 },
                 (error: BaseError) => {
                     this.isPending = false;
                     if (error.message === ClientError.MAIL_NOT_EXISTS) {
-                        this._toastRef.show('邮件地址不错在或错误');
+                        this._toastRef.show(`无法发送邮件至 ${value} ，请检查您输入的邮箱地址是否正确。`);
                     } else {
                         this._toastRef.show(error.message);
                     }
