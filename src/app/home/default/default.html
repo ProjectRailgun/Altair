@@ -5,7 +5,7 @@
         </a>
     </div>
     <div class="recommend-header" *ngIf="!!announce_in_bangumi && announce_in_bangumi.length > 0">
-        Recommend
+        推荐
     </div>
     <div class="ui five doubling cards" *ngIf="!!announce_in_bangumi && announce_in_bangumi.length > 0">
         <div class="card bangumi-card" *ngFor="let announce of announce_in_bangumi">
@@ -60,8 +60,8 @@
                    }">{{FAVORITE_LABEL[bangumi.favorite_status]}}
             </div>
             <a class="content" [routerLink]="['/bangumi', bangumi.id]">
-                <span [ngClass]="{hidden: bangumiType !== 1001}">{{bangumi.name_cn}}</span>
-                <span [ngClass]="{hidden: bangumiType !== 1002}">{{bangumi.name}}</span>
+                <span *ngIf="bangumiType === 1001">{{bangumi.name_cn}}</span>
+                <span *ngIf="bangumiType === 1002">{{bangumi.name}}</span>
             </a>
         </div>
     </div>
