@@ -1,9 +1,23 @@
-<div class="center-box-background">
+<div class="area">
+    <ul class="circles">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <div class="center-box-background">
     <div class="center-box-frame">
         <div class="center-box">
             <header class="center-box-header">
                 <h1>
-                    <span>注册</span>
+                    <span>注册账户</span>
                 </h1>
             </header>
             <div class="center-box-body">
@@ -18,7 +32,7 @@
                         <input type="password" formControlName="password_repeat" placeholder="重复密码">
                     </div>
                     <div class="ui field">
-                        <input type="text" formControlName="email" placeholder="Email">
+                        <input type="text" formControlName="email" placeholder="邮箱">
                     </div>
                     <div class="ui field">
                         <input type="text" formControlName="invite_code" placeholder="邀请码">
@@ -28,7 +42,7 @@
                     </div>
                 </form>
                 <div class="login-link additional-info">
-                    <a [routerLink]="['/login']">已有帐号?登录</a>
+                    <a [routerLink]="['/login']">已有帐号？立即登入</a>
                 </div>
                 <div class="ui error message" *ngIf="errorMessage">
                     <p>{{errorMessage}}</p>

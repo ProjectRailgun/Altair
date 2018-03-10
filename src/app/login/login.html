@@ -1,3 +1,17 @@
+<div class="area">
+  <ul class="circles">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+</div>
 <div class="center-box-background">
   <div class="center-box-frame">
     <div class="center-box">
@@ -17,10 +31,10 @@
           <div class="field" id="remember-login">
             <div class="ui checkbox">
               <input type="checkbox" formControlName="remember">
-              <label>保存登录状态</label>
+              <label>保持登录状态</label>
             </div>
           </div>
-          <button class="ui primary button large fluid submit" type="submit" [disabled]="!loginForm.valid">登录</button>
+          <button class="ui primary button large fluid submit" type="submit" [disabled]="!loginForm.valid">登入</button>
           <div class="ui inverted dimmer active page" *ngIf="inProgress">
             <div class="ui loader"></div>
           </div>
@@ -29,7 +43,7 @@
           <a [routerLink]="['/forget']">忘记密码</a>
         </div>
         <div class="register-link additional-info">
-          <a [routerLink]="['/register']">创建新用户</a>
+          <a [routerLink]="['/register']">注册账户</a>
         </div>
         <div class="ui error message" *ngIf="errorMessage">
           <p>{{errorMessage}}</p>
