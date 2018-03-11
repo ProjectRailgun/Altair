@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { HomeChild, HomeService } from "../home.service";
-import { Bangumi, User } from "../../entity";
-import { Observable, Subscription } from "rxjs/Rx";
+import { HomeChild, HomeService } from '../home.service';
+import { Bangumi, User } from '../../entity';
+import { Observable, Subscription } from 'rxjs/Rx';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { UserService } from '../../user-service';
@@ -79,7 +79,7 @@ export class BangumiDetail extends HomeChild implements OnInit, OnDestroy {
                     let bgmTitle = `${bangumi.name} - ${SITE_TITLE}`;
                     this._titleService.setTitle(bgmTitle);
                     this.bangumi = bangumi;
-                    return this._chromeExtensionService.isEnabled
+                    return this._chromeExtensionService.isEnabled;
                 })
                 .do(isEnabled => {
                     this.isExtraInfoEnabled = isEnabled;
