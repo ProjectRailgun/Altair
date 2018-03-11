@@ -74,3 +74,4 @@ src/assets/img/background.jpg
 src/assets/img/background.png
 src/assets/css/login.css
 package-lock.json
+.eslintrc.js
