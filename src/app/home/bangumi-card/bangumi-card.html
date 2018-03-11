@@ -36,7 +36,9 @@
                 </p>
             </div>
         </div>
-        <div *ngIf="bangumi.favorite_status" class="ui right ribbon label"
+        <div *ngIf="bangumi.type === 1001" class="ui right ribbon label label-list-1 green">字幕</div>
+        <div *ngIf="bangumi.type === 1002" class="ui right ribbon label label-list-1 red">RAW</div>
+        <div *ngIf="bangumi.favorite_status" class="ui right ribbon label label-list-2"
             [ngClass]="{
             orange: bangumi.favorite_status === 1,
             olive: bangumi.favorite_status === 2,

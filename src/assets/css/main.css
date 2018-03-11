@@ -95,3 +95,9 @@ body {
     display: inline-block;
     vertical-align: baseline;
 }
+.ui.right.ribbon.label.label-list-1 {
+  top: .4rem !important;
+}
+.ui.right.ribbon.label.label-list-2 {
+  top: 2.6rem !important;
+}
