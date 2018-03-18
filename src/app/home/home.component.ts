@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { HomeService } from './home.service';
-import { Observable, Subscription } from "rxjs/Rx";
+import { Observable, Subscription } from 'rxjs/Rx';
 import { Bangumi, User } from '../entity';
 import { Router } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
@@ -104,7 +104,7 @@ export class Home implements OnInit, OnDestroy {
     toggleSidebar(event: Event) {
         event.preventDefault();
         event.stopPropagation();
-        this.sidebarActive = this.sidebarActive === 'active' ? 'inactive': 'active';
+        this.sidebarActive = this.sidebarActive === 'active' ? 'inactive' : 'active';
         if (this.sidebarOverlap) {
             this.sidebarToggle.emit(this.sidebarActive);
         }

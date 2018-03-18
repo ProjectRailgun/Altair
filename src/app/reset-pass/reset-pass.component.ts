@@ -55,7 +55,7 @@ export class ResetPass implements OnInit, OnDestroy {
                 return;
             }
         }
-        this._router.navigate(['/error'])
+        this._router.navigate(['/error']);
     }
 
     ngOnDestroy(): void {
@@ -82,7 +82,7 @@ export class ResetPass implements OnInit, OnDestroy {
                         this._toastRef.show(error.message);
                     }
                 )
-        )
+        );
     }
 
     onFormChanged(errors: any, errorMessages, form: FormGroup) {

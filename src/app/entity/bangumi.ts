@@ -1,8 +1,14 @@
-import { Episode } from "./episode";
+import { Episode } from './episode';
 import { Image } from './image';
 import { User } from './user';
 
 export class Bangumi {
+    static WISH = 1;
+    static WATCHED = 2;
+    static WATCHING = 3;
+    static PAUSE = 4;
+    static ABANDONED = 5;
+
     id: string;
     bgm_id: number;
     name: string;
@@ -56,12 +62,6 @@ export class Bangumi {
 
     // @Optional
     alert_timeout: number;
-
-    static WISH = 1;
-    static WATCHED = 2;
-    static WATCHING = 3;
-    static PAUSE = 4;
-    static ABANDONED = 5;
 
     static containKeyword(bangumi: Bangumi, name: string): boolean {
         let nameLowerCase = name.toLowerCase();

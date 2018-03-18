@@ -53,7 +53,7 @@ export class VideoTimeIndicator implements OnInit, OnDestroy {
         );
         this._subscription.add(
             this._videoPlayer.duration.subscribe(duration => this.duration = duration)
-        )
+        );
     }
 
     ngOnDestroy(): void {

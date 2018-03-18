@@ -1,7 +1,7 @@
 <div class="user-center-container ui container">
     <div class="ui secondary pointing menu">
         <a routerLink="/settings/user" class="active item">用户设置</a>
-        <a routerLink="/settings/web-hook" class="item">Web Hook 列表</a>
+        <a routerLink="/settings/web-hook" class="item">Web Hook</a>
         <a routerLink="/settings/bangumi" class="item" *ngIf="isBgmEnabled">Bangumi 账户</a>
     </div>
     <div class="ui segment basic-info">
@@ -130,7 +130,7 @@
     </div>
     <div class="ui active inverted dimmer" *ngIf="isLoading">
         <div class="ui large text loader">
-            Loading Web Hook
+            Loading...
         </div>
     </div>
 </div>

@@ -24,7 +24,7 @@ export class WebHookComponent implements OnInit, OnDestroy {
                 private _chromeExtensionService: ChromeExtensionService,
                 toastService: UIToast,
                 titleService: Title) {
-        titleService.setTitle(`Web Hook列表 - ${SITE_TITLE}`);
+        titleService.setTitle(`Web Hook - ${SITE_TITLE}`);
         this._toastRef = toastService.makeText();
     }
 
@@ -36,7 +36,7 @@ export class WebHookComponent implements OnInit, OnDestroy {
                         if (webHook.permissions) {
                             webHook.permissions = JSON.parse(webHook.permissions as string) as string[];
                         } else {
-                            webHook.permissions = []
+                            webHook.permissions = [];
                         }
                         webHook.permissions = webHook.permissions.map(perm_key => PERM_NAME[perm_key]);
                         return webHook as WebHook;

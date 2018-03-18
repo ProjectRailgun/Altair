@@ -21,7 +21,7 @@ import { Capture } from '../../core/settings';
         }
     `]
 })
-export class VideoCaptureButton implements OnInit, OnDestroy{
+export class VideoCaptureButton implements OnInit, OnDestroy {
     private _subscription = new Subscription();
 
     private _currentTime: number = 0;

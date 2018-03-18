@@ -1,4 +1,9 @@
 export class User {
+    static LEVEL_DEFAULT = 0;
+    static LEVEL_USER = 1;
+    static LEVEL_ADMIN = 2;
+    static LEVEL_SUPER_USER = 3;
+
     id: string;
     name: string;
     password: string;
@@ -8,9 +13,4 @@ export class User {
     remember: boolean;
     email: string;
     email_confirmed: boolean;
-
-    static LEVEL_DEFAULT = 0;
-    static LEVEL_USER = 1;
-    static LEVEL_ADMIN = 2;
-    static LEVEL_SUPER_USER = 3;
 }

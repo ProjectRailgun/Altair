@@ -6,10 +6,10 @@
         </div>
     </div>
     <div class="header-container">
-        <h3 class="ui header" *ngIf="!isLoading">{{!!posts ? posts.length: 0}}条来自Bangumi的评论</h3>
+        <h3 class="ui header" *ngIf="!isLoading">{{!!posts ? posts.length: 0}} 条来自 Bangumi 的评论</h3>
         <a class="sort-button" (click)="onOrderChange($event)" [title]="sort === 'desc' ? '降序': '升序'">
             <i class="sort content icon" [ngClass]="{ascending: sort === 'asc', descending: sort === 'desc'}"></i>
-            {{sort === 'desc'? '最新的评论在前': '最早的评论在前'}}
+            {{sort === 'desc'? '新评论在前': '旧评论在前'}}
         </a>
     </div>
     <div class="fake-comment-form" *ngIf="!!authInfo && !rootFormOpen && sort === 'desc'">
@@ -36,14 +36,14 @@
             </div>
             <div class="text" [innerHTML]="post.content"></div>
             <div class="actions" *ngIf="!post.formOpen && !post.isEditing && !!formhash">
-                <a class="reply" (click)="addComment(post)">Reply</a>
-                <a class="edit" *ngIf="post.author.uid === authInfo.id + ''" (click)="editComment(post)">Edit</a>
+                <a class="reply" (click)="addComment(post)">回复</a>
+                <a class="edit" *ngIf="post.author.uid === authInfo.id + ''" (click)="editComment(post)">编辑</a>
                 <a class="delete"
                    *ngIf="post.author.uid === authInfo.id + ''"
                    confirmDialog
                    dialogTitle="确定要删除这条评论么"
                    [dialogContent]="'确定删除“' + post.content + '”吗？'"
-                   (onConfirm)="deleteComment(post)">Delete</a>
+                   (onConfirm)="deleteComment(post)">删除</a>
             </div>
             <bangumi-comment-form [bgmEpsId]="bgmEpsId"
                                   [lastview]="lastview"
@@ -76,14 +76,14 @@
                     </div>
                     <div class="text" [innerHTML]="subPost.content"></div>
                     <div class="actions" *ngIf="!subPost.formOpen && !subPost.isEditing && !!formhash">
-                        <a class="reply" (click)="addComment(subPost)">Reply</a>
-                        <a class="edit" *ngIf="subPost.author.uid === authInfo.id + ''" (click)="editComment(subPost)">Edit</a>
+                        <a class="reply" (click)="addComment(subPost)">回复</a>
+                        <a class="edit" *ngIf="subPost.author.uid === authInfo.id + ''" (click)="editComment(subPost)">编辑</a>
                         <a class="delete"
                            *ngIf="subPost.author.uid === authInfo.id + ''"
                            confirmDialog
                            dialogTitle="确定要删除这条评论么"
                            [dialogContent]="'确定删除“' + subPost.content + '”吗？'"
-                           (onConfirm)="deleteComment(subPost)">Delete</a>
+                           (onConfirm)="deleteComment(subPost)">删除</a>
                     </div>
                     <bangumi-comment-form *ngIf="subPost.formOpen && !!formhash"
                                           [bgmEpsId]="bgmEpsId"

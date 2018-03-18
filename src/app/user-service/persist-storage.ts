@@ -58,7 +58,7 @@ export class PersistStorageIterator implements IterableIterator<PersistEntry> {
         return this;
     }
 
-    private hasPrefix(key: string):boolean {
+    private hasPrefix(key: string): boolean {
         return key.startsWith(PREFIX + ':');
     }
 }
@@ -73,7 +73,7 @@ export class PersistStorage {
                 if (!user) {
                     this.clear();
                 }
-            })
+            });
     }
 
     setItem(key: string, value: string) {
@@ -85,7 +85,7 @@ export class PersistStorage {
     getItem(key: string, defaultValue: string | null): string {
         let keyInStorage = `${PREFIX}:${key}`;
         let value = storageAPI.getItem(keyInStorage);
-        return value !== null ? value: defaultValue;
+        return value !== null ? value : defaultValue;
     }
 
     removeItem(key: string): void {

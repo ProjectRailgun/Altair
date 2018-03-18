@@ -4,9 +4,12 @@ import {VideoFile} from './video-file';
 import { Image } from './image';
 
 export class Episode {
-
     static EPISODE_TYPE_NORMAL: number = 0;
     static EPISODE_TYPE_SPECIAL: number = 1;
+
+    static STATUS_NOT_DOWNLOADED = 0;
+    static STATUS_DOWNLOADING = 1;
+    static STATUS_DOWNLOADED = 2;
 
     id: string;
     bangumi_id: string;
@@ -50,7 +53,4 @@ export class Episode {
         return episode;
     }
 
-    static STATUS_NOT_DOWNLOADED = 0;
-    static STATUS_DOWNLOADING = 1;
-    static STATUS_DOWNLOADED = 2;
 }

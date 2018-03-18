@@ -40,7 +40,7 @@ export class ForgetPass implements OnDestroy {
             .subscribe(
                 () => {
                     this.isPending = false;
-                    this._toastRef.show(`密码重置邮件将被发送至： ${value}`)
+                    this._toastRef.show(`密码重置邮件将被发送至： ${value}`);
                     this.result = true;
                 },
                 (error: BaseError) => {

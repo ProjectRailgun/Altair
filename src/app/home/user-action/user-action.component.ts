@@ -51,7 +51,7 @@ export class UserActionComponent implements OnInit, OnDestroy, AfterViewInit {
                 (error: BaseError) => {
                     this._toastRef.show(error.message);
                 }
-            )
+            );
     }
 
     ngOnInit(): void {

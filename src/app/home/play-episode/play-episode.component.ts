@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, ViewChild, PipeTransform, Pipe } from '@angular/core';
-import { Episode, Bangumi } from "../../entity";
-import { HomeService, HomeChild } from "../home.service";
+import { Episode, Bangumi } from '../../entity';
+import { HomeService, HomeChild } from '../home.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, Subject } from 'rxjs/Rx';
 import { Title } from '@angular/platform-browser';
@@ -212,7 +212,7 @@ export class PlayEpisode extends HomeChild implements OnInit, OnDestroy {
             this._route.params
                 .flatMap((params) => {
                     let episode_id = params['episode_id'];
-                    return this.homeService.episode_detail(episode_id)
+                    return this.homeService.episode_detail(episode_id);
                 })
                 .flatMap((episode: Episode) => {
                     this.episode = episode;

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class EmailConfirmService extends BaseService {
     constructor(private _http: Http) {
-        super()
+        super();
     }
 
     confirmEmail(querystring: string): Observable<any> {

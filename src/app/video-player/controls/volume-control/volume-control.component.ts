@@ -100,7 +100,7 @@ export class VideoVolumeControl implements AfterViewInit, OnInit, OnDestroy {
         this._isDragging = true;
         this._dragEventEmitSubscription = Observable.interval(100).subscribe(() => {
             this.motion.emit(1);
-        })
+        });
     }
 
     private stopDrag() {

@@ -1,4 +1,8 @@
 export class VideoFile {
+    static STATUS_DOWNLOAD_PENDING = 1;
+    static STATUS_DOWNLOADING = 2;
+    static STATUS_DOWNLOADED = 3;
+
     id?: string;
     bangumi_id?: string;
     episode_id?: string;
@@ -14,9 +18,4 @@ export class VideoFile {
     label?: string;
     // optional, only available at end-user api
     url: string;
-
-
-    static STATUS_DOWNLOAD_PENDING = 1;
-    static STATUS_DOWNLOADING = 2;
-    static STATUS_DOWNLOADED = 3;
 }

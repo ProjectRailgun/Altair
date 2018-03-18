@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 // import {Episode} from "../../entity/episode";
-import {HomeService, HomeChild} from "../home.service";
-import {Bangumi} from "../../entity/bangumi";
+import {HomeService, HomeChild} from '../home.service';
+import {Bangumi} from '../../entity/bangumi';
 import {FAVORITE_LABEL} from '../../entity/constants';
 import { Subscription } from 'rxjs/Subscription';
 import { Announce } from '../../entity/announce';
@@ -78,7 +78,7 @@ export class DefaultComponent extends HomeChild implements OnInit, OnDestroy {
                     });
                     this.announce_in_bangumi = announce_list.filter(announce => {
                         return announce.position === Announce.POSITION_BANGUMI;
-                    })
+                    });
                 })
         );
     }

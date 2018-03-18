@@ -1,6 +1,6 @@
-import {Bangumi} from "./bangumi";
-import {Episode} from "./episode";
-export class BangumiRaw extends Bangumi{
+import {Bangumi} from './bangumi';
+import {Episode} from './episode';
+export class BangumiRaw extends Bangumi {
   public episodes: Episode[];
   constructor(rawData: any) {
     super();
@@ -13,9 +13,9 @@ export class BangumiRaw extends Bangumi{
     this.image = rawData.images.large;
     this.air_date = rawData.air_date;
     this.air_weekday = rawData.air_weekday;
-    
 
-    if(Array.isArray(rawData.eps) && rawData.eps.length > 0) {
+
+    if (Array.isArray(rawData.eps) && rawData.eps.length > 0) {
       this.episodes = rawData.eps.filter(item => item.type === Episode.EPISODE_TYPE_NORMAL).map(item => Episode.fromRawData(item, item.sort));
       this.eps = this.episodes.length;
     } else {

@@ -9,7 +9,7 @@ import { animate, keyframes, state, style, transition, trigger } from '@angular/
 import { VideoPlayer } from '../video-player.component';
 import { PlayState } from '../core/state';
 import { CONTROL_FADE_OUT_TIME } from '../core/helpers';
-import { PlayList } from "../core/settings";
+import { PlayList } from '../core/settings';
 import { PersistStorage } from '../../user-service/persist-storage';
 
 @Component({
@@ -61,7 +61,7 @@ export class VideoControls implements OnInit, OnDestroy, AfterViewInit {
     hasNextEpisode: boolean;
 
     get reflectIconClass(): string {
-        switch(this.pendingPlayState) {
+        switch (this.pendingPlayState) {
             case PlayState.PLAYING:
                 return 'play';
             case PlayState.PAUSED:

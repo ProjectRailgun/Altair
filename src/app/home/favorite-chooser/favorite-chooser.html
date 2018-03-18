@@ -28,7 +28,7 @@
     <span class="sync-complete-tip" *ngIf="!isOnSynchronizing && syncEnabled">
         <i class="icon checkmark"></i> 同步完成
     </span>
-    <span class="sync-disabled-tip" *ngIf="isExtensionEnabled && !syncEnabled">同步功能不可用，请确认已关联 Bangumi 账户且已经登陆 Bangumi 。</span>
+    <span class="sync-disabled-tip" *ngIf="isExtensionEnabled && !syncEnabled">同步功能不可用，请确认 Bangumi 账户关联及 bgm.tv 登陆状态。</span>
     <div *ngIf="isChoosingFavorite" class="small ui basic buttons">
         <button class="ui button" [ngClass]="{active: bangumi.favorite_status === 1}" (click)="chooseFavoriteStatus(1)">
             想看

@@ -95,7 +95,7 @@ export class CapturedFrameList implements OnInit, AfterViewInit, OnDestroy, Prev
                             if (!result || !result.remove) {
                                 previewWrapperElement.insertBefore(image, nextSibling);
                             }
-                        })
+                        });
                 })
                 .subscribe((result) => {
                     if (result && result.remove) {
