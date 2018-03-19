@@ -25,10 +25,10 @@ export interface IAuthInfo {
         large: string, // large image url
         medium: string, // medium image url
         small: string // small image url
-    },
-    sign: string,
-    auth: string, // issued by auth server, used in ${AUTH_TOKEN}
-    auth_encode?: string // ${AUTH_TOKEN) encoded by urlencode()
+    };
+    sign: string;
+    auth: string; // issued by auth server, used in ${AUTH_TOKEN}
+    auth_encode?: string; // ${AUTH_TOKEN) encoded by urlencode()
 }
 
 export type INITIAL_STATE = 0;

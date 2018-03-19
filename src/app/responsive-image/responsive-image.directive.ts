@@ -56,6 +56,25 @@ export class ResponsiveImage implements OnInit, OnChanges, OnDestroy {
 
     observableStub: ObservableStub;
 
+    static getPx(dimen: string): number {
+        let match = dimen.match(/(\d*(?:.\d+)?)(px|rem|em|vw|vh)$/);
+        if (!match) {
+            return 0;
+        }
+        let value = parseInt(match[1]);
+        let unit = match[2];
+        switch (unit) {
+            case 'rem':
+                return getRemPixel(value);
+            case 'vw':
+                return getVwInPixel(value);
+            case 'vh':
+                return getVhInPixel(value);
+            default:
+                return value;
+        }
+    }
+
     constructor(private _element: ElementRef,
                 private _responsiveService: ResponsiveService,
                 private _changeDetector: ChangeDetectorRef) {
@@ -136,25 +155,6 @@ export class ResponsiveImage implements OnInit, OnChanges, OnDestroy {
             unobserveOnVisible: true
         };
         this._responsiveService.observe(this.observableStub);
-    }
-
-    static getPx(dimen: string): number {
-        let match = dimen.match(/(\d*(?:.\d+)?)(px|rem|em|vw|vh)$/);
-        if (!match) {
-            return 0;
-        }
-        let value = parseInt(match[1]);
-        let unit = match[2];
-        switch (unit) {
-            case 'rem':
-                return getRemPixel(value);
-            case 'vw':
-                return getVwInPixel(value);
-            case 'vh':
-                return getVhInPixel(value);
-            default:
-                return value;
-        }
     }
 
     private makeRespSrc(manualChangeDetection: boolean) {
