@@ -17,7 +17,7 @@ export interface ResponsiveDimension {
  * If `dimension` property is not defined or width and height are both set to auto, it will use IntersectionObserver to measure
  * the actual dimension when image is visible in viewport.
  * Otherwise, it will calculate the dimension base on width and height
- * The src will be set to {originalSrc}?size={width}x{height}
+ * The src will be set to {originalSrc}/size-{width}-{height}
  * - originalSrc is the source url of the image
  * - width is calculated or measured width
  * - height is calculated or measured height
@@ -180,7 +180,7 @@ export class ResponsiveImage implements OnInit, OnChanges, OnDestroy {
                         height = this._height;
                     }
                 }
-                this._respSrc = `${this._src}?size=${width}x${height}`;
+                this._respSrc = `${this._src}/resize-${width}-${height}`;
             }
             if (manualChangeDetection) {
                 this._changeDetector.detectChanges();
