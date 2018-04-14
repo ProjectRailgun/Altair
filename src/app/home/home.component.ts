@@ -8,6 +8,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { AlertDialog } from '../alert-dialog/alert-dialog.component';
 import { UIDialog } from 'deneb-ui';
 import { UserService } from '../user-service';
+import { WindowRef } from '../WindowRef';
 
 const BREAK_POINT = 1330;
 
@@ -28,6 +29,7 @@ const BREAK_POINT = 1330;
         ])
     ]
 })
+
 export class Home implements OnInit, OnDestroy {
 
     private _subscription = new Subscription();
@@ -50,7 +52,8 @@ export class Home implements OnInit, OnDestroy {
                 private _homeService: HomeService,
                 private _dialogService: UIDialog,
                 private _userService: UserService,
-                private _router: Router) {
+                private _router: Router,
+                private _winRef: WindowRef) {
         this.checkOverlapMode();
         if (this.sidebarOverlap) {
             this.sidebarActive = 'inactive';
@@ -65,7 +68,7 @@ export class Home implements OnInit, OnDestroy {
             this.currentRouteName = routeName;
 
             if (routeName === 'Bangumi') {
-                titleService.setTitle(`Bangumi - ${this.siteTitle}`);
+                titleService.setTitle(`所有番組 - ${this.siteTitle}`);
             } else if (routeName === 'Default') {
                 titleService.setTitle(this.siteTitle);
             }
@@ -118,9 +121,9 @@ export class Home implements OnInit, OnDestroy {
                     if (user && (!user.email_confirmed || !user.email)) {
                         let dialogRef = this._dialogService.open(AlertDialog, {stickyDialog: true, backdrop: true});
                         if (user.email && !user.email_confirmed) {
-                            dialogRef.componentInstance.title = 'Please verify your mail address!';
-                            dialogRef.componentInstance.content = 'We have sent a verification mail to your email address, please follow the instructions in it to active your account.';
-                            dialogRef.componentInstance.confirmButtonText = 'OK';
+                            dialogRef.componentInstance.title = '欢迎！';
+                            dialogRef.componentInstance.content = '我们已经像你注册填写的邮箱发送了一封邮件，请点击邮件中的链接激活你的账户。';
+                            dialogRef.componentInstance.confirmButtonText = '好';
                             this._subscription.add(dialogRef.afterClosed().subscribe(() => {}));
                         } else {
                             dialogRef.componentInstance.title = 'Please set your mail address!';
@@ -130,6 +133,8 @@ export class Home implements OnInit, OnDestroy {
                                 this._router.navigate(['/settings/user']);
                             }));
                         }
+                    } else if (user) {
+                        this._winRef.nativeWindow.ga('set', 'userId', user.id);
                     }
                 }
             ));

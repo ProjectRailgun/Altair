@@ -8,11 +8,11 @@ export class AnalyticsService {
     this.router.events
       .subscribe(
         (event) => {
-          if(event instanceof NavigationEnd) {
+          if (event instanceof NavigationEnd) {
             this.routeChanged(this.getPath(event.url));
           }
         }
-      )
+      );
   }
 
   private getPath(url: string): string {
@@ -20,11 +20,11 @@ export class AnalyticsService {
   }
 
   private routeChanged(route: string): void {
-    if(typeof ga === 'undefined') {
+    if (typeof ga === 'undefined') {
       ga_events.push(
         ['set', 'page', route],
         ['send', 'pageview']
-      )
+      );
     } else {
       ga('set', 'page', route);
       ga('send', 'pageview');
