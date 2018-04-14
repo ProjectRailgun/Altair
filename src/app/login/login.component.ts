@@ -42,7 +42,7 @@ export class Login implements OnInit, OnDestroy {
             password: ['', Validators.required],
             remember: [false]
         });
-    };
+    }
 
     ngOnInit(): void {
         this.title.setTitle(`登录 - ${this.siteTitle}`);
@@ -78,10 +78,10 @@ export class Login implements OnInit, OnDestroy {
                             if (error.isLoginFailed()) {
                                 this.errorMessage = '用户名或密码错误';
                             } else {
-                                this.errorMessage = 'Something Happened';
+                                this.errorMessage = '未知认证错误';
                             }
                         } else {
-                            this.errorMessage = '未知错误';
+                            this.errorMessage = '未知系统错误';
                         }
                     }
                 )
