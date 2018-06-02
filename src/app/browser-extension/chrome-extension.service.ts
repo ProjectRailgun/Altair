@@ -63,41 +63,52 @@ export class ChromeExtensionService {
     }
 
     constructor(private _ngZone: NgZone) {
-        console.log('chrome extension id:', CHROME_EXTENSION_ID);
         if (CHROME_EXTENSION_ID) {
             this.chromeExtensionId = CHROME_EXTENSION_ID;
         }
-        if (!!window && !!window.chrome && !!window.chrome.runtime && !!this.chromeExtensionId) {
-            this.isEnabled.filter(isEnabled => isEnabled)
-                .subscribe(() => {
-                    this.invokeBangumiMethod('getAuthInfo', [])
-                        .subscribe(authInfo => {
-                            console.log(authInfo);
-                            this._authInfo.next(authInfo);
-                        });
-                    this.invokeBangumiWebMethod('checkLoginStatus', [])
-                        .subscribe(result => {
-                            console.log(result);
-                            if (result.isLogin) {
-                                this._isBgmTvLogon.next(LOGON_STATUS.TRUE);
-                            } else {
-                                this._isBgmTvLogon.next(LOGON_STATUS.FALSE);
-                            }
-                        });
-                });
-            this._ngZone.run(() => {
-                chrome.runtime.sendMessage(this.chromeExtensionId, {
-                    className: 'BackgroundCore',
-                    method: 'verify',
-                    args: []
-                }, (resp) => {
-                    console.log(resp);
-                    if (resp && resp.result === 'OK') {
-                        this._isEnabled.next(true);
-                    } else {
-                        this._isEnabled.next(false);
+        if (
+            !!window &&
+            !!window.chrome &&
+            !!window.chrome.runtime &&
+            !!this.chromeExtensionId
+        ) {
+            console.log(
+                '%c Altair %c Deneb plugin activated! ',
+                'color: #fff; margin: 1em 0; padding: 5px 0; background: #3498db;',
+                'margin: 1em 0; padding: 5px 0; background: #efefef;'
+            );
+            this.isEnabled.filter(isEnabled => isEnabled).subscribe(() => {
+                this.invokeBangumiMethod('getAuthInfo', []).subscribe(
+                    authInfo => {
+                        this._authInfo.next(authInfo);
                     }
-                });
+                );
+                this.invokeBangumiWebMethod('checkLoginStatus', []).subscribe(
+                    result => {
+                        if (result.isLogin) {
+                            this._isBgmTvLogon.next(LOGON_STATUS.TRUE);
+                        } else {
+                            this._isBgmTvLogon.next(LOGON_STATUS.FALSE);
+                        }
+                    }
+                );
+            });
+            this._ngZone.run(() => {
+                chrome.runtime.sendMessage(
+                    this.chromeExtensionId,
+                    {
+                        className: 'BackgroundCore',
+                        method: 'verify',
+                        args: []
+                    },
+                    resp => {
+                        if (resp && resp.result === 'OK') {
+                            this._isEnabled.next(true);
+                        } else {
+                            this._isEnabled.next(false);
+                        }
+                    }
+                );
             });
         } else {
             this._isEnabled.next(false);
