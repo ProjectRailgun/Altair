@@ -7,8 +7,8 @@
                     <div class="text">{{ bangumiType | bangumiTypeName }}</div>
                     <i class="dropdown icon"></i>
                     <div class="menu transition" [ngClass]="{visible: typePickerOpen, hidden: !typePickerOpen}">
-                        <div class="item" (click)="onTypeChanged(1001)">CN</div>
-                        <div class="item" (click)="onTypeChanged(1002)">RAW</div>
+                        <div class="item" (click)="onTypeChange(1001)">CN</div>
+                        <div class="item" (click)="onTypeChange(1002)">RAW</div>
                     </div>
                 </div>
                 <input type="text" placeholder="搜索番組名称..." #searchBox>
