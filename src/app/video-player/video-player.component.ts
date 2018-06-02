@@ -123,7 +123,7 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
     playerId = 'videoPlayerId' + (nextId++);
 
     @ViewChild('media') mediaRef: ElementRef;
-    @ViewChild('overlay', {read: ViewContainerRef}) controlContainer: ViewContainerRef;
+    @ViewChild('overlay', { read: ViewContainerRef }) controlContainer: ViewContainerRef;
 
     /**
      * measured dimension according current viewport size
@@ -186,11 +186,11 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
     }
 
     constructor(@Self() public videoPlayerRef: ElementRef,
-                private _changeDetector: ChangeDetectorRef,
-                private _videoCapture: VideoCapture,
-                private _injector: Injector,
-                private _componentFactoryResolver: ComponentFactoryResolver,
-                private _dialogService: UIDialog) {
+        private _changeDetector: ChangeDetectorRef,
+        private _videoCapture: VideoCapture,
+        private _injector: Injector,
+        private _componentFactoryResolver: ComponentFactoryResolver,
+        private _dialogService: UIDialog) {
     }
 
     setPendingState(state: number) {
@@ -330,7 +330,7 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
                 backdrop: true
             }, this.controlContainer);
         } else {
-            dialogRef = this._dialogService.open(VideoPlayerHelpDialog, {stickyDialog: false, backdrop: true});
+            dialogRef = this._dialogService.open(VideoPlayerHelpDialog, { stickyDialog: false, backdrop: true });
         }
         this._subscription.add(
             dialogRef.afterClosed()
@@ -524,7 +524,7 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
             });
     }
 
-    private measurePlayerSize(): {width: number, height: number} {
+    private measurePlayerSize(): { width: number, height: number } {
         let viewportWidth = document.documentElement.clientWidth;
         let viewportHeight = document.documentElement.clientHeight;
         let videoWidth = this.videoFile.resolution_w;
@@ -546,11 +546,11 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
             playerWidth = viewportWidth;
             playerHeight = playerWidth / videoRatio;
         }
-        return {width: playerWidth, height: playerHeight};
+        return { width: playerWidth, height: playerHeight };
     }
 
     private togglePlayerDimension(hostElement: HTMLElement): void {
-        let {width, height} = this.measurePlayerSize();
+        let { width, height } = this.measurePlayerSize();
         this.playerMeasuredWidth = width;
         this.playerMeasuredHeight = height;
         if (!this.isFullscreen && !!this.playerMeasuredWidth && !!this.playerMeasuredHeight) {

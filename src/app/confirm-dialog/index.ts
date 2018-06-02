@@ -1,7 +1,7 @@
-import {NgModule} from '@angular/core';
-import {ConfirmDialogDirective} from './confirm-dialog.directive';
-import {UIDialogModule} from 'deneb-ui';
-import {ConfirmDialogModal} from './confirm-dialog-modal.component';
+import { NgModule } from '@angular/core';
+import { ConfirmDialogDirective } from './confirm-dialog.directive';
+import { UIDialogModule } from 'deneb-ui';
+import { ConfirmDialogModal } from './confirm-dialog-modal.component';
 
 @NgModule({
     declarations: [ConfirmDialogDirective, ConfirmDialogModal],

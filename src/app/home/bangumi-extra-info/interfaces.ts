@@ -21,7 +21,7 @@ export interface Person {
     images: BgmImage | null;
     comment: number;
     collects: number;
-    info: {name_cn: string, alias: {en: string}, gender: string};
+    info: { name_cn: string, alias: { en: string }, gender: string };
 }
 
 export interface Character extends Person {

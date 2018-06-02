@@ -19,7 +19,7 @@ export class UserService extends BaseService {
     ) {
         super();
         // console.log('init user service: #' + (Math.random()* 1000));
-        this.getUserInfo().subscribe(() => {});
+        this.getUserInfo().subscribe(() => { });
     }
 
     get userInfo(): Observable<User> {
@@ -68,9 +68,9 @@ export class UserService extends BaseService {
     }
 
     updateEmail(email, current_pass): Observable<any> {
-        let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers});
-        let body = JSON.stringify({email: email, password: current_pass});
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        let body = JSON.stringify({ email: email, password: current_pass });
         return this._http.post(`${this._baseUrl}/email`, body, options)
             .flatMap(() => {
                 return this.getUserInfo();
@@ -79,18 +79,18 @@ export class UserService extends BaseService {
     }
 
     updatePass(password, new_password, new_password_repeat): Observable<any> {
-        let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers});
-        let body = JSON.stringify({new_password: new_password, new_password_repeat: new_password_repeat, password: password});
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        let body = JSON.stringify({ new_password: new_password, new_password_repeat: new_password_repeat, password: password });
         return this._http.post(`${this._baseUrl}/update-pass`, body, options)
             .map(res => res.json())
             .catch(this.handleError);
     }
 
     requestResetPass(email: string) {
-        let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers});
-        let body = JSON.stringify({email: email});
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        let body = JSON.stringify({ email: email });
         return this._http.post(`${this._baseUrl}/request-reset-pass`, body, options)
             .map(res => res.json())
             .catch(this.handleError);

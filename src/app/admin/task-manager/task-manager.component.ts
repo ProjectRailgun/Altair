@@ -1,10 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Bangumi} from '../../entity/bangumi';
-import {TaskService} from './task.service';
-import {Subscription} from 'rxjs/Subscription';
-import {UIToast, UIToastComponent, UIToastRef} from 'deneb-ui';
-import {BaseError} from '../../../helpers/error/BaseError';
-import {Episode} from '../../entity/episode';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Bangumi } from '../../entity/bangumi';
+import { TaskService } from './task.service';
+import { Subscription } from 'rxjs/Subscription';
+import { UIToast, UIToastComponent, UIToastRef } from 'deneb-ui';
+import { BaseError } from '../../../helpers/error/BaseError';
+import { Episode } from '../../entity/episode';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -24,8 +24,8 @@ export class TaskManager implements OnInit, OnDestroy {
 
 
     constructor(private _taskService: TaskService,
-                toastService: UIToast,
-                titleService: Title) {
+        toastService: UIToast,
+        titleService: Title) {
         titleService.setTitle(`任务管理 - ${SITE_TITLE}`);
         this._toastRef = toastService.makeText();
     }

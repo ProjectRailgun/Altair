@@ -12,9 +12,9 @@ export class EmailConfirmService extends BaseService {
     confirmEmail(querystring: string): Observable<any> {
         let params = new URLSearchParams(querystring);
         let token = params.get('token');
-        let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers});
-        let body = JSON.stringify({token: token});
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        let body = JSON.stringify({ token: token });
         return this._http.post('/api/user/email/confirm', body, options)
             .map(res => res.json())
             .catch(this.handleError);

@@ -1,9 +1,9 @@
-import {BaseService} from '../../../helpers/base.service';
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import {Bangumi} from '../../entity/bangumi';
-import {Http} from '@angular/http';
-import {Episode} from '../../entity/episode';
+import { BaseService } from '../../../helpers/base.service';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Bangumi } from '../../entity/bangumi';
+import { Http } from '@angular/http';
+import { Episode } from '../../entity/episode';
 
 @Injectable()
 export class TaskService extends BaseService {
@@ -13,15 +13,15 @@ export class TaskService extends BaseService {
         super();
     }
 
-    listPendingDeleteBangumi(): Observable<{data: Bangumi[], delete_delay: number}> {
+    listPendingDeleteBangumi(): Observable<{ data: Bangumi[], delete_delay: number }> {
         return this._http.get(`${this._baseUrl}/bangumi`)
-            .map(res => res.json() as {data: Bangumi[], delete_delay: number})
+            .map(res => res.json() as { data: Bangumi[], delete_delay: number })
             .catch(this.handleError);
     }
 
-    listPendingDeleteEpisode(): Observable<{data: Episode[], delete_delay: number}> {
+    listPendingDeleteEpisode(): Observable<{ data: Episode[], delete_delay: number }> {
         return this._http.get(`${this._baseUrl}/episode`)
-            .map(res => res.json() as {data: Episode[], delete_delay: number})
+            .map(res => res.json() as { data: Episode[], delete_delay: number })
             .catch(this.handleError);
     }
 

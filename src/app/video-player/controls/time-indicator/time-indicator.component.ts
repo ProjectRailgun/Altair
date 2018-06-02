@@ -37,7 +37,7 @@ export class VideoTimeIndicator implements OnInit, OnDestroy {
         return VideoPlayerHelpers.convertTime(this.duration);
     }
 
-    get currentTimeClock() : string {
+    get currentTimeClock(): string {
         if (Number.isNaN(this.duration)) {
             return '-';
         }

@@ -97,9 +97,9 @@ export class VideoPlayerScrubBar implements AfterViewInit, OnInit, OnDestroy {
                         return !Number.isNaN(this.duration);
                     })
                     .map((event: MouseEvent) => {
-                        return {rect: hostElement.getBoundingClientRect(), event: event};
+                        return { rect: hostElement.getBoundingClientRect(), event: event };
                     })
-                    .do(({rect, event}: { rect: ClientRect, event: MouseEvent }) => {
+                    .do(({ rect, event }: { rect: ClientRect, event: MouseEvent }) => {
                         event.preventDefault();
                         this._dragProgressRatio = VideoPlayerHelpers.calcSliderRatio(rect, event.clientX);
                         this.startDrag();
@@ -109,13 +109,13 @@ export class VideoPlayerScrubBar implements AfterViewInit, OnInit, OnDestroy {
                     .flatMap(() => {
                         return Observable.fromEvent(document, 'mousemove')
                             .map((event: MouseEvent) => {
-                                return {rect: hostElement.getBoundingClientRect(), event: event};
+                                return { rect: hostElement.getBoundingClientRect(), event: event };
                             })
                             .takeUntil(Observable.fromEvent(document, 'mouseup')
                                 .map((event: MouseEvent) => {
-                                    return {rect: hostElement.getBoundingClientRect(), event: event};
+                                    return { rect: hostElement.getBoundingClientRect(), event: event };
                                 })
-                                .do(({rect, event}: { rect: ClientRect, event: MouseEvent }) => {
+                                .do(({ rect, event }: { rect: ClientRect, event: MouseEvent }) => {
                                     this._videoPlayer.seek(VideoPlayerHelpers.calcSliderRatio(rect, event.clientX));
                                     this.stopDrag();
                                     if (!this.isEventInRect(rect, event)) {
@@ -124,7 +124,7 @@ export class VideoPlayerScrubBar implements AfterViewInit, OnInit, OnDestroy {
                                 }));
                     })
                     .subscribe(
-                        ({rect, event}: { rect: ClientRect, event: MouseEvent }) => {
+                        ({ rect, event }: { rect: ClientRect, event: MouseEvent }) => {
                             this._dragProgressRatio = VideoPlayerHelpers.calcSliderRatio(rect, event.clientX);
                             this.updateTip(rect, event, tipElement);
                         }
@@ -136,12 +136,12 @@ export class VideoPlayerScrubBar implements AfterViewInit, OnInit, OnDestroy {
                     .filter(() => !Number.isNaN(this.duration))
                     .filter(() => !this._isDragging)
                     .map((event: MouseEvent) => {
-                        return {rect: hostElement.getBoundingClientRect(), event: event};
+                        return { rect: hostElement.getBoundingClientRect(), event: event };
                     })
-                    .filter(({rect, event}: { rect: ClientRect, event: MouseEvent }) => {
+                    .filter(({ rect, event }: { rect: ClientRect, event: MouseEvent }) => {
                         return this.isEventInRect(rect, event);
                     })
-                    .subscribe(({rect, event}: { rect: ClientRect, event: MouseEvent }) => {
+                    .subscribe(({ rect, event }: { rect: ClientRect, event: MouseEvent }) => {
                         this.updateTip(rect, event, tipElement);
                     })
             );
@@ -149,9 +149,9 @@ export class VideoPlayerScrubBar implements AfterViewInit, OnInit, OnDestroy {
                 Observable.fromEvent(hostElement, 'mouseenter')
                     .filter(() => !this._isDragging)
                     .map((event: MouseEvent) => {
-                        return {rect: hostElement.getBoundingClientRect(), event: event};
+                        return { rect: hostElement.getBoundingClientRect(), event: event };
                     })
-                    .subscribe(({rect, event}: { rect: ClientRect, event: MouseEvent }) => {
+                    .subscribe(({ rect, event }: { rect: ClientRect, event: MouseEvent }) => {
                         this.updateTip(rect, event, tipElement);
                         this.pointOpacity = 1;
                     })
@@ -173,9 +173,9 @@ export class VideoPlayerScrubBar implements AfterViewInit, OnInit, OnDestroy {
                         return !Number.isNaN(this.duration);
                     })
                     .map((event: TouchEvent) => {
-                        return {rect: hostElement.getBoundingClientRect(), event: event};
+                        return { rect: hostElement.getBoundingClientRect(), event: event };
                     })
-                    .do(({rect, event}: { rect: ClientRect, event: TouchEvent }) => {
+                    .do(({ rect, event }: { rect: ClientRect, event: TouchEvent }) => {
                         event.preventDefault();
                         this._dragProgressRatio = VideoPlayerHelpers.calcSliderRatio(rect, event.changedTouches[0].clientX);
                         this.startDrag();
@@ -183,18 +183,18 @@ export class VideoPlayerScrubBar implements AfterViewInit, OnInit, OnDestroy {
                     .flatMap(() => {
                         return Observable.fromEvent(document, 'touchmove')
                             .map((event: TouchEvent) => {
-                                return {rect: hostElement.getBoundingClientRect(), event: event};
+                                return { rect: hostElement.getBoundingClientRect(), event: event };
                             })
                             .takeUntil(Observable.fromEvent(document, 'touchend')
                                 .map((event: TouchEvent) => {
-                                    return {rect: hostElement.getBoundingClientRect(), event: event};
+                                    return { rect: hostElement.getBoundingClientRect(), event: event };
                                 })
-                                .do(({rect, event}: { rect: ClientRect, event: TouchEvent }) => {
+                                .do(({ rect, event }: { rect: ClientRect, event: TouchEvent }) => {
                                     this._videoPlayer.seek(VideoPlayerHelpers.calcSliderRatio(rect, event.changedTouches[0].clientX));
                                     this.stopDrag();
                                 }));
                     })
-                    .subscribe(({rect, event}: { rect: ClientRect, event: TouchEvent }) => {
+                    .subscribe(({ rect, event }: { rect: ClientRect, event: TouchEvent }) => {
                         this._dragProgressRatio = VideoPlayerHelpers.calcSliderRatio(rect, event.changedTouches[0].clientX);
                     })
             );

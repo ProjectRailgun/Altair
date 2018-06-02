@@ -21,9 +21,9 @@ export class WebHookComponent implements OnInit, OnDestroy {
     isBgmEnabled: boolean;
 
     constructor(private _http: Http,
-                private _chromeExtensionService: ChromeExtensionService,
-                toastService: UIToast,
-                titleService: Title) {
+        private _chromeExtensionService: ChromeExtensionService,
+        toastService: UIToast,
+        titleService: Title) {
         titleService.setTitle(`Web Hook - ${SITE_TITLE}`);
         this._toastRef = toastService.makeText();
     }

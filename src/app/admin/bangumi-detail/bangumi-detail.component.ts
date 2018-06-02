@@ -1,16 +1,16 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Title} from '@angular/platform-browser';
-import {Bangumi, Episode} from '../../entity';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Subscription} from 'rxjs/Rx';
-import {AdminService} from '../admin.service';
-import {UIDialog, UIToast, UIToastComponent, UIToastRef} from 'deneb-ui';
-import {BangumiBasic} from './bangumi-basic/bangumi-basic.component';
-import {BaseError} from '../../../helpers/error/BaseError';
-import {KeywordBuilder} from './keyword-builder/keyword-builder.component';
-import {EpisodeDetail} from './episode-detail/episode-detail.component';
-import {BangumiMoeBuilder} from './bangumi-moe-builder/bangumi-moe-builder.component';
-import {VideoFileModal} from './video-file-modal/video-file-modal.component';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { Bangumi, Episode } from '../../entity';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs/Rx';
+import { AdminService } from '../admin.service';
+import { UIDialog, UIToast, UIToastComponent, UIToastRef } from 'deneb-ui';
+import { BangumiBasic } from './bangumi-basic/bangumi-basic.component';
+import { BaseError } from '../../../helpers/error/BaseError';
+import { KeywordBuilder } from './keyword-builder/keyword-builder.component';
+import { EpisodeDetail } from './episode-detail/episode-detail.component';
+import { BangumiMoeBuilder } from './bangumi-moe-builder/bangumi-moe-builder.component';
+import { VideoFileModal } from './video-file-modal/video-file-modal.component';
 import { UserManagerSerivce } from '../user-manager/user-manager.service';
 import { User } from '../../entity/user';
 import { AnnounceService } from '../announce/announce.service';
@@ -68,13 +68,13 @@ export class BangumiDetail implements OnInit, OnDestroy {
     AnnounceStatus = AnnounceStatus;
 
     constructor(private _route: ActivatedRoute,
-                private _router: Router,
-                private _adminService: AdminService,
-                private _userManagerService: UserManagerSerivce,
-                private _announceService: AnnounceService,
-                private _uiDialog: UIDialog,
-                titleService: Title,
-                toastService: UIToast
+        private _router: Router,
+        private _adminService: AdminService,
+        private _userManagerService: UserManagerSerivce,
+        private _announceService: AnnounceService,
+        private _uiDialog: UIDialog,
+        titleService: Title,
+        toastService: UIToast
     ) {
         this._toastRef = toastService.makeText();
         titleService.setTitle('编辑新番 - ' + SITE_TITLE);
@@ -115,7 +115,7 @@ export class BangumiDetail implements OnInit, OnDestroy {
     }
 
     editBasicInfo() {
-        let dialogRef = this._uiDialog.open(BangumiBasic, {stickyDialog: false, backdrop: true});
+        let dialogRef = this._uiDialog.open(BangumiBasic, { stickyDialog: false, backdrop: true });
         dialogRef.componentInstance.bangumi = this.bangumi;
         dialogRef.componentInstance.adminList = this.adminList;
         this._subscription.add(
@@ -151,7 +151,7 @@ export class BangumiDetail implements OnInit, OnDestroy {
     }
 
     editKeyword(siteName: string) {
-        let dialogRef = this._uiDialog.open(KeywordBuilder, {stickyDialog: true, backdrop: true});
+        let dialogRef = this._uiDialog.open(KeywordBuilder, { stickyDialog: true, backdrop: true });
         dialogRef.componentInstance.keyword = this.bangumi[siteName];
         dialogRef.componentInstance.siteName = siteName;
         this._subscription.add(
@@ -176,7 +176,7 @@ export class BangumiDetail implements OnInit, OnDestroy {
     }
 
     editBangumiMoe() {
-        let dialogRef = this._uiDialog.open(BangumiMoeBuilder, {stickyDialog: true, backdrop: true});
+        let dialogRef = this._uiDialog.open(BangumiMoeBuilder, { stickyDialog: true, backdrop: true });
         dialogRef.componentInstance.bangumi = this.bangumi;
         this._subscription.add(
             dialogRef.afterClosed()
@@ -200,7 +200,7 @@ export class BangumiDetail implements OnInit, OnDestroy {
     }
 
     editEpisode(episode?: Episode) {
-        let dialogRef = this._uiDialog.open(EpisodeDetail, {stickyDialog: true, backdrop: true});
+        let dialogRef = this._uiDialog.open(EpisodeDetail, { stickyDialog: true, backdrop: true });
         dialogRef.componentInstance.episode = episode;
         dialogRef.componentInstance.bangumi_id = this.bangumi.id;
         this._subscription.add(
@@ -224,7 +224,7 @@ export class BangumiDetail implements OnInit, OnDestroy {
     }
 
     editVideoFile(episode: Episode) {
-        let dialogRef = this._uiDialog.open(VideoFileModal, {stickyDialog: true, backdrop: true});
+        let dialogRef = this._uiDialog.open(VideoFileModal, { stickyDialog: true, backdrop: true });
         dialogRef.componentInstance.episode = episode;
     }
 
@@ -250,7 +250,7 @@ export class BangumiDetail implements OnInit, OnDestroy {
         this._subscription.add(
             this._adminService.deleteBangumi(this.bangumi.id)
                 .subscribe(
-                    ({delete_delay}) => {
+                    ({ delete_delay }) => {
                         this._toastRef.show(`将在${delete_delay}分钟后删除，你可以在任务管理中取消删除`);
                         this._router.navigate(['/admin/bangumi']);
                     },
@@ -262,7 +262,7 @@ export class BangumiDetail implements OnInit, OnDestroy {
     }
 
     addOrEditAnnounce() {
-        const dialogRef = this._uiDialog.open(EditBangumiRecommendComponent, {stickyDialog: true, backdrop: true});
+        const dialogRef = this._uiDialog.open(EditBangumiRecommendComponent, { stickyDialog: true, backdrop: true });
         dialogRef.componentInstance.bangumi = this.bangumi;
         if (this.announceList.length > 0) {
             dialogRef.componentInstance.announce = this.announceList[0];
@@ -285,8 +285,8 @@ export class BangumiDetail implements OnInit, OnDestroy {
 
     private fetchAnnounceList(bangumi_id: string) {
         this._subscription.add(
-            this._announceService.listAnnounce(2,0, 10, bangumi_id)
-                .subscribe(({data}) => {
+            this._announceService.listAnnounce(2, 0, 10, bangumi_id)
+                .subscribe(({ data }) => {
                     this.announceList = data;
                     let currentTime = Date.now();
                     this.announceStatus = AnnounceStatus.NOT_SET;

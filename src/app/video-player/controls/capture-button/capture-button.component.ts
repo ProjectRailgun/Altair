@@ -27,7 +27,7 @@ export class VideoCaptureButton implements OnInit, OnDestroy {
     private _currentTime: number = 0;
 
     constructor(private _videoCapture: VideoCapture,
-                private _videoPlayer: VideoPlayer) {
+        private _videoPlayer: VideoPlayer) {
     }
 
     @HostListener('click', ['$event'])

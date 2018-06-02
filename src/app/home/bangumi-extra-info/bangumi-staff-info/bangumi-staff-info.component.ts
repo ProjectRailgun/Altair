@@ -10,7 +10,7 @@ export class BangumiStaffInfoComponent implements OnInit {
     @Input()
     staffList: Staff[];
 
-    staffMap: {[job: string]: Staff[]};
+    staffMap: { [job: string]: Staff[] };
 
     jobs: string[];
 

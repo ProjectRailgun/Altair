@@ -2,7 +2,7 @@ import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { UIToast, UIToastComponent, UIToastRef } from 'deneb-ui';
 import { UserService } from '../user-service/user.service';
-import {BaseError} from '../../helpers/error/BaseError';
+import { BaseError } from '../../helpers/error/BaseError';
 import { ClientError } from '../../helpers/error/ClientError';
 
 @Component({
@@ -20,7 +20,7 @@ export class ForgetPass implements OnDestroy {
     isPending = false;
 
     constructor(private _userService: UserService,
-                toast: UIToast) {
+        toast: UIToast) {
         this._toastRef = toast.makeText();
     }
 

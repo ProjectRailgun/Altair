@@ -20,7 +20,7 @@ export class ConflictDialogComponent {
     @Input()
     bgmStatus: number;
 
-    constructor(private _dialogRef: UIDialogRef<ConflictDialogComponent>) {}
+    constructor(private _dialogRef: UIDialogRef<ConflictDialogComponent>) { }
 
     chooseStatus(which: string) {
         this._dialogRef.close(which);

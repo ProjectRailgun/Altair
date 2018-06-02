@@ -27,7 +27,7 @@ export class UserActionComponent implements OnInit, OnDestroy, AfterViewInit {
 
     bgmAccountInfo: {
         nickname: string,
-        avatar: {large: string, medium: string, small: string},
+        avatar: { large: string, medium: string, small: string },
         username: string,
         id: string,
         url: string
@@ -36,18 +36,18 @@ export class UserActionComponent implements OnInit, OnDestroy, AfterViewInit {
     @ViewChild('userActionLink') userActionLinkRef: ElementRef;
 
     constructor(private _chromeExtensionService: ChromeExtensionService,
-                private _userService: UserService,
-                private _router: Router,
-                private _popover: UIPopover,
-                private _persistStorage: PersistStorage,
-                toast: UIToast) {
+        private _userService: UserService,
+        private _router: Router,
+        private _popover: UIPopover,
+        private _persistStorage: PersistStorage,
+        toast: UIToast) {
         this._toastRef = toast.makeText();
     }
 
     logout() {
         this._userService.logout()
             .subscribe(
-                () => {},
+                () => { },
                 (error: BaseError) => {
                     this._toastRef.show(error.message);
                 }

@@ -51,7 +51,7 @@ export class Authentication implements CanActivate {
                 if (this.hasPermission(route)) {
                     return true;
                 } else {
-                    this.router.navigate(['/error', {message: AuthError.PERMISSION_DENIED, status: 403}]);
+                    this.router.navigate(['/error', { message: AuthError.PERMISSION_DENIED, status: 403 }]);
                     return false;
                 }
             })
@@ -61,10 +61,10 @@ export class Authentication implements CanActivate {
                     if (sourceUrl === '/') {
                         this.router.navigate(['/login']);
                     } else {
-                        this.router.navigate(['/login', {sourceUrl: sourceUrl}]);
+                        this.router.navigate(['/login', { sourceUrl: sourceUrl }]);
                     }
                 } else {
-                    this.router.navigate(['/error', {message: error.message, status: error.status}]);
+                    this.router.navigate(['/error', { message: error.message, status: error.status }]);
                 }
                 return Observable.of(false);
             });

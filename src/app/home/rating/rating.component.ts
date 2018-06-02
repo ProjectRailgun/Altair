@@ -25,13 +25,13 @@ export class RatingComponent {
     @Input()
     rating: Rating;
 
-    get countDist(): {r: number, c: number}[] {
+    get countDist(): { r: number, c: number }[] {
         if (this.rating) {
             return Object.keys(this.rating.count)
                 .map(r => parseInt(r, 10))
                 .sort((r1, r2) => r2 - r1)
                 .map(r => {
-                    return {r: r, c: this.rating.count[r]};
+                    return { r: r, c: this.rating.count[r] };
                 });
         } else {
             return [];

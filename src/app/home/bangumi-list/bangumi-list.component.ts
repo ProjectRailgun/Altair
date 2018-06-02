@@ -47,10 +47,10 @@ export class BangumiList extends HomeChild implements OnInit, OnDestroy {
     @ViewChild(InfiniteList) infiniteList: InfiniteList;
 
     constructor(homeService: HomeService,
-                private _homeComponent: Home,
-                private _route: ActivatedRoute,
-                private _bangumiListService: BangumiListService,
-                toastService: UIToast) {
+        private _homeComponent: Home,
+        private _route: ActivatedRoute,
+        private _bangumiListService: BangumiListService,
+        toastService: UIToast) {
         super(homeService);
         this._toastRef = toastService.makeText();
         if (window) {
@@ -82,7 +82,7 @@ export class BangumiList extends HomeChild implements OnInit, OnDestroy {
     onClickFilterContainer() {
         const step = 10;
         let totalDistance = this._bangumiListService.scrollPosition;
-        const co = totalDistance / ((step - 1) * (step -1));
+        const co = totalDistance / ((step - 1) * (step - 1));
         this._subscription.add(
             Observable.interval(30)
                 .take(step)

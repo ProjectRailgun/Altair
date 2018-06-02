@@ -1,10 +1,10 @@
-import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
-import {Bangumi} from '../../entity';
-import {AdminService} from '../admin.service';
-import {Observable, Subscription} from 'rxjs';
-import {UIDialogRef, UIToast, UIToastComponent, UIToastRef} from 'deneb-ui';
-import {BaseError} from '../../../helpers/error/BaseError';
-import {BangumiRaw} from '../../entity/bangumi-raw';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { Bangumi } from '../../entity';
+import { AdminService } from '../admin.service';
+import { Observable, Subscription } from 'rxjs';
+import { UIDialogRef, UIToast, UIToastComponent, UIToastRef } from 'deneb-ui';
+import { BaseError } from '../../../helpers/error/BaseError';
+import { BangumiRaw } from '../../entity/bangumi-raw';
 
 // export const SEARCH_BAR_HEIGHT = 4.8;
 
@@ -38,14 +38,14 @@ export class SearchBangumi implements AfterViewInit {
     isSaving: boolean = false;
 
     constructor(private _adminService: AdminService,
-                private _dialogRef: UIDialogRef<SearchBangumi>,
-                toastService: UIToast) {
+        private _dialogRef: UIDialogRef<SearchBangumi>,
+        toastService: UIToast) {
         this._toastRef = toastService.makeText();
     }
 
     ngAfterViewInit(): void {
-        let searchBox = <HTMLElement> this.searchBox.nativeElement;
-        let typePicker = <HTMLElement> this.typePicker.nativeElement;
+        let searchBox = <HTMLElement>this.searchBox.nativeElement;
+        let typePicker = <HTMLElement>this.typePicker.nativeElement;
 
         this._subscription.add(
             Observable.fromEvent(typePicker, 'click')
@@ -145,15 +145,15 @@ export class SearchBangumi implements AfterViewInit {
             this.isSaving = true;
             this._subscription.add(
                 this._adminService.addBangumi(bangumi)
-                .subscribe(
-                    (bangumi_id: string) => {
-                        this._dialogRef.close(bangumi_id);
-                    },
-                    (error: BaseError) => {
-                        this.isSaving = false;
-                        this._toastRef.show(error.message);
-                    }
-                )
+                    .subscribe(
+                        (bangumi_id: string) => {
+                            this._dialogRef.close(bangumi_id);
+                        },
+                        (error: BaseError) => {
+                            this.isSaving = false;
+                            this._toastRef.show(error.message);
+                        }
+                    )
             );
         } else {
             this.showDetail = false;

@@ -33,13 +33,13 @@ export class BangumiDetail extends HomeChild implements OnInit, OnDestroy {
     extraInfo: any;
 
     constructor(homeService: HomeService,
-                userService: UserService,
-                private _chromeExtensionService: ChromeExtensionService,
-                private _dialog: UIDialog,
-                private _route: ActivatedRoute,
-                private _titleService: Title,
-                private _changeDetector: ChangeDetectorRef,
-                toast: UIToast) {
+        userService: UserService,
+        private _chromeExtensionService: ChromeExtensionService,
+        private _dialog: UIDialog,
+        private _route: ActivatedRoute,
+        private _titleService: Title,
+        private _changeDetector: ChangeDetectorRef,
+        toast: UIToast) {
         super(homeService);
         this._toastRef = toast.makeText();
         this._subscription.add(

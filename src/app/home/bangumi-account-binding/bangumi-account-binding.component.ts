@@ -31,8 +31,8 @@ export class BangumiAccountBindingComponent implements OnInit, OnDestroy {
     isLoading = true;
 
     constructor(private _chromeExtensionService: ChromeExtensionService,
-                private _fb: FormBuilder,
-                toast: UIToast) {
+        private _fb: FormBuilder,
+        toast: UIToast) {
         this._toastRef = toast.makeText();
     }
 

@@ -42,7 +42,7 @@ export class CommentFormComponent implements OnInit, AfterViewInit, OnDestroy {
     @ViewChild('textarea') textareaRef: ElementRef;
 
     constructor(private _fb: FormBuilder,
-                private _chromeExtensionService: ChromeExtensionService) {
+        private _chromeExtensionService: ChromeExtensionService) {
     }
 
     preventSubmit(event: Event) {
@@ -63,7 +63,7 @@ export class CommentFormComponent implements OnInit, AfterViewInit, OnDestroy {
             this.formhash
         ];
         if (this.post) {
-            args.push(Object.assign({related: this.post.id}, this.post.replyParameter));
+            args.push(Object.assign({ related: this.post.id }, this.post.replyParameter));
         }
         if (this.post && !this.isRootPost) {
             content = content.replace(/<div class="quote">([^^]*?)<\/div>/, '')
@@ -80,7 +80,7 @@ export class CommentFormComponent implements OnInit, AfterViewInit, OnDestroy {
                 .subscribe(result => {
                     this.newCommentForm.reset();
                     if (this.post) {
-                        this.commentSent.next(Object.assign({replyPost: this.post}, result))
+                        this.commentSent.next(Object.assign({ replyPost: this.post }, result))
                     }
                     this.commentSent.next(result);
                 }, (error) => {

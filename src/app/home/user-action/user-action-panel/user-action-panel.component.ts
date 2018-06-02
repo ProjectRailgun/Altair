@@ -21,7 +21,7 @@ export class UserActionPanelComponent extends UIPopoverContent implements OnDest
     @Input()
     bgmAccountInfo: {
         nickname: string,
-        avatar: {large: string, medium: string, small: string},
+        avatar: { large: string, medium: string, small: string },
         username: string,
         id: string,
         url: string

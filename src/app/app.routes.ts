@@ -14,7 +14,7 @@ export const appRoutes: Routes = [
     ...homeRoutes,
     {
         path: 'admin',
-        data: {level: 2},
+        data: { level: 2 },
         canActivate: [Authentication],
         loadChildren: './admin#AdminModule'
     },

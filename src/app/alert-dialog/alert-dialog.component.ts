@@ -16,7 +16,7 @@ export class AlertDialog {
     content: string;
 
 
-    constructor(private _dialogRef: UIDialogRef<AlertDialog>) {}
+    constructor(private _dialogRef: UIDialogRef<AlertDialog>) { }
 
     confirm() {
         this._dialogRef.close('confirm');

@@ -73,11 +73,11 @@ export class UserCenter implements OnInit, OnDestroy {
     webHookList: WebHook[];
 
     constructor(private _userSerivce: UserService,
-                private _userCenterService: UserCenterService,
-                private _fb: FormBuilder,
-                private _chromeExtensionService: ChromeExtensionService,
-                titleService: Title,
-                toastService: UIToast) {
+        private _userCenterService: UserCenterService,
+        private _fb: FormBuilder,
+        private _chromeExtensionService: ChromeExtensionService,
+        titleService: Title,
+        toastService: UIToast) {
         titleService.setTitle(`用户设置 - ${SITE_TITLE}`);
         this._toastRef = toastService.makeText();
         let searchString = window.location.search;
@@ -246,7 +246,7 @@ export class UserCenter implements OnInit, OnDestroy {
             password: ['', Validators.required],
             new_password: ['', Validators.required],
             new_password_repeat: ['', Validators.required]
-        }, {validator: passwordMatch('new_password', 'new_password_repeat')});
+        }, { validator: passwordMatch('new_password', 'new_password_repeat') });
 
         // this._subscription.add(
         //     this.emailForm.valueChanges.subscribe(

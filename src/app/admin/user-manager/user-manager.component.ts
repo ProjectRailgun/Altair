@@ -1,12 +1,12 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {UserManagerSerivce} from './user-manager.service';
-import {UIDialog, UIToast, UIToastComponent, UIToastRef} from 'deneb-ui';
-import {Subscription} from 'rxjs/Subscription';
-import {User} from '../../entity/user';
-import {BaseError} from '../../../helpers/error/BaseError';
-import {UserPromoteModal} from './user-promote-modal/user-promote-modal.component';
-import {ClientError} from '../../../helpers/error/ClientError';
-import {UserService} from '../../user-service/user.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { UserManagerSerivce } from './user-manager.service';
+import { UIDialog, UIToast, UIToastComponent, UIToastRef } from 'deneb-ui';
+import { Subscription } from 'rxjs/Subscription';
+import { User } from '../../entity/user';
+import { BaseError } from '../../../helpers/error/BaseError';
+import { UserPromoteModal } from './user-promote-modal/user-promote-modal.component';
+import { ClientError } from '../../../helpers/error/ClientError';
+import { UserService } from '../../user-service/user.service';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -117,7 +117,7 @@ export class UserManager implements OnInit, OnDestroy {
     }
 
     promoteUser(user: User) {
-        let dialogRef = this._dialog.open(UserPromoteModal, {stickyDialog: false, backdrop: true});
+        let dialogRef = this._dialog.open(UserPromoteModal, { stickyDialog: false, backdrop: true });
         dialogRef.componentInstance.level = user.level;
         this._subscription.add(
             dialogRef.afterClosed()

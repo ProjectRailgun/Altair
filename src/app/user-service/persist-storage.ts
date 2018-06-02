@@ -65,7 +65,7 @@ export class PersistStorageIterator implements IterableIterator<PersistEntry> {
 
 @Injectable()
 export class PersistStorage {
-    private _itemChange = new Subject<{key: string, value: string}>();
+    private _itemChange = new Subject<{ key: string, value: string }>();
 
     constructor(private _userService: UserService) {
         this._userService.getUserInfo()
@@ -79,7 +79,7 @@ export class PersistStorage {
     setItem(key: string, value: string) {
         let keyInStorage = `${PREFIX}:${key}`;
         storageAPI.setItem(keyInStorage, value);
-        this._itemChange.next({key, value});
+        this._itemChange.next({ key, value });
     }
 
     getItem(key: string, defaultValue: string | null): string {
@@ -107,7 +107,7 @@ export class PersistStorage {
             .filter((item) => {
                 return item.key === key;
             })
-            .map(({value}) => {
+            .map(({ value }) => {
                 return value;
             })
             .distinctUntilChanged();

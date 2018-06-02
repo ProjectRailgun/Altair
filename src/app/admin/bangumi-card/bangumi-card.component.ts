@@ -2,7 +2,7 @@ import {
     Component, Input, OnChanges, OnDestroy, OnInit, Optional, SimpleChanges,
     ViewEncapsulation
 } from '@angular/core';
-import {Bangumi} from '../../entity/bangumi';
+import { Bangumi } from '../../entity/bangumi';
 import { InfiniteList, SCROLL_STATE } from 'deneb-ui';
 import { Subscription } from 'rxjs/Subscription';
 import { ImageLoadingStrategy } from '../../home/bangumi-card/image-loading-strategy.service';
@@ -17,7 +17,7 @@ export const CARD_HEIGHT_REM = 16;
     styleUrls: ['./bangumi-card.less'],
     encapsulation: ViewEncapsulation.None
 })
-export class BangumiCard implements OnInit, OnChanges, OnDestroy{
+export class BangumiCard implements OnInit, OnChanges, OnDestroy {
     private _subscription = new Subscription();
     private _imageLoadDelayTimerId: number;
 
@@ -35,7 +35,7 @@ export class BangumiCard implements OnInit, OnChanges, OnDestroy{
     imageUrl: string;
 
     constructor(@Optional() private _infiniteList: InfiniteList,
-                private _imageLoadingStrategy: ImageLoadingStrategy) {
+        private _imageLoadingStrategy: ImageLoadingStrategy) {
         this.lazy = !!_infiniteList;
     }
 

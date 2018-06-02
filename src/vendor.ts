@@ -26,10 +26,10 @@ import 'rxjs/add/observable/interval';
 import 'hammerjs';
 
 if ('production' === ENV) {
-  // Production
+    // Production
 
 
 } else {
-  // Development
+    // Development
 
 }

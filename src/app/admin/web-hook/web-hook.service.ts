@@ -28,8 +28,8 @@ export class WebHookService extends BaseService {
     }
 
     registerWebHook(webHook: any): Observable<any> {
-        let header = new Headers({'Content-Type': 'application/json;utf-8'});
-        let requestOptions = new RequestOptions({headers: header});
+        let header = new Headers({ 'Content-Type': 'application/json;utf-8' });
+        let requestOptions = new RequestOptions({ headers: header });
         webHook.permissions = JSON.stringify(webHook.permissions);
         let body = JSON.stringify(webHook);
         return this._http.post(`${this._baseUrl}/register`, body, requestOptions)
@@ -38,8 +38,8 @@ export class WebHookService extends BaseService {
     }
 
     updateWebHook(webHookId: string, webHook: any): Observable<any> {
-        let header = new Headers({'Content-Type': 'application/json;utf-8'});
-        let requestOptions = new RequestOptions({headers: header});
+        let header = new Headers({ 'Content-Type': 'application/json;utf-8' });
+        let requestOptions = new RequestOptions({ headers: header });
         webHook.permissions = JSON.stringify(webHook.permissions);
         let body = JSON.stringify(webHook);
         return this._http.put(`${this._baseUrl}/${webHookId}`, body, requestOptions)

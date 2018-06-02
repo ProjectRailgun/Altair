@@ -18,8 +18,8 @@ export class EmailConfirm implements OnInit, OnDestroy {
     emailValid = false;
 
     constructor(private _confirmService: EmailConfirmService,
-                private _userService: UserService,
-                private _router: Router) {
+        private _userService: UserService,
+        private _router: Router) {
     }
 
     ngOnInit(): void {

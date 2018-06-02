@@ -1,6 +1,7 @@
 #body-container {
   margin: 0;
   height: 100%;
+  position: fixed;
 }
 #body-container.loading app {
     display: none;

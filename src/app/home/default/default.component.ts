@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 // import {Episode} from "../../entity/episode";
-import {HomeService, HomeChild} from '../home.service';
-import {Bangumi} from '../../entity/bangumi';
-import {FAVORITE_LABEL} from '../../entity/constants';
+import { HomeService, HomeChild } from '../home.service';
+import { Bangumi } from '../../entity/bangumi';
+import { FAVORITE_LABEL } from '../../entity/constants';
 import { Subscription } from 'rxjs/Subscription';
 import { Announce } from '../../entity/announce';
 import { PersistStorage } from '../../user-service/persist-storage';

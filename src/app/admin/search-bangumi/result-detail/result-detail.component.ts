@@ -1,8 +1,8 @@
-import {Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges} from '@angular/core';
-import {BangumiRaw} from '../../../entity/bangumi-raw';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AdminService} from '../../admin.service';
-import {Subscription} from 'rxjs';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import { BangumiRaw } from '../../../entity/bangumi-raw';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AdminService } from '../../admin.service';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'result-detail',
@@ -59,7 +59,7 @@ export class ResultDetail implements OnChanges, OnDestroy {
             this.bangumiForm.reset();
             this.bangumi = null;
             this._subscription.add(
-                this._adminService.queryBangumi({bgmId: changes['bgmId'].currentValue, typeId: this.typeId})
+                this._adminService.queryBangumi({ bgmId: changes['bgmId'].currentValue, typeId: this.typeId })
                     .subscribe(
                         (bangumi: BangumiRaw) => {
                             this.bangumi = bangumi;

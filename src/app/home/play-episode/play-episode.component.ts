@@ -56,20 +56,20 @@ export class PlayEpisode extends HomeChild implements OnInit, OnDestroy {
     @ViewChild(VideoPlayer) videoPlayer: VideoPlayer;
 
     constructor(homeService: HomeService,
-                private _watchService: WatchService,
-                private _titleService: Title,
-                private _route: ActivatedRoute,
-                private _router: Router,
-                private _chromeExtensionService: ChromeExtensionService,
-                private _synchronizeService: SynchronizeService,
-                private _dialogService: UIDialog,
-                toast: UIToast) {
+        private _watchService: WatchService,
+        private _titleService: Title,
+        private _route: ActivatedRoute,
+        private _router: Router,
+        private _chromeExtensionService: ChromeExtensionService,
+        private _synchronizeService: SynchronizeService,
+        private _dialogService: UIDialog,
+        toast: UIToast) {
         super(homeService);
         this._toastRef = toast.makeText();
     }
 
     feedback() {
-        let dialogRef = this._dialogService.open(FeedbackComponent, {stickyDialog: true, backdrop: false});
+        let dialogRef = this._dialogService.open(FeedbackComponent, { stickyDialog: true, backdrop: false });
         this._subscription.add(
             dialogRef.afterClosed()
                 .filter(result => !!result)
@@ -279,21 +279,21 @@ export class PlayEpisode extends HomeChild implements OnInit, OnDestroy {
         return this._chromeExtensionService.isEnabled
             .flatMap((isEnabled) => {
                 if (!isEnabled) {
-                    return Observable.throw({canSync: false});
+                    return Observable.throw({ canSync: false });
                 }
                 return this._chromeExtensionService.authInfo;
             })
             .flatMap((authInfo) => {
                 if (!authInfo) {
-                    return Observable.throw({canSync: false});
+                    return Observable.throw({ canSync: false });
                 }
                 return this._chromeExtensionService.isBgmTvLogon;
             })
             .flatMap((isBgmLogon) => {
                 if (isBgmLogon !== LOGON_STATUS.TRUE) {
-                    return Observable.throw({canSync: false});
+                    return Observable.throw({ canSync: false });
                 }
-                return Observable.of({canSync: true});
+                return Observable.of({ canSync: true });
             })
             .catch((error) => {
                 return Observable.of(error);

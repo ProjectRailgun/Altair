@@ -16,7 +16,7 @@ export class FeedbackComponent implements OnInit {
     pickedIndex = -1;
 
     constructor(private _dialogRef: UIDialogRef<FeedbackComponent>,
-                private _fb: FormBuilder) {
+        private _fb: FormBuilder) {
     }
 
     pickIssue(index: number) {

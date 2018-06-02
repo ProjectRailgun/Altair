@@ -29,7 +29,7 @@ export class VideoPlayButton implements OnInit, OnDestroy {
 
     state: PlayState;
 
-    get iconClass() : 'pause' | 'play' | 'repeat' {
+    get iconClass(): 'pause' | 'play' | 'repeat' {
         switch (this.state) {
             case PlayState.PLAYING:
                 return 'pause';
@@ -46,7 +46,7 @@ export class VideoPlayButton implements OnInit, OnDestroy {
     }
 
     @HostListener('click', ['$event'])
-    onClick (event: Event) {
+    onClick(event: Event) {
         event.stopPropagation();
         event.preventDefault();
         if (!this.controlVisibleState) {

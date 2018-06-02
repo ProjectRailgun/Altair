@@ -16,7 +16,7 @@ const PERMISSION_INFO = {
 export class UserCenterService extends BaseService {
 
     constructor(private _http: Http,
-                private _dialogService: UIDialog) {
+        private _dialogService: UIDialog) {
         super();
     }
 

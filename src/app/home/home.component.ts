@@ -49,11 +49,11 @@ export class Home implements OnInit, OnDestroy {
     sidebarToggle = new EventEmitter<string>();
 
     constructor(titleService: Title,
-                private _homeService: HomeService,
-                private _dialogService: UIDialog,
-                private _userService: UserService,
-                private _router: Router,
-                private _winRef: WindowRef) {
+        private _homeService: HomeService,
+        private _dialogService: UIDialog,
+        private _userService: UserService,
+        private _router: Router,
+        private _winRef: WindowRef) {
         this.checkOverlapMode();
         if (this.sidebarOverlap) {
             this.sidebarActive = 'inactive';
@@ -76,7 +76,7 @@ export class Home implements OnInit, OnDestroy {
     }
 
     searchBangumi(name: string) {
-        this._router.navigate(['/bangumi', {name: name}]);
+        this._router.navigate(['/bangumi', { name: name }]);
     }
 
     toggleFloatSearchFrame() {
@@ -119,12 +119,12 @@ export class Home implements OnInit, OnDestroy {
                 (user: User) => {
                     this.user = user;
                     if (user && (!user.email_confirmed || !user.email)) {
-                        let dialogRef = this._dialogService.open(AlertDialog, {stickyDialog: true, backdrop: true});
+                        let dialogRef = this._dialogService.open(AlertDialog, { stickyDialog: true, backdrop: true });
                         if (user.email && !user.email_confirmed) {
                             dialogRef.componentInstance.title = '欢迎！';
                             dialogRef.componentInstance.content = '我们已经像你注册填写的邮箱发送了一封邮件，请点击邮件中的链接激活你的账户。';
                             dialogRef.componentInstance.confirmButtonText = '好';
-                            this._subscription.add(dialogRef.afterClosed().subscribe(() => {}));
+                            this._subscription.add(dialogRef.afterClosed().subscribe(() => { }));
                         } else {
                             dialogRef.componentInstance.title = 'Please set your mail address!';
                             dialogRef.componentInstance.content = 'Your email address has not been set, please set your email address to active your account.';

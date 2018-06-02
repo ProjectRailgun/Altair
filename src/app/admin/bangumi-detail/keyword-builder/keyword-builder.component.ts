@@ -34,8 +34,8 @@ export class KeywordBuilder implements OnInit, OnDestroy {
     keywordControl: FormControl;
 
     constructor(private _feedService: FeedService,
-                private _dialogRef: UIDialogRef<KeywordBuilder>,
-                toast: UIToast) {
+        private _dialogRef: UIDialogRef<KeywordBuilder>,
+        toast: UIToast) {
         this._toastRef = toast.makeText();
         this.keywordControl = new FormControl('');
     }
@@ -73,7 +73,7 @@ export class KeywordBuilder implements OnInit, OnDestroy {
             );
         } else if (this.siteName === 'libyk_so') {
             this._subscription.add(
-                this._feedService.queryLibyk_so({t: this.libykCriteria.t, q: this.keywordControl.value})
+                this._feedService.queryLibyk_so({ t: this.libykCriteria.t, q: this.keywordControl.value })
                     .subscribe((result) => {
                         this.itemList = result;
                     }, (error) => {
@@ -105,7 +105,7 @@ export class KeywordBuilder implements OnInit, OnDestroy {
         let result;
         if (this.siteName === 'libyk_so') {
             if (keywordModel) {
-                result = JSON.stringify({t: this.libykCriteria.t, q: keywordModel});
+                result = JSON.stringify({ t: this.libykCriteria.t, q: keywordModel });
             } else {
                 result = null;
             }
@@ -127,7 +127,7 @@ export class KeywordBuilder implements OnInit, OnDestroy {
             }
 
         }
-        this._dialogRef.close({keyword: result});
+        this._dialogRef.close({ keyword: result });
     }
 
     ngOnInit(): void {

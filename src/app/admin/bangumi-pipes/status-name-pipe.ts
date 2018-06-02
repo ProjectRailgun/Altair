@@ -1,4 +1,4 @@
-import {Pipe, PipeTransform} from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 
 export const BANGUMI_STATUS = {
     0: 'Pending',
@@ -6,7 +6,7 @@ export const BANGUMI_STATUS = {
     2: 'Finished'
 };
 
-@Pipe({name: 'bangumiStatusName'})
+@Pipe({ name: 'bangumiStatusName' })
 export class BangumiStatusNamePipe implements PipeTransform {
     transform(value: number): any {
         return BANGUMI_STATUS[value];
@@ -19,7 +19,7 @@ export const VIDEO_FILE_STATUS = {
     3: '已下载'
 };
 
-@Pipe({name: 'videoFileStatusName'})
+@Pipe({ name: 'videoFileStatusName' })
 export class VideoFileStatusNamePipe implements PipeTransform {
 
     transform(value: number): any {

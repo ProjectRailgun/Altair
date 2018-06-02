@@ -85,8 +85,8 @@ export class CommentComponent implements OnInit, OnDestroy, AfterViewInit {
     @ViewChild('headDivider') headDividerRef: ElementRef;
 
     constructor(private _chromeExtensionService: ChromeExtensionService,
-                private _persistStorage: PersistStorage,
-                private _responsiveService: ResponsiveService) {
+        private _persistStorage: PersistStorage,
+        private _responsiveService: ResponsiveService) {
         this.sort = this._persistStorage.getItem(COMMENT_SORT_ORDER, null);
         if (!this.sort) {
             this.sort = 'desc';

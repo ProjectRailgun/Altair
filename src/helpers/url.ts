@@ -3,7 +3,7 @@
  */
 
 export function queryString(obj: any): string {
-    let formatter = function (key, value) {
+    let formatter = function(key, value) {
         return value === null ? encodeURIComponent(key) : [
             encodeURIComponent(key),
             '=',
@@ -11,7 +11,7 @@ export function queryString(obj: any): string {
         ].join('');
     };
 
-    return obj ? Object.keys(obj).sort().map(function (key) {
+    return obj ? Object.keys(obj).sort().map(function(key) {
         let val = obj[key];
 
         if (val === undefined) {
@@ -25,7 +25,7 @@ export function queryString(obj: any): string {
         if (Array.isArray(val)) {
             let result = [];
 
-            val.slice().forEach(function (val2) {
+            val.slice().forEach(function(val2) {
                 if (val2 === undefined) {
                     return;
                 }
@@ -37,7 +37,7 @@ export function queryString(obj: any): string {
         }
 
         return encodeURIComponent(key) + '=' + encodeURIComponent(val);
-    }).filter(function (x) {
+    }).filter(function(x) {
         return x.length > 0;
     }).join('&') : '';
 }

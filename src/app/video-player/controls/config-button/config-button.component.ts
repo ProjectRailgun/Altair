@@ -23,8 +23,8 @@ import { VideoPlayer } from '../../video-player.component';
 export class VideoPlayerConfigButton {
 
     constructor(private _dialogService: UIDialog,
-                private _controls: VideoControls,
-                private _videoPlayer: VideoPlayer) {
+        private _controls: VideoControls,
+        private _videoPlayer: VideoPlayer) {
     }
 
     @HostListener('click', ['$event'])

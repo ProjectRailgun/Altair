@@ -76,8 +76,8 @@ export class ResponsiveImage implements OnInit, OnChanges, OnDestroy {
     }
 
     constructor(private _element: ElementRef,
-                private _responsiveService: ResponsiveService,
-                private _changeDetector: ChangeDetectorRef) {
+        private _responsiveService: ResponsiveService,
+        private _changeDetector: ChangeDetectorRef) {
     }
 
     @HostListener('load', ['$event'])
@@ -141,7 +141,7 @@ export class ResponsiveImage implements OnInit, OnChanges, OnDestroy {
             callback: (rect: ClientRect) => {
                 if (!this.dimension || this.dimension.width !== 'auto') {
                     if (rect.width)
-                    this._width = Math.min(this.dimension.originalWidth, Math.round(rect.width));
+                        this._width = Math.min(this.dimension.originalWidth, Math.round(rect.width));
                 } else {
                     this._width = 0;
                 }
@@ -175,7 +175,7 @@ export class ResponsiveImage implements OnInit, OnChanges, OnDestroy {
                     } else if (originalRatio < ratio) {
                         width = 0;
                         height = this._height;
-                    }  else {
+                    } else {
                         width = this._width;
                         height = this._height;
                     }

@@ -48,8 +48,8 @@ export class BangumiCard implements OnInit, OnDestroy, OnChanges {
     // @ViewChild('image') imageRef: ElementRef;
 
     constructor(@Optional() private _infiniteList: InfiniteList,
-                private _router: Router,
-                private _imageLoadingStrategy: ImageLoadingStrategy) {
+        private _router: Router,
+        private _imageLoadingStrategy: ImageLoadingStrategy) {
         this.lazy = !!_infiniteList;
     }
 

@@ -13,7 +13,7 @@ export const countDownTimer = 8; // unit second
 export class VideoNextEpisodeOverlay implements OnInit, OnDestroy {
     private _subscription = new Subscription();
 
-    countdownRadius  = 2.5;
+    countdownRadius = 2.5;
     circumference = 2 * 2.5 * Math.PI;
     progress = 0.2 * this.circumference;
 

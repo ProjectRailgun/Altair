@@ -29,15 +29,15 @@ export class AnnounceComponent implements OnInit, OnDestroy {
     recommendTotal = 0;
 
     constructor(private _announceService: AnnounceService,
-                private _dialog: UIDialog,
-                toastService: UIToast,
-                titleService: Title) {
+        private _dialog: UIDialog,
+        toastService: UIToast,
+        titleService: Title) {
         titleService.setTitle(`公告管理 - ${SITE_TITLE}`);
         this._toastRef = toastService.makeText();
     }
 
     addAnnounce() {
-        const dialogRef = this._dialog.open(EditAnnounceComponent, {stickyDialog: true, backdrop: true});
+        const dialogRef = this._dialog.open(EditAnnounceComponent, { stickyDialog: true, backdrop: true });
         this._subscription.add(
             dialogRef.afterClosed()
                 .filter(result => !!result)
@@ -52,7 +52,7 @@ export class AnnounceComponent implements OnInit, OnDestroy {
     }
 
     editAnnounce(announce: Announce) {
-        const dialogRef = this._dialog.open(EditAnnounceComponent, {stickyDialog: true, backdrop: true});
+        const dialogRef = this._dialog.open(EditAnnounceComponent, { stickyDialog: true, backdrop: true });
         dialogRef.componentInstance.announce = announce;
         this._subscription.add(
             dialogRef.afterClosed()
@@ -67,7 +67,7 @@ export class AnnounceComponent implements OnInit, OnDestroy {
         );
     }
     editRecommend(announce: Announce) {
-        const dialogRef = this._dialog.open(EditBangumiRecommendComponent, {stickyDialog: true, backdrop: true});
+        const dialogRef = this._dialog.open(EditBangumiRecommendComponent, { stickyDialog: true, backdrop: true });
         dialogRef.componentInstance.announce = announce;
         this._subscription.add(
             dialogRef.afterClosed()

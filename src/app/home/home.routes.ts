@@ -14,7 +14,7 @@ export const homeRoutes: Routes = [
     {
         path: '',
         component: Home,
-        data: {level: 0},
+        data: { level: 0 },
         canActivate: [Authentication],
         children: [
             {

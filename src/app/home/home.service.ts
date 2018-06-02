@@ -1,12 +1,12 @@
-import {Injectable, EventEmitter} from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Headers, Http, RequestOptions } from '@angular/http';
-import {BaseService} from "../../helpers/base.service";
-import {Observable} from "rxjs/Observable";
-import {Episode} from '../entity/episode';
-import {Bangumi} from "../entity/bangumi";
-import {Router, NavigationEnd} from '@angular/router';
+import { BaseService } from "../../helpers/base.service";
+import { Observable } from "rxjs/Observable";
+import { Episode } from '../entity/episode';
+import { Bangumi } from "../entity/bangumi";
+import { Router, NavigationEnd } from '@angular/router';
 // import {homeRoutes} from './home.routes';
-import {queryString} from '../../helpers/url'
+import { queryString } from '../../helpers/url'
 import { WatchService } from './watch.service';
 import { WatchProgress } from "../entity/watch-progress";
 import { Announce } from '../entity/announce';
@@ -17,8 +17,8 @@ export class HomeService extends BaseService {
     private _baseUrl = '/api/home';
 
     constructor(private _http: Http,
-                private _router: Router,
-                private _watchService: WatchService) {
+        private _router: Router,
+        private _watchService: WatchService) {
         super();
         // let childRoutes = homeRoutes[0].children;
         this._router.events.subscribe(
@@ -79,26 +79,26 @@ export class HomeService extends BaseService {
             queryUrl = queryUrl + '?days=' + days;
         }
         return this._http.get(queryUrl)
-            .map(res => <Episode[]> res.json().data)
+            .map(res => <Episode[]>res.json().data)
             .catch(this.handleError);
     }
 
     onAir(type: number): Observable<Bangumi[]> {
         return this._http.get(`${this._baseUrl}/on_air?type=${type}`)
-            .map(res => <Bangumi[]> res.json().data)
+            .map(res => <Bangumi[]>res.json().data)
             .catch(this.handleError);
     }
 
     episode_detail(episode_id: string): Observable<Episode> {
         return this._http.get(`${this._baseUrl}/episode/${episode_id}`)
-            .map(res => <Episode> res.json())
+            .map(res => <Episode>res.json())
             .map(episode => this.synchronizeWatchProgressWithLocal(episode))
             .catch(this.handleError);
     }
 
     bangumi_detail(bangumi_id: string): Observable<Bangumi> {
         return this._http.get(`${this._baseUrl}/bangumi/${bangumi_id}`)
-            .map(res => <Bangumi> res.json().data)
+            .map(res => <Bangumi>res.json().data)
             .map(bangumi => {
                 bangumi.episodes = bangumi.episodes.map(episode => this.synchronizeWatchProgressWithLocal(episode));
                 return bangumi;
@@ -112,16 +112,17 @@ export class HomeService extends BaseService {
         count: number,
         order_by: string,
         sort: string,
-        type?: number}): Observable<{ data: Bangumi[], total: number }> {
+        type?: number
+    }): Observable<{ data: Bangumi[], total: number }> {
         let query = queryString(params);
         return this._http.get(`${this._baseUrl}/bangumi?${query}`)
-            .map(res => res.json() as {data: Bangumi[], total: number})
+            .map(res => res.json() as { data: Bangumi[], total: number })
             .catch(this.handleError);
     }
 
     myBangumi(status: number): Observable<Bangumi[]> {
         return this._http.get(`${this._baseUrl}/my_bangumi?status=${status}`)
-            .map(res => <Bangumi[]> res.json().data)
+            .map(res => <Bangumi[]>res.json().data)
             .catch(this.handleError);
     }
 
@@ -132,8 +133,8 @@ export class HomeService extends BaseService {
     }
 
     sendFeedback(episode_id: string, video_file_id: string, message: string): Observable<any> {
-        let headers = new Headers({'Content-Type': 'application/json'});
-        let requestOptions = new RequestOptions({headers: headers});
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let requestOptions = new RequestOptions({ headers: headers });
         let body = JSON.stringify({
             episode_id: episode_id,
             video_file_id: video_file_id,

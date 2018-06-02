@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
-import {BaseService} from '../../../helpers/base.service';
-import {Headers, Http, RequestOptions} from '@angular/http';
-import {Observable} from 'rxjs/Observable';
-import {User} from '../../entity/user';
-import {queryString} from '../../../helpers/url'
+import { Injectable } from '@angular/core';
+import { BaseService } from '../../../helpers/base.service';
+import { Headers, Http, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import { User } from '../../entity/user';
+import { queryString } from '../../../helpers/url'
 
 @Injectable()
 export class UserManagerSerivce extends BaseService {
@@ -13,17 +13,17 @@ export class UserManagerSerivce extends BaseService {
         super()
     }
 
-    listUser(params: {name?: string, count: number, offset: number, minlevel?: number}): Observable<{data: User[], total: number}> {
+    listUser(params: { name?: string, count: number, offset: number, minlevel?: number }): Observable<{ data: User[], total: number }> {
         let queryParams = queryString(params);
         return this._http.get(`${this._baseUrl}/?${queryParams}`)
-            .map(res => res.json() as {data: User[], total: number})
+            .map(res => res.json() as { data: User[], total: number })
             .catch(this.handleError);
     }
 
     promoteUser(user_id: string, toLevel: number): Observable<any> {
-        let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers});
-        let body = JSON.stringify({id: user_id, to_level: toLevel});
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        let body = JSON.stringify({ id: user_id, to_level: toLevel });
         return this._http.post(`${this._baseUrl}/promote`, body, options)
             .map(res => res.json())
             .catch(this.handleError);

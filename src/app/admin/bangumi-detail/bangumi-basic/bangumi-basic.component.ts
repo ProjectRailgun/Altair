@@ -19,7 +19,7 @@ export class BangumiBasic implements OnInit {
     adminList: User[];
 
     constructor(private _fb: FormBuilder,
-                private _dialogRef: UIDialogRef<BangumiBasic>) {
+        private _dialogRef: UIDialogRef<BangumiBasic>) {
     }
 
     ngOnInit(): void {
@@ -33,7 +33,7 @@ export class BangumiBasic implements OnInit {
             air_weekday: this.bangumi.air_weekday,
             eps_no_offset: this.bangumi.eps_no_offset,
             status: this.bangumi.status,
-            maintained_by_uid: this.bangumi.maintained_by ? this.bangumi.maintained_by.id: '',
+            maintained_by_uid: this.bangumi.maintained_by ? this.bangumi.maintained_by.id : '',
             alert_timeout: this.bangumi.alert_timeout
         });
     }

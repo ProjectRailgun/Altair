@@ -12,8 +12,8 @@ export class SynchronizeService {
     private _cache = new Map<string, any>();
 
     constructor(private _watchService: WatchService,
-                private _dialog: UIDialog,
-                private _chromeExtensionService: ChromeExtensionService,) {
+        private _dialog: UIDialog,
+        private _chromeExtensionService: ChromeExtensionService, ) {
     }
 
     updateFavorite(bangumi: Bangumi, favStatus: any): Observable<any> {
@@ -70,7 +70,7 @@ export class SynchronizeService {
         return this._chromeExtensionService.syncBangumi(bangumi)
             .flatMap((result) => {
                 if (result.status === 1) {
-                    let dialogRef = this._dialog.open(ConflictDialogComponent, {stickyDialog: true, backdrop: true});
+                    let dialogRef = this._dialog.open(ConflictDialogComponent, { stickyDialog: true, backdrop: true });
                     dialogRef.componentInstance.bangumiName = bangumi.name_cn || bangumi.name;
                     dialogRef.componentInstance.siteStatus = result.diff.albireo;
                     dialogRef.componentInstance.bgmStatus = result.diff.bgm;
@@ -79,9 +79,9 @@ export class SynchronizeService {
                             return this._chromeExtensionService.solveConflict(bangumi, result.diff.bgm, choice)
                                 .flatMap((data) => {
                                     if (choice === 'site') {
-                                        return Observable.of({status: 0, data: data});
+                                        return Observable.of({ status: 0, data: data });
                                     }
-                                    return Observable.of({status: 0, data: result.data});
+                                    return Observable.of({ status: 0, data: result.data });
                                 });
                         });
                 } else {
@@ -96,7 +96,7 @@ export class SynchronizeService {
                 if (Array.isArray(bangumi.episodes) && bangumi.episodes.length > 0) {
                     return this.syncProgress(bangumi)
                         .flatMap((progressResult) => {
-                            return Observable.of(Object.assign({progressResult: progressResult}, result));
+                            return Observable.of(Object.assign({ progressResult: progressResult }, result));
                         });
                 }
                 return Observable.of(result);

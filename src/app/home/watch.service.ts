@@ -26,14 +26,14 @@ export class WatchService extends BaseService {
 
     constructor(private _http: Http, private _persistStorage: PersistStorage) {
         super();
-        let headers = new Headers({'Content-Type': 'application/json'});
-        this._requestOptions = new RequestOptions({headers: headers});
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        this._requestOptions = new RequestOptions({ headers: headers });
         this.synchronizeWatchProgress();
         this.runPeriodTask();
     }
 
     favorite_bangumi(bangumi_id: string, status: number): Observable<any> {
-        let body = JSON.stringify({status: status});
+        let body = JSON.stringify({ status: status });
         return this._http.post(`${this._baseUrl}/favorite/bangumi/${bangumi_id}`, body, this._requestOptions)
             .map(res => res.json())
             .catch(this.handleError);
@@ -81,7 +81,7 @@ export class WatchService extends BaseService {
         let watchHistoryRecords: WatchHistoryRecord[] = [];
         for (let result = iterator.next(); !result.done; result = iterator.next()) {
             let entry = result.value;
-            if(this._persistStorage.startsWith(entry.key, PREFIX) && entry.value) {
+            if (this._persistStorage.startsWith(entry.key, PREFIX) && entry.value) {
                 watchHistoryRecords.push(JSON.parse(entry.value));
             }
         }

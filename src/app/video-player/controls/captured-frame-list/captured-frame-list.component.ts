@@ -46,9 +46,9 @@ export class CapturedFrameList implements OnInit, AfterViewInit, OnDestroy, Prev
     @ViewChild('wrapper') previewWrapper: ElementRef;
 
     constructor(private _videoPlayer: VideoPlayer,
-                private _videoCapture: VideoCapture,
-                private _controls: VideoControls,
-                private _dialogService: UIDialog) {
+        private _videoCapture: VideoCapture,
+        private _controls: VideoControls,
+        private _dialogService: UIDialog) {
     }
 
     addImage(dataURI: string, params: PreviewImageParams) {

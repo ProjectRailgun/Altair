@@ -39,9 +39,9 @@ export class EditReviewDialogComponent implements OnInit, OnDestroy {
     isSaving = false;
 
     constructor(private _dialogRef: UIDialogRef<EditReviewDialogComponent>,
-                private _fb: FormBuilder,
-                private _synchronizeService: SynchronizeService,
-                toast: UIToast) {
+        private _fb: FormBuilder,
+        private _synchronizeService: SynchronizeService,
+        toast: UIToast) {
         this._toastRef = toast.makeText();
     }
 
@@ -103,7 +103,7 @@ export class EditReviewDialogComponent implements OnInit, OnDestroy {
             comment: ['', Validators.maxLength(200)]
         });
         if (this.comment) {
-            this.reviewForm.patchValue({comment: this.comment});
+            this.reviewForm.patchValue({ comment: this.comment });
         }
 
         if (this.rating) {

@@ -1,6 +1,6 @@
-import {Pipe, PipeTransform} from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({name: 'bangumiMoe'})
+@Pipe({ name: 'bangumiMoe' })
 export class BangumiMoePipe implements PipeTransform {
 
     transform(json: string): any {

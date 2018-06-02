@@ -1,6 +1,6 @@
-import {Bangumi} from './bangumi';
-import {WatchProgress} from './watch-progress';
-import {VideoFile} from './video-file';
+import { Bangumi } from './bangumi';
+import { WatchProgress } from './watch-progress';
+import { VideoFile } from './video-file';
 import { Image } from './image';
 
 export class Episode {

@@ -1,14 +1,14 @@
-import {Bangumi} from '../../entity';
-import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {Title} from '@angular/platform-browser';
-import {Router} from '@angular/router';
-import {AdminService} from '../admin.service';
-import {Observable, Subscription} from 'rxjs';
-import {getRemPixel} from '../../../helpers/dom';
-import {UIDialog, UIToast, UIToastComponent, UIToastRef} from 'deneb-ui';
-import {BaseError} from '../../../helpers/error/BaseError';
-import {CARD_HEIGHT_REM} from '../bangumi-card/bangumi-card.component';
-import {SearchBangumi} from '../search-bangumi/search-bangumi.component';
+import { Bangumi } from '../../entity';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+import { AdminService } from '../admin.service';
+import { Observable, Subscription } from 'rxjs';
+import { getRemPixel } from '../../../helpers/dom';
+import { UIDialog, UIToast, UIToastComponent, UIToastRef } from 'deneb-ui';
+import { BaseError } from '../../../helpers/error/BaseError';
+import { CARD_HEIGHT_REM } from '../bangumi-card/bangumi-card.component';
+import { SearchBangumi } from '../search-bangumi/search-bangumi.component';
 import { ListBangumiService } from './list-bangumi.service';
 
 @Component({
@@ -65,11 +65,11 @@ export class ListBangumi implements AfterViewInit, OnDestroy, OnInit {
     lastScrollPosition: number;
 
     constructor(private adminService: AdminService,
-                private router: Router,
-                private _dialog: UIDialog,
-                private _listBangumiService: ListBangumiService,
-                toastService: UIToast,
-                titleService: Title) {
+        private router: Router,
+        private _dialog: UIDialog,
+        private _listBangumiService: ListBangumiService,
+        toastService: UIToast,
+        titleService: Title) {
         titleService.setTitle('新番管理 - ' + SITE_TITLE);
         this._toastRef = toastService.makeText();
         if (window) {
@@ -110,7 +110,7 @@ export class ListBangumi implements AfterViewInit, OnDestroy, OnInit {
     }
 
     addBangumi(): void {
-        let dialogRef = this._dialog.open(SearchBangumi, {stickyDialog: true, backdrop: true});
+        let dialogRef = this._dialog.open(SearchBangumi, { stickyDialog: true, backdrop: true });
         this._subscription.add(
             dialogRef.afterClosed()
                 .subscribe(

@@ -1,10 +1,10 @@
-import {AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {UIDialogRef, UIToast, UIToastComponent, UIToastRef} from 'deneb-ui';
-import {Observable, Subscription} from 'rxjs';
-import {Bangumi} from '../../../entity/bangumi';
-import {BangumiMoeService} from './bangumi-moe.service';
-import {Tag, Torrent} from './bangum-moe-entity';
-import {Response} from '@angular/http';
+import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { UIDialogRef, UIToast, UIToastComponent, UIToastRef } from 'deneb-ui';
+import { Observable, Subscription } from 'rxjs';
+import { Bangumi } from '../../../entity/bangumi';
+import { BangumiMoeService } from './bangumi-moe.service';
+import { Tag, Torrent } from './bangum-moe-entity';
+import { Response } from '@angular/http';
 
 
 @Component({
@@ -36,8 +36,8 @@ export class BangumiMoeBuilder implements OnInit, OnDestroy, AfterViewInit {
     total: number = 0;
 
     constructor(private _bangumiMoeService: BangumiMoeService,
-                private _dialogRef: UIDialogRef<BangumiMoeBuilder>,
-                toastService: UIToast) {
+        private _dialogRef: UIDialogRef<BangumiMoeBuilder>,
+        toastService: UIToast) {
         this._toastRef = toastService.makeText();
     }
 
@@ -52,16 +52,16 @@ export class BangumiMoeBuilder implements OnInit, OnDestroy, AfterViewInit {
         }
         this._subscription.add(
             this._bangumiMoeService.commonTags()
-            .subscribe(
-                (tags: Tag[]) => {
-                    this.formatTags = tags.filter(tag => tag.type === 'format');
-                    this.langTags = tags.filter(tag => tag.type === 'lang');
-                    this.miscTags = tags.filter(tag => tag.type === 'misc');
-                },
-                (error: Response) => {
-                    this._toastRef.show(error.json());
-                }
-            )
+                .subscribe(
+                    (tags: Tag[]) => {
+                        this.formatTags = tags.filter(tag => tag.type === 'format');
+                        this.langTags = tags.filter(tag => tag.type === 'lang');
+                        this.miscTags = tags.filter(tag => tag.type === 'misc');
+                    },
+                    (error: Response) => {
+                        this._toastRef.show(error.json());
+                    }
+                )
         );
         this._subscription.add(
             this._bangumiMoeService.miscTags()
@@ -118,7 +118,7 @@ export class BangumiMoeBuilder implements OnInit, OnDestroy, AfterViewInit {
                     }
                 )
                 .subscribe(
-                    (result: {success: boolean, found: boolean, tag: Tag[]}) => {
+                    (result: { success: boolean, found: boolean, tag: Tag[] }) => {
                         this.searchResultTags = result.tag;
                     }
                 )
@@ -136,7 +136,7 @@ export class BangumiMoeBuilder implements OnInit, OnDestroy, AfterViewInit {
         } else {
             tags = null;
         }
-        this._dialogRef.close({result: tags});
+        this._dialogRef.close({ result: tags });
     }
 
     selectTag(tag: Tag) {
@@ -150,7 +150,7 @@ export class BangumiMoeBuilder implements OnInit, OnDestroy, AfterViewInit {
     }
 
     searchTorrent() {
-        if(this.selectedTags.length === 0) {
+        if (this.selectedTags.length === 0) {
             return;
         }
         let tag_ids = this.selectedTags.map(tag => tag._id);

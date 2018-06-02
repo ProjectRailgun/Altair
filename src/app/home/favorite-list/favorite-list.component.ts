@@ -50,8 +50,8 @@ export class FavoriteListComponent implements OnInit, OnDestroy {
     @ViewChild(InfiniteList) infiniteList: InfiniteList;
 
     constructor(private _homeService: HomeService,
-                private _homeComponent: Home,
-                toastService: UIToast) {
+        private _homeComponent: Home,
+        toastService: UIToast) {
         if (window) {
             this.cardHeight = getRemPixel(CARD_HEIGHT_REM)
         }
@@ -109,7 +109,7 @@ export class FavoriteListComponent implements OnInit, OnDestroy {
     onClickFilterContainer() {
         const step = 10;
         let totalDistance = lastScrollPosition;
-        const co = totalDistance / ((step - 1) * (step -1));
+        const co = totalDistance / ((step - 1) * (step - 1));
         this._subscription.add(
             Observable.interval(30)
                 .take(step)
@@ -167,10 +167,10 @@ export class FavoriteListComponent implements OnInit, OnDestroy {
                     this.filterFavorites();
                     this.isLoading = false;
                 },
-                (error: BaseError) => {
-                    this._toastRef.show(error.message);
-                    this.isLoading = false;
-                })
+                    (error: BaseError) => {
+                        this._toastRef.show(error.message);
+                        this.isLoading = false;
+                    })
         );
         this._statusSubject.next(this.favoriteStatus);
     }

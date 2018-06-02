@@ -26,9 +26,9 @@ export class WebHookComponent implements OnInit, OnDestroy {
     cardHeight: number;
 
     constructor(private _webHookService: WebHookService,
-                private _dialog: UIDialog,
-                toast: UIToast,
-                titleService: Title) {
+        private _dialog: UIDialog,
+        toast: UIToast,
+        titleService: Title) {
         titleService.setTitle('WebHook管理 - ' + SITE_TITLE);
         this._toastRef = toast.makeText();
         if (window) {
@@ -37,7 +37,7 @@ export class WebHookComponent implements OnInit, OnDestroy {
     }
 
     addWebHook() {
-        const dialogRef = this._dialog.open(EditWebHookComponent, {stickyDialog: true, backdrop: true});
+        const dialogRef = this._dialog.open(EditWebHookComponent, { stickyDialog: true, backdrop: true });
         this._subscription.add(
             dialogRef.afterClosed()
                 .filter(result => !!result)
@@ -53,7 +53,7 @@ export class WebHookComponent implements OnInit, OnDestroy {
     }
 
     editWebHook(webHook: WebHook) {
-        const dialogRef = this._dialog.open(EditWebHookComponent, {stickyDialog: true, backdrop: true});
+        const dialogRef = this._dialog.open(EditWebHookComponent, { stickyDialog: true, backdrop: true });
         dialogRef.componentInstance.webHook = webHook;
         this._subscription.add(
             dialogRef.afterClosed()

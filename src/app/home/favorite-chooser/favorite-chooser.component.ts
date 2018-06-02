@@ -48,16 +48,16 @@ export class FavoriteChooser implements OnInit, OnDestroy {
     isOnSynchronizing: boolean;
 
     constructor(private watchService: WatchService,
-                private homeService: HomeService,
-                private _dialog: UIDialog,
-                private _chromeExtensionService: ChromeExtensionService,
-                private _synchronize: SynchronizeService,
-                toast: UIToast) {
+        private homeService: HomeService,
+        private _dialog: UIDialog,
+        private _chromeExtensionService: ChromeExtensionService,
+        private _synchronize: SynchronizeService,
+        toast: UIToast) {
         this._toastRef = toast.makeText();
     }
 
     onEditReview() {
-        const dialogRef = this._dialog.open(EditReviewDialogComponent, {backdrop: true, stickyDialog: true});
+        const dialogRef = this._dialog.open(EditReviewDialogComponent, { backdrop: true, stickyDialog: true });
         dialogRef.componentInstance.comment = this.userFavoriteInfo ? this.userFavoriteInfo.comment : '';
         dialogRef.componentInstance.rating = this.userFavoriteInfo ? this.userFavoriteInfo.rating : 0;
         dialogRef.componentInstance.tags = this.userFavoriteInfo ? (Array.isArray(this.userFavoriteInfo.tags) ? this.userFavoriteInfo.tags.join(' ') : '') : '';

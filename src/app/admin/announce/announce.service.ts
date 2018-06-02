@@ -13,7 +13,7 @@ export class AnnounceService extends BaseService {
         super();
     }
 
-    listAnnounce(position: number, offset: number, count: number, content?: string): Observable<{data: Announce[], total: number}> {
+    listAnnounce(position: number, offset: number, count: number, content?: string): Observable<{ data: Announce[], total: number }> {
         return this._http.get(this._baseUrl, {
             params: {
                 position: position,
@@ -27,8 +27,8 @@ export class AnnounceService extends BaseService {
     }
 
     addAnnounce(announce: Announce): Observable<any> {
-        let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers});
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
         let body = JSON.stringify(announce);
         return this._http.post(this._baseUrl, body, options)
             .map(res => res.json())
@@ -36,8 +36,8 @@ export class AnnounceService extends BaseService {
     }
 
     updateAnnounce(announce_id: string, announce: Announce): Observable<any> {
-        let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers});
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
         let body = JSON.stringify(announce);
         return this._http.put(`${this._baseUrl}/${announce_id}`, body, options)
             .map(res => res.json())

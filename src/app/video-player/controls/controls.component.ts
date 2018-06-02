@@ -37,9 +37,9 @@ import { PersistStorage } from '../../user-service/persist-storage';
                 transform: 'scale(1)'
             })),
             transition('inactive => active', animate('500ms ease-in', keyframes([
-                style({opacity: 0.8, transform: 'scale(1)', offset: 0}),
-                style({opacity: 0.5, transform: 'scale(2)', offset: 0.6}),
-                style({opacity: 0, transform: 'scale(2)', offset: 1})
+                style({ opacity: 0.8, transform: 'scale(1)', offset: 0 }),
+                style({ opacity: 0.5, transform: 'scale(2)', offset: 0.6 }),
+                style({ opacity: 0, transform: 'scale(2)', offset: 1 })
             ]))),
         ])
     ],
@@ -75,11 +75,11 @@ export class VideoControls implements OnInit, OnDestroy, AfterViewInit {
         return this.showControls ? 'in' : 'out';
     }
 
-    @ViewChild('controlWrapper', {read: ViewContainerRef}) controlWrapper: ViewContainerRef;
+    @ViewChild('controlWrapper', { read: ViewContainerRef }) controlWrapper: ViewContainerRef;
 
     constructor(@Self() private _hostRef: ElementRef,
-                private _injector: Injector,
-                private _persistStorage: PersistStorage) {
+        private _injector: Injector,
+        private _persistStorage: PersistStorage) {
     }
 
     onClickVideo(event: Event) {
@@ -150,7 +150,7 @@ export class VideoControls implements OnInit, OnDestroy, AfterViewInit {
             this._motion.asObservable()
                 .merge(Observable.fromEvent(hostElement, 'mousemove'))
                 .timeout(CONTROL_FADE_OUT_TIME)
-                .do(() => {},
+                .do(() => { },
                     () => {
                         this.showControls = false;
                     })

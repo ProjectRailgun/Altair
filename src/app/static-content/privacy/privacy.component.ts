@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
     templateUrl: './privacy.html'
 })
 export class PrivacyComponent {
-    
+
 }

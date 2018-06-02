@@ -23,7 +23,7 @@ export class RevealExtraComponent implements OnInit, OnDestroy {
     isEnabled = false;
 
     constructor(private _chromeExtensionService: ChromeExtensionService,
-                toast: UIToast) {
+        toast: UIToast) {
         this._toastRef = toast.makeText();
     }
 
