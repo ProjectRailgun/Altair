@@ -80,7 +80,6 @@ export class FavoriteChooser implements OnInit, OnDestroy {
                 return this._chromeExtensionService.invokeBangumiMethod('favoriteStatus', [this.bangumi.bgm_id]);
             })
             .subscribe((result) => {
-                console.log(result);
                 this.isOnSynchronizing = false;
                 this.userFavoriteInfo = result;
                 this.bangumi.favorite_status = result.status.id;
@@ -143,7 +142,6 @@ export class FavoriteChooser implements OnInit, OnDestroy {
             .subscribe(() => {
                 this.bangumi.favorite_status = status;
                 this.homeService.changeFavorite();
-                console.log('update favorite successful');
             }, () => {
                 console.log('update favorite error');
             }, () => {
@@ -190,7 +188,6 @@ export class FavoriteChooser implements OnInit, OnDestroy {
                     if (result.progressResult && result.progressResult.status === 0) {
                         this.reloadEpisodes.emit(true);
                     }
-                    console.log(result);
                 }, (error) => {
                     console.log(error);
                 })

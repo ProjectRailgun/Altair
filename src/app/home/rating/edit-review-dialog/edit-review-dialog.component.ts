@@ -98,7 +98,6 @@ export class EditReviewDialogComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        console.log(this.bangumi, this.rating, this.comment, this.tags);
         this.favorite_status = this.bangumi.favorite_status;
         this.reviewForm = this._fb.group({
             comment: ['', Validators.maxLength(200)]
@@ -113,7 +112,6 @@ export class EditReviewDialogComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        console.log('destroyed');
         this._subscription.unsubscribe();
     }
 }

@@ -157,7 +157,6 @@ export class PlayEpisode extends HomeChild implements OnInit, OnDestroy {
                             }
                         })
                         .subscribe((result) => {
-                            console.log('episode progress synchronized', result);
                             this._toastRef.show('已同步观看状态至 Bangumi');
                         }, () => {
                             console.log('sync not enabled');

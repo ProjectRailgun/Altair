@@ -89,7 +89,6 @@ export class BangumiDetail extends HomeChild implements OnInit, OnDestroy {
                     return this._chromeExtensionService.invokeBangumiMethod('bangumiDetail', [this.bangumi.bgm_id]);
                 })
                 .subscribe((extraInfo) => {
-                    console.log(extraInfo);
                     this.extraInfo = extraInfo;
                 }, (error) => {
                     console.log(error);

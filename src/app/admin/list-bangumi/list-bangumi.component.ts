@@ -51,11 +51,11 @@ export class ListBangumi implements AfterViewInit, OnDestroy, OnInit {
             }
             return bangumi[this.orderBy];
         });
-    };
+    }
 
     get bangumiList(): Bangumi[] {
         return this._bangumiList;
-    };
+    }
 
     isLoading: boolean = false;
 
@@ -73,7 +73,7 @@ export class ListBangumi implements AfterViewInit, OnDestroy, OnInit {
         titleService.setTitle('新番管理 - ' + SITE_TITLE);
         this._toastRef = toastService.makeText();
         if (window) {
-            this.cardHeight = getRemPixel(CARD_HEIGHT_REM)
+            this.cardHeight = getRemPixel(CARD_HEIGHT_REM);
         }
         if (Number.isFinite(this._listBangumiService.scrollPosition)) {
             this.lastScrollPosition = this._listBangumiService.scrollPosition;
@@ -115,7 +115,6 @@ export class ListBangumi implements AfterViewInit, OnDestroy, OnInit {
             dialogRef.afterClosed()
                 .subscribe(
                     (result: any) => {
-                        console.log(result);
                         if (result === 'cancelled') {
                             return;
                         }
@@ -163,12 +162,11 @@ export class ListBangumi implements AfterViewInit, OnDestroy, OnInit {
                         this._allBangumiList = result.data;
                         this.bangumiList = this._allBangumiList;
                         this.total = result.total;
-                        this.isLoading = false
+                        this.isLoading = false;
                     },
                     (error: BaseError) => {
-                        console.log(error);
                         this._toastRef.show(error.message);
-                        this.isLoading = false
+                        this.isLoading = false;
                     }
                 )
         );

@@ -17,7 +17,7 @@ export class UserCenterService extends BaseService {
 
     constructor(private _http: Http,
                 private _dialogService: UIDialog) {
-        super()
+        super();
     }
 
     listWebHookToken(): Observable<WebHook[]> {
@@ -28,7 +28,7 @@ export class UserCenterService extends BaseService {
                     if (webHook.permissions) {
                         webHook.permissions = JSON.parse(webHook.permissions as string) as string[];
                     } else {
-                        webHook.permissions = []
+                        webHook.permissions = [];
                     }
                     webHook.permissions = webHook.permissions.map(perm_key => PERM_NAME[perm_key]);
                     return webHook;
@@ -57,7 +57,6 @@ export class UserCenterService extends BaseService {
                     if (webHook.permissions && webHook.permissions.length > 0) {
                         content += permissionInfo;
                     }
-                    console.log(content);
                     const dialogRef = this._dialogService.open(ConfirmDialogModal, {
                         stickyDialog: true,
                         backdrop: true

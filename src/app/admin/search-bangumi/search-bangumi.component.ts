@@ -61,7 +61,7 @@ export class SearchBangumi implements AfterViewInit {
                             event.preventDefault();
                             event.stopPropagation();
                         })
-                        .takeWhile(() => this.typePickerOpen)
+                        .takeWhile(() => this.typePickerOpen);
                 })
                 .subscribe(
                     () => {

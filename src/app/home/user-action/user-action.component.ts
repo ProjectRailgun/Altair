@@ -60,7 +60,6 @@ export class UserActionComponent implements OnInit, OnDestroy, AfterViewInit {
                 .do(isEnabled => {
                     this.isBangumiEnabled = isEnabled;
                     if (!isEnabled) {
-                        console.log('isEnabled');
                     }
                 })
                 .filter(isEnabled => isEnabled)
@@ -100,7 +99,6 @@ export class UserActionComponent implements OnInit, OnDestroy, AfterViewInit {
                     if (result === 'logout') {
                         this.logout();
                     }
-                    console.log(result);
                 })
         );
 

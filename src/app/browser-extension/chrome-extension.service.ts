@@ -15,16 +15,15 @@ export interface RPCResult {
     result: any | null;
 }
 
-
 export interface IAuthInfo {
     id: string; // user's uid
     url: string; // user url
     username: string; // user's uid, wtf
     nickname: string;
     avatar: {
-        large: string, // large image url
-        medium: string, // medium image url
-        small: string // small image url
+        large: string; // large image url
+        medium: string; // medium image url
+        small: string; // small image url
     };
     sign: string;
     auth: string; // issued by auth server, used in ${AUTH_TOKEN}
@@ -37,19 +36,21 @@ export type AuthInfo = IAuthInfo | null | INITIAL_STATE;
 export const INITIAL_STATE_VALUE = 0;
 
 export enum LOGON_STATUS {
-    UNSURE, TRUE, FALSE
+    UNSURE,
+    TRUE,
+    FALSE
 }
-
 
 @Injectable()
 export class ChromeExtensionService {
-
     private _authInfo = new BehaviorSubject<AuthInfo>(INITIAL_STATE_VALUE);
-    private _isBgmTvLogon = new BehaviorSubject<LOGON_STATUS>(LOGON_STATUS.UNSURE);
+    private _isBgmTvLogon = new BehaviorSubject<LOGON_STATUS>(
+        LOGON_STATUS.UNSURE
+    );
     private _isEnabled = new BehaviorSubject<boolean>(false);
 
     get isEnabled(): Observable<boolean> {
-        return this._isEnabled;
+        return this._isEnabled.asObservable();
     }
 
     chromeExtensionId: string;
@@ -124,36 +125,48 @@ export class ChromeExtensionService {
     }
 
     auth(username: string, password: string): Observable<any> {
-        return this.invokeBangumiMethod('auth', [username, password])
-            .do(data => {
+        return this.invokeBangumiMethod('auth', [username, password]).do(
+            data => {
                 this._authInfo.next(data);
-            });
+            }
+        );
     }
 
     openBgmForResult(): Observable<any> {
-        return this.invokeRPC('BackgroundCore', 'openBgmForResult', [])
-            .do(() => {
+        return this.invokeRPC('BackgroundCore', 'openBgmForResult', []).do(
+            () => {
                 this._isBgmTvLogon.next(LOGON_STATUS.TRUE);
-            });
+            }
+        );
     }
 
     revokeAuth(): Observable<any> {
-        return this.invokeBangumiMethod('revokeAuth', [])
-            .do(() => {
-                this._authInfo.next(null);
-            });
+        return this.invokeBangumiMethod('revokeAuth', []).do(() => {
+            this._authInfo.next(null);
+        });
     }
 
     syncBangumi(bangumi: Bangumi): Observable<any> {
         return this.invokeRPC('Synchronize', 'syncOne', [bangumi]);
     }
 
-    solveConflict(bangumi: Bangumi, bgmFavStatus: number, choice: string): Observable<any> {
-        return this.invokeRPC('Synchronize', 'solveConflict', [bangumi, bgmFavStatus, choice]);
+    solveConflict(
+        bangumi: Bangumi,
+        bgmFavStatus: number,
+        choice: string
+    ): Observable<any> {
+        return this.invokeRPC('Synchronize', 'solveConflict', [
+            bangumi,
+            bgmFavStatus,
+            choice
+        ]);
     }
 
     updateFavoriteAndSync(bangumi: Bangumi, favStatus: any): Observable<any> {
-        return this.invokeRPC('Synchronize', 'updateFavorite', [bangumi, favStatus]);
+        return this.invokeRPC('Synchronize', 'updateFavorite', [
+            bangumi,
+            favStatus
+        ]);
     }
 
     deleteFavoriteAndSync(bangumi: Bangumi): Observable<any> {
@@ -164,23 +177,30 @@ export class ChromeExtensionService {
         return this.invokeRPC('Synchronize', 'syncProgress', [bangumi]);
     }
 
-    private invokeRPC(className: string, method: string, args: any[]): Observable<any> {
-        return new Observable<any>((observer) => {
-            chrome.runtime.sendMessage(this.chromeExtensionId, {
-                className: className,
-                method: method,
-                args: args
-            }, (resp: RPCResult) => {
-                this._ngZone.run(() => {
-                    if (resp && !resp.error) {
-                        observer.next(resp.result);
-                    } else {
-                        observer.error(resp ? resp.error : 'unknown error');
-                    }
-                    observer.complete();
-                });
-            });
-
+    private invokeRPC(
+        className: string,
+        method: string,
+        args: any[]
+    ): Observable<any> {
+        return new Observable<any>(observer => {
+            chrome.runtime.sendMessage(
+                this.chromeExtensionId,
+                {
+                    className: className,
+                    method: method,
+                    args: args
+                },
+                (resp: RPCResult) => {
+                    this._ngZone.run(() => {
+                        if (resp && !resp.error) {
+                            observer.next(resp.result);
+                        } else {
+                            observer.error(resp ? resp.error : 'unknown error');
+                        }
+                        observer.complete();
+                    });
+                }
+            );
         });
     }
 }

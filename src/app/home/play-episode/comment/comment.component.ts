@@ -43,8 +43,8 @@ export interface Post {
     replyParameter?: ReplyParameter;
     is_self?: boolean;
 
-    formOpen: boolean // ui property, not related to data
-    isEditing: boolean // ui property
+    formOpen: boolean; // ui property, not related to data
+    isEditing: boolean; // ui property
 }
 
 export const COMMENT_SORT_ORDER = 'comment_sort_order';
@@ -123,7 +123,7 @@ export class CommentComponent implements OnInit, OnDestroy, AfterViewInit {
             this._chromeExtensionService.invokeBangumiWebMethod('deleteComment', [post.id, this.formhash, this.bgmEpsId])
                 .subscribe(() => {
                     for (let i = 0; i < this.posts.length; i++) {
-                        if (post === this.posts[i]){
+                        if (post === this.posts[i]) {
                             this.posts.splice(i, 1);
                             return;
                         }
@@ -168,7 +168,7 @@ export class CommentComponent implements OnInit, OnDestroy, AfterViewInit {
                 }
                 return true;
             })).sort((p1, p2) => {
-                return this.sort === 'desc' ? p2.date - p1.date: p1.date - p2.date;
+                return this.sort === 'desc' ? p2.date - p1.date : p1.date - p2.date;
             });
         }
         if (result.replyPost) {
@@ -186,7 +186,6 @@ export class CommentComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     onCommentCancel(postId: string): void {
-        console.log(postId);
         if (postId) {
             this.updatePostProperty(postId, 'formOpen', false);
         } else {
@@ -214,20 +213,20 @@ export class CommentComponent implements OnInit, OnDestroy, AfterViewInit {
 
     private sortCommentList() {
         this.posts = this.posts.sort((p1, p2) => {
-            return this.sort === 'desc' ? p2.date - p1.date: p1.date - p2.date;
+            return this.sort === 'desc' ? p2.date - p1.date : p1.date - p2.date;
         });
 
         this.posts.forEach((post) => {
             if (Array.isArray(post.subPosts) && post.subPosts.length > 0) {
                 post.subPosts = post.subPosts.sort((p1, p2) => {
-                    return this.sort === 'desc' ? p2.date - p1.date: p1.date - p2.date;
+                    return this.sort === 'desc' ? p2.date - p1.date : p1.date - p2.date;
                 });
             }
         });
     }
 
     private updatePostProperty(postId: string, property: string, value: any) {
-        for(let i = 0; i < this.posts.length; i++) {
+        for (let i = 0; i < this.posts.length; i++) {
             let post = this.posts[i];
             if (post.id === postId) {
                 post[property] = value;
