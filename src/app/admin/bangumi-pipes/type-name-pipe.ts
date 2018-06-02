@@ -1,8 +1,8 @@
 import {Pipe, PipeTransform} from '@angular/core';
 
 export const BANGUMI_TYPES = {
-    2: '动画',
-    6: '电视剧'
+    1001: '中文字幕',
+    1002: 'RAW'
 };
 
 @Pipe({name: 'bangumiTypeName'})
