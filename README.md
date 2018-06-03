@@ -1,15 +1,14 @@
-# Web App client for [Albireo](https://github.com/lordfriend/Albireo)
+## Building
 
-## Building requirements
-
-Nodejs 7.0 and above, npm 3 and above, Yarn (I recommend this package manager to manage npm packages)
+Nodejs 8.0 and above, npm and Yarn
 
 ## Development
 
 Clone this repo, install dependencies
 
 ```shell
-cd Deneb
+git clone git@github.com:ProjectSummerTriangle/Altair.git
+cd Altair
 yarn install
 ```
 
@@ -19,7 +18,7 @@ once npm installation is done, using npm script to run some task, all script can
 
 to start up an dev server, run `npm start` in current directory.
 
-the backend server aka [Albireo](https://github.com/lordfriend/Albireo) server must be started. see the readme of that project.
+the backend server aka [Vega](https://github.com/ProjectSummerTriangle/Vega) server must be started.
 
 ## Deployment
 
@@ -29,10 +28,10 @@ To deploy on production server, a compiled and minfied bundle is needed, to buil
 export SITE_TITLE="Your site name"
 export GA="You google analytics Tracking ID" # if you want to use google analytics, export this environment variable.
 export CHROME_EXTENSION_ID=your chrome extension id # when you want user to bind Bangumi account, you should publish Sadr project for your domain, and give the id here.
-npm run build:aot:prod
+yarn run build:aot:prod
 ```
 
-After building process finished, you will have a **dist** directory in your project root. copy this project to your static file server.
+After building process finished, you will have a **dist** directory in your project root. copy this project to your static site root directory.
 
 ### Nginx Configuration for SPA
 
@@ -55,19 +54,16 @@ location /api {
 }
 ```
 
-### Image Resize service
+### Image Thumbnail Support
 
-From 1.1.0, we support responsive image feature which will request a resize image by appending query string `?size={width}x{height}`.
+We support responsive image feature which will request a resize image by appending uri with `/resize-{width}-{height}`.
 This will significantly reduce the network usage and increase the loading performance.
 
 We assume the image service support the following method:
 
-- size={width}x{height} will return a image in dimension of {width}x{height} which is a resize version of original image.
-- size={width}x0 will return an image with a resize width but keeping the ratio of height.
-- size=0x{height} will return an image with a resize height but keeping the ratio of width.
-- without size query string will return the original image.
+- /resize-{width}-{height} will return a image in dimension of {width}x{height} which is a resize version of original image.
+- /resize-{width}-0 will return an image with a resize width but keeping the ratio of height.
+- /resize-0-{height} will return an image with a resize height but keeping the ratio of width.
+- without the /resize-{width}-{height} uri suffix will return the original image.
 
-
-To support this feature, we use [Picfit](https://github.com/thoas/picfit) and some nginx configuration.
-
-But this is not a part of this project, you need to setup your own image service.
+We recommend [Picfit](https://github.com/thoas/picfit) and nginx to achieve this feature.
