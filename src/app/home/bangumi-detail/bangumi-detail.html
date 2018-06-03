@@ -72,7 +72,8 @@
                                       [background]="episode.thumbnail_image.dominant_color"></responsive-image>
                 </a>
                 <a *ngIf="episode.status===2" class="content" [routerLink]="['/play', episode.id]">
-                    <span *ngIf="bangumi.type === 1001">{{episode.episode_no}}. {{episode.name_cn}}</span>
+                    <span *ngIf="bangumi.type === 1001 && episode.name_cn">{{episode.episode_no}}. {{episode.name_cn}}</span>
+                    <span *ngIf="bangumi.type === 1001 && !episode.name_cn">{{episode.episode_no}}. {{episode.name}}</span>
                     <span *ngIf="bangumi.type === 1002">{{episode.episode_no}}. {{episode.name}}</span>
                 </a>
                 <div class="ui bottom attached progress"

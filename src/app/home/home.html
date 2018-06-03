@@ -22,7 +22,7 @@
             <i class="close icon"></i>
         </a>
         <div class="ui float-search transparent icon input">
-            <input type="text" placeholder="Search..." #floatSearch (keyup.enter)="searchBangumi(floatSearch.value)">
+            <input type="text" placeholder="搜索..." #floatSearch (keyup.enter)="searchBangumi(floatSearch.value)">
             <i class="search icon"></i>
         </div>
     </div>
@@ -31,10 +31,22 @@
      *ngIf="sidebarOverlap && sidebarActive === 'active'"
      (click)="onClickSidebarBackdrop($event)"></div>
 <div class="ui sidebar visible ui vertical menu home-sidebar" (click)="onClickSidebar($event)" [@sidebarActive]="sidebarActive">
-    <a class="item" [routerLink]="['/']">放送中</a>
-    <a class="item" [routerLink]="['/bangumi']">所有番組</a>
-    <a class="item" [routerLink]="['/favorite']">我的番組</a>
-    <a class="item" [routerLink]="['/admin']" *ngIf="user && user.level >= 2">管理面板</a>
+    <a class="item" [routerLink]="['/']">
+        <i class="rss icon"></i>
+        放送中
+    </a>
+    <a class="item" [routerLink]="['/bangumi']">
+        <i class="list icon"></i>
+        所有番組
+    </a>
+    <a class="item" [routerLink]="['/favorite']">
+        <i class="heart outline icon"></i>
+        我的番組
+    </a>
+    <a class="item" [routerLink]="['/admin']" *ngIf="user && user.level >= 2">
+        <i class="wrench icon"></i>
+        管理面板
+    </a>
     <div class="item">
         <my-bangumi></my-bangumi>
     </div>
