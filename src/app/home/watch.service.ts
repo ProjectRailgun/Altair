@@ -54,7 +54,7 @@ export class WatchService extends BaseService {
         });
         return this._http.post(`${this._baseUrl}/history/${episode_id}`, body, this._requestOptions)
             .map(res => res.json())
-            .catch(this.handleError)
+            .catch(this.handleError);
     }
 
     updateWatchProgress(bangumi_id: string, episode_id: string, last_watch_position: number, percentage: number, is_finished: boolean): void {
@@ -113,7 +113,6 @@ export class WatchService extends BaseService {
 
     runPeriodTask() {
         setInterval(() => {
-            console.log('synchronize history records');
             this.synchronizeWatchProgress();
         }, TASK_INTERVAL);
     }
