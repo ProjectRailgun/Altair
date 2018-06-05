@@ -36,10 +36,10 @@ import { PersistStorage } from '../../user-service/persist-storage';
                 opacity: 0,
                 transform: 'scale(1)'
             })),
-            transition('inactive => active', animate('500ms ease-in', keyframes([
-                style({ opacity: 0.8, transform: 'scale(1)', offset: 0 }),
-                style({ opacity: 0.5, transform: 'scale(2)', offset: 0.6 }),
-                style({ opacity: 0, transform: 'scale(2)', offset: 1 })
+            transition('active => inactive', animate('500ms ease-in', keyframes([
+                style({ opacity: 1, transform: 'scale(2)', offset: 0 }),
+                style({ opacity: 0.6, transform: 'scale(2)', offset: 0.6 }),
+                style({ opacity: 0, transform: 'scale(1)', offset: 1 })
             ]))),
         ])
     ],
