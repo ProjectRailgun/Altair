@@ -43,6 +43,12 @@ export class App {
                 (event) => {
                     if (event instanceof NavigationEnd) {
                         this.removePreLoader();
+                        // Console banner
+                        console.log(
+                            '%c Altair %c Initialization completed. ',
+                            'color: #fff; margin: 1em 0; padding: 5px 0; background: #3498db;',
+                            'margin: 1em 0; padding: 5px 0; background: #efefef;'
+                        );
                     }
                 }
             );

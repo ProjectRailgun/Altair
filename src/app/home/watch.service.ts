@@ -113,7 +113,6 @@ export class WatchService extends BaseService {
 
     runPeriodTask() {
         setInterval(() => {
-            console.log('synchronize history records');
             this.synchronizeWatchProgress();
         }, TASK_INTERVAL);
     }

@@ -74,7 +74,7 @@ export class ChromeExtensionService {
             !!this.chromeExtensionId
         ) {
             console.log(
-                '%c Altair %c Deneb plugin activated! ',
+                '%c Altair %c Deneb detected. ',
                 'color: #fff; margin: 1em 0; padding: 5px 0; background: #3498db;',
                 'margin: 1em 0; padding: 5px 0; background: #efefef;'
             );
@@ -111,6 +111,11 @@ export class ChromeExtensionService {
                     }
                 );
             });
+            console.log(
+                '%c Altair %c Deneb integrated & syncing. ',
+                'color: #fff; margin: 1em 0; padding: 5px 0; background: #3498db;',
+                'margin: 1em 0; padding: 5px 0; background: #efefef;'
+            );
         } else {
             this._isEnabled.next(false);
         }
