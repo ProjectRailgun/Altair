@@ -23,7 +23,7 @@ const ENV = process.env.ENV = process.env.NODE_ENV
  */
 const METADATA = {
   host: '0.0.0.0',
-  port: 3000,
+  port: 443,
   title: process.env.SITE_TITLE || 'Altair',
   description: process.env.SITE_DESC || 'Life is short, let\'s watch anime!',
   baseUrl: '/',
