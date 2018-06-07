@@ -103,19 +103,19 @@ export class ChromeExtensionService {
                         args: []
                     },
                     resp => {
-                        if (resp && resp.result === 'OK') {
+                        if (resp && resp.result === 'token:' + this.chromeExtensionId) {
                             this._isEnabled.next(true);
+                            console.log(
+                                '%c Altair %c Deneb integrated & syncing. ',
+                                'color: #fff; margin: 1em 0; padding: 5px 0; background: #3498db;',
+                                'margin: 1em 0; padding: 5px 0; background: #efefef;'
+                            );
                         } else {
                             this._isEnabled.next(false);
                         }
                     }
                 );
             });
-            console.log(
-                '%c Altair %c Deneb integrated & syncing. ',
-                'color: #fff; margin: 1em 0; padding: 5px 0; background: #3498db;',
-                'margin: 1em 0; padding: 5px 0; background: #efefef;'
-            );
         } else {
             this._isEnabled.next(false);
         }
