@@ -103,7 +103,7 @@ export class ChromeExtensionService {
                         args: []
                     },
                     resp => {
-                        if (resp && resp.result === 'token:' + this.chromeExtensionId) {
+                        if (resp && resp.result === 'OK') {
                             this._isEnabled.next(true);
                         } else {
                             this._isEnabled.next(false);
