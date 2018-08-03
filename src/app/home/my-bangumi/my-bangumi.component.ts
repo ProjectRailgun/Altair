@@ -55,7 +55,7 @@ export class MyBangumiComponent implements OnInit, OnDestroy {
             this._statusSubject
                 .merge(this._homeService.favoriteChanges)
                 .flatMap(() => {
-                    return this._homeService.myBangumi(this.currentStatus)
+                    return this._homeService.myBangumi(this.currentStatus);
                 })
                 .subscribe((bangumiList) => {
                     this.myBangumiList = bangumiList;
