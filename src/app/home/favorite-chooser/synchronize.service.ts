@@ -59,7 +59,7 @@ export class SynchronizeService {
                     });
                 }
                 return Observable.throw(error);
-            })
+            });
     }
 
     syncBangumi(bangumi: Bangumi) {
@@ -80,8 +80,11 @@ export class SynchronizeService {
                                 .flatMap((data) => {
                                     if (choice === 'site') {
                                         return Observable.of({ status: 0, data: data });
+                                    } else if (choice === 'bgm') {
+                                        return Observable.of({ status: 0, data: result.data });
+                                    } else {
+                                        return NULL;
                                     }
-                                    return Observable.of({ status: 0, data: result.data });
                                 });
                         });
                 } else {
