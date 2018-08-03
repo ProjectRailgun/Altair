@@ -83,7 +83,7 @@ export class SynchronizeService {
                                     } else if (choice === 'bgm') {
                                         return Observable.of({ status: 0, data: result.data });
                                     } else {
-                                        return NULL;
+                                        return Observable.of({});
                                     }
                                 });
                         });
