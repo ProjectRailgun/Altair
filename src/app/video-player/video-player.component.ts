@@ -502,7 +502,8 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
 
     private makeMediaUrl() {
         this.mediaUrl = `${this.videoFile.url}`;
-        this.mediaType = 'video/' + VideoPlayerHelpers.getExtname(this.videoFile.url);
+        //this.mediaType = 'video/' + VideoPlayerHelpers.getExtname(this.videoFile.url);
+        this.mediaType = 'video/mp4';
         this._changeDetector.detectChanges();
     }
 
