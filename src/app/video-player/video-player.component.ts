@@ -49,7 +49,7 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
     private _buffered = new BehaviorSubject(0);
     private _volume = new BehaviorSubject(1);
     private _muted = new BehaviorSubject(false);
-    private _seeking = new Subject();
+    private _seeking = new BehaviorSubject(false);
 
     private _pendingState = PlayState.INVALID;
 
@@ -502,7 +502,8 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
 
     private makeMediaUrl() {
         this.mediaUrl = `${this.videoFile.url}`;
-        this.mediaType = 'video/' + VideoPlayerHelpers.getExtname(this.videoFile.url);
+        //this.mediaType = 'video/' + VideoPlayerHelpers.getExtname(this.videoFile.url);
+        this.mediaType = 'video/mp4';
         this._changeDetector.detectChanges();
     }
 
