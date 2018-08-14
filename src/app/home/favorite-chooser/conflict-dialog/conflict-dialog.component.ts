@@ -22,10 +22,6 @@ export class ConflictDialogComponent {
 
     constructor(private _dialogRef: UIDialogRef<ConflictDialogComponent>) { }
 
-    cancel() {
-        this._dialogRef.close();
-    }
-
     chooseStatus(which: string) {
         this._dialogRef.close(which);
     }
