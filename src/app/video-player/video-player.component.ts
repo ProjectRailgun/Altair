@@ -250,6 +250,10 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
      */
     pause() {
         let mediaElement = this.mediaRef.nativeElement as HTMLMediaElement;
+        console.log('[DEBUG] User toggled PAUSE.');
+        console.log('[DEBUG] VideoPlayer.PlayState = ' + this._stateSubject.getValue());
+        console.log('[DEBUG] HTMLMediaElement.readyState = ' + mediaElement.readyState);
+        console.log('[DEBUG] HTMLMediaElement.networkState = ' + mediaElement.networkState);
         if (mediaElement && mediaElement.readyState >= ReadyState.HAVE_FUTURE_DATA) {
             mediaElement.pause();
         } else {
@@ -259,6 +263,10 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
 
     play() {
         let mediaElement = this.mediaRef.nativeElement as HTMLMediaElement;
+        console.log('[DEBUG] User toggled PLAY.');
+        console.log('[DEBUG] VideoPlayer.PlayState = ' + this._stateSubject.getValue());
+        console.log('[DEBUG] HTMLMediaElement.readyState = ' + mediaElement.readyState);
+        console.log('[DEBUG] HTMLMediaElement.networkState = ' + mediaElement.networkState);
         if (this._stateSubject.getValue() === PlayState.INITIAL) {
             mediaElement.load();
         }
@@ -415,6 +423,9 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
         this._subscription.add(
             Observable.fromEvent(mediaElement, 'progress')
                 .subscribe(() => {
+                    console.log('[DEBUG] VideoPlayer.PlayState = ' + this._stateSubject.getValue());
+                    console.log('[DEBUG] HTMLMediaElement.readyState = ' + mediaElement.readyState);
+                    console.log('[DEBUG] HTMLMediaElement.networkState = ' + mediaElement.networkState);
                     let end = mediaElement.buffered.length - 1;
                     if (end >= 0) {
                         this._buffered.next(mediaElement.buffered.end(end));
