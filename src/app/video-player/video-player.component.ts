@@ -423,9 +423,6 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
         this._subscription.add(
             Observable.fromEvent(mediaElement, 'progress')
                 .subscribe(() => {
-                    console.log('[DEBUG] VideoPlayer.PlayState = ' + this._stateSubject.getValue());
-                    console.log('[DEBUG] HTMLMediaElement.readyState = ' + mediaElement.readyState);
-                    console.log('[DEBUG] HTMLMediaElement.networkState = ' + mediaElement.networkState);
                     let end = mediaElement.buffered.length - 1;
                     if (end >= 0) {
                         this._buffered.next(mediaElement.buffered.end(end));
@@ -491,6 +488,47 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
                     }
                 })
         );
+
+        this._subscription.add(
+            Observable.fromEvent(mediaElement, 'error')
+                .subscribe(() => {
+                    console.log('[DEBUG] Caught event error.');
+                    console.log('[DEBUG] HTMLMediaElement.readyState = ' + mediaElement.readyState);
+                    console.log('[DEBUG] HTMLMediaElement.networkState = ' + mediaElement.networkState);
+                    console.log('[DEBUG] HTMLMediaElement.error = ' + mediaElement.error);
+                })
+        );
+
+        this._subscription.add(
+            Observable.fromEvent(mediaElement, 'waiting')
+                .subscribe(() => {
+                    console.log('[DEBUG] Caught event waiting.');
+                    console.log('[DEBUG] HTMLMediaElement.readyState = ' + mediaElement.readyState);
+                    console.log('[DEBUG] HTMLMediaElement.networkState = ' + mediaElement.networkState);
+                    console.log('[DEBUG] HTMLMediaElement.error = ' + mediaElement.error);
+                })
+        );
+
+        this._subscription.add(
+            Observable.fromEvent(mediaElement, 'stalled')
+                .subscribe(() => {
+                    console.log('[DEBUG] Caught event stalled.');
+                    console.log('[DEBUG] HTMLMediaElement.readyState = ' + mediaElement.readyState);
+                    console.log('[DEBUG] HTMLMediaElement.networkState = ' + mediaElement.networkState);
+                    console.log('[DEBUG] HTMLMediaElement.error = ' + mediaElement.error);
+                })
+        );
+
+        this._subscription.add(
+            Observable.fromEvent(mediaElement, 'loadend')
+                .subscribe(() => {
+                    console.log('[DEBUG] Caught event loadend.');
+                    console.log('[DEBUG] HTMLMediaElement.readyState = ' + mediaElement.readyState);
+                    console.log('[DEBUG] HTMLMediaElement.networkState = ' + mediaElement.networkState);
+                    console.log('[DEBUG] HTMLMediaElement.error = ' + mediaElement.error);
+                })
+        );
+
 
         // focus this element
         this.requestFocus();
