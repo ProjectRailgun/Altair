@@ -8,12 +8,13 @@
             <div class="chara-info">
                 <div class="main-info">
                     <span class="ui mini basic label chara-role">{{character.role_name}}</span>
-                    <div>
+                    <div class="name-info">
                         <a [href]="character.url" target="_blank">{{character.name}}</a>
                         <div class="extra-info">
                             <span class="name-cn">{{character.name_cn}}</span>
                         </div>
                     </div>
+                </div>
                 <div class="actor-info" *ngIf="!!character.actors">
                     <span class="actor-key">CV：</span>
                     <span class="actor-name" *ngFor="let actor of character.actors; last as isLast">
