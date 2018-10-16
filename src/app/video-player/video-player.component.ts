@@ -250,10 +250,6 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
      */
     pause() {
         let mediaElement = this.mediaRef.nativeElement as HTMLMediaElement;
-        console.log('[DEBUG] User toggled PAUSE.');
-        console.log('[DEBUG] VideoPlayer.PlayState = ' + this._stateSubject.getValue());
-        console.log('[DEBUG] HTMLMediaElement.readyState = ' + mediaElement.readyState);
-        console.log('[DEBUG] HTMLMediaElement.networkState = ' + mediaElement.networkState);
         if (mediaElement && mediaElement.readyState >= ReadyState.HAVE_FUTURE_DATA) {
             mediaElement.pause();
         } else {
@@ -263,10 +259,6 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
 
     play() {
         let mediaElement = this.mediaRef.nativeElement as HTMLMediaElement;
-        console.log('[DEBUG] User toggled PLAY.');
-        console.log('[DEBUG] VideoPlayer.PlayState = ' + this._stateSubject.getValue());
-        console.log('[DEBUG] HTMLMediaElement.readyState = ' + mediaElement.readyState);
-        console.log('[DEBUG] HTMLMediaElement.networkState = ' + mediaElement.networkState);
         if (this._stateSubject.getValue() === PlayState.INITIAL) {
             mediaElement.load();
         }
@@ -409,7 +401,6 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
                     if (this.startPosition) {
                         mediaElement.currentTime = this.startPosition;
                     }
-
                 })
         );
         this._subscription.add(
@@ -492,43 +483,13 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
         this._subscription.add(
             Observable.fromEvent(mediaElement, 'error')
                 .subscribe(() => {
-                    console.log('[DEBUG] Caught event error.');
+                    console.log('[Player] Caught playback error event.');
                     console.log('[DEBUG] HTMLMediaElement.readyState = ' + mediaElement.readyState);
                     console.log('[DEBUG] HTMLMediaElement.networkState = ' + mediaElement.networkState);
-                    console.log('[DEBUG] HTMLMediaElement.error = ' + mediaElement.error);
+                    console.log('[DEBUG] HTMLMediaElement.error:');
+                    console.log(mediaElement.error);
                 })
         );
-
-        this._subscription.add(
-            Observable.fromEvent(mediaElement, 'waiting')
-                .subscribe(() => {
-                    console.log('[DEBUG] Caught event waiting.');
-                    console.log('[DEBUG] HTMLMediaElement.readyState = ' + mediaElement.readyState);
-                    console.log('[DEBUG] HTMLMediaElement.networkState = ' + mediaElement.networkState);
-                    console.log('[DEBUG] HTMLMediaElement.error = ' + mediaElement.error);
-                })
-        );
-
-        this._subscription.add(
-            Observable.fromEvent(mediaElement, 'stalled')
-                .subscribe(() => {
-                    console.log('[DEBUG] Caught event stalled.');
-                    console.log('[DEBUG] HTMLMediaElement.readyState = ' + mediaElement.readyState);
-                    console.log('[DEBUG] HTMLMediaElement.networkState = ' + mediaElement.networkState);
-                    console.log('[DEBUG] HTMLMediaElement.error = ' + mediaElement.error);
-                })
-        );
-
-        this._subscription.add(
-            Observable.fromEvent(mediaElement, 'loadend')
-                .subscribe(() => {
-                    console.log('[DEBUG] Caught event loadend.');
-                    console.log('[DEBUG] HTMLMediaElement.readyState = ' + mediaElement.readyState);
-                    console.log('[DEBUG] HTMLMediaElement.networkState = ' + mediaElement.networkState);
-                    console.log('[DEBUG] HTMLMediaElement.error = ' + mediaElement.error);
-                })
-        );
-
 
         // focus this element
         this.requestFocus();
