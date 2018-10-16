@@ -33,9 +33,7 @@
             <div class="rating facade-item" *ngIf="isExtraInfoEnabled && !!extraInfo && !!extraInfo.rating">
                 <bangumi-rating [rating]="extraInfo.rating"></bangumi-rating>
             </div>
-            <div class="summary facade-item">
-                {{bangumi.summary}}
-            </div>
+            <div class="summary facade-item">{{bangumi.summary}}</div>
             <div class="on-air-info facade-item">
                 <span class="key">放送开始：</span>
                 <span class="value">{{bangumi.air_date}}</span>

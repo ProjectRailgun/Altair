@@ -69,9 +69,7 @@
             </h2>
             <h4 class="bangumi-title name">{{episode.bangumi.name}}</h4>
             <favorite-chooser *ngIf="isBangumiReady" [bangumi]="episode.bangumi"></favorite-chooser>
-            <div class="summary">
-                {{episode.bangumi.summary}}
-            </div>
+            <div class="summary">{{episode.bangumi.summary}}</div>
             <reveal-extra [bangumi]="episode.bangumi"></reveal-extra>
             <h4>
                 剧集列表

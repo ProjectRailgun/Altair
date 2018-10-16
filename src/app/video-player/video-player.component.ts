@@ -401,7 +401,6 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
                     if (this.startPosition) {
                         mediaElement.currentTime = this.startPosition;
                     }
-
                 })
         );
         this._subscription.add(
@@ -478,6 +477,17 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
                             // no default
                         }
                     }
+                })
+        );
+
+        this._subscription.add(
+            Observable.fromEvent(mediaElement, 'error')
+                .subscribe(() => {
+                    console.log('[Player] Caught playback error event.');
+                    console.log('[DEBUG] HTMLMediaElement.readyState = ' + mediaElement.readyState);
+                    console.log('[DEBUG] HTMLMediaElement.networkState = ' + mediaElement.networkState);
+                    console.log('[DEBUG] HTMLMediaElement.error:');
+                    console.log(mediaElement.error);
                 })
         );
 
