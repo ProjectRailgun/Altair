@@ -122,13 +122,13 @@ export class Home implements OnInit, OnDestroy {
                         let dialogRef = this._dialogService.open(AlertDialog, { stickyDialog: true, backdrop: true });
                         if (user.email && !user.email_confirmed) {
                             dialogRef.componentInstance.title = '欢迎！';
-                            dialogRef.componentInstance.content = '我们已经像你注册填写的邮箱发送了一封邮件，请点击邮件中的链接激活你的账户。';
+                            dialogRef.componentInstance.content = '我们已经向你注册时填写的邮箱发送了一封邮件，请点击邮件中的链接激活你的账户。若收件箱中无新邮件，请检查是否位于垃圾邮件中。';
                             dialogRef.componentInstance.confirmButtonText = '好';
                             this._subscription.add(dialogRef.afterClosed().subscribe(() => { }));
                         } else {
-                            dialogRef.componentInstance.title = 'Please set your mail address!';
-                            dialogRef.componentInstance.content = 'Your email address has not been set, please set your email address to active your account.';
-                            dialogRef.componentInstance.confirmButtonText = 'Open Account Settings';
+                            dialogRef.componentInstance.title = '请为你的账户设置一个邮箱地址';
+                            dialogRef.componentInstance.content = '你的账户目前没有绑定邮箱，请设置邮箱地址来激活账户。';
+                            dialogRef.componentInstance.confirmButtonText = '打开账户设置';
                             this._subscription.add(dialogRef.afterClosed().subscribe(() => {
                                 this._router.navigate(['/settings/user']);
                             }));

@@ -32,8 +32,8 @@ export class UserCenter implements OnInit, OnDestroy {
             'required': '密码不能为空'
         },
         email: {
-            'required': '邮件地址不能为空',
-            'email': '邮件地址格式错误'
+            'required': '邮箱地址不能为空',
+            'email': '邮箱地址格式错误'
         }
     };
 
@@ -173,14 +173,14 @@ export class UserCenter implements OnInit, OnDestroy {
             this._userSerivce.updateEmail(emailModel.email, emailModel.current_pass)
                 .subscribe(
                     () => {
-                        this._toastRef.show('更新成功, 请到邮箱确认邮件地址');
+                        this._toastRef.show('邮箱地址更新成功, 我们已向新邮箱发送了一封邮件，请点击邮件中的链接激活账户');
                         // this.user.email = emailModel.email;
                         // this.user.email_confirmed = false;
                         this.emailForm.markAsPristine();
                     },
                     (error: BaseError) => {
                         if (error.message === ClientError.DUPLICATE_EMAIL) {
-                            this._toastRef.show('邮件地址已被使用');
+                            this._toastRef.show('此邮箱地址已被使用');
                         } else {
                             this._toastRef.show(error.message);
                         }

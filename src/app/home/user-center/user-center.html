@@ -100,8 +100,8 @@
     <div class="ui segment">
         <h4>Web Hook</h4>
         <div class="ui message">
-            当某个特殊事件发生时（如新番的章节下载完成，用户收藏改变等），Web Hook 允许外部服务获得事件的通知。
-            当事件发生时，我们将会使用 HTTP POST 请求访问你所提供的 URL 并附带相应信息。
+            Web Hook 为第三方提供的功能扩展服务，你可以通过添加 Web Hook 扩展本站的功能。
+            你添加的 Web Hook 的服务提供方将可以获得您在本站点发生的相关事件信息（如新番章节更新、用户收藏番组等）。
         </div>
         <div class="web-hook-list">
             <div class="ui segment" *ngFor="let webHook of webHookList">
@@ -120,7 +120,7 @@
             </div>
         </div>
         <div class="action-row">
-            <a class="ui primary button" routerLink="/settings/web-hook">寻找 Web Hook</a>
+            <a class="ui primary button" routerLink="/settings/web-hook">添加 Web Hook</a>
         </div>
     </div>
     <div class="ui active dimmer" *ngIf="isAddingWebHook">
