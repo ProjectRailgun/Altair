@@ -46,7 +46,7 @@ import { UserActionPanelComponent } from './user-action/user-action-panel/user-a
 import { ChromeExtensionTipComponent } from './user-action/chrome-extension-tip/chrome-extension-tip.component';
 import { FeedbackComponent } from './play-episode/feedback/feedback.component';
 import { RevealExtraComponent } from './play-episode/reveal-extra/reveal-extra.component';
-import { SwiperModule } from 'ngx-swiper-wrapper';
+
 
 @NgModule({
     declarations: [
@@ -85,7 +85,7 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
         ImageLoadingStrategy,
         BangumiListService,
         UserCenterService,
-        SynchronizeService,
+        SynchronizeService
     ],
     imports: [
         RouterModule.forChild(homeRoutes),
@@ -100,8 +100,7 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
         ResponsiveImageModule,
         VideoPlayerModule,
         ConfirmDialogModule,
-        BrowserExtensionModule,
-        SwiperModule
+        BrowserExtensionModule
     ],
     entryComponents: [
         EditReviewDialogComponent,

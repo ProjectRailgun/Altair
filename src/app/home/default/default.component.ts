@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 // import {Episode} from "../../entity/episode";
 import { HomeService, HomeChild } from '../home.service';
 import { Bangumi } from '../../entity/bangumi';
@@ -6,19 +6,7 @@ import { FAVORITE_LABEL } from '../../entity/constants';
 import { Subscription } from 'rxjs/Subscription';
 import { Announce } from '../../entity/announce';
 import { PersistStorage } from '../../user-service/persist-storage';
-import { SwiperConfigInterface, SwiperComponent } from 'ngx-swiper-wrapper';
 
-const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
-    autoplay: 4000,
-    direction: 'horizontal',
-    slidesPerView: 1,
-    scrollbar: false,
-    pagination: {
-        el: '.swiper-pagination',
-        type: 'bullets',
-    },
-    loop: true
-};
 const BANGUMI_TYPE_KEY = 'default_bangumi_type';
 
 @Component({
@@ -26,13 +14,8 @@ const BANGUMI_TYPE_KEY = 'default_bangumi_type';
     templateUrl: './default.html',
     styleUrls: ['./default.less']
 })
-
-export class DefaultComponent extends HomeChild implements OnInit, AfterViewInit, OnDestroy {
+export class DefaultComponent extends HomeChild implements OnInit, OnDestroy {
     private _subscription = new Subscription();
-
-    @ViewChildren('swiper')
-    public Grids: QueryList<SwiperComponent>;
-    private Swiper: SwiperComponent;
 
     // recentEpisodes: Episode[];
 
@@ -44,10 +27,8 @@ export class DefaultComponent extends HomeChild implements OnInit, AfterViewInit
 
     FAVORITE_LABEL = FAVORITE_LABEL;
 
-    announce_in_banner: Announce[];
+    announce_in_banner: Announce;
     announce_in_bangumi: Announce[];
-
-    swiper_config = DEFAULT_SWIPER_CONFIG;
 
     constructor(homeService: HomeService, private _persistStorage: PersistStorage) {
         super(homeService);
@@ -60,14 +41,6 @@ export class DefaultComponent extends HomeChild implements OnInit, AfterViewInit
         this.getOnAir();
     }
 
-    onSwiperHover( hover: boolean ) {
-        if ( hover ) {
-            this.Swiper.directiveRef.stopAutoplay();
-        } else {
-            this.Swiper.directiveRef.startAutoplay();
-        }
-    }
-    
     getOnAir() {
         this._subscription.add(
             this.homeService.onAir(this.bangumiType)
@@ -100,7 +73,7 @@ export class DefaultComponent extends HomeChild implements OnInit, AfterViewInit
         this._subscription.add(
             this.homeService.listAnnounce()
                 .subscribe((announce_list) => {
-                    this.announce_in_banner = announce_list.filter((announce) => {
+                    this.announce_in_banner = announce_list.find((announce) => {
                         return announce.position === Announce.POSITION_BANNER;
                     });
                     this.announce_in_bangumi = announce_list.filter(announce => {
@@ -110,14 +83,7 @@ export class DefaultComponent extends HomeChild implements OnInit, AfterViewInit
         );
     }
 
-    public ngAfterViewInit(): void {
-        this.Grids.changes.subscribe((comps: QueryList <SwiperComponent>) => {
-            this.Swiper = comps.first;
-        });
-    }
-
     ngOnDestroy(): void {
         this._subscription.unsubscribe();
     }
-
 }
