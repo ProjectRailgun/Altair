@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 <div *ngIf="episode.status!==2" class="content unfinished">
-                    <span>第{{episode.episode_no}}话</span>
+                    <span>第 {{episode.episode_no}} 话</span>
                 </div>
                 <a *ngIf="episode.status===2" class="image" [routerLink]="['/play', episode.id]">
                     <responsive-image [src]="episode.thumbnail_image.url"

@@ -181,9 +181,6 @@ export class ErrorComponent implements OnInit, OnDestroy {
             offsetY = y * (height / 2048);
             minSize = m;
         };
-        ['click', 'touchdown'].forEach(event => {
-            document.addEventListener(event, e => START(), false);
-        });
         //////////////////////////////////////////////////////////////////
         // Adapted from a CFDG program
         // https://www.contextfreeart.org/gallery2/index.html#design/2370

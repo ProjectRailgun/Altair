@@ -8,6 +8,7 @@ import { UserService } from '../../user-service';
 import { ChromeExtensionService } from '../../browser-extension/chrome-extension.service';
 import { UIDialog, UIToast, UIToastComponent, UIToastRef } from 'deneb-ui';
 import { AuthError } from '../../../helpers/error';
+import { WatchService } from '../watch.service';
 
 
 @Component({
@@ -33,13 +34,14 @@ export class BangumiDetail extends HomeChild implements OnInit, OnDestroy {
     extraInfo: any;
 
     constructor(homeService: HomeService,
-        userService: UserService,
-        private _chromeExtensionService: ChromeExtensionService,
-        private _dialog: UIDialog,
-        private _route: ActivatedRoute,
-        private _titleService: Title,
-        private _changeDetector: ChangeDetectorRef,
-        toast: UIToast) {
+                userService: UserService,
+                private _chromeExtensionService: ChromeExtensionService,
+                private _dialog: UIDialog,
+                private _route: ActivatedRoute,
+                private _titleService: Title,
+                private _changeDetector: ChangeDetectorRef,
+                private _watchService: WatchService,
+                toast: UIToast) {
         super(homeService);
         this._toastRef = toast.makeText();
         this._subscription.add(
@@ -75,6 +77,9 @@ export class BangumiDetail extends HomeChild implements OnInit, OnDestroy {
                 .flatMap((params) => {
                     return this.homeService.bangumi_detail(params['bangumi_id']);
                 })
+                .do(bangumi => {
+                    this.homeService.checkFavorite(bangumi.id);
+                })
                 .flatMap(bangumi => {
                     let bgmTitle = `${bangumi.name} - ${SITE_TITLE}`;
                     this._titleService.setTitle(bgmTitle);
@@ -93,7 +98,7 @@ export class BangumiDetail extends HomeChild implements OnInit, OnDestroy {
                 }, (error) => {
                     console.log(error);
                     if (error instanceof AuthError && (error as AuthError).isPermission()) {
-                        this._toastRef.show('没有权限');
+                        this._toastRef.show('请登陆账户后浏览');
                     } else {
                         this._toastRef.show(error.message);
                     }

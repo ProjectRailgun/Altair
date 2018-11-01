@@ -15,6 +15,7 @@ let lastType: number;
 let lastScrollPosition: number = 0;
 let lastSort: string;
 let lastStatus: number;
+let lastSortField: string;
 
 @Component({
     selector: 'favorite-list',
@@ -35,11 +36,18 @@ export class FavoriteListComponent implements OnInit, OnDestroy {
 
     sort = 'desc';
     type = -1;
+    sort_field = 'favorite_update_time';
 
     typeMenuLabel = {
         '-1': '全部',
         '1001': '中文字幕',
         '1002': 'RAW'
+    };
+
+    sortFieldLabel = {
+        'favorite_update_time': '按我修改的时间',
+        'eps_update_time': '按最近更新的时间',
+        'air_date': '按开播时间'
     };
 
     cardHeight: number;
@@ -79,6 +87,9 @@ export class FavoriteListComponent implements OnInit, OnDestroy {
         if (Number.isInteger(lastStatus)) {
             this.favoriteStatus = lastStatus;
         }
+        if (lastSortField) {
+            this.sort_field = lastSortField;
+        }
         this._toastRef = toastService.makeText();
     }
 
@@ -89,6 +100,15 @@ export class FavoriteListComponent implements OnInit, OnDestroy {
                     return true;
                 }
                 return bangumi.type === this.type;
+            })
+            .sort((bgm1: Bangumi, bgm2: Bangumi) => {
+                if (this.sort_field === 'air_date') {
+                    let t1, t2;
+                    t1 = bgm1.air_date ? Date.parse(bgm1.air_date).valueOf() : Date.now();
+                    t2 = bgm2.air_date ? Date.parse(bgm2.air_date).valueOf() : Date.now();
+                    return this.sort === 'asc' ? t1 - t2 : t2 - t1;
+                }
+                return this.sort === 'asc' ? bgm1[this.sort_field] - bgm2[this.sort_field] : bgm2[this.sort_field] - bgm1[this.sort_field];
             });
         this.timestampList = this._favoriteList
             .filter(bangumi => {
@@ -97,13 +117,23 @@ export class FavoriteListComponent implements OnInit, OnDestroy {
                 }
                 return bangumi.type === this.type;
             })
+            .sort((bgm1: Bangumi, bgm2: Bangumi) => {
+                if (this.sort_field === 'air_date') {
+                    let t1, t2;
+                    t1 = bgm1.air_date ? Date.parse(bgm1.air_date).valueOf() : Date.now();
+                    t2 = bgm2.air_date ? Date.parse(bgm2.air_date).valueOf() : Date.now();
+                    return this.sort === 'asc' ? t1 - t2 : t2 - t1;
+                }
+                return this.sort === 'asc' ? bgm1[this.sort_field] - bgm2[this.sort_field] : bgm2[this.sort_field] - bgm1[this.sort_field];
+            })
             .map(bangumi => {
-                return bangumi.air_date ? Date.parse(bangumi.air_date) : Date.now();
+                if (this.sort_field === 'air_date') {
+                    return bangumi.air_date ? Date.parse(bangumi.air_date) : Date.now();
+                } else {
+                    return bangumi[this.sort_field];
+                }
+
             });
-        if (this.sort !== 'desc') {
-            this.favoriteList = this.favoriteList.reverse();
-            this.timestampList = this.timestampList.reverse();
-        }
     }
 
     onClickFilterContainer() {
@@ -140,6 +170,12 @@ export class FavoriteListComponent implements OnInit, OnDestroy {
         this.filterFavorites();
     }
 
+    onSortFieldChange(sortField: string) {
+        this.sort_field = sortField;
+        lastSortField = this.sort_field;
+        this.filterFavorites();
+    }
+
     onScrollPositionChange(p: number) {
         lastScrollPosition = p;
     }
@@ -158,12 +194,7 @@ export class FavoriteListComponent implements OnInit, OnDestroy {
                     return this._homeService.myBangumi(status);
                 })
                 .subscribe((bangumiList) => {
-                    this._favoriteList = bangumiList.sort((bgm1: Bangumi, bgm2: Bangumi) => {
-                        let t1, t2;
-                        t1 = bgm1.air_date ? Date.parse(bgm1.air_date).valueOf() : Date.now();
-                        t2 = bgm2.air_date ? Date.parse(bgm2.air_date).valueOf() : Date.now();
-                        return this.sort === 'asc' ? t1 - t2 : t2 - t1;
-                    });
+                    this._favoriteList = bangumiList;
                     this.filterFavorites();
                     this.isLoading = false;
                 },

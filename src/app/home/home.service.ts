@@ -1,20 +1,28 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Headers, Http, RequestOptions } from '@angular/http';
-import { BaseService } from "../../helpers/base.service";
-import { Observable } from "rxjs/Observable";
+import { BaseService } from '../../helpers/base.service';
+import { Observable } from 'rxjs/Observable';
 import { Episode } from '../entity/episode';
-import { Bangumi } from "../entity/bangumi";
+import { Bangumi } from '../entity/bangumi';
 import { Router, NavigationEnd } from '@angular/router';
 // import {homeRoutes} from './home.routes';
-import { queryString } from '../../helpers/url'
+import { queryString } from '../../helpers/url';
 import { WatchService } from './watch.service';
-import { WatchProgress } from "../entity/watch-progress";
+import { WatchProgress } from '../entity/watch-progress';
 import { Announce } from '../entity/announce';
 
 @Injectable()
 export class HomeService extends BaseService {
 
     private _baseUrl = '/api/home';
+
+    childRouteChanges: EventEmitter<any> = new EventEmitter();
+
+    watchProgressChanges: EventEmitter<string> = new EventEmitter<string>();
+
+    favoriteChanges: EventEmitter<any> = new EventEmitter<any>();
+
+    favoriteChecked: EventEmitter<{bangumi_id: string, check_time: number}> = new EventEmitter<{bangumi_id: string, check_time: number}>();
 
     constructor(private _http: Http,
         private _router: Router,
@@ -40,7 +48,7 @@ export class HomeService extends BaseService {
                     }
                 }
             }
-        )
+        );
     }
 
     private parseUrl(url: string) {
@@ -49,14 +57,8 @@ export class HomeService extends BaseService {
         return {
             paths: pathSegement.slice(1),
             queryString: queryStrings
-        }
+        };
     }
-
-    childRouteChanges: EventEmitter<any> = new EventEmitter();
-
-    watchProgressChanges: EventEmitter<string> = new EventEmitter<string>();
-
-    favoriteChanges: EventEmitter<any> = new EventEmitter<any>();
 
     episodeWatching(bangumi_id: string) {
         this.watchProgressChanges.emit(bangumi_id);
@@ -64,6 +66,16 @@ export class HomeService extends BaseService {
 
     changeFavorite() {
         this.favoriteChanges.emit(null);
+    }
+
+    checkFavorite(bangumi_id: string) {
+        this._watchService.check_favorite(bangumi_id)
+            .subscribe((data) => {
+                this.favoriteChecked.emit({bangumi_id: bangumi_id, check_time: data.data});
+                console.log(`bangumi ${bangumi_id} checked`);
+            }, (error) => {
+                console.log(error);
+            });
     }
 
     /**
