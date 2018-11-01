@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.5.1
+
+- Fix bug in favorite list, the timeline doesn't switch with the dropdown selector.
+
+## 3.5.0
+
+- change my bangumi logic. now when user load bangumi-detal and play-episode component,
+    a request to check favorite API will be sent, then the highlight color of unwatched count will be removed.
+
 ## 3.4.0
 
 - Add filter in user management
