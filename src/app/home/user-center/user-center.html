@@ -100,8 +100,8 @@
     <div class="ui segment">
         <h4>Web Hook</h4>
         <div class="ui message">
-            Web Hook 为第三方提供的功能扩展服务，你可以通过添加 Web Hook 扩展本站的功能。
-            你添加的 Web Hook 的服务提供方将可以获得您在本站点发生的相关事件信息（如新番章节更新、用户收藏番组等）。
+            <p>下面列出了你的账号已添加的 Web Hook 。</p>
+            <p>更多关于 Web Hook 的信息请点击“添加 Web Hook”按钮。</p>
         </div>
         <div class="web-hook-list">
             <div class="ui segment" *ngFor="let webHook of webHookList">
@@ -130,7 +130,7 @@
     </div>
     <div class="ui active inverted dimmer" *ngIf="isLoading">
         <div class="ui large text loader">
-            Loading...
+            加载中...
         </div>
     </div>
 </div>

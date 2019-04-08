@@ -5,27 +5,28 @@
         <a routerLink="/settings/bangumi" class="active item">Bangumi 账户关联</a>
     </div>
     <div class="ui segment">
-        <h4>bgm.tv 登录状态</h4>
+        <h4>Bangumi 登录状态</h4>
         <div class="ui visible message">
             <div class="header">这是什么？</div>
-            我们提供的同步状态至 Bangumi 的功能需要您当前的浏览器在 https://bgm.tv 登陆您的 Bangumi 账号。如您没有在此域名登陆 Bangumi 账号，请先登陆后再进行绑定操作。
+            <p>我们提供的 Bangumi 账户关联功能需要你在 https://bgm.tv 域登陆你的 Bangumi 账号。</p>
+            <p>如你需要使用 Bangumi 账户关联功能，请先在此域名登陆 Bangumi 账号后再进行绑定操作。</p>
         </div>
         <div class="bangumi-login-status" *ngIf="isLogin === LOGON_STATUS.UNSURE">正在检查...</div>
         <div class="bangumi-login-status" *ngIf="isLogin !== LOGON_STATUS.UNSURE">
             <i class="status-icon" [ngClass]="{'status-logon': isLogin === LOGON_STATUS.TRUE,'status-logout': isLogin === LOGON_STATUS.FALSE}"></i>
             <span class="status-text">当前登录状态：{{isLogin === LOGON_STATUS.TRUE ? '已登录': '未登录'}}</span>
-            <a class="ui basic blue button" target="_blank" *ngIf="isLogin === LOGON_STATUS.FALSE" (click)="loginInBgmTv()">立即去 bgm.tv 登录</a>
+            <a class="ui basic blue button" target="_blank" *ngIf="isLogin === LOGON_STATUS.FALSE" (click)="loginInBgmTv()">点这里去登录</a>
         </div>
     </div>
     <div class="ui segment">
-        <h4>关联 Bangumi 账户</h4>
+        <h4>Bangumi 账户关联</h4>
         <div _ngcontent-c6="" class="ui visible message">
             <div _ngcontent-c6="" class="header">这是什么？</div>
-            将您的账户与 Bangumi 账户关联，我们可以自动帮您同步您在 番組Collection 的收藏和观看状态至您的 Bangumi 账户，您还可以直接在番組信息页对番組打分和评价。
+            <p>将你的本站账户与 Bangumi 账户关联，我们可以自动帮你同步你的收藏状态和观看进度至你的 Bangumi 账户，你还可以直接在番组信息页对番组打分和评价、在番组播放页查看和发表评论。</p>
         </div>
         <div _ngcontent-c6="" class="ui visible message">
             <div _ngcontent-c6="" class="header">这安全么？</div>
-            您在下方输入的 Bangumi 账户邮箱和密码，包括您的 Bangumi 用户名，都将只记录在您的 番組Collection Plus 浏览器扩展中，我们的服务器完全无法访问您的 Bangumi 账户。
+            <p>你输入的 Bangumi 账户邮箱和密码都将只记录在你的 番組Collection Plus 浏览器扩展中，不会通过网络发送至我们的服务器，或除 bgm.tv 外的任何站点。</p>
         </div>
         <div class="bangumi-bound" *ngIf="!!authInfo && !isLoading">
             <div class="avatar">
@@ -39,7 +40,7 @@
                     <button class="ui red button" type="button"
                             confirmDialog
                             dialogTitle="确定取消关联吗？"
-                            dialogContent="取消关联后将失去所有 Bangumi 相关功能，包括番組详细信息获取。您可以随时重新关联您的 Bangumi 帐号。"
+                            dialogContent="取消关联后将失去所有与 Bangumi 相关的功能，包括番组详细信息显示。你可以随时重新关联你的 Bangumi 帐号。"
                             (onConfirm)="revokeAuth()">取消关联</button>
                 </div>
             </div>
@@ -48,14 +49,14 @@
             <form class="auth-form ui form" [formGroup]="authForm" novalidate (submit)="login($event)">
                 <div class="field">
                     <label>Bangumi 邮箱</label>
-                    <input type="text" placeholder="您的 Bangumi 账户邮箱" formControlName="username" autocomplete="new-username">
+                    <input type="text" placeholder="你的 Bangumi 账户邮箱" formControlName="username" autocomplete="new-username">
                 </div>
                 <div class="field">
                     <label>Bangumi 密码</label>
-                    <input type="password" placeholder="您的 Bangumi 账户密码" formControlName="password" autocomplete="new-password">
+                    <input type="password" placeholder="你的 Bangumi 账户密码" formControlName="password" autocomplete="new-password">
                 </div>
                 <div class="footer">
-                    <button class="ui primary button" type="submit">登录</button>
+                    <button class="ui primary button" type="submit">关联</button>
                 </div>
             </form>
             <div class="ui active inverted dimmer" *ngIf="isAuthenticating">

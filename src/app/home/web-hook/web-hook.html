@@ -7,7 +7,10 @@
     <div class="ui segment">
         <h4>添加 Web Hook</h4>
         <div class="ui message">
-            下面列出了所有可用的 Web Hook 。如果你想开发 Web Hook 并在本站使用，请联系我们。
+            <p>Web Hook 为第三方提供的功能扩展服务，你可以通过添加 Web Hook 扩展本站的功能。</p>
+            <p>当你添加 Web Hook 后，服务提供方将可以获得您在本站点发生的相关事件信息（如番组章节更新、番组收藏状态改变等）。</p>
+            <p>Web Hook 的添加仅应用于你的账号，你可以随时移除添加的 Web Hook 。</p>
+            <p>请从下方列表选择想要添加的 Web Hook 。</p>
         </div>
         <div class="web-hook-list">
             <div class="ui segment" *ngFor="let webHook of webHookList">
@@ -19,6 +22,9 @@
                 <div class="desc" [innerHtml]="webHook.description">
                 </div>
             </div>
+        </div>
+        <div class="ui message">
+            <p>如果你想开发更多 Web Hook 供本站使用，请联系我们。</p>
         </div>
     </div>
 </div>

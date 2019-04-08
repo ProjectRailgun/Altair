@@ -27,8 +27,8 @@
                     <span class="entry-value">{{bangumi.air_date || '未知'}}</span>
                 </p>
                 <p class="entry">
-                    <span class="entry-key">放送星期</span>
-                    <span class="entry-value">{{bangumi.air_weekday || '未知'}}</span>
+                    <span class="entry-key">放送日</span>
+                    <span class="entry-value">{{(bangumi.air_weekday | weekday) || '未知'}}</span>
                 </p>
                 <p class="entry">
                     <span class="entry-key">话数</span>

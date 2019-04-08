@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
     templateUrl: './developers.html'
 })
 export class DevelopersComponent {
-
+    siteName = SITE_TITLE;
 }
