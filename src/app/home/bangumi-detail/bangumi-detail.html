@@ -17,6 +17,8 @@
         </div>
         <div class="bangumi-base-info">
             <h2 class="bangumi-title name-cn">
+                <div *ngIf="bangumi.type === 1001" class="ui green horizontal label">字幕</div>
+                <div *ngIf="bangumi.type === 1002" class="ui red horizontal label">RAW</div>
                 {{bangumi.name_cn}}
                 <a class="external-link" [href]="'https://bgm.tv/subject/' + bangumi.bgm_id" target="_blank"
                    title="在 Bangumi 查看">
@@ -37,8 +39,8 @@
             <div class="on-air-info facade-item">
                 <span class="key">放送开始：</span>
                 <span class="value">{{bangumi.air_date}}</span>
-                <span class="key">放送星期：</span>
-                <span class="value">{{bangumi.air_weekday | weekday}}</span>
+                <span class="key">放送日：</span>
+                <span class="value">{{(bangumi.air_weekday | weekday) || '未知'}}</span>
             </div>
             <bangumi-character *ngIf="!!extraInfo && !!extraInfo.crt" [bangumi]="bangumi" [characterList]="extraInfo.crt"></bangumi-character>
         </div>
