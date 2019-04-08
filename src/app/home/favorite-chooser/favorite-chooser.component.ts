@@ -147,7 +147,7 @@ export class FavoriteChooser implements OnInit, OnDestroy {
                 this.bangumi.favorite_status = status;
                 this.homeService.changeFavorite();
             }, () => {
-                console.log('update favorite error');
+                // console.log('update favorite error');
             }, () => {
                 this.isSavingFavorite = false;
             });
