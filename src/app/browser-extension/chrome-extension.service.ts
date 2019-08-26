@@ -35,6 +35,7 @@ export enum LOGON_STATUS {
 @Injectable()
 export class ChromeExtensionService {
 
+    private _chromeExtensionId: string;
     private _authInfo = new BehaviorSubject<AuthInfo>(INITIAL_STATE_VALUE);
     private _isBgmTvLogon = new BehaviorSubject<LOGON_STATUS>(LOGON_STATUS.UNSURE);
     private _isEnabled = new BehaviorSubject<boolean>(false);
@@ -52,6 +53,9 @@ export class ChromeExtensionService {
     }
 
     constructor(private _extensionRpcService: ExtensionRpcService) {
+        if (CHROME_EXTENSION_ID) {
+            this._chromeExtensionId = CHROME_EXTENSION_ID;
+        }
         if (this._extensionRpcService.isExtensionEnabled()) {
             this.isEnabled.pipe(filter(isEnabled => isEnabled))
                 .subscribe(() => {
@@ -72,9 +76,13 @@ export class ChromeExtensionService {
                 });
             this._extensionRpcService.invokeRPC('BackgroundCore', 'verify', [], 500)
                 .subscribe((resp) => {
-                    // console.log(resp);
-                    if (resp === 'OK') {
+                    if (resp === 'token:' + this._chromeExtensionId) {
                         this._isEnabled.next(true);
+                        console.log(
+                            '%c Altair %c Deneb integrated & syncing. ',
+                            'color: #fff; margin: 1em 0; padding: 5px 0; background: #3498db;',
+                            'margin: 1em 0; padding: 5px 0; background: #efefef;'
+                        );
                     } else {
                         this._isEnabled.next(false);
                     }
