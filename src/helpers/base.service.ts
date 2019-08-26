@@ -1,7 +1,8 @@
-import { AuthError } from './error';
-import { Observable } from 'rxjs/Observable';
-import { ServerError } from './error/ServerError';
-import { ClientError } from './error/ClientError';
+
+import {throwError as observableThrowError, Observable} from 'rxjs';
+import {AuthError} from './error';
+import {ServerError} from './error/ServerError';
+import {ClientError} from './error/ClientError';
 
 export abstract class BaseService {
 
@@ -24,7 +25,7 @@ export abstract class BaseService {
         } else {
             error = new ServerError('Network Error', 0);
         }
-        return Observable.throw(error);
+        return observableThrowError(error);
     }
 
 }

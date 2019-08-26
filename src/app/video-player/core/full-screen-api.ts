@@ -1,5 +1,6 @@
+
+import {fromEvent as observableFromEvent,  Observable } from 'rxjs';
 import { VideoPlayerHelpers } from './helpers';
-import { Observable } from 'rxjs/Observable';
 import { EventEmitter } from '@angular/core';
 export const BROWSER_FULLSCREEN_API = {
     w3: {
@@ -61,8 +62,8 @@ export class FullScreenAPI {
 
     constructor(private _mediaElement: HTMLMediaElement, private _hostElement: Element) {
         for (let browser in BROWSER_FULLSCREEN_API) {
-            if (BROWSER_FULLSCREEN_API[browser].enabled in document) {
-                this.polyfill = BROWSER_FULLSCREEN_API[browser];
+            if (BROWSER_FULLSCREEN_API[ browser ].enabled in document) {
+                this.polyfill = BROWSER_FULLSCREEN_API[ browser ];
                 break;
             }
         }
@@ -90,8 +91,8 @@ export class FullScreenAPI {
                 fsElemDispatcher = _hostElement;
         }
 
-        Observable.fromEvent(fsElemDispatcher, this.polyfill.onchange).subscribe(() => {
-            this.isFullscreen = !!document[this.polyfill.element];
+        observableFromEvent(fsElemDispatcher, this.polyfill.onchange).subscribe(() => {
+            this.isFullscreen = !!document[ this.polyfill.element ];
             this.onChangeFullscreen.next(this.isFullscreen);
         });
 
@@ -124,7 +125,7 @@ export class FullScreenAPI {
     }
 
     enterElementInFullScreen(elem: any) {
-        elem[this.polyfill.request]();
+        elem[ this.polyfill.request ]();
     }
 
 
@@ -134,7 +135,7 @@ export class FullScreenAPI {
 
         // Exit from native fullscreen
         if (this.isAvailable && this.nativeFullscreen) {
-            document[this.polyfill.exit]();
+            document[ this.polyfill.exit ]();
         }
     }
 }

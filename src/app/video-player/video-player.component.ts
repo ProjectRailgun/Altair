@@ -1,34 +1,53 @@
 import {
-    AfterViewInit, ChangeDetectorRef,
-    Component, ComponentFactoryResolver,
-    ElementRef, EventEmitter, HostBinding, HostListener, Injector,
+    AfterViewInit,
+    ChangeDetectorRef,
+    Component,
+    ComponentFactoryResolver,
+    ElementRef,
+    EventEmitter,
+    HostBinding,
+    Injector,
     Input,
     OnChanges,
-    OnDestroy, OnInit, Output,
+    OnDestroy,
+    OnInit,
+    Output,
     Self,
     SimpleChanges,
     ViewChild,
     ViewContainerRef
 } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { ReadyState, PlayState } from './core/state';
-import { FullScreenAPI } from './core/full-screen-api';
-import { VideoFile } from '../entity/video-file';
-import { VideoPlayerHelpers } from './core/helpers';
-import { VideoControls } from './controls/controls.component';
-import { VideoCapture } from './core/video-capture.service';
-import { VideoTouchControls } from './touch-controls/touch-controls.component';
-import { VideoPlayerShortcuts } from './core/shortcuts';
 import { UIDialog } from 'deneb-ui';
+import {
+    BehaviorSubject,
+    fromEvent as observableFromEvent,
+    interval as observableInterval,
+    Observable,
+    Subject,
+    Subscription,
+    merge
+} from 'rxjs';
+
+import { filter, map, timeout } from 'rxjs/operators';
+import { Bangumi, Episode } from '../entity';
+import { VideoFile } from '../entity/video-file';
+import { VideoControls } from './controls/controls.component';
+import { FullScreenAPI } from './core/full-screen-api';
+import { VideoPlayerHelpers } from './core/helpers';
+import { VideoPlayerShortcuts } from './core/shortcuts';
+import { PlayState, ReadyState } from './core/state';
+import { VideoCapture } from './core/video-capture.service';
+import { FloatControlsComponent } from './float-controls/float-controls.component';
 import { VideoPlayerHelpDialog } from './help-dialog/help-dialog.component';
-import { Subject } from 'rxjs/Subject';
+import { VideoTouchControls } from './touch-controls/touch-controls.component';
 
 let nextId = 0;
 
 export const MAX_TOLERATE_WAITING_TIME = 10000;
 export const INITIAL_TOLERATE_WAITING_TIME = 5000;
+
+export const MIN_FLOAT_PLAYER_HEIGHT = 180;
+export const MIN_FLOAT_PLAYER_WIDTH = 320;
 
 @Component({
     selector: 'video-player',
@@ -49,7 +68,7 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
     private _buffered = new BehaviorSubject(0);
     private _volume = new BehaviorSubject(1);
     private _muted = new BehaviorSubject(false);
-    private _seeking = new BehaviorSubject(false);
+    private _seeking = new Subject<boolean>();
 
     private _pendingState = PlayState.INVALID;
 
@@ -117,20 +136,22 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
     @HostBinding('class.fullscreen')
     isFullscreen: boolean;
 
+    @HostBinding('class.float-play')
+    isFloatPlay: boolean;
+
     mediaUrl: string;
     mediaType: string;
 
     playerId = 'videoPlayerId' + (nextId++);
 
-    @ViewChild('media') mediaRef: ElementRef;
-    @ViewChild('overlay', { read: ViewContainerRef }) controlContainer: ViewContainerRef;
+    @ViewChild('media', {static: true}) mediaRef: ElementRef;
+    @ViewChild('overlay', {read: ViewContainerRef, static: true}) controlContainer: ViewContainerRef;
 
     /**
      * measured dimension according current viewport size
      */
     playerMeasuredWidth: number;
     playerMeasuredHeight: number;
-
 
     /**
      * currentTime of media element.
@@ -186,19 +207,19 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
     }
 
     constructor(@Self() public videoPlayerRef: ElementRef,
-        private _changeDetector: ChangeDetectorRef,
-        private _videoCapture: VideoCapture,
-        private _injector: Injector,
-        private _componentFactoryResolver: ComponentFactoryResolver,
-        private _dialogService: UIDialog) {
+                private _changeDetector: ChangeDetectorRef,
+                private _videoCapture: VideoCapture,
+                private _injector: Injector,
+                private _componentFactoryResolver: ComponentFactoryResolver,
+                private _dialogService: UIDialog) {
     }
 
-    setPendingState(state: number) {
+    setPendingState(state: number): void {
         this._pendingStateSubject.next(state);
         this._pendingState = state;
     }
 
-    setVolume(vol: number) {
+    setVolume(vol: number): void {
         let mediaElement = this.mediaRef.nativeElement as HTMLMediaElement;
         if (mediaElement && vol >= 0 && vol <= 1) {
             mediaElement.volume = vol;
@@ -212,7 +233,7 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
         }
     }
 
-    volumeUp(delta: number) {
+    volumeUp(delta: number): void {
         let mediaElement = this.mediaRef.nativeElement as HTMLMediaElement;
         let currentVolume = mediaElement.volume;
         if (mediaElement) {
@@ -224,7 +245,7 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
         }
     }
 
-    volumeDown(delta: number) {
+    volumeDown(delta: number): void {
         let mediaElement = this.mediaRef.nativeElement as HTMLMediaElement;
         let currentVolume = mediaElement.volume;
         if (mediaElement) {
@@ -236,7 +257,7 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
         }
     }
 
-    toggleMuted() {
+    toggleMuted(): void {
         let mediaElement = this.mediaRef.nativeElement as HTMLMediaElement;
         if (mediaElement) {
             this.setMuted(!mediaElement.muted);
@@ -248,7 +269,7 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
      * the player will make a actual call of pause operation or set a pending state to PlayState.PAUSED.
      * This may help to release the sockets holding by Chrome.
      */
-    pause() {
+    pause(): void {
         let mediaElement = this.mediaRef.nativeElement as HTMLMediaElement;
         if (mediaElement && mediaElement.readyState >= ReadyState.HAVE_FUTURE_DATA) {
             mediaElement.pause();
@@ -257,19 +278,26 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
         }
     }
 
-    play() {
+    play(): void {
         let mediaElement = this.mediaRef.nativeElement as HTMLMediaElement;
+        let rst: Promise<void>;
         if (this._stateSubject.getValue() === PlayState.INITIAL) {
             mediaElement.load();
         }
         if (mediaElement && mediaElement.readyState >= ReadyState.HAVE_FUTURE_DATA) {
-            mediaElement.play();
+            // TODO: We could add some handler for playback start and error situations.
+            rst = mediaElement.play();
+            rst.then(() => {
+                console.log('play start');
+            }, (reason) => {
+                console.log(reason);
+            })
         } else {
             this.setPendingState(PlayState.PLAYING);
         }
     }
 
-    togglePlayAndPause() {
+    togglePlayAndPause(): void {
         if (Number.isNaN(this._durationSubject.getValue())) {
             return;
         }
@@ -280,7 +308,7 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
         }
     }
 
-    seek(playProgressRatio) {
+    seek(playProgressRatio): void {
         const mediaElement = this.mediaRef.nativeElement as HTMLMediaElement;
         // ended state must be retrieved before set currentTime.
         let isPlayBackEnded = mediaElement.ended;
@@ -293,7 +321,7 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
         }
     }
 
-    fastForward(time: number) {
+    fastForward(time: number): void {
         if (Number.isNaN(this._durationSubject.getValue())) {
             return;
         }
@@ -307,7 +335,7 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
         }
     }
 
-    fastBackward(time: number) {
+    fastBackward(time: number): void {
         if (Number.isNaN(this._durationSubject.getValue())) {
             return;
         }
@@ -321,16 +349,35 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
         }
     }
 
-    toggleFullscreen() {
+    toggleFullscreen(): void {
         this.fullscreenAPI.toggleFullscreen();
     }
 
-    requestFocus() {
+    toggleFloatPlay(): void {
+        this.isFloatPlay = !this.isFloatPlay;
+        const hostElement = this.videoPlayerRef.nativeElement as HTMLElement;
+        this.togglePlayerDimension(hostElement);
+        this.controlContainer.remove(0);
+        if (this.isFloatPlay) {
+            const factory = this._componentFactoryResolver.resolveComponentFactory(FloatControlsComponent);
+            const componentRef = factory.create(this._injector);
+            componentRef.instance.videoTitle = `${this.bangumiName} ${this.episodeNo}`;
+            this.controlContainer.insert(componentRef.hostView);
+        } else {
+            if (VideoPlayerHelpers.isMobileDevice()) {
+                this.controlContainer.createComponent(this._componentFactoryResolver.resolveComponentFactory(VideoTouchControls));
+            } else {
+                this.controlContainer.createComponent(this._componentFactoryResolver.resolveComponentFactory(VideoControls));
+            }
+        }
+    }
+
+    requestFocus(): void {
         let hostElement = this.videoPlayerRef.nativeElement as HTMLElement;
         hostElement.focus();
     }
 
-    openHelpDialog() {
+    openHelpDialog(): void {
         let dialogRef;
 
         if (this.fullscreenAPI.isFullscreen) {
@@ -339,7 +386,7 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
                 backdrop: true
             }, this.controlContainer);
         } else {
-            dialogRef = this._dialogService.open(VideoPlayerHelpDialog, { stickyDialog: false, backdrop: true });
+            dialogRef = this._dialogService.open(VideoPlayerHelpDialog, {stickyDialog: false, backdrop: true});
         }
         this._subscription.add(
             dialogRef.afterClosed()
@@ -349,8 +396,30 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
         );
     }
 
-    playNextEpisode() {
+    playNextEpisode(): void {
         this.onPlayNextEpisode.emit(this.nextEpisodeId);
+    }
+
+    /**
+     * Invoked by VideoPlayerService
+     */
+    setData(episode: Episode, bangumi: Bangumi, nextEpisode: Episode, videoFile: VideoFile, startPosition: number): void {
+        let lastVideoFileId;
+        if (this.videoFile) {
+            lastVideoFileId = this.videoFile.id;
+        }
+
+        this.bangumiName = bangumi.name_cn || bangumi.name;
+        this.episodeNo = episode.episode_no;
+        this.nextEpisodeId = nextEpisode.id;
+        this.nextEpisodeName = nextEpisode.name;
+        this.nextEpisodeNameCN = nextEpisode.name_cn;
+        this.videoFile = videoFile;
+        this.startPosition = startPosition;
+        if (lastVideoFileId !== videoFile.id) {
+            this._resetPlayer();
+        }
+        this._initiatePlayer();
     }
 
     ngOnInit(): void {
@@ -384,11 +453,13 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
         this.shortcuts = new VideoPlayerShortcuts(hostElement, this, this._videoCapture);
 
         this._subscription.add(
-            Observable.fromEvent(window, 'resize')
-                .merge(this.fullscreenAPI.onChangeFullscreen)
-                .filter(() => {
+            merge(
+                observableFromEvent(window, 'resize'),
+                this.fullscreenAPI.onChangeFullscreen)
+            .pipe(
+                filter(() => {
                     return Boolean(this.videoFile && this.videoFile.resolution_w && this.videoFile.resolution_h);
-                })
+                }),)
                 .subscribe(() => {
                     this.togglePlayerDimension(hostElement);
                 })
@@ -397,7 +468,7 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
         this.togglePlayerDimension(hostElement);
 
         this._subscription.add(
-            Observable.fromEvent(mediaElement, 'durationchange')
+            observableFromEvent(mediaElement, 'durationchange')
                 .subscribe(() => {
                     let duration = mediaElement.duration;
                     this._durationSubject.next(duration);
@@ -405,15 +476,16 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
                 })
         );
         this._subscription.add(
-            Observable.fromEvent(mediaElement, 'loadedmetadata')
+            observableFromEvent(mediaElement, 'loadedmetadata')
                 .subscribe(() => {
                     if (this.startPosition) {
                         mediaElement.currentTime = this.startPosition;
                     }
+
                 })
         );
         this._subscription.add(
-            Observable.fromEvent(mediaElement, 'timeupdate')
+            observableFromEvent(mediaElement, 'timeupdate')
                 .subscribe(() => {
                     let currentTime = mediaElement.currentTime;
                     this._currentTimeSubject.next(currentTime);
@@ -421,7 +493,7 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
                 })
         );
         this._subscription.add(
-            Observable.fromEvent(mediaElement, 'progress')
+            observableFromEvent(mediaElement, 'progress')
                 .subscribe(() => {
                     let end = mediaElement.buffered.length - 1;
                     if (end >= 0) {
@@ -430,19 +502,19 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
                 })
         );
         this._subscription.add(
-            Observable.fromEvent(mediaElement, 'play')
+            observableFromEvent(mediaElement, 'play')
                 .subscribe(() => {
                     this._stateSubject.next(PlayState.PLAYING);
                 })
         );
         this._subscription.add(
-            Observable.fromEvent(mediaElement, 'pause')
+            observableFromEvent(mediaElement, 'pause')
                 .subscribe(() => {
                     this._stateSubject.next(PlayState.PAUSED);
                 })
         );
         this._subscription.add(
-            Observable.fromEvent(mediaElement, 'ended')
+            observableFromEvent(mediaElement, 'ended')
                 .subscribe(
                     () => {
                         this._stateSubject.next(PlayState.PLAY_END);
@@ -450,33 +522,38 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
                 )
         );
         this._subscription.add(
-            Observable.fromEvent(mediaElement, 'seeking')
+            observableFromEvent(mediaElement, 'seeking')
                 .subscribe(() => {
                     this._seeking.next(true);
                 })
         );
         this._subscription.add(
-            Observable.fromEvent(mediaElement, 'seeked')
+            observableFromEvent(mediaElement, 'seeked')
                 .subscribe(() => {
                     this._seeking.next(false);
                 })
         );
         this._subscription.add(
-            Observable.fromEvent(mediaElement, 'volumechange')
+            observableFromEvent(mediaElement, 'volumechange')
                 .subscribe(() => {
                     this._volume.next(mediaElement.volume);
                     this._muted.next(mediaElement.muted);
                 })
         );
         this._subscription.add(
-            Observable.fromEvent(mediaElement, 'canplay')
+            observableFromEvent(mediaElement, 'canplay')
                 .subscribe(() => {
                     this.lagged.emit(false);
                     this.watchForWaiting();
                     if (this._pendingState !== PlayState.INVALID) {
                         switch (this._pendingState) {
                             case PlayState.PLAYING:
-                                mediaElement.play();
+                                mediaElement.play()
+                                    .then(() => {
+                                        console.log('play start');
+                                    }, (reason) => {
+                                        console.log(reason);
+                                    });
                                 this.setPendingState(PlayState.INVALID);
                                 break;
                             case PlayState.PAUSED:
@@ -486,17 +563,6 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
                             // no default
                         }
                     }
-                })
-        );
-
-        this._subscription.add(
-            Observable.fromEvent(mediaElement, 'error')
-                .subscribe(() => {
-                    console.log('[Player] Caught playback error event.');
-                    console.log('[DEBUG] HTMLMediaElement.readyState = ' + mediaElement.readyState);
-                    console.log('[DEBUG] HTMLMediaElement.networkState = ' + mediaElement.networkState);
-                    console.log('[DEBUG] HTMLMediaElement.error:');
-                    console.log(mediaElement.error);
                 })
         );
 
@@ -512,29 +578,40 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
 
     ngOnChanges(changes: SimpleChanges): void {
         if ('videoFile' in changes) {
-            let mediaElement = this.mediaRef.nativeElement as HTMLMediaElement;
-            this.makeMediaUrl();
-            mediaElement.load();
-            this.play();
+            this._initiatePlayer();
         }
     }
 
-    private makeMediaUrl() {
+    private _initiatePlayer(): void {
+        let mediaElement = this.mediaRef.nativeElement as HTMLMediaElement;
+        this.makeMediaUrl();
+        mediaElement.load();
+        this.play();
+    }
+
+    private _resetPlayer(): void {
+        this._currentTimeSubject.next(0);
+        this._durationSubject.next(NaN);
+        this._stateSubject.next(PlayState.INITIAL);
+        this._pendingStateSubject.next(PlayState.INVALID);
+        this._buffered.next(0);
+    }
+
+    private makeMediaUrl(): void {
         this.mediaUrl = `${this.videoFile.url}`;
-        //this.mediaType = 'video/' + VideoPlayerHelpers.getExtname(this.videoFile.url);
-        this.mediaType = 'video/mp4';
+        this.mediaType = 'video/' + VideoPlayerHelpers.getExtname(this.videoFile.url);
         this._changeDetector.detectChanges();
     }
 
-    private watchForWaiting() {
+    private watchForWaiting(): void {
         let mediaElement = this.mediaRef.nativeElement as HTMLMediaElement;
         this._waitingSubscription.unsubscribe();
-        this._waitingSubscription = Observable.interval(100)
-            .map(() => {
+        this._waitingSubscription = observableInterval(100).pipe(
+            map(() => {
                 return mediaElement.readyState < ReadyState.HAVE_FUTURE_DATA;
-            })
-            .filter(waiting => !waiting)
-            .timeout(this._tolerateWaitingTime)
+            }),
+            filter(waiting => !waiting),
+            timeout(this._tolerateWaitingTime),)
             .subscribe(() => {
             }, () => {
                 this.lagged.emit(true);
@@ -544,7 +621,12 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
             });
     }
 
-    private measurePlayerSize(): { width: number, height: number } {
+    /**
+     * measure the required size base on viewport size and video resolution.
+     * The applied size may not necessarily the same
+     * @returns {{width: number; height: number}}
+     */
+    private measurePlayerSize(): {width: number, height: number} {
         let viewportWidth = document.documentElement.clientWidth;
         let viewportHeight = document.documentElement.clientHeight;
         let videoWidth = this.videoFile.resolution_w;
@@ -566,13 +648,30 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
             playerWidth = viewportWidth;
             playerHeight = playerWidth / videoRatio;
         }
-        return { width: playerWidth, height: playerHeight };
+        return {width: playerWidth, height: playerHeight};
     }
 
     private togglePlayerDimension(hostElement: HTMLElement): void {
-        let { width, height } = this.measurePlayerSize();
-        this.playerMeasuredWidth = width;
-        this.playerMeasuredHeight = height;
+        let {width, height} = this.measurePlayerSize();
+        const viewportWidth = document.documentElement.clientWidth;
+        const viewportHeight = document.documentElement.clientHeight;
+        // for those portrait screen like most mobile devices, we don't apply a PIP style float play
+        if (this.isFloatPlay && viewportWidth > 0.8 * viewportHeight) {
+
+            if (viewportWidth / viewportHeight > width / height) {
+                // We want the float player be 1/3 of the measured width, but not less than the minimal.
+                this.playerMeasuredWidth = Math.max(MIN_FLOAT_PLAYER_WIDTH, width * 0.4);
+                this.playerMeasuredHeight = height / width * this.playerMeasuredWidth;
+            } else {
+                // We want the float player be 1/3 of the measured height, but not less than the minimal.
+                this.playerMeasuredHeight = Math.max(MIN_FLOAT_PLAYER_HEIGHT, height * 0.4);
+                this.playerMeasuredWidth = width / height * this.playerMeasuredHeight;
+            }
+
+        } else {
+            this.playerMeasuredWidth = width;
+            this.playerMeasuredHeight = height;
+        }
         if (!this.isFullscreen && !!this.playerMeasuredWidth && !!this.playerMeasuredHeight) {
             hostElement.style.width = `${this.playerMeasuredWidth}px`;
             hostElement.style.height = `${this.playerMeasuredHeight}px`;

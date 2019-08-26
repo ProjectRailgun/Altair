@@ -1,14 +1,17 @@
-import { Bangumi } from '../../entity';
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { Router } from '@angular/router';
-import { AdminService } from '../admin.service';
-import { Observable, Subscription } from 'rxjs';
-import { getRemPixel } from '../../../helpers/dom';
-import { UIDialog, UIToast, UIToastComponent, UIToastRef } from 'deneb-ui';
-import { BaseError } from '../../../helpers/error/BaseError';
-import { CARD_HEIGHT_REM } from '../bangumi-card/bangumi-card.component';
-import { SearchBangumi } from '../search-bangumi/search-bangumi.component';
+
+import {fromEvent as observableFromEvent, Observable, Subscription} from 'rxjs';
+
+import {distinctUntilChanged, debounceTime} from 'rxjs/operators';
+import {Bangumi} from '../../entity';
+import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Title} from '@angular/platform-browser';
+import {Router} from '@angular/router';
+import {AdminService} from '../admin.service';
+import {getRemPixel} from '../../../helpers/dom';
+import {UIDialog, UIToast, UIToastComponent, UIToastRef} from 'deneb-ui';
+import {BaseError} from '../../../helpers/error/BaseError';
+import {CARD_HEIGHT_REM} from '../bangumi-card/bangumi-card.component';
+import {SearchBangumi} from '../search-bangumi/search-bangumi.component';
 import { ListBangumiService } from './list-bangumi.service';
 
 @Component({
@@ -24,7 +27,7 @@ export class ListBangumi implements AfterViewInit, OnDestroy, OnInit {
     private _toastRef: UIToastRef<UIToastComponent>;
     private _isMovie: boolean;
 
-    @ViewChild('searchBox') searchBox: ElementRef;
+    @ViewChild('searchBox', {static: false}) searchBox: ElementRef;
 
     name: string;
     total: number = 0;
@@ -40,8 +43,8 @@ export class ListBangumi implements AfterViewInit, OnDestroy, OnInit {
 
     typeMenuLabel = {
         '-1': '全部',
-        '2': '动画',
-        '6': '电视剧'
+        '1001': '中文字幕',
+        '1002': 'RAW'
     };
 
     set bangumiList(list: Bangumi[]) {
@@ -52,11 +55,11 @@ export class ListBangumi implements AfterViewInit, OnDestroy, OnInit {
             }
             return bangumi[this.orderBy];
         });
-    }
+    };
 
     get bangumiList(): Bangumi[] {
         return this._bangumiList;
-    }
+    };
 
     isLoading: boolean = false;
 
@@ -79,15 +82,15 @@ export class ListBangumi implements AfterViewInit, OnDestroy, OnInit {
     }
 
     constructor(private adminService: AdminService,
-        private router: Router,
-        private _dialog: UIDialog,
-        private _listBangumiService: ListBangumiService,
-        toastService: UIToast,
-        titleService: Title) {
+                private router: Router,
+                private _dialog: UIDialog,
+                private _listBangumiService: ListBangumiService,
+                toastService: UIToast,
+                titleService: Title) {
         titleService.setTitle('新番管理 - ' + SITE_TITLE);
         this._toastRef = toastService.makeText();
         if (window) {
-            this.cardHeight = getRemPixel(CARD_HEIGHT_REM);
+            this.cardHeight = getRemPixel(CARD_HEIGHT_REM)
         }
         if (Number.isFinite(this._listBangumiService.scrollPosition)) {
             this.lastScrollPosition = this._listBangumiService.scrollPosition;
@@ -124,11 +127,12 @@ export class ListBangumi implements AfterViewInit, OnDestroy, OnInit {
     }
 
     addBangumi(): void {
-        let dialogRef = this._dialog.open(SearchBangumi, { stickyDialog: true, backdrop: true });
+        let dialogRef = this._dialog.open(SearchBangumi, {stickyDialog: true, backdrop: true});
         this._subscription.add(
             dialogRef.afterClosed()
                 .subscribe(
                     (result: any) => {
+                        console.log(result);
                         if (result === 'cancelled') {
                             return;
                         }
@@ -146,9 +150,9 @@ export class ListBangumi implements AfterViewInit, OnDestroy, OnInit {
     ngAfterViewInit(): void {
         let searchBox = this.searchBox.nativeElement;
         this._subscription.add(
-            Observable.fromEvent(searchBox, 'keyup')
-                .debounceTime(500)
-                .distinctUntilChanged()
+            observableFromEvent(searchBox, 'keyup').pipe(
+                debounceTime(500),
+                distinctUntilChanged(),)
                 .subscribe(() => {
                     this.name = searchBox.value;
                     this.filterBangumiList();
@@ -176,11 +180,12 @@ export class ListBangumi implements AfterViewInit, OnDestroy, OnInit {
                         this._allBangumiList = result.data;
                         this.bangumiList = this._allBangumiList;
                         this.total = result.total;
-                        this.isLoading = false;
+                        this.isLoading = false
                     },
                     (error: BaseError) => {
+                        console.log(error);
                         this._toastRef.show(error.message);
-                        this.isLoading = false;
+                        this.isLoading = false
                     }
                 )
         );

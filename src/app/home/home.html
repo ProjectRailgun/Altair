@@ -6,7 +6,7 @@
         <h2>{{siteTitle}}</h2>
     </a>
     <div class="ui static-search small action input">
-        <input type="text" placeholder="搜索..." #staticSearch (keyup.enter)="searchBangumi(staticSearch.value)">
+        <input type="text" placeholder="搜索…" #staticSearch (keyup.enter)="searchBangumi(staticSearch.value)">
         <button class="ui basic icon button" (click)="searchBangumi(staticSearch.value)">
       <i class="search icon"></i>
     </button>
@@ -22,7 +22,7 @@
             <i class="close icon"></i>
         </a>
         <div class="ui float-search transparent icon input">
-            <input type="text" placeholder="搜索..." #floatSearch (keyup.enter)="searchBangumi(floatSearch.value)">
+            <input type="text" placeholder="搜索…" #floatSearch (keyup.enter)="searchBangumi(floatSearch.value)">
             <i class="search icon"></i>
         </div>
     </div>
@@ -32,20 +32,16 @@
      (click)="onClickSidebarBackdrop($event)"></div>
 <div class="ui sidebar visible ui vertical menu home-sidebar" (click)="onClickSidebar($event)" [@sidebarActive]="sidebarActive">
     <a class="item" [routerLink]="['/']">
-        <i class="rss icon"></i>
-        放送中
+        <i class="rss icon"></i>放送中
     </a>
     <a class="item" [routerLink]="['/bangumi']">
-        <i class="list icon"></i>
-        所有番組
+        <i class="list icon"></i>所有番組
     </a>
     <a class="item" [routerLink]="['/favorite']">
-        <i class="heart outline icon"></i>
-        我的番組
+        <i class="heart outline icon"></i>我的番組
     </a>
     <a class="item" [routerLink]="['/admin']" *ngIf="user && user.level >= 2">
-        <i class="wrench icon"></i>
-        管理面板
+        <i class="wrench icon"></i>管理面板
     </a>
     <div class="item">
         <my-bangumi></my-bangumi>
@@ -57,9 +53,10 @@
 
 <footer id="page-footer" [ngClass]="currentRouteName + (sidebarActive === 'active' ? ' sidebar-active': '')"
         *ngIf="currentRouteName !== 'Bangumi' && currentRouteName !== 'Favorite'">
-    <div class="credits">Powered by <a target="_blank" href="https://railgun.co" rel="noopener">RAILGUN</a></div>
+    <div class="copyright-content">2019 Project Summer Triangle</div>
+    <div class="credits">Powered by <a target="_blank" href="https://about.eve.network">EVE Network</a></div>
     <div class="ui horizontal bulleted link list">
-        <a routerLink="/about/apps" class="item">Apps</a>
+        <a routerLink="/about/apps" class="item">移动客户端</a>
         <a routerLink="/about/tos" class="item">使用条款</a>
         <a routerLink="/about/privacy" class="item">隐私声明</a>
         <a routerLink="/about/developers" class="item">开发者</a>

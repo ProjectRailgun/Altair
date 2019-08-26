@@ -1,6 +1,8 @@
-## Building
+# WEB-UI for [Vega](https://github.com/ProjectSummerTriangle/Vega)
 
-Nodejs 8.0 and above, npm and Yarn
+## Building requirements
+
+Nodejs 12.0 and above, npm 3 and above, Yarn.
 
 ## Development
 
@@ -66,4 +68,4 @@ We assume the image service support the following method:
 - /resize-0-{height} will return an image with a resize height but keeping the ratio of width.
 - without the /resize-{width}-{height} uri suffix will return the original image.
 
-We recommend [Picfit](https://github.com/thoas/picfit) and nginx to achieve this feature.
+We recommend [Picfit](https://github.com/thoas/picfit) and nginx to set up the service.

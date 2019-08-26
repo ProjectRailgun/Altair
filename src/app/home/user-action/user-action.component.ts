@@ -1,15 +1,18 @@
+
+import { fromEvent as observableFromEvent, Subscription, Observable, throwError } from 'rxjs';
+
+import {catchError, timeout, mergeMap, filter, tap} from 'rxjs/operators';
 import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ChromeExtensionService, INITIAL_STATE_VALUE } from '../../browser-extension/chrome-extension.service';
-import { Subscription } from 'rxjs/Subscription';
+import { ExtensionRpcService } from '../../browser-extension/extension-rpc.service';
 import { User } from '../../entity';
 import { BaseError } from '../../../helpers/error';
 import { PersistStorage, UserService } from '../../user-service';
 import { UIPopover, UIToast, UIToastComponent, UIToastRef } from 'deneb-ui';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
 import { UserActionPanelComponent } from './user-action-panel/user-action-panel.component';
 import { isChrome } from '../../../helpers/browser-detect';
-import { ChromeExtensionTipComponent } from './chrome-extension-tip/chrome-extension-tip.component';
+import { BrowserExtensionTipComponent } from './browser-extension-tip/browser-extension-tip.component';
 
 @Component({
     selector: 'user-action',
@@ -27,42 +30,41 @@ export class UserActionComponent implements OnInit, OnDestroy, AfterViewInit {
 
     bgmAccountInfo: {
         nickname: string,
-        avatar: { large: string, medium: string, small: string },
+        avatar: {large: string, medium: string, small: string},
         username: string,
         id: string,
         url: string
     };
 
-    @ViewChild('userActionLink') userActionLinkRef: ElementRef;
+    @ViewChild('userActionLink', {static: false}) userActionLinkRef: ElementRef;
 
     constructor(private _chromeExtensionService: ChromeExtensionService,
-        private _userService: UserService,
-        private _router: Router,
-        private _popover: UIPopover,
-        private _persistStorage: PersistStorage,
-        toast: UIToast) {
+                private _extensionRpcService: ExtensionRpcService,
+                private _userService: UserService,
+                private _router: Router,
+                private _popover: UIPopover,
+                private _persistStorage: PersistStorage,
+                toast: UIToast) {
         this._toastRef = toast.makeText();
     }
 
     logout() {
         this._userService.logout()
             .subscribe(
-                () => { },
+                () => {},
                 (error: BaseError) => {
                     this._toastRef.show(error.message);
                 }
-            );
+            )
     }
 
     ngOnInit(): void {
         this._subscription.add(
-            this._chromeExtensionService.isEnabled
-                .do(isEnabled => {
+            this._chromeExtensionService.isEnabled.pipe(
+                tap(isEnabled => {
                     this.isBangumiEnabled = isEnabled;
-                    if (!isEnabled) {
-                    }
-                })
-                .filter(isEnabled => isEnabled)
+                }),
+                filter(isEnabled => isEnabled),)
                 .subscribe(() => {
                     this._subscription.add(
                         this._chromeExtensionService.authInfo
@@ -86,15 +88,15 @@ export class UserActionComponent implements OnInit, OnDestroy, AfterViewInit {
     ngAfterViewInit(): void {
         let userActionLinkElement = this.userActionLinkRef.nativeElement;
         this._subscription.add(
-            Observable.fromEvent(userActionLinkElement, 'click')
-                .flatMap(() => {
+            observableFromEvent(userActionLinkElement, 'click').pipe(
+                mergeMap(() => {
                     const popoverRef = this._popover.createPopover(userActionLinkElement, UserActionPanelComponent, 'bottom-end');
                     popoverRef.componentInstance.user = this.user;
                     popoverRef.componentInstance.isBangumiEnabled = this.isBangumiEnabled;
                     popoverRef.componentInstance.bgmAccountInfo = this.bgmAccountInfo;
                     return popoverRef.afterClosed();
-                })
-                .filter(result => !!result)
+                }),
+                filter(result => !!result),)
                 .subscribe((result) => {
                     if (result === 'logout') {
                         this.logout();
@@ -103,19 +105,23 @@ export class UserActionComponent implements OnInit, OnDestroy, AfterViewInit {
         );
 
         this._subscription.add(
-            this._chromeExtensionService.isEnabled
-                .filter(isEnabled => isEnabled)
-                .timeout(1000)
-                .catch(() => {
+            this._chromeExtensionService.isEnabled.pipe(
+                filter(isEnabled => isEnabled),
+                timeout(1000),
+                catchError(() => {
                     let hasAcknowledged = this._persistStorage.getItem('USER_ACTION_HAS_ACKNOWLEDGED', null);
-                    if (isChrome && CHROME_EXTENSION_ID && !hasAcknowledged) {
-                        const popoverRef = this._popover.createPopover(userActionLinkElement, ChromeExtensionTipComponent, 'bottom-end');
+                    if (this._extensionRpcService.isExtensionEnabled() && !hasAcknowledged) {
+                        const popoverRef = this._popover.createPopover(userActionLinkElement, BrowserExtensionTipComponent, 'bottom-end');
+                        popoverRef.componentInstance.extensionId = this._extensionRpcService.extensionId;
+                        popoverRef.componentInstance.firefoxExtensionUrl = FIREFOX_EXTENSION_URL;
                         return popoverRef.afterClosed();
                     }
-                })
+                    return throwError('extension not enabled');
+                }),)
                 .subscribe(() => {
                     this._persistStorage.setItem('USER_ACTION_HAS_ACKNOWLEDGED', 'true');
-                }, () => {
+                }, (error) => {
+                    console.log(error);
                 })
         );
     }

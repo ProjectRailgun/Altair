@@ -1,14 +1,14 @@
+
+import {fromEvent as observableFromEvent,  Observable, Subscription } from 'rxjs';
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { HomeService } from './home.service';
-import { Observable, Subscription } from 'rxjs/Rx';
 import { Bangumi, User } from '../entity';
 import { Router } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { AlertDialog } from '../alert-dialog/alert-dialog.component';
 import { UIDialog } from 'deneb-ui';
 import { UserService } from '../user-service';
-import { WindowRef } from '../WindowRef';
 
 const BREAK_POINT = 1330;
 
@@ -29,7 +29,6 @@ const BREAK_POINT = 1330;
         ])
     ]
 })
-
 export class Home implements OnInit, OnDestroy {
 
     private _subscription = new Subscription();
@@ -49,11 +48,10 @@ export class Home implements OnInit, OnDestroy {
     sidebarToggle = new EventEmitter<string>();
 
     constructor(titleService: Title,
-        private _homeService: HomeService,
-        private _dialogService: UIDialog,
-        private _userService: UserService,
-        private _router: Router,
-        private _winRef: WindowRef) {
+                private _homeService: HomeService,
+                private _dialogService: UIDialog,
+                private _userService: UserService,
+                private _router: Router) {
         this.checkOverlapMode();
         if (this.sidebarOverlap) {
             this.sidebarActive = 'inactive';
@@ -76,7 +74,7 @@ export class Home implements OnInit, OnDestroy {
     }
 
     searchBangumi(name: string) {
-        this._router.navigate(['/bangumi', { name: name }]);
+        this._router.navigate(['/bangumi', {name: name}]);
     }
 
     toggleFloatSearchFrame() {
@@ -107,7 +105,7 @@ export class Home implements OnInit, OnDestroy {
     toggleSidebar(event: Event) {
         event.preventDefault();
         event.stopPropagation();
-        this.sidebarActive = this.sidebarActive === 'active' ? 'inactive' : 'active';
+        this.sidebarActive = this.sidebarActive === 'active' ? 'inactive': 'active';
         if (this.sidebarOverlap) {
             this.sidebarToggle.emit(this.sidebarActive);
         }
@@ -119,26 +117,24 @@ export class Home implements OnInit, OnDestroy {
                 (user: User) => {
                     this.user = user;
                     if (user && (!user.email_confirmed || !user.email)) {
-                        let dialogRef = this._dialogService.open(AlertDialog, { stickyDialog: true, backdrop: true });
+                        let dialogRef = this._dialogService.open(AlertDialog, {stickyDialog: true, backdrop: true});
                         if (user.email && !user.email_confirmed) {
                             dialogRef.componentInstance.title = '欢迎！';
                             dialogRef.componentInstance.content = '我们已经向你注册时填写的邮箱发送了一封邮件，请点击邮件中的链接激活你的账户。若收件箱中无新邮件，请检查是否位于垃圾邮件中。';
                             dialogRef.componentInstance.confirmButtonText = '好';
-                            this._subscription.add(dialogRef.afterClosed().subscribe(() => { }));
+                            this._subscription.add(dialogRef.afterClosed().subscribe(() => {}));
                         } else {
-                            dialogRef.componentInstance.title = '请为你的账户设置一个邮箱地址';
+                            dialogRef.componentInstance.title = ''请为您的账户设置一个邮箱地址';
                             dialogRef.componentInstance.content = '你的账户目前没有绑定邮箱，请设置邮箱地址来激活账户。';
-                            dialogRef.componentInstance.confirmButtonText = '打开账户设置';
+                            dialogRef.componentInstance.confirmButtonText = '前往帐户设置';
                             this._subscription.add(dialogRef.afterClosed().subscribe(() => {
                                 this._router.navigate(['/settings/user']);
                             }));
                         }
-                    } else if (user) {
-                        this._winRef.nativeWindow.ga('set', 'userId', user.id);
                     }
                 }
             ));
-        this._subscription.add(Observable.fromEvent(window, 'resize')
+        this._subscription.add(observableFromEvent(window, 'resize')
             .subscribe(
                 () => {
                     this.checkOverlapMode();

@@ -9,7 +9,6 @@ import { Register } from './register/register.component';
 import { ENV_PROVIDERS } from './environment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorComponent } from './error/error.component';
-import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TaskService } from './admin/task-manager/task.service';
 import { HomeModule } from './home/home.module';
@@ -44,7 +43,6 @@ import { WindowRef } from './WindowRef';
         }),
         BrowserModule,
         ReactiveFormsModule,
-        HttpModule,
         BrowserAnimationsModule,
         HomeModule,
         EmailConfirmModule,

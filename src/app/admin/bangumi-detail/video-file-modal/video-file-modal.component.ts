@@ -1,11 +1,11 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { UIDialogRef, UIToast, UIToastComponent, UIToastRef } from 'deneb-ui';
-import { Subscription } from 'rxjs/Subscription';
-import { VideoFile } from '../../../entity/video-file';
-import { Episode } from '../../../entity/episode';
-import { AdminService } from '../../admin.service';
-import { BaseError } from '../../../../helpers/error/BaseError';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {UIDialogRef, UIToast, UIToastComponent, UIToastRef} from 'deneb-ui';
+import {Subscription} from 'rxjs';
+import {VideoFile} from '../../../entity/video-file';
+import {Episode} from '../../../entity/episode';
+import {AdminService} from '../../admin.service';
+import {BaseError} from '../../../../helpers/error/BaseError';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
     selector: 'video-file-modal',
@@ -21,9 +21,9 @@ export class VideoFileModal implements OnInit, OnDestroy {
     videoFileList: FormGroup[];
 
     constructor(private _dialogRef: UIDialogRef<VideoFileModal>,
-        private _adminService: AdminService,
-        private _fb: FormBuilder,
-        toast: UIToast) {
+                private _adminService: AdminService,
+                private _fb: FormBuilder,
+                toast: UIToast) {
         this._toastRef = toast.makeText();
     }
 
@@ -47,7 +47,7 @@ export class VideoFileModal implements OnInit, OnDestroy {
                 this._adminService.addVideoFile(videoFile)
                     .subscribe(
                         (id) => {
-                            videoFileGroup.patchValue({ id: id });
+                            videoFileGroup.patchValue({id: id});
                             this._toastRef.show('保存成功');
                             videoFileGroup.markAsPristine();
                         },

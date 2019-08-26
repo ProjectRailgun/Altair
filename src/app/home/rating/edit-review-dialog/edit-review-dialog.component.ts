@@ -1,10 +1,9 @@
-import { UIDialogRef, UIToast, UIToastComponent, UIToastRef } from 'deneb-ui';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UIDialogRef, UIToast, UIToastComponent, UIToastRef } from 'deneb-ui';
+import { Subscription } from 'rxjs';
 import { Bangumi } from '../../../entity';
 import { RATING_TEXT } from '../rating.component';
-import { Subscription } from 'rxjs/Subscription';
-import { SynchronizeService } from '../../favorite-chooser/synchronize.service';
 
 @Component({
     selector: 'edit-review-dialog',
@@ -39,9 +38,8 @@ export class EditReviewDialogComponent implements OnInit, OnDestroy {
     isSaving = false;
 
     constructor(private _dialogRef: UIDialogRef<EditReviewDialogComponent>,
-        private _fb: FormBuilder,
-        private _synchronizeService: SynchronizeService,
-        toast: UIToast) {
+                private _fb: FormBuilder,
+                toast: UIToast) {
         this._toastRef = toast.makeText();
     }
 
@@ -98,12 +96,13 @@ export class EditReviewDialogComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
+        console.log(this.bangumi, this.rating, this.comment, this.tags);
         this.favorite_status = this.bangumi.favorite_status;
         this.reviewForm = this._fb.group({
             comment: ['', Validators.maxLength(200)]
         });
         if (this.comment) {
-            this.reviewForm.patchValue({ comment: this.comment });
+            this.reviewForm.patchValue({comment: this.comment});
         }
 
         if (this.rating) {
@@ -112,6 +111,7 @@ export class EditReviewDialogComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
+        console.log('destroyed');
         this._subscription.unsubscribe();
     }
 }

@@ -2,7 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FeedService } from './feed.service';
 import { FormControl } from '@angular/forms';
 import { UIDialogRef, UIToast, UIToastComponent, UIToastRef } from 'deneb-ui';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { AVAILABLE_CATEGORY, AVAILABLE_FILTER } from '../../bangumi-pipes/nyaa-pipe';
 
 @Component({
@@ -25,7 +25,7 @@ export class KeywordBuilder implements OnInit, OnDestroy {
 
     itemList: { title: string, eps_no: number }[];
 
-    availableTable = ['yyets', 'tokyo', 'dmhy'];
+    availableTable = ['yyets', 'tokyo', 'dmhy', 'fixsub'];
 
     availableFilter = AVAILABLE_FILTER;
     availableCategory = Object.keys(AVAILABLE_CATEGORY);

@@ -37,31 +37,34 @@ declare var ENV: string;
 declare var HMR: boolean;
 declare var SITE_TITLE: string;
 declare var CHROME_EXTENSION_ID: string;
+declare var FIREFOX_EXTENSION_ID: string;
+declare var EDGE_EXTENSION_ID: string;
+declare var FIREFOX_EXTENSION_URL: string;
 
 declare var System: SystemJS;
 
 interface SystemJS {
-    import: (path?: string) => Promise<any>;
+  import: (path?: string) => Promise<any>;
 }
 
 
 interface GlobalEnvironment {
-    ENV;
-    HMR;
-    SITE_TITLE;
-    SystemJS: SystemJS;
-    System: SystemJS;
+  ENV;
+  HMR;
+  SITE_TITLE;
+  SystemJS: SystemJS;
+  System: SystemJS;
 }
 
 interface Es6PromiseLoader {
-    (id: string): (exportName?: string) => Promise<any>;
+  (id: string): (exportName?: string) => Promise<any>;
 }
 
 type FactoryEs6PromiseLoader = () => Es6PromiseLoader;
 type FactoryPromise = () => Promise<any>;
 
 type AsyncRoutes = {
-    [component: string]: Es6PromiseLoader |
+  [component: string]: Es6PromiseLoader |
     Function |
     FactoryEs6PromiseLoader |
     FactoryPromise
@@ -69,53 +72,60 @@ type AsyncRoutes = {
 
 
 type IdleCallbacks = Es6PromiseLoader |
-    Function |
-    FactoryEs6PromiseLoader |
-    FactoryPromise;
+  Function |
+  FactoryEs6PromiseLoader |
+  FactoryPromise ;
 
 interface WebpackModule {
-    hot: {
-        data?: any,
-        idle: any,
-        accept(dependencies?: string | string[], callback?: (updatedDependencies?: any) => void): void;
-        decline(dependencies?: string | string[]): void;
-        dispose(callback?: (data?: any) => void): void;
-        addDisposeHandler(callback?: (data?: any) => void): void;
-        removeDisposeHandler(callback?: (data?: any) => void): void;
-        check(autoApply?: any, callback?: (err?: Error, outdatedModules?: any[]) => void): void;
-        apply(options?: any, callback?: (err?: Error, outdatedModules?: any[]) => void): void;
-        status(callback?: (status?: string) => void): void | string;
-        removeStatusHandler(callback?: (status?: string) => void): void;
-    };
+  hot: {
+    data?: any,
+    idle: any,
+    accept(dependencies?: string | string[], callback?: (updatedDependencies?: any) => void): void;
+    decline(dependencies?: string | string[]): void;
+    dispose(callback?: (data?: any) => void): void;
+    addDisposeHandler(callback?: (data?: any) => void): void;
+    removeDisposeHandler(callback?: (data?: any) => void): void;
+    check(autoApply?: any, callback?: (err?: Error, outdatedModules?: any[]) => void): void;
+    apply(options?: any, callback?: (err?: Error, outdatedModules?: any[]) => void): void;
+    status(callback?: (status?: string) => void): void | string;
+    removeStatusHandler(callback?: (status?: string) => void): void;
+  };
 }
 
 interface WebpackRequire {
-    context(file: string, flag?: boolean, exp?: RegExp): any;
+  context(file: string, flag?: boolean, exp?: RegExp): any;
 }
 
 
 interface ErrorStackTraceLimit {
-    stackTraceLimit: number;
+  stackTraceLimit: number;
 }
 
 
 
 // Extend typings
-interface NodeRequire extends WebpackRequire { }
-interface ErrorConstructor extends ErrorStackTraceLimit { }
-interface NodeModule extends WebpackModule { }
-interface Global extends GlobalEnvironment { }
+interface NodeRequire extends WebpackRequire {}
+interface ErrorConstructor extends ErrorStackTraceLimit {}
+interface NodeModule extends WebpackModule {}
+interface Global extends GlobalEnvironment  {}
 
 interface Document {
 
-    mozFullScreenElement: Element;
-    msFullscreenElement: Element;
+  mozFullScreenElement: Element;
+  msFullscreenElement: Element;
 
-    msRequestFullscreen(): void;
-    mozRequestFullScreen(): void;
-    msExitFullscreen(): void;
-    mozCancelFullScreen(): void;
+  msRequestFullscreen(): void;
+  mozRequestFullScreen(): void;
+  msExitFullscreen(): void;
+  mozCancelFullScreen(): void;
+  documentMode: any;
+}
+
+interface Window {
+    StyleMedia?: any;
 }
 
 declare var ga: Function;
 declare var ga_events: any[];
+// used for firefox detection
+declare var InstallTrigger: any;

@@ -1,16 +1,23 @@
+import { animate, keyframes, state, style, transition, trigger, AnimationEvent } from '@angular/animations';
 import {
-    AfterViewInit, Component, ElementRef, Injector, OnDestroy, OnInit, Self, ViewChild,
+    AfterViewInit,
+    Component,
+    ElementRef,
+    Injector,
+    OnDestroy,
+    OnInit,
+    Self,
+    ViewChild,
     ViewContainerRef
 } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
-import { animate, keyframes, state, style, transition, trigger } from '@angular/animations';
-import { VideoPlayer } from '../video-player.component';
-import { PlayState } from '../core/state';
+import { fromEvent as observableFromEvent, merge, Subject, Subscription } from 'rxjs';
+
+import { filter, retry, tap, timeout } from 'rxjs/operators';
+import { PersistStorage } from '../../user-service';
 import { CONTROL_FADE_OUT_TIME } from '../core/helpers';
-import { PlayList } from '../core/settings';
-import { PersistStorage } from '../../user-service/persist-storage';
+import { PlayList } from "../core/settings";
+import { PlayState } from '../core/state';
+import { VideoPlayer } from '../video-player.component';
 
 @Component({
     selector: 'video-controls',
@@ -36,11 +43,14 @@ import { PersistStorage } from '../../user-service/persist-storage';
                 opacity: 0,
                 transform: 'scale(1)'
             })),
-            transition('active => inactive', animate('500ms ease-in', keyframes([
-                style({ opacity: 1, transform: 'scale(2)', offset: 0 }),
-                style({ opacity: 0.6, transform: 'scale(2)', offset: 0.6 }),
-                style({ opacity: 0, transform: 'scale(1)', offset: 1 })
+            transition('inactive => active', animate('500ms ease-in', keyframes([
+                style({opacity: 0.8, transform: 'scale(1)', offset: 0}),
+                style({opacity: 0.5, transform: 'scale(2)', offset: 0.6}),
+                style({opacity: 0, transform: 'scale(2)', offset: 1})
             ]))),
+            transition("active => *", [
+                style({opacity: 0})
+            ])
         ])
     ],
     host: {
@@ -56,7 +66,7 @@ export class VideoControls implements OnInit, OnDestroy, AfterViewInit {
     showControls = true;
 
     pendingPlayState: PlayState;
-    reflectState: string = 'inactive';
+    reflectAnimationState: string = 'inactive';
 
     isPlayEnd: boolean;
     hasNextEpisode: boolean;
@@ -76,11 +86,11 @@ export class VideoControls implements OnInit, OnDestroy, AfterViewInit {
         return this.showControls ? 'in' : 'out';
     }
 
-    @ViewChild('controlWrapper', { read: ViewContainerRef }) controlWrapper: ViewContainerRef;
+    @ViewChild('controlWrapper', {read: ViewContainerRef, static: false}) controlWrapper: ViewContainerRef;
 
     constructor(@Self() private _hostRef: ElementRef,
-        private _injector: Injector,
-        private _persistStorage: PersistStorage) {
+                private _injector: Injector,
+                private _persistStorage: PersistStorage) {
     }
 
     onClickVideo(event: Event) {
@@ -88,11 +98,13 @@ export class VideoControls implements OnInit, OnDestroy, AfterViewInit {
         // event.stopPropagation();
         this._videoPlayer.requestFocus();
         this._videoPlayer.togglePlayAndPause();
-        this.reflectState = 'active';
+        this.reflectAnimationState = 'active';
     }
 
-    reflectAnimationCallback() {
-        this.reflectState = 'inactive';
+    reflectAnimationCallback(event: AnimationEvent) {
+        if (event.toState === 'active') {
+            this.reflectAnimationState = 'inactive';
+        }
     }
 
     onMotion() {
@@ -115,29 +127,32 @@ export class VideoControls implements OnInit, OnDestroy, AfterViewInit {
 
     ngOnInit(): void {
         this._videoPlayer = this._injector.get(VideoPlayer);
-        this._videoPlayer.pendingState
-            .merge(this._videoPlayer.state)
-            .subscribe((state) => {
-                this.pendingPlayState = state;
-                if (state === PlayState.PLAY_END) {
-                    let autoPlayNext = this._persistStorage.getItem(PlayList.AUTO_PLAY_NEXT, 'true') === 'true';
-                    this.hasNextEpisode = !!this._videoPlayer.nextEpisodeId && autoPlayNext;
-                    this.isPlayEnd = true;
-                } else {
-                    this.isPlayEnd = false;
-                }
-            });
+        this._subscription.add(
+            merge(
+                this._videoPlayer.pendingState,
+                this._videoPlayer.state)
+                .subscribe((state) => {
+                    this.pendingPlayState = state;
+                    if (state === PlayState.PLAY_END) {
+                        let autoPlayNext = this._persistStorage.getItem(PlayList.AUTO_PLAY_NEXT, 'true') === 'true';
+                        this.hasNextEpisode = !!this._videoPlayer.nextEpisodeId && autoPlayNext;
+                        this.isPlayEnd = true;
+                    } else {
+                        this.isPlayEnd = false;
+                    }
+                })
+        );
     }
 
     ngAfterViewInit(): void {
         let hostElement = this._hostRef.nativeElement;
         this._subscription.add(
-            Observable.fromEvent(hostElement, 'mousedown')
+            observableFromEvent(hostElement, 'mousedown')
                 .subscribe((event: MouseEvent) => event.preventDefault())
         );
         this._subscription.add(
-            Observable.fromEvent(hostElement, 'mouseenter')
-                .filter(() => !this._preventHide)
+            observableFromEvent(hostElement, 'mouseenter').pipe(
+                filter(() => !this._preventHide))
                 .subscribe(
                     () => {
                         this.showControls = true;
@@ -145,8 +160,8 @@ export class VideoControls implements OnInit, OnDestroy, AfterViewInit {
                 )
         );
         this._subscription.add(
-            Observable.fromEvent(hostElement, 'mouseleave')
-                .filter(() => !this._preventHide)
+            observableFromEvent(hostElement, 'mouseleave').pipe(
+                filter(() => !this._preventHide))
                 .subscribe(
                     () => {
                         this.showControls = false;
@@ -155,16 +170,19 @@ export class VideoControls implements OnInit, OnDestroy, AfterViewInit {
         );
 
         this._subscription.add(
-            this._motion.asObservable()
-                .merge(Observable.fromEvent(hostElement, 'mousemove'))
-                .timeout(CONTROL_FADE_OUT_TIME)
-                .do(() => { },
-                    () => {
-                        if (!this._preventHide) {
-                            this.showControls = false;
-                        }
-                    })
-                .retry()
+            merge(
+                this._motion.asObservable(),
+                observableFromEvent(hostElement, 'mousemove'))
+                .pipe(
+                    timeout(CONTROL_FADE_OUT_TIME),
+                    tap(() => {
+                        },
+                        () => {
+                            if (!this._preventHide) {
+                                this.showControls = false;
+                            }
+                        }),
+                    retry(),)
                 .subscribe(
                     () => {
                         this.showControls = true;
