@@ -59,7 +59,7 @@ export class ResultDetail implements OnChanges, OnDestroy {
             this.bangumiForm.reset();
             this.bangumi = null;
             this._subscription.add(
-                this._adminService.queryBangumi({ bgmId: changes['bgmId'].currentValue, typeId: this.typeId })
+                this._adminService.queryBangumi(changes['bgmId'].currentValue)
                     .subscribe(
                         (bangumi: BangumiRaw) => {
                             this.bangumi = bangumi;

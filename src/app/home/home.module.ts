@@ -47,6 +47,7 @@ import { UserActionPanelComponent } from './user-action/user-action-panel/user-a
 import { BrowserExtensionTipComponent } from './user-action/browser-extension-tip/browser-extension-tip.component';
 import { FeedbackComponent } from './play-episode/feedback/feedback.component';
 import { RevealExtraComponent } from './play-episode/reveal-extra/reveal-extra.component';
+import {SwiperModule} from 'ngx-swiper-wrapper';
 
 
 @NgModule({
@@ -102,7 +103,8 @@ import { RevealExtraComponent } from './play-episode/reveal-extra/reveal-extra.c
         ResponsiveImageModule,
         VideoPlayerModule,
         ConfirmDialogModule,
-        BrowserExtensionModule
+        BrowserExtensionModule,
+        SwiperModule
     ],
     entryComponents: [
         EditReviewDialogComponent,

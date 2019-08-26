@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
 // import {Episode} from "../../entity/episode";
 import {HomeService, HomeChild} from "../home.service";
 import {Bangumi} from "../../entity/bangumi";
@@ -6,8 +6,22 @@ import {FAVORITE_LABEL} from '../../entity/constants';
 import { Subscription } from 'rxjs';
 import { Announce } from '../../entity/announce';
 import { PersistStorage } from '../../user-service/persist-storage';
+import { SwiperConfigInterface, SwiperComponent } from 'ngx-swiper-wrapper';
 
 const BANGUMI_TYPE_KEY = 'default_bangumi_type';
+const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+    autoplay: {
+        delay: 5000,
+    },
+    direction: 'horizontal',
+    slidesPerView: 1,
+    scrollbar: false,
+    pagination: {
+        el: '.swiper-pagination',
+        type: 'bullets',
+    },
+    loop: true
+};
 
 @Component({
     selector: 'default-component',
@@ -17,16 +31,24 @@ const BANGUMI_TYPE_KEY = 'default_bangumi_type';
 export class DefaultComponent extends HomeChild implements OnInit, OnDestroy {
     private _subscription = new Subscription();
 
+    @ViewChildren('swiper')
+    public Grids: QueryList<SwiperComponent>;
+    private Swiper: SwiperComponent;
+
     // recentEpisodes: Episode[];
+
+    isLoading = false;
 
     onAirBangumi: Bangumi[];
 
-    bangumiType = 2; // 2 is anime, 6 is japanese tv drama Series
+    bangumiType = 1001; // 1001 = CN; 1002 = RAW; -1 = ALL
 
     FAVORITE_LABEL = FAVORITE_LABEL;
 
-    announce_in_banner: Announce;
+    announce_in_banner: Announce[];
     announce_in_bangumi: Announce[];
+
+    swiper_config = DEFAULT_SWIPER_CONFIG;
 
     constructor(homeService: HomeService, private _persistStorage: PersistStorage) {
         super(homeService);
@@ -50,6 +72,14 @@ export class DefaultComponent extends HomeChild implements OnInit, OnDestroy {
         );
     }
 
+    onSwiperHover( hover: boolean ) {
+        if ( hover ) {
+            this.Swiper.directiveRef.stopAutoplay();
+        } else {
+            this.Swiper.directiveRef.startAutoplay();
+        }
+    }
+
     ngOnInit(): void {
         // this.homeService.recentEpisodes()
         //   .subscribe(
@@ -66,12 +96,12 @@ export class DefaultComponent extends HomeChild implements OnInit, OnDestroy {
         this._subscription.add(
             this.homeService.listAnnounce()
                 .subscribe((announce_list) => {
-                    this.announce_in_banner = announce_list.find((announce) => {
+                    this.announce_in_banner = announce_list.filter((announce) => {
                         return announce.position === Announce.POSITION_BANNER;
                     });
                     this.announce_in_bangumi = announce_list.filter(announce => {
                         return announce.position === Announce.POSITION_BANGUMI;
-                    })
+                    });
                 })
         );
     }

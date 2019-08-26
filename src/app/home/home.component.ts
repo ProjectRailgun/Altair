@@ -1,5 +1,5 @@
 
-import {fromEvent as observableFromEvent,  Observable, Subscription } from 'rxjs';
+import { fromEvent as observableFromEvent,  Observable, Subscription } from 'rxjs';
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { HomeService } from './home.service';
@@ -105,7 +105,7 @@ export class Home implements OnInit, OnDestroy {
     toggleSidebar(event: Event) {
         event.preventDefault();
         event.stopPropagation();
-        this.sidebarActive = this.sidebarActive === 'active' ? 'inactive': 'active';
+        this.sidebarActive = this.sidebarActive === 'active' ? 'inactive' : 'active';
         if (this.sidebarOverlap) {
             this.sidebarToggle.emit(this.sidebarActive);
         }
@@ -124,7 +124,7 @@ export class Home implements OnInit, OnDestroy {
                             dialogRef.componentInstance.confirmButtonText = '好';
                             this._subscription.add(dialogRef.afterClosed().subscribe(() => {}));
                         } else {
-                            dialogRef.componentInstance.title = ''请为您的账户设置一个邮箱地址';
+                            dialogRef.componentInstance.title = '请为您的账户设置一个邮箱地址';
                             dialogRef.componentInstance.content = '你的账户目前没有绑定邮箱，请设置邮箱地址来激活账户。';
                             dialogRef.componentInstance.confirmButtonText = '前往帐户设置';
                             this._subscription.add(dialogRef.afterClosed().subscribe(() => {
