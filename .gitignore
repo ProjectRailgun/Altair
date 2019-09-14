@@ -77,5 +77,8 @@ src/assets/css/login.css
 # bundle report #
 /report
 
+# service worker #
+.sw-dist
+
 package-lock.json
 .eslintrc.js
