@@ -18,8 +18,7 @@
   },
   "exclude": [
     "node_modules",
-    "dist",
-    "src/service-worker"
+    "dist"
   ],
   "angularCompilerOptions": {
     "skipMetadataEmit": true

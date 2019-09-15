@@ -14,14 +14,13 @@
       "es2018",
       "dom"
     ],
-    "typeRoots": ["node_modules/@types"],
+    "typeRoots": ["node_modules/@types"]
   },
   "exclude": [
     "node_modules",
     "dist",
     "src/**/*.spec.ts",
-    "src/**/*.e2e.ts",
-    "src/service-worker"
+    "src/**/*.e2e.ts"
   ],
   "angularCompilerOptions": {
     "skipMetadataEmit": true

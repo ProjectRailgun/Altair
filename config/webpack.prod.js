@@ -1,17 +1,16 @@
-const webpackMerge = require('webpack-merge');
-const {AngularCompilerPlugin} = require('@ngtools/webpack');
+const webpackMerge            = require('webpack-merge');
+const { AngularCompilerPlugin } = require('@ngtools/webpack');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 // const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const cssnano = require('cssnano');
+const cssnano                 = require('cssnano');
 // const ClosurePlugin           = require('closure-webpack-plugin');
-const { InjectManifest, GenerateSW } = require('workbox-webpack-plugin');
 
-const commonConfig = require('./webpack.common');
-const helpers = require('./helpers');
+const commonConfig            = require('./webpack.common');
+const helpers                 = require('./helpers');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const CompressionPlugin = require('compression-webpack-plugin');
-const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const buildOptimizer = {
     loader: '@angular-devkit/build-optimizer/webpack-loader',
@@ -20,7 +19,7 @@ const buildOptimizer = {
     }
 };
 
-module.exports = function (metadata) {
+module.exports = function(metadata) {
     return webpackMerge(commonConfig(metadata), {
         mode: 'production',
         output: {
@@ -28,7 +27,7 @@ module.exports = function (metadata) {
             publicPath: '/',
             filename: '[name].[chunkhash].bundle.js',
             sourceMapFilename: '[file].map',
-            chunkFilename: '[name].[chunkhash].chunk.js',
+            chunkFilename: '[name].[chunkhash].chunk.js'
         },
 
         optimization: {
@@ -67,20 +66,12 @@ module.exports = function (metadata) {
                     test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
                     use: [
                         buildOptimizer,
-                        {
-                            loader: '@ngtools/webpack',
-                            options: {
-                                tsConfigPath: helpers.root('tsconfig.webpack.json'),
-                            }
-                        }
-
-                    ],
-                    exclude: [/[\/\\]src[\/\\]service-worker[\/\\]/]
+                        '@ngtools/webpack'
+                    ]
                 },
                 {
                     test: /\.js$/,
-                    use: [buildOptimizer],
-                    exclude: [/[\/\\]src[\/\\]service-worker[\/\\]/]
+                    use: [buildOptimizer]
                 }
             ]
         },
@@ -88,7 +79,6 @@ module.exports = function (metadata) {
         plugins: [
             new DefinePlugin({
                 'ENV': JSON.stringify(metadata.ENV),
-                'ngDevMode': false,
                 'HMR': metadata.HMR,
                 'SITE_TITLE': JSON.stringify(metadata.title),
                 'process.env': {
@@ -112,7 +102,7 @@ module.exports = function (metadata) {
                 filename: '[path].br[query]',
                 algorithm: 'brotliCompress',
                 test: /\.(js|css|html|svg)$/,
-                compressionOptions: {level: 11},
+                compressionOptions: { level: 11 },
                 threshold: 10240,
                 minRatio: 0.8,
                 deleteOriginalAssets: false,
@@ -127,10 +117,6 @@ module.exports = function (metadata) {
                 analyzerMode: 'static',
                 reportFilename: helpers.root('report', 'bundle-report.html'),
                 openAnalyzer: false
-            }),
-            new GenerateSW({
-                swDest: helpers.root('dist', 'sw.js'),
-                importWorkboxFrom: 'local'
             })
         ],
         node: {
