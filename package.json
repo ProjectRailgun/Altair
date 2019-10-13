@@ -6,9 +6,6 @@
   "license": "MIT",
   "scripts": {
     "build:aot:prod": "npm run clean:dist && npm run clean:aot && cross-env BUILD_AOT=1 NODE_ENV=production webpack --config webpack.config.js --progress --profile --bail",
-    "build:aot": "npm run build:aot:prod",
-    "build:prod": "cross-env NODE_ENV=production webpack --config webpack.config.js  --progress --profile --bail",
-    "build": "npm run build:prod",
     "clean:aot": "npm run rimraf -- compiled",
     "clean:dist": "npm run rimraf -- dist",
     "clean:install": "npm set progress=false && npm install",
@@ -36,20 +33,19 @@
     "webdriver:start": "npm run webdriver-manager start",
     "webdriver:update": "npm run webdriver-manager update",
     "webpack-dev-server": "webpack-dev-server",
-    "webpack": "webpack",
     "postinstall": "node scripts/font-fix.js"
   },
   "dependencies": {
-    "@angular/animations": "~8.1.2",
-    "@angular/common": "~8.1.2",
-    "@angular/compiler": "~8.1.2",
-    "@angular/compiler-cli": "~8.1.2",
-    "@angular/core": "~8.1.2",
-    "@angular/forms": "~8.1.2",
-    "@angular/platform-browser": "~8.1.2",
-    "@angular/platform-browser-dynamic": "~8.1.2",
-    "@angular/platform-server": "~8.1.2",
-    "@angular/router": "~8.1.2",
+    "@angular/animations": "~8.2.10",
+    "@angular/common": "~8.2.10",
+    "@angular/compiler": "~8.2.10",
+    "@angular/compiler-cli": "~8.2.10",
+    "@angular/core": "~8.2.10",
+    "@angular/forms": "~8.2.10",
+    "@angular/platform-browser": "~8.2.10",
+    "@angular/platform-browser-dynamic": "~8.2.10",
+    "@angular/platform-server": "~8.2.10",
+    "@angular/router": "~8.2.10",
     "core-js": "~2.6",
     "deneb-ui": "^1.0.0",
     "downloadjs": "^1.4.7",
@@ -58,7 +54,6 @@
     "intersection-observer": "^0.5.0",
     "moment": "^2.19.3",
     "ng2-date-picker": "^2.6.2",
-    "ngx-swiper-wrapper": "^8.0.2",
     "popper.js": "^1.12.9",
     "reflect-metadata": "^0.1.9",
     "rxjs": "^6.5.2",
@@ -68,14 +63,12 @@
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-optimizer": "^0.801.2",
-    "@ngtools/webpack": "~8.1.2",
+    "@angular-devkit/build-optimizer": "^0.803.9",
+    "@ngtools/webpack": "~8.3.9",
     "@types/chrome": "^0.0.58",
     "@types/downloadjs": "^1.4.0",
     "@types/hammerjs": "^2.0.33",
     "@types/node": "~10.12",
-    "@types/source-map": "^0.5.0",
-    "@types/uglify-js": "^2.0.27",
     "angular-router-loader": "~0.8",
     "angular2-template-loader": "~0.6",
     "chalk": "^1.1.3",
@@ -108,7 +101,7 @@
     "to-string-loader": "^1.1.5",
     "ts-loader": "^6.0.2",
     "tslib": "^1.10.0",
-    "typescript": "~3.4",
+    "typescript": "~3.5",
     "uglifyjs-webpack-plugin": "^2.1.3",
     "url-loader": "^0.5.7",
     "webpack": "~4.29",
@@ -116,17 +109,18 @@
     "webpack-cli": "~3.2",
     "webpack-dev-middleware": "^3.7.0",
     "webpack-dev-server": "^3.7.1",
-    "webpack-merge": "~4.2"
+    "webpack-merge": "~4.2",
+    "workbox-webpack-plugin": "^4.3.1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ProjectSummerTriangle/Altair.git"
+    "url": "https://github.com/lordfriend/Deneb.git"
   },
   "bugs": {
-    "url": "https://github.com/ProjectSummerTriangle/Altair/issues"
+    "url": "https://github.com/lordfriend/Deneb/issues"
   },
   "engines": {
-    "node": ">= 4.2.1",
+    "node": ">= 10",
     "npm": ">= 3"
   },
   "sideEffects": [

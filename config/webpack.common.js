@@ -9,6 +9,7 @@ module.exports = function (metadata) {
     const isDev = metadata.ENV === 'development';
     return {
         entry: {
+            'sw-register': './src/service-worker/register.ts',
             polyfills: './src/polyfills.browser.ts',
             main: './src/main.browser.ts'
         },

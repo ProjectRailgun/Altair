@@ -1,5 +1,15 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { AfterViewInit, Component, ElementRef, Injector, Input, OnDestroy, OnInit, Self } from '@angular/core';
+import {
+    AfterViewInit,
+    Component,
+    ElementRef, HostBinding,
+    Injector,
+    Input,
+    OnDestroy,
+    OnInit,
+    Self,
+    ViewChild
+} from '@angular/core';
 import { fromEvent as observableFromEvent, merge, Subject, Subscription } from 'rxjs';
 import { filter, retry, tap, timeout } from 'rxjs/operators';
 import { CONTROL_FADE_OUT_TIME, VideoPlayerHelpers } from '../core/helpers';
@@ -29,6 +39,7 @@ export class FloatControlsComponent implements OnInit, AfterViewInit, OnDestroy 
     private _videoPlayer: VideoPlayer;
     private _fadeOutTime = CONTROL_FADE_OUT_TIME + 1000;
     private _preventHide = false;
+    private _disposing = false;
 
     showControls = true;
 
@@ -37,6 +48,8 @@ export class FloatControlsComponent implements OnInit, AfterViewInit, OnDestroy 
 
     @Input()
     videoTitle: string;
+
+    isPortrait: boolean;
 
     get durationClock(): string {
         if (Number.isNaN(this.duration)) {
@@ -71,9 +84,18 @@ export class FloatControlsComponent implements OnInit, AfterViewInit, OnDestroy 
         videoPlayerService.closeFloatPlayer();
     }
 
+    /**
+     * This handler should handle click event only once.
+     * Once the leaveFloatPlay is finished. this FloatControl will be disposed.
+     * @param {Event} event
+     */
     leaveFloat(event: Event) {
         event.preventDefault();
         event.stopPropagation();
+        if (this._disposing) {
+            return;
+        }
+        this._disposing = true;
         const videoPlayerService = this._injector.get(VideoPlayerService);
         videoPlayerService.leaveFloatPlay(true, false);
     }
@@ -86,6 +108,7 @@ export class FloatControlsComponent implements OnInit, AfterViewInit, OnDestroy 
         this._subscription.add(
             this._videoPlayer.duration.subscribe(duration => this.duration = duration)
         );
+        this.isPortrait = VideoPlayerHelpers.isPortrait();
     }
 
     ngAfterViewInit(): void {

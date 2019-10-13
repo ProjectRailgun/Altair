@@ -49,6 +49,21 @@ export class VideoPlayerHelpers {
         }
         return `${mm}:${ss}`;
     }
+
+    static isPortrait(): boolean {
+        const viewportWidth = document.documentElement.clientWidth;
+        const viewportHeight = document.documentElement.clientHeight;
+        if (viewportHeight > 0 && viewportWidth > 0) {
+            return viewportWidth <= 0.625 * viewportHeight;
+        }
+        return false;
+    }
+}
+
+
+/** Gets the root HTMLElement for an instantiated component. */
+export function getComponentRootNode(componentRef: ComponentRef<any>): HTMLElement {
+    return (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
 }
 
 

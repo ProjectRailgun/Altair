@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FloatControlsComponent } from './float-controls/float-controls.component';
+import { NonInteractiveProgressBarComponent } from './float-controls/non-interactive-progress-bar/non-interactive-progress-bar.component';
 import { VideoPlayer } from './video-player.component';
 import { VideoControls } from './controls/controls.component';
 import { VideoPlayerScrubBar } from './controls/scrub-bar/scrub-bar.component';
@@ -17,7 +18,7 @@ import { UIToggleModule } from 'deneb-ui';
 import { FormsModule } from '@angular/forms';
 import { VideoTouchControls } from './touch-controls/touch-controls.component';
 import { VideoPlayerHelpDialog } from './help-dialog/help-dialog.component';
-import { VideoPlayerHelpButton } from './controls/help-button/help-button.component';
+import { VideoPlayerHelpButton } from "./controls/help-button/help-button.component";
 import { VideoNextEpisodeOverlay } from './next-episode-overlay/next-episode-overlay.component';
 import { VideoConfigPanelComponent } from './controls/config-button/config-panel/config-panel.component';
 import { VideoPlayerService } from './video-player.service';
@@ -40,7 +41,8 @@ import { VideoPlayerService } from './video-player.service';
         VideoPlayerHelpButton,
         VideoNextEpisodeOverlay,
         VideoConfigPanelComponent,
-        FloatControlsComponent
+        FloatControlsComponent,
+        NonInteractiveProgressBarComponent
     ],
     providers: [
         VideoCapture,
