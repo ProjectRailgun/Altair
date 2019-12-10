@@ -65,9 +65,3 @@ export class VideoPlayerHelpers {
 export function getComponentRootNode(componentRef: ComponentRef<any>): HTMLElement {
     return (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
 }
-
-
-/** Gets the root HTMLElement for an instantiated component. */
-export function getComponentRootNode(componentRef: ComponentRef<any>): HTMLElement {
-    return (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
-}
