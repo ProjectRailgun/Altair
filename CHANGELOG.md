@@ -1,5 +1,39 @@
 # Changelog
 
+## 4.0.3
+
+fix double-clicking float player resulted bug.
+
+## 4.0.2
+
+- Add .gitlab-ci.yml in order to utilize gitlab pipelines
+- Add a GLOBAL to fix `ngI18nClosureMode` is not defined issue.
+
+## 4.0.1
+
+Fix Reference error: ngI18nClosureMode is not defined by updating Angular to 8.2.10
+
+## 4.0.0
+
+### Refactor building scripts in order to upgrade to Angular 8.1.2
+
+Now a new building script using webpack 4 is used for building Angular 8.1.2;
+All test configuration files which is actually never used are removed for good.
+
+Compression-webpack-plugin now use Brotli compression algorithm.
+
+### Refactor VideoPlayer and play-episode to support float player (aka picture-in-picture) mode
+
+### Bug Fix
+
+- fix #156
+
+## 3.6.0
+
+- add tips to register to instruct user not using QQMail.
+- add fixsub source to libyk
+- change RPC mechanism for browser-extension communication in order to support new extension.
+
 ## 3.5.2
 
 - Fix bug that cause controls in config panel of video player cannot be clicked.

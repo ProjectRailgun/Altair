@@ -1,6 +1,9 @@
-import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
+
+import {fromEvent as observableFromEvent,  Subscription ,  Observable } from 'rxjs';
+
+import {map, tap, filter} from 'rxjs/operators';
 import { VideoPlayer } from '../video-player.component';
+import { VideoPlayerService } from '../video-player.service';
 import { VideoCapture } from './video-capture.service';
 
 export const KEY_MAP = {
@@ -30,49 +33,51 @@ export class VideoPlayerShortcuts {
             videoPlayer.currentTime.subscribe(t => this.currentTime = t)
         );
         this._subscription.add(
-            Observable.fromEvent(_hostElement, 'focus')
+            observableFromEvent(_hostElement, 'focus')
                 .subscribe(() => {
                     this.focus = true
                 })
         );
         this._subscription.add(
-            Observable.fromEvent(_hostElement, 'blur')
+            observableFromEvent(_hostElement, 'blur')
                 .subscribe(() => {
                     this.focus = false
                 })
         );
         this._subscription.add(
-            Observable.fromEvent(_hostElement, 'keydown')
-                .filter(() => this.focus)
-                .filter((event: KeyboardEvent) => {
+            observableFromEvent(_hostElement, 'keydown').pipe(
+                filter(() => this.focus),
+                filter((event: KeyboardEvent) => {
                     return Object.keys(KEY_MAP)
                         .map(name => KEY_MAP[name])
                         .some(code => event.which === code)
-                })
+                }),)
                 .subscribe((event: KeyboardEvent) => {
                     event.preventDefault();
                     event.stopPropagation();
                 })
         );
         this._subscription.add(
-            Observable.fromEvent(_hostElement, 'keyup')
-                .filter(() => this.focus)
-                .filter((event: KeyboardEvent) => {
+            observableFromEvent(_hostElement, 'keyup').pipe(
+                filter(() => this.focus),
+                filter((event: KeyboardEvent) => {
                     return Object.keys(KEY_MAP)
                         .map(name => KEY_MAP[name])
                         .some(code => event.which === code)
-                })
-                .do((event: KeyboardEvent) => {
+                }),
+                tap((event: KeyboardEvent) => {
                     event.preventDefault();
                     event.stopPropagation();
-                })
-                .map((event: KeyboardEvent) => {
+                }),
+                map((event: KeyboardEvent) => {
                     return event.which;
-                })
+                }),)
                 .subscribe((code: number) => {
                     switch (code) {
                         case KEY_MAP.ENTER:
-                            videoPlayer.toggleFullscreen();
+                            if (!videoPlayer.isFloatPlay) {
+                                videoPlayer.toggleFullscreen();
+                            }
                             break;
                         case KEY_MAP.SPACE:
                             videoPlayer.togglePlayAndPause();
@@ -95,10 +100,14 @@ export class VideoPlayerShortcuts {
                             videoPlayer.toggleMuted();
                             break;
                         case KEY_MAP.C:
-                            captureService.capture(videoPlayer.bangumiName, videoPlayer.episodeNo, this.currentTime);
+                            if (!videoPlayer.isFloatPlay) {
+                                captureService.capture(videoPlayer.bangumiName, videoPlayer.episodeNo, this.currentTime);
+                            }
                             break;
                         case KEY_MAP.FORWARD_SLASH:
-                            videoPlayer.openHelpDialog();
+                            if (!videoPlayer.isFloatPlay) {
+                                videoPlayer.openHelpDialog();
+                            }
                             break;
                         // no default
                     }

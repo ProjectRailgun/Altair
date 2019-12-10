@@ -1,14 +1,14 @@
 /**
  * @author: @AngularClass
  */
-var fs = require('fs');
-var helpers = require('./config/helpers');
+const fs = require('fs');
+const helpers = require('./config/helpers');
 
 /**
  * check custom login style exists
  */
 
-var loginStyleExsits;
+let loginStyleExsits;
 try {
     loginStyleExsits = fs.statSync(helpers.root('src/assets/css/login.css')).isFile();
     console.log('login style file existence: ' + loginStyleExsits);
@@ -28,7 +28,10 @@ const METADATA = {
     baseUrl: '/',
     GA: process.env.GA || '',
     customLoginStyle: loginStyleExsits,
-    chrome_extension_id: process.env.CHROME_EXTENSION_ID || ''
+    chrome_extension_id: process.env.CHROME_EXTENSION_ID || '',
+    firefox_extension_id: process.env.FIREFOX_EXTENSION_ID || '',
+    edge_extension_id: process.env.EDGE_EXTENSION_ID || '',
+    firefox_extension_url: process.env.FIREFOX_EXTENSION_URL || '',
 };
 
 console.log('CHROME_EXTENSION_ID: ', METADATA.chrome_extension_id);
@@ -43,11 +46,11 @@ switch (ENV) {
         METADATA.HMR = false;
         module.exports = require('./config/webpack.prod')(METADATA);
         break;
-    case 'test':
-    case 'testing':
-        METADATA.ENV = ENV || 'test';
-        module.exports = require('./config/webpack.test')(METADATA);
-        break;
+    // case 'test':
+    // case 'testing':
+    //     METADATA.ENV = ENV || 'test';
+    //     module.exports = require('./config/webpack.test')(METADATA);
+    //     break;
     case 'dev':
     case 'development':
     default:
