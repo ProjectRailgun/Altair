@@ -47,7 +47,7 @@
     "@angular/platform-server": "~8.2.10",
     "@angular/router": "~8.2.10",
     "core-js": "~2.6",
-    "deneb-ui": "^1.0.0",
+    "altair-ui": "^1.0.0",
     "downloadjs": "^1.4.7",
     "hammerjs": "^2.0.8",
     "ie-shim": "0.1.0",
