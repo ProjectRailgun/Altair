@@ -116,7 +116,7 @@ export class SearchBangumi implements AfterViewInit {
         this.isLoading = true;
         this._adminService.searchBangumi({
             name: this.name,
-            type: this.bangumiType,
+            type: 2, // type: this.bangumiType, // Force to search subject type=2 (anime).
             offset: offset,
             count: this.count
         })
@@ -149,6 +149,7 @@ export class SearchBangumi implements AfterViewInit {
     fromDetail(bangumi: BangumiRaw): void {
         if (bangumi) {
             this.isSaving = true;
+            bangumi.type = this.bangumiType; // Use user-defined bangumiType to override that from API.
             this._subscription.add(
                 this._adminService.addBangumi(bangumi)
                 .subscribe(
