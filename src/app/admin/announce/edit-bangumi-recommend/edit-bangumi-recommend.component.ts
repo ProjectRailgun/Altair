@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UIDialogRef } from 'deneb-ui';
+import { UIDialogRef } from 'altair-ui';
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { Bangumi } from '../../../entity';

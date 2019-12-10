@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { UIToastComponent, UIToastRef } from 'deneb-ui';
+import { UIToastComponent, UIToastRef } from 'altair-ui';
 import { Observable } from "rxjs";
 import { catchError, map } from 'rxjs/operators';
 import { BaseService } from "../../helpers/base.service";

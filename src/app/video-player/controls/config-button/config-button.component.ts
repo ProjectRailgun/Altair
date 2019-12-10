@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostListener, OnDestroy, Self } from '@angular/core';
-import { UIPopover, UIPopoverRef } from 'deneb-ui';
+import { UIPopover, UIPopoverRef } from 'altair-ui';
 import { VideoControls } from '../controls.component';
 import { VideoPlayer } from '../../video-player.component';
 import { VideoConfigPanelComponent } from './config-panel/config-panel.component';

@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ChromeExtensionService } from '../../../browser-extension/chrome-extension.service';
 import { Subscription } from 'rxjs';
-import { UIToast, UIToastComponent, UIToastRef } from 'deneb-ui';
+import { UIToast, UIToastComponent, UIToastRef } from 'altair-ui';
 import { Bangumi } from '../../../entity';
 
 @Component({

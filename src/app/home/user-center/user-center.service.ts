@@ -5,7 +5,7 @@ import {filter, take, mergeMap, catchError, map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { BaseService } from '../../../helpers/base.service';
 import { PERM_NAME, WebHook } from '../../entity/web-hook';
-import { UIDialog } from 'deneb-ui';
+import { UIDialog } from 'altair-ui';
 import { ConfirmDialogModal } from '../../confirm-dialog/confirm-dialog-modal.component';
 import { BaseError } from '../../../helpers/error/BaseError';
 

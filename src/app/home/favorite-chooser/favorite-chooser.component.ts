@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { UIDialog, UIToast, UIToastComponent, UIToastRef } from 'deneb-ui';
+import { UIDialog, UIToast, UIToastComponent, UIToastRef } from 'altair-ui';
 import { Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/internal/operators';
 import { filter, mergeMap, tap } from 'rxjs/operators';

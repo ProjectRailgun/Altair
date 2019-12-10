@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { UIDialogRef } from 'deneb-ui';
+import { UIDialogRef } from 'altair-ui';
 
 @Component({
     selector: 'alert-dialog',

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { ChromeExtensionService } from '../../../../browser-extension/chrome-extension.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UIToast, UIToastComponent, UIToastRef } from 'deneb-ui';
+import { UIToast, UIToastComponent, UIToastRef } from 'altair-ui';
 import { Subscription } from 'rxjs';
 
 @Component({

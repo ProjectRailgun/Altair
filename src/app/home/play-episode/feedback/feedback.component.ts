@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UIDialogRef } from 'deneb-ui';
+import { UIDialogRef } from 'altair-ui';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({

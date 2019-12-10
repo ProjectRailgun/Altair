@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UIToast, UIToastComponent, UIToastRef } from 'deneb-ui';
+import { UIToast, UIToastComponent, UIToastRef } from 'altair-ui';
 import { Subscription } from 'rxjs';
 import { filter, mergeMap } from 'rxjs/operators';
 import {

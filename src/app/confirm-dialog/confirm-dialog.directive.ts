@@ -1,5 +1,5 @@
 import { Directive, EventEmitter, HostListener, Input, OnDestroy, Output } from '@angular/core';
-import { UIDialog } from 'deneb-ui';
+import { UIDialog } from 'altair-ui';
 import { ConfirmDialogModal } from './confirm-dialog-modal.component';
 import { Subscription } from 'rxjs';
 

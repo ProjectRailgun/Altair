@@ -7,7 +7,7 @@ import { HomeChild, HomeService } from '../home.service';
 import { Bangumi } from '../../entity/bangumi';
 import { ActivatedRoute } from '@angular/router';
 import { BaseError } from '../../../helpers/error/BaseError';
-import { InfiniteList, UIToast, UIToastComponent, UIToastRef } from 'deneb-ui';
+import { InfiniteList, UIToast, UIToastComponent, UIToastRef } from 'altair-ui';
 import { CARD_HEIGHT_REM } from '../bangumi-card/bangumi-card.component';
 import { getRemPixel } from '../../../helpers/dom';
 import { Home } from '../home.component';

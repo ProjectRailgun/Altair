@@ -4,7 +4,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { User } from '../../entity';
 import { UserService } from '../../user-service';
 import { Subscription } from 'rxjs';
-import { UIToast, UIToastComponent, UIToastRef } from 'deneb-ui';
+import { UIToast, UIToastComponent, UIToastRef } from 'altair-ui';
 import { BaseError } from '../../../helpers/error';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { passwordMatch } from '../../form-utils';

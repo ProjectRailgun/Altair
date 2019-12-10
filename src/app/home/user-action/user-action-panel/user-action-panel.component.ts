@@ -2,7 +2,7 @@
 import {fromEvent as observableFromEvent,  Subscription ,  Observable } from 'rxjs';
 
 import {skip} from 'rxjs/operators';
-import { UIPopoverContent, UIPopoverRef } from 'deneb-ui';
+import { UIPopoverContent, UIPopoverRef } from 'altair-ui';
 import { Component, Input, OnDestroy } from '@angular/core';
 import { User } from '../../../entity';
 

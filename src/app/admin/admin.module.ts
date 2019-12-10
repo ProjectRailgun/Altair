@@ -14,7 +14,7 @@ import { adminRoutes } from './admin.routes';
 import { FeedService } from './bangumi-detail/keyword-builder/feed.service';
 import { AdminNavbar } from './admin-navbar/admin-navbar.component';
 import { BangumiCard } from './bangumi-card/bangumi-card.component';
-import { UIModule } from 'deneb-ui';
+import { UIModule } from 'altair-ui';
 import { BangumiTypeNamePipe } from './bangumi-pipes/type-name-pipe';
 import { ResultDetail } from './search-bangumi/result-detail/result-detail.component';
 import { BangumiBasic } from './bangumi-detail/bangumi-basic/bangumi-basic.component';

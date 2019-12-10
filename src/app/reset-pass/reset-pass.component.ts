@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { passwordMatch } from '../form-utils';
 import { Router } from '@angular/router';
 import { UserService } from '../user-service';
-import { UIToast, UIToastComponent, UIToastRef } from 'deneb-ui';
+import { UIToast, UIToastComponent, UIToastRef } from 'altair-ui';
 import { BaseError } from '../../helpers/error';
 @Component({
     selector: 'reset-pass',

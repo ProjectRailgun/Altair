@@ -5,7 +5,7 @@ import {distinctUntilChanged, map, debounceTime, takeWhile, mergeMap, tap, filte
 import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
 import {Bangumi} from '../../entity';
 import {AdminService} from '../admin.service';
-import {UIDialogRef, UIToast, UIToastComponent, UIToastRef} from 'deneb-ui';
+import {UIDialogRef, UIToast, UIToastComponent, UIToastRef} from 'altair-ui';
 import {BaseError} from '../../../helpers/error/BaseError';
 import {BangumiRaw} from '../../entity/bangumi-raw';
 

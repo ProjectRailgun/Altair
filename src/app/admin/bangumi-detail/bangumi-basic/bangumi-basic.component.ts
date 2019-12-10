@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Bangumi } from '../../../entity/bangumi';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UIDialogRef } from 'deneb-ui';
+import { UIDialogRef } from 'altair-ui';
 import { User } from '../../../entity/user';
 
 @Component({

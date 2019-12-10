@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { IMAGE_PROPERTY_NAME } from '../../../core/video-capture.service';
-import { UIDialogRef } from 'deneb-ui';
+import { UIDialogRef } from 'altair-ui';
 import { PersistStorage } from '../../../../user-service';
 import { Capture } from '../../../core/settings';
 import download from 'downloadjs';

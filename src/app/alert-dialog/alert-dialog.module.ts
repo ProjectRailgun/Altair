@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { AlertDialog } from './alert-dialog.component';
-import { UIDialogModule } from 'deneb-ui';
+import { UIDialogModule } from 'altair-ui';
 @NgModule({
     declarations: [AlertDialog],
     imports: [UIDialogModule],

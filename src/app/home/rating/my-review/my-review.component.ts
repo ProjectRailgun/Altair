@@ -9,7 +9,7 @@ import {
     ViewChild
 } from '@angular/core';
 import { RATING_COLOR, RATING_TEXT } from '../rating.component';
-import { UIToast, UIToastComponent, UIToastRef } from 'deneb-ui';
+import { UIToast, UIToastComponent, UIToastRef } from 'altair-ui';
 
 @Component({
     selector: 'my-review',

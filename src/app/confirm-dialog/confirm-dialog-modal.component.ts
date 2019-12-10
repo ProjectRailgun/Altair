@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
-import { UIDialogRef } from 'deneb-ui';
+import { UIDialogRef } from 'altair-ui';
 @Component({
     selector: 'confirm-dialog-modal',
     templateUrl: './confirm-dialog-modal.html',
     styles: [`
         .ui.modal.active {
-            transform: translate3d(0, -50%, 0);
+            transform: translate3d(-50%, -50%, 0);
         }
     `]
 })

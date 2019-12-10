@@ -8,7 +8,7 @@ import {Title} from '@angular/platform-browser';
 import {Router} from '@angular/router';
 import {AdminService} from '../admin.service';
 import {getRemPixel} from '../../../helpers/dom';
-import {UIDialog, UIToast, UIToastComponent, UIToastRef} from 'deneb-ui';
+import {UIDialog, UIToast, UIToastComponent, UIToastRef} from 'altair-ui';
 import {BaseError} from '../../../helpers/error/BaseError';
 import {CARD_HEIGHT_REM} from '../bangumi-card/bangumi-card.component';
 import {SearchBangumi} from '../search-bangumi/search-bangumi.component';

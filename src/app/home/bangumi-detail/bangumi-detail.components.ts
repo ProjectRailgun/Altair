@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { UserService } from '../../user-service';
 import { ChromeExtensionService } from '../../browser-extension/chrome-extension.service';
-import { UIDialog, UIToast, UIToastComponent, UIToastRef } from 'deneb-ui';
+import { UIDialog, UIToast, UIToastComponent, UIToastRef } from 'altair-ui';
 import { AuthError } from '../../../helpers/error';
 import { WatchService } from '../watch.service';
 

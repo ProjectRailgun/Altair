@@ -7,7 +7,7 @@ import { Bangumi, User } from '../entity';
 import { Router } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { AlertDialog } from '../alert-dialog/alert-dialog.component';
-import { UIDialog } from 'deneb-ui';
+import { UIDialog } from 'altair-ui';
 import { UserService } from '../user-service';
 
 const BREAK_POINT = 1330;

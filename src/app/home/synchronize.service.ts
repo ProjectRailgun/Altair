@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { UIDialog } from 'deneb-ui';
+import { UIDialog } from 'altair-ui';
 import { Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
 import { switchMap } from 'rxjs/internal/operators';
 

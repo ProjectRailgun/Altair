@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, HostBinding, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UIDialog, UIToast, UIToastComponent, UIToastRef } from 'deneb-ui';
+import { UIDialog, UIToast, UIToastComponent, UIToastRef } from 'altair-ui';
 import { fromEvent as observableFromEvent, Subscription } from 'rxjs';
 import { debounceTime, switchMap, throttleTime } from 'rxjs/internal/operators';
 

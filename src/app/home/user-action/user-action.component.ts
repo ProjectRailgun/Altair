@@ -8,7 +8,7 @@ import { ExtensionRpcService } from '../../browser-extension/extension-rpc.servi
 import { User } from '../../entity';
 import { BaseError } from '../../../helpers/error';
 import { PersistStorage, UserService } from '../../user-service';
-import { UIPopover, UIToast, UIToastComponent, UIToastRef } from 'deneb-ui';
+import { UIPopover, UIToast, UIToastComponent, UIToastRef } from 'altair-ui';
 import { Router } from '@angular/router';
 import { UserActionPanelComponent } from './user-action-panel/user-action-panel.component';
 import { isChrome } from '../../../helpers/browser-detect';

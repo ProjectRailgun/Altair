@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { UIDialog, UIToast, UIToastComponent, UIToastRef } from 'deneb-ui';
+import { UIDialog, UIToast, UIToastComponent, UIToastRef } from 'altair-ui';
 import { Subscription } from 'rxjs';
 import { filter, mergeMap } from 'rxjs/operators';
 import { Announce } from '../../entity/announce';

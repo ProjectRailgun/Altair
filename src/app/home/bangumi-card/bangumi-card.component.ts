@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import { Bangumi } from '../../entity/bangumi';
 import { FAVORITE_LABEL } from '../../entity/constants';
-import { InfiniteList, SCROLL_STATE } from 'deneb-ui';
+import { InfiniteList, SCROLL_STATE } from 'altair-ui';
 import { Subscription } from 'rxjs';
 import { ImageLoadingStrategy } from './image-loading-strategy.service';
 import { Router } from '@angular/router';

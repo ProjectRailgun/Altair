@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ConfirmDialogDirective } from './confirm-dialog.directive';
-import { UIDialogModule } from 'deneb-ui';
+import { UIDialogModule } from 'altair-ui';
 import { ConfirmDialogModal } from './confirm-dialog-modal.component';
 
 @NgModule({

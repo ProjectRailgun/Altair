@@ -443,6 +443,11 @@ alphanum-sort@^1.0.0:
   resolved "https://registry.yarnpkg.com/alphanum-sort/-/alphanum-sort-1.0.2.tgz#97a1119649b211ad33691d9f9f486a8ec9fbe0a3"
   integrity sha1-l6ERlkmyEa0zaR2fn0hqjsn74KM=
 
+altair-ui@^1.0.0:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/altair-ui/-/altair-ui-1.0.2.tgz#c0fa99231ad4a1339362101f0c2aeafc53dc77ba"
+  integrity sha512-SgmfeIGi4kgForJvragaYiG8Wh8Y3qh5Rasp8eGo3REId2Qa2cwSNMsJolMEVEhJqYAjlx9n/juAx9FPuFvWsA==
+
 amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
@@ -1907,11 +1912,6 @@ delegates@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/delegates/-/delegates-1.0.0.tgz#84c6e159b81904fdca59a0ef44cd870d31250f9a"
   integrity sha1-hMbhWbgZBP3KWaDvRM2HDTElD5o=
-
-deneb-ui@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/deneb-ui/-/deneb-ui-1.0.0.tgz#5233427e9baf4ff8b26d9f7eda805b82bfe3c2f7"
-  integrity sha512-pjcmwyP+qi4VgaLC8ImBiYvK9aYsBknENQQWq7mw0NTCTmPN8Yg2QvXVnqqXIpKQEcWeyrqIa5bUzhWj9PhR6Q==
 
 depd@~1.1.2:
   version "1.1.2"

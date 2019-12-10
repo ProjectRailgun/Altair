@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { UIPopoverContent, UIPopoverRef } from 'deneb-ui';
+import { UIPopoverContent, UIPopoverRef } from 'altair-ui';
 import { Subscription ,  Observable } from 'rxjs';
 import { isChrome, isEdge, isFirefox } from '../../../../helpers/browser-detect';
 

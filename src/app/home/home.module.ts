@@ -8,7 +8,7 @@ import { BangumiDetail } from './bangumi-detail/bangumi-detail.components';
 import { FavoriteChooser } from './favorite-chooser/favorite-chooser.component';
 import { NgModule } from '@angular/core';
 import { HomeService } from './home.service';
-import { UIModule } from 'deneb-ui';
+import { UIModule } from 'altair-ui';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { homeRoutes } from './home.routes';

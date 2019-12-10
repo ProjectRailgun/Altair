@@ -14,7 +14,7 @@ import { CapturedFrameList } from './controls/captured-frame-list/captured-frame
 import { VideoCaptureButton } from './controls/capture-button/capture-button.component';
 import { CapturedImageOperationDialog } from './controls/captured-frame-list/operation-dialog/operation-dialog.component';
 import { VideoPlayerConfigButton } from './controls/config-button/config-button.component';
-import { UIToggleModule } from 'deneb-ui';
+import { UIToggleModule } from 'altair-ui';
 import { FormsModule } from '@angular/forms';
 import { VideoTouchControls } from './touch-controls/touch-controls.component';
 import { VideoPlayerHelpDialog } from './help-dialog/help-dialog.component';

@@ -3,7 +3,7 @@ import {fromEvent as observableFromEvent,  Subscription ,  Observable } from 'rx
 
 import {filter} from 'rxjs/operators';
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, Self, ViewChild } from '@angular/core';
-import { UIDialogRef } from 'deneb-ui';
+import { UIDialogRef } from 'altair-ui';
 
 export const KEY_ESC = 27;
 

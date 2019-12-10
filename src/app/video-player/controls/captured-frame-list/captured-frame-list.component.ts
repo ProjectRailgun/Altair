@@ -7,7 +7,7 @@ import {
     ViewChild
 } from '@angular/core';
 import { PreviewContainer, VideoCapture, PreviewImageParams, IMAGE_PROPERTY_NAME } from '../../core/video-capture.service';
-import { UIDialog } from 'deneb-ui';
+import { UIDialog } from 'altair-ui';
 import { CapturedImageOperationDialog } from './operation-dialog/operation-dialog.component';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { VideoControls } from '../controls.component';

@@ -2,7 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Episode } from '../../../entity/episode';
 import { AdminService } from '../../admin.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { UIDialogRef, UIToast, UIToastComponent, UIToastRef } from 'deneb-ui';
+import { UIDialogRef, UIToast, UIToastComponent, UIToastRef } from 'altair-ui';
 import { BaseError } from '../../../../helpers/error/BaseError';
 import { Subscription } from 'rxjs';
 

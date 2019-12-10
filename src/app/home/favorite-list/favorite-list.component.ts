@@ -6,7 +6,7 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { HomeService } from '../home.service';
 import { Bangumi } from '../../entity/bangumi';
 import { Home } from '../home.component';
-import { InfiniteList, UIToast, UIToastComponent, UIToastRef } from 'deneb-ui';
+import { InfiniteList, UIToast, UIToastComponent, UIToastRef } from 'altair-ui';
 import { CARD_HEIGHT_REM } from '../bangumi-card/bangumi-card.component';
 import { getRemPixel } from '../../../helpers/dom';
 import { BaseError } from '../../../helpers/error/BaseError';

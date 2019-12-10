@@ -3,7 +3,7 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { Bangumi } from '../../entity/bangumi';
-import { InfiniteList, SCROLL_STATE } from 'deneb-ui';
+import { InfiniteList, SCROLL_STATE } from 'altair-ui';
 import { Subscription } from 'rxjs';
 import { ImageLoadingStrategy } from '../../home/bangumi-card/image-loading-strategy.service';
 

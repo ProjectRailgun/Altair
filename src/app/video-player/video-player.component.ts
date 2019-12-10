@@ -17,7 +17,7 @@ import {
     ViewChild,
     ViewContainerRef
 } from '@angular/core';
-import { UIDialog } from 'deneb-ui';
+import { UIDialog } from 'altair-ui';
 import {
     BehaviorSubject,
     fromEvent as observableFromEvent,

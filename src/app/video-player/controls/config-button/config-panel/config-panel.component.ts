@@ -2,7 +2,7 @@
 import {fromEvent as observableFromEvent,  Subscription ,  Observable } from 'rxjs';
 
 import {filter} from 'rxjs/operators';
-import { UIPopoverContent, UIPopoverRef } from 'deneb-ui';
+import { UIPopoverContent, UIPopoverRef } from 'altair-ui';
 import { Component, ElementRef, OnDestroy, Self } from '@angular/core';
 import { UserActionPanelComponent } from '../../../../home/user-action/user-action-panel/user-action-panel.component';
 import { Capture, FloatPlayer, PlayList } from '../../../core/settings';

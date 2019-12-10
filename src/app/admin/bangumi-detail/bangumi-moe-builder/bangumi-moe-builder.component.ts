@@ -3,7 +3,7 @@ import {fromEvent as observableFromEvent, Observable, Subscription} from 'rxjs';
 
 import {mergeMap, filter, distinctUntilChanged, debounceTime, map} from 'rxjs/operators';
 import {AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {UIDialogRef, UIToast, UIToastComponent, UIToastRef} from 'deneb-ui';
+import {UIDialogRef, UIToast, UIToastComponent, UIToastRef} from 'altair-ui';
 import {Bangumi} from '../../../entity/bangumi';
 import {BangumiMoeService} from './bangumi-moe.service';
 import {Tag, Torrent} from './bangum-moe-entity';

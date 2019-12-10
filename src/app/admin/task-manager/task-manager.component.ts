@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Bangumi} from '../../entity/bangumi';
 import {TaskService} from './task.service';
 import {Subscription} from 'rxjs';
-import {UIToast, UIToastComponent, UIToastRef} from 'deneb-ui';
+import {UIToast, UIToastComponent, UIToastRef} from 'altair-ui';
 import {BaseError} from '../../../helpers/error/BaseError';
 import {Episode} from '../../entity/episode';
 import { Title } from '@angular/platform-browser';

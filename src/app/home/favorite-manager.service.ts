@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { UIToast } from 'deneb-ui';
+import { UIToast } from 'altair-ui';
 import { Observable, of as observableOf, Subject, throwError as observableThrowError } from 'rxjs/index';
 import { filter, map, switchMap, tap } from 'rxjs/internal/operators';
 import { catchError } from 'rxjs/operators';

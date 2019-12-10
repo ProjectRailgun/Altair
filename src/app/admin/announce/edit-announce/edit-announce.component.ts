@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UIDialogRef } from 'deneb-ui';
+import { UIDialogRef } from 'altair-ui';
 import { Announce } from '../../../entity/announce';
 import { ECalendarValue, IDatePickerConfig } from 'ng2-date-picker';
 import { Subscription } from 'rxjs';
