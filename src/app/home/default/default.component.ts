@@ -55,6 +55,7 @@ export class DefaultComponent extends HomeChild implements OnInit, OnDestroy {
     }
 
     changeBangumiType(type: number) {
+        this.isLoading = true;
         this.bangumiType = type;
         this._persistStorage.setItem(BANGUMI_TYPE_KEY, `${type}`);
         this.getOnAir();
@@ -66,8 +67,12 @@ export class DefaultComponent extends HomeChild implements OnInit, OnDestroy {
                 .subscribe(
                     (bangumiList: Bangumi[]) => {
                         this.onAirBangumi = bangumiList;
+                        this.isLoading = false;
                     },
-                    error => console.log(error)
+                    error => {
+                        console.log(error);
+                        this.isLoading = false;
+                    }
                 )
         );
     }
