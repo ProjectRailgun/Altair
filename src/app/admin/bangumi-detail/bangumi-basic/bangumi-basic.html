@@ -45,6 +45,21 @@
                 </div>
             </div>
         </div>
+        <div class="inline fields">
+            <label>类型</label>
+            <div class="field">
+                <div class="ui radio checkbox">
+                    <input type="radio" name="type" formControlName="type" [value]="1001">
+                    <label>中文字幕</label>
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui radio checkbox">
+                    <input type="radio" name="type" formControlName="type" [value]="1002">
+                    <label>RAW</label>
+                </div>
+            </div>
+        </div>
         <div class="field">
             <label>维护者</label>
             <select formControlName="maintained_by_uid" name="maintained_by_uid">

@@ -33,6 +33,7 @@ export class BangumiBasic implements OnInit {
             air_weekday: this.bangumi.air_weekday,
             eps_no_offset: this.bangumi.eps_no_offset,
             status: this.bangumi.status,
+            type: this.bangumi.type,
             maintained_by_uid: this.bangumi.maintained_by ? this.bangumi.maintained_by.id : '',
             alert_timeout: this.bangumi.alert_timeout
         });

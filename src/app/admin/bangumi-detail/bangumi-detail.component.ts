@@ -133,6 +133,7 @@ export class BangumiDetail implements OnInit, OnDestroy {
                         this.bangumi.air_weekday = basicInfo.air_weekday as number;
                         this.bangumi.eps_no_offset = basicInfo.eps_no_offset as number;
                         this.bangumi.status = basicInfo.status as number;
+                        this.bangumi.type = basicInfo.type as number;
                         this.bangumi.maintained_by = this.adminList.find(user => user.id == basicInfo.maintained_by_uid);
                         this.bangumi.alert_timeout = basicInfo.alert_timeout as number;
                         return this._adminService.updateBangumi(this.bangumi);
