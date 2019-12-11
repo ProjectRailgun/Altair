@@ -28,6 +28,16 @@ export class Register implements OnInit, OnDestroy {
 
     errorMessage: string;
 
+    siteTitle: string = SITE_TITLE;
+
+    coverStyle = {
+        'background-image':'url("' + PORTAL_COVER_IMAGE + '")',
+    };
+
+    coverAuthor: string = PORTAL_COVER_AUTHOR;
+
+    coverLink: string = PORTAL_COVER_LINK;
+
     constructor(private userService: UserService,
         private formBuilder: FormBuilder,
         private router: Router,

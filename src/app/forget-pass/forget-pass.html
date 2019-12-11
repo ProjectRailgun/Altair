@@ -2,8 +2,9 @@
     <div class="form-wrapper ui segment">
         <h4>重置账户密码</h4>
         <form class="ui form" (submit)="onSubmit($event)" novalidate>
-            <div class="field">
-                <input class="email-input" type="text" placeholder="请输入你的邮件地址..." #emailInput>
+            <div class="inline fields">
+                <label for="email">邮箱</label>
+                <input id="email" class="email-input" type="text" placeholder="请输入你的邮箱地址..." #emailInput>
             </div>
             <button class="ui primary button"
                     [ngClass]="{loading: isPending}"

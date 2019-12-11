@@ -1,47 +1,44 @@
-<div class="area">
-    <ul class="circles">
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-  </div>
-  <div class="center-box-background">
-    <div class="center-box-frame">
-        <div class="center-box">
-            <header class="center-box-header">
-                <h1>
-                    <span>注册账户</span>
-                </h1>
-            </header>
-            <div class="center-box-body">
+<div class="screen ui grid">
+    <div class="canvas" [ngStyle]="coverStyle">
+        <div class="ui bottom left attached label" *ngIf="coverAuthor && coverLink">
+            Author
+            <div class="detail"><a href="{{coverLink}}" rel="nofollow">{{coverAuthor}}</a></div>
+        </div>
+    </div>
+    <div class="panel">
+        <div class="outer-panel">
+            <div class="inner-panel">
+                <h2 class="ui icon header">
+                    <img class="ui small image" src="/assets/img/cygnus_logo.png">
+                    {{siteTitle}}
+                    <div class="sub header">The glitter of bangumi, at your fingertips.</div>
+                </h2>
                 <form class="ui form" (ngSubmit)="onSubmit()" [formGroup]="registerForm" [ngClass]="{error: !registerForm.valid}">
                     <div class="ui field">
-                        <input type="text" formControlName="name" placeholder="用户名">
+                        <label for="name">用户名</label>
+                        <input id="name" type="text" formControlName="name" placeholder="用户名">
                     </div>
                     <div class="ui field">
-                        <input type="password" formControlName="password" placeholder="密码">
+                        <label for="password">密码</label>
+                        <input id="password" type="password" formControlName="password" placeholder="密码">
                     </div>
                     <div class="ui field">
-                        <input type="password" formControlName="password_repeat" placeholder="重复密码">
+                        <label for="password_repeat">重复密码</label>
+                        <input id="password_repeat" type="password" formControlName="password_repeat" placeholder="重复密码">
                     </div>
                     <div class="ui field">
-                        <input type="text" formControlName="email" placeholder="邮箱（部分中国大陆邮箱服务可能无法送达）">
+                        <label for="email">邮箱</label>
+                        <input id="email" type="text" formControlName="email" placeholder="邮箱（部分中国大陆邮箱服务可能无法送达）">
                     </div>
                     <div class="ui field">
-                        <input type="text" formControlName="invite_code" placeholder="邀请码">
+                        <label for="invite_code">邀请码</label>
+                        <input id="invite_code" type="text" formControlName="invite_code" placeholder="邀请码">
                     </div>
                     <div>
                         <button class="ui primary button large fluid submit" type="submit" [disabled]="!registerForm.valid">注册</button>
                     </div>
                 </form>
-                <div class="login-link additional-info">
+                <div class="ui row centered grid">
                     <a [routerLink]="['/login']">已有帐号？立即登入</a>
                 </div>
                 <div class="ui error message" *ngIf="errorMessage">
@@ -49,5 +46,15 @@
                 </div>
             </div>
         </div>
+        <footer id="page-footer">
+            <div class="copyright-content">2019 Project Summer Triangle</div>
+            <div class="credits">Powered by <a target="_blank" href="https://about.eve.network" rel="nofollow">EVE Network</a></div>
+            <div class="ui horizontal bulleted link list">
+                <a routerLink="/about/apps" class="item">移动客户端</a>
+                <a routerLink="/about/tos" class="item">使用条款</a>
+                <a routerLink="/about/privacy" class="item">隐私声明</a>
+                <a routerLink="/about/developers" class="item">开发者</a>
+            </div>
+        </footer>
     </div>
 </div>

@@ -26,6 +26,14 @@ export class Login implements OnInit, OnDestroy {
 
     siteTitle: string = SITE_TITLE;
 
+    coverStyle = {
+        'background-image':'url("' + PORTAL_COVER_IMAGE + '")',
+    };
+
+    coverAuthor: string = PORTAL_COVER_AUTHOR;
+
+    coverLink: string = PORTAL_COVER_LINK;
+
     sourceUrl: string;
 
     constructor(private userService: UserService,
