@@ -6,7 +6,7 @@ Nodejs 12.0 and above, npm 3 and above, Yarn.
 
 ## Development
 
-Clone this repo, install dependencies
+Clone this repo, install dependencies.
 
 ```shell
 git clone git@github.com:ProjectSummerTriangle/Altair.git
@@ -14,58 +14,70 @@ cd Altair
 yarn install
 ```
 
-Copy `config/dev.proxy.js.example` to `config/dev.proxy.js`, If your backend server is running on a different host, you need update the target to your backend host
+Copy `config/dev.proxy.js.example` to `config/dev.proxy.js`, edit the configurations according to your environment.
 
-once npm installation is done, using npm script to run some task, all script can be found in package.json
+After `yarn install` , you can use `npm <task>` to run script tasks, all task names can be found in package.json.
 
-to start up an dev server, run `npm start` in current directory.
+To start up an development server, just run `npm start`.
 
-the backend server aka [Vega](https://github.com/ProjectSummerTriangle/Vega) server must be started.
+The backend server [Vega](https://github.com/ProjectSummerTriangle/Vega) must be started for further debugging.
 
 ## Deployment
 
-To deploy on production server, a compiled and minfied bundle is needed, to build this project, just run the following command.
+Instead of running a development server, you should deploy a production build in production environment.
+
+### Build
 
 ```shell
-export SITE_TITLE="Your site name"
-export GA="You google analytics Tracking ID" # if you want to use google analytics, export this environment variable.
-export CHROME_EXTENSION_ID=your chrome extension id # when you want user to bind Bangumi account, you should publish Sadr project for your domain, and give the id here.
+export SITE_TITLE="Your site name" # (required)
+export SITE_DESCRIPTION="Your site description" # (optional) only use in <meta> in index.html.
+export GA="Your Google Analytics Tracking ID" # (optional) if you want to use google analytics, export this environment variable.
+export PORTAL_COVER_IMAGE="URL of the cover image in login & register page" # (required) or login & register page will have blank background.
+export PORTAL_COVER_AUTHOR="Author of the cover image in login & register page" # (optional)
+export PORTAL_COVER_LINK="Link of the cover image in login & register page" # (optional) url to the author's profile or the artwork page, etc.
+export CHROME_EXTENSION_ID="Your chrome extension id" # (optional) if you published your Deneb browser plugin, specify its plugin ID so Altair can identify it.
 yarn run build:aot:prod
 ```
 
-After building process finished, you will have a **dist** directory in your project root. copy this project to your static site root directory.
+After build process finished, you will have a `dist` directory in your project directory.
 
-### Nginx Configuration for SPA
+Copy all files in this directory to your website's root directory.
 
-To support SPA which using HTML5 History API. there are a little configuration need be done in Nginx or other your HTTP static server. Here we will
-demonstrate with Nginx.
+### Web Server Configuration
 
-You can also see other reference for this common case: [https://www.linkedin.com/pulse/decouple-your-single-page-app-from-backend-nginx-tom-bray](https://www.linkedin.com/pulse/decouple-your-single-page-app-from-backend-nginx-tom-bray)
+To support SPA which uses HTML5 History API, you should add some extra configuration to Nginx or other web servers.
 
-You need fallback all request except the path start with /api to /index.html which will make the SPA be able to handle the route in browser.
+Your web server should proxy requests with paths starting with `/api` to your backend server [Vega](https://github.com/ProjectSummerTriangle/Vega), while falling back
+all other requests to /index.html which will make Altair to handle the request routes.
+
+Here's an simple demo using Nginx.
 
 ```
+# Send index.html to user regardless of their request paths.
 location / {
     try_files $uri $uri/ /index.html;
 }
 
-# Proxy requests to "/auth" and "/api" to the server.
+# Proxy requests starting with "/api" to backend server (Vega).
 location /api {
-    proxy_pass http://application_upstream;
+    proxy_pass http://vega_upstream_address;
     proxy_redirect off;
 }
 ```
 
-### Image Thumbnail Support
+You can read more of SPA configuration here: [https://www.linkedin.com/pulse/decouple-your-single-page-app-from-backend-nginx-tom-bray](https://www.linkedin.com/pulse/decouple-your-single-page-app-from-backend-nginx-tom-bray)
 
-We support responsive image feature which will request a resize image by appending uri with `/resize-{width}-{height}`.
-This will significantly reduce the network usage and increase the loading performance.
+### Image Resizing Support
 
-We assume the image service support the following method:
+Altair supports responsive image loading which will request a resized (usually downscaled) image by appending the image uri with `/resize-{width}-{height}`.
 
-- /resize-{width}-{height} will return a image in dimension of {width}x{height} which is a resize version of original image.
-- /resize-{width}-0 will return an image with a resize width but keeping the ratio of height.
-- /resize-0-{height} will return an image with a resize height but keeping the ratio of width.
-- without the /resize-{width}-{height} uri suffix will return the original image.
+This feature can significantly reduce server bandwidth usage and increase content loading speed.
 
-We recommend [Picfit](https://github.com/thoas/picfit) and nginx to set up the service.
+We assume the image service behaves as follows:
+
+- `/resize-{width}-{height}` will return an resized image of the original one in dimension of {width}x{height}.
+- `/resize-{width}-0` will return an resized image with width={width} and its ratio unchanged.
+- `/resize-0-{height}` will return an resized image with height={height} and its ratio unchanged.
+- without above uri suffixes will return the original image.
+
+We recommend using [Picfit](https://github.com/thoas/picfit) and Nginx to set up the service.
