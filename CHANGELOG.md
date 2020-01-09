@@ -14,6 +14,10 @@ Compression-webpack-plugin now use Brotli compression algorithm.
 
 - fix #156
 
+## 4.0.7
+
+- fix bug that angular doesn't run in production mode.
+
 ## 4.0.6
 
 - fix a bug in PlayEpisode, when the video_id exists on the route parameter. the currentVideoFile may be null. which

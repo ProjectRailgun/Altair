@@ -127,6 +127,7 @@
   "sideEffects": [
     "./src/polyfills.browser.ts",
     "./src/main.browser.ts",
+    "./src/app/environment.ts",
     "./src/assets/semantic-ui.ts",
     "./node_modules/semantic-ui-less/semantic.less",
     "./src/app/app.less",
