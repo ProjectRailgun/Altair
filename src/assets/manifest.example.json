@@ -1,6 +1,6 @@
 {
- "name": "番組Collection",
- "short_name": "BanColle",
+ "name": "Altair",
+ "short_name": "Altair",
  "icons": [
   {
    "src": "/assets/icon/favicon-36x36.png",
@@ -39,13 +39,13 @@
    "density": 4.0
   }
  ],
-  "start_url": "https://bangumi.co",
+  "start_url": "https://altair.tld",
   "display": "standalone",
   "prefer_related_applications": true,
   "related_applications": [
     {
       "platform": "play",
-      "id": "co.bangumi.Cassiopeia"
+      "id": "tld.altair.app"
     }
   ]
 }
