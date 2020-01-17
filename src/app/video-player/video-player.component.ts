@@ -616,7 +616,8 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
 
     private makeMediaUrl(): void {
         this.mediaUrl = `${this.videoFile.url}`;
-        this.mediaType = 'video/' + VideoPlayerHelpers.getExtname(this.videoFile.url);
+        // this.mediaType = 'video/' + VideoPlayerHelpers.getExtname(this.videoFile.url);
+        this.mediaType = 'video/mp4'; // force video mediaType to MP4 so MKV can be played under Chromium-like browsers
         this._changeDetector.detectChanges();
     }
 
