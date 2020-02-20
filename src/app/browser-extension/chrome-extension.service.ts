@@ -81,13 +81,12 @@ export class ChromeExtensionService {
             this._extensionRpcService.invokeRPC('BackgroundCore', 'verify', [], 500)
                 .subscribe((resp) => {
                     if (resp === 'token:' + this._chromeExtensionId) {
-                        this._isEnabled.next(true);
+                        this._isEnabled.next(ENABLED_STATUS.TRUE);
                         console.log(
                             '%c Altair %c Deneb integrated & syncing. ',
                             'color: #fff; margin: 1em 0; padding: 5px 0; background: #3498db;',
                             'margin: 1em 0; padding: 5px 0; background: #efefef;'
                         );
-                        this._isEnabled.next(ENABLED_STATUS.TRUE);
                     } else {
                         this._isEnabled.next(ENABLED_STATUS.FALSE);
                     }

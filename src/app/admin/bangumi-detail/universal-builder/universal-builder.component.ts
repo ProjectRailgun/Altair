@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { UIDialogRef, UIToast, UIToastComponent, UIToastRef } from 'deneb-ui';
+import { UIDialogRef, UIToast, UIToastComponent, UIToastRef } from 'altair-ui';
 import { Subscription } from 'rxjs/index';
 import { Bangumi } from '../../../entity';
 import { Item } from '../../../entity/item';
