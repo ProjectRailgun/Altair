@@ -7,12 +7,13 @@ import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'error-page',
-  templateUrl: './error.html'
+  templateUrl: './error.html',
+  styleUrls: ['./error.less']
 })
 export class ErrorComponent implements OnInit, OnDestroy {
 
   constructor(titleService: Title, private route: ActivatedRoute) {
-    titleService.setTitle('出错了!');
+    titleService.setTitle('Error!!1');
   }
 
   errorMessage: string;
