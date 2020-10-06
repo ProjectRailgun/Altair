@@ -22,7 +22,7 @@ export class AppsComponent implements OnInit, OnDestroy {
 
     constructor(private _route: ActivatedRoute,
                 titleService: Title) {
-        titleService.setTitle(`Apps - ${SITE_TITLE}`);
+        titleService.setTitle(`移动客户端 - ${SITE_TITLE}`);
     }
 
     ngOnInit(): void {
