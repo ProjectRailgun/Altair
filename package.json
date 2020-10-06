@@ -5,6 +5,7 @@
   "homepage": "https://github.com/ProjectSummerTriangle/Altair",
   "license": "MIT",
   "scripts": {
+    "build:aot:dev": "npm run clean:dist && npm run clean:aot && cross-env BUILD_AOT=1 NODE_ENV=development webpack --config webpack.config.js --progress --profile --bail",
     "build:aot:prod": "npm run clean:dist && npm run clean:aot && cross-env BUILD_AOT=1 NODE_ENV=production webpack --config webpack.config.js --progress --profile --bail",
     "clean:aot": "npm run rimraf -- compiled",
     "clean:dist": "npm run rimraf -- dist",
