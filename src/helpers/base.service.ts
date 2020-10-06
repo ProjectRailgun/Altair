@@ -1,4 +1,3 @@
-
 import {throwError as observableThrowError, Observable} from 'rxjs';
 import {AuthError} from './error';
 import {ServerError} from './error/ServerError';
@@ -9,17 +8,17 @@ export abstract class BaseService {
     handleError(resp: any) {
         var error: Error;
         if (resp.status === 400) {
-            if (resp.json().message === AuthError.LOGIN_FAIL) {
-                error = new AuthError(resp.message, resp.status);
+            if (resp.error.message === AuthError.LOGIN_FAIL) {
+                error = new AuthError(resp.error.message, resp.status);
             } else {
-                error = new ClientError(resp.message, resp.status);
+                error = new ClientError(resp.error.message, resp.status);
             }
         } else if (resp.status === 401) {
-            error = new AuthError(resp.message, resp.status);
+            error = new AuthError(resp.error.message, resp.status);
         } else if (resp.status == 403) {
-            error = new AuthError(resp.message, resp.status);
+            error = new AuthError(resp.error.message, resp.status);
         } else if (resp.status === 500) {
-            error = new ServerError(resp.message, resp.status);
+            error = new ServerError(resp.error.message, resp.status);
         } else if (resp.status === 502) {
             error = new ServerError('Server offline', resp.status);
         } else {
