@@ -1,6 +1,6 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
-import { BehaviorSubject, merge, Subscription } from 'rxjs';
-import { filter } from 'rxjs/internal/operators';
+import {BehaviorSubject, merge, of, Subscription} from 'rxjs';
+import {catchError, filter} from 'rxjs/internal/operators';
 import { mergeMap } from 'rxjs/operators';
 import { closest } from '../../../helpers/dom';
 import { Bangumi } from '../../entity';
@@ -94,7 +94,8 @@ export class MyBangumiComponent implements OnInit, OnDestroy {
                 .pipe(
                     mergeMap(() => {
                         return this._homeService.myBangumi(this.currentStatus)
-                    }),)
+                    }),
+                    catchError(err => of([] as Bangumi[])))
                 .subscribe((bangumiList) => {
                     // desc , sort by favorite_update_time and air_date
                     this.myBangumiList = this.sortBangumiList(bangumiList);
