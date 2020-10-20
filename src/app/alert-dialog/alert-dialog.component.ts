@@ -3,7 +3,8 @@ import { UIDialogRef } from 'altair-ui';
 
 @Component({
     selector: 'alert-dialog',
-    templateUrl: './alert-dialog.html'
+    templateUrl: './alert-dialog.html',
+    styleUrls: ['./alert-dialog.less']
 })
 export class AlertDialog {
     @Input()

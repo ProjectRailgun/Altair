@@ -3,11 +3,7 @@ import { UIDialogRef } from 'altair-ui';
 @Component({
     selector: 'confirm-dialog-modal',
     templateUrl: './confirm-dialog-modal.html',
-    styles: [`
-        .ui.modal.active {
-            transform: translate3d(-50%, -50%, 0);
-        }
-    `]
+    styleUrls: ['./confirm-dialog-modal.less']
 })
 export class ConfirmDialogModal {
 
