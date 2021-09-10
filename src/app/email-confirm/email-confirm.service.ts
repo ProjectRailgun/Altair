@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { BaseService } from '../../helpers/base.service';
 
 @Injectable()
@@ -15,7 +15,7 @@ export class EmailConfirmService extends BaseService {
         let params = new URLSearchParams(querystring);
         let token = params.get('token');
         return this._http.post<any>('/api/user/email/confirm', {token: token}).pipe(
-            map(res => res.json()),
-            catchError(this.handleError),);
+            catchError(this.handleError)
+        );
     }
 }
