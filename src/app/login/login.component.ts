@@ -53,7 +53,7 @@ export class Login implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        this.title.setTitle(`登录 - ${this.siteTitle}`);
+        this.title.setTitle(`登入 - ${this.siteTitle}`);
         this.buildForm();
         this._subscription.add(
             this.route.params

@@ -9,8 +9,8 @@
         <div class="outer-panel">
             <div class="inner-panel">
                 <h2 class="ui icon header">
-                    <img class="ui small image" src="/assets/img/cygnus_logo.png" alt="{{siteTitle}}">
                     {{siteTitle}}
+                    <div class="ui orange horizontal label ng-star-inserted">秋</div>
                     <div class="sub header">The sparkle of anime, at your fingertips.</div>
                 </h2>
                 <form class="ui form" (ngSubmit)="onSubmit()" [formGroup]="registerForm" [ngClass]="{error: !registerForm.valid}">

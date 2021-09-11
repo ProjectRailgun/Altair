@@ -1,11 +1,15 @@
+ul {
+  margin: 0;
+}
+
 .error-container {
   background: #333;
-  top:0;
-  right:0;
-  bottom:0;
-  left:0;
-  position:absolute;
-  height:100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,27 +17,42 @@
 
 .error-message {
   position: relative;
-  background:white;
-  min-height:5rem;
-  max-width:450px;
-  border-radius:.5rem;
-  padding:1rem;
-  box-sizing:border-box;
+  background: white;
+  min-height: 5rem;
+  max-width: 450px;
+  font-family: "Open Sans", Arial, Verdana, sans-serif;
+  border-radius: .5rem;
+  padding: 1rem;
+  box-sizing: border-box;
   animation: fadein .7s;
 }
 
-.error-message-text {
-  display:inline-block;
-  font-family:"Open Sans",Arial,Verdana,sans-serif;
+.error-message-head {
+  display: inline-block;
   margin-left: 4rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  font-weight: 500;
+}
+
+.error-message-code {
+  display: inline-block;
+  margin-left: 4rem;
+}
+
+.error-message-text {
+  display: inline-block;
+  margin-left: 4rem;
+  margin-bottom: 0.5rem;
   font-size: 1rem;
 }
 
 .error-indicator {
-  width:3rem;
-  height:3rem;
-  display:inline-block;
-  position:absolute;
+  width: 3rem;
+  height: 3rem;
+  display: inline-block;
+  position: absolute;
   top: 50%;
   transform: translateY(-50%);
 }
