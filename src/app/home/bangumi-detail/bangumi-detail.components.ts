@@ -100,7 +100,7 @@ export class BangumiDetail extends HomeChild implements OnInit, OnDestroy {
                     // console.log(extraInfo);
                     this.extraInfo = extraInfo;
                 }, (error) => {
-                    console.log(error);
+                    // console.log(error);
                     if (error instanceof AuthError && (error as AuthError).isPermission()) {
                         this._toastRef.show('没有权限');
                     } else {

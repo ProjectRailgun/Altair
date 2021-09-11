@@ -110,7 +110,7 @@ export class EditReviewDialogComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        console.log('destroyed');
+        // console.log('destroyed');
         this._subscription.unsubscribe();
     }
 }

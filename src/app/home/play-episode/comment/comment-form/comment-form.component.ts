@@ -84,7 +84,7 @@ export class CommentFormComponent implements OnInit, AfterViewInit, OnDestroy {
                     }
                     this.commentSent.next(result);
                 }, (error) => {
-                    console.log(error);
+                    // console.log(error);
                     this.newCommentForm.reset();
                     this.commentSent.next(null);
                 })

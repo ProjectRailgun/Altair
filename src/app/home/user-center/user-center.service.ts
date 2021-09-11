@@ -65,7 +65,7 @@ export class UserCenterService extends BaseService {
                     if (webHook.permissions && webHook.permissions.length > 0) {
                         content += permissionInfo;
                     }
-                    console.log(content);
+                    // console.log(content);
                     const dialogRef = this._dialogService.open(ConfirmDialogModal, {
                         stickyDialog: true,
                         backdrop: true

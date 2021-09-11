@@ -51,7 +51,7 @@ export class BangumiAccountBindingComponent implements OnInit, OnDestroy {
                     this._toastRef.show('已关联Bangumi账户');
                     this.isAuthenticating = false;
                 }, (error) => {
-                    console.log(error);
+                    // console.log(error);
                     this.isAuthenticating = false;
                     this._toastRef.show(error.error);
                 })
@@ -91,7 +91,7 @@ export class BangumiAccountBindingComponent implements OnInit, OnDestroy {
                     this.isLoading = false;
                     this.authInfo = authInfo as IAuthInfo;
                 }, (error) => {
-                    console.log(error);
+                    // console.log(error);
                     this.isLoading = false;
                     this._toastRef.show(error);
                 })

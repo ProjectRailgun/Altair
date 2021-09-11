@@ -55,7 +55,7 @@ export class VideoCapture {
 
     download(bangumi_name: string, episode_no: number, currentPlayTime: number): void {
         let url = this.getCapturedData();
-        console.log(/^data\:[\w+\-]+\/[\w+\-]+[,;]/.test(url));
+        // console.log(/^data\:[\w+\-]+\/[\w+\-]+[,;]/.test(url));
         // let hiddenAnchor = document.createElement('a');
         let filename = `${bangumi_name}_${episode_no}_${Math.round(currentPlayTime)}.${this.imageFormat}`;
         download(url, filename, 'application/octet-stream');

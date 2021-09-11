@@ -261,7 +261,7 @@ export class CommentComponent implements OnInit, OnDestroy, AfterViewInit, OnCha
                 }),)
                 .subscribe((authInfo) => {
                     this.authInfo = authInfo as IAuthInfo;
-                    console.log('bgmId', this.bgmEpsId);
+                    // console.log('bgmId', this.bgmEpsId);
                     this.freshCommentList();
                 })
         );

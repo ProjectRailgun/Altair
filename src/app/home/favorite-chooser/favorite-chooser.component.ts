@@ -83,11 +83,11 @@ export class FavoriteChooser implements OnInit, OnDestroy {
                 return this._favoriteManagerService.manuallyChangeFavorite(this.bangumi, result);
             }),)
             .subscribe((result) => {
-                console.log(result);
+                // console.log(result);
                 this.isOnSynchronizing = false;
                 this.userFavoriteInfo = result;
             }, (error) => {
-                console.log(error);
+                // console.log(error);
                 if (error && error.status === 404) {
                     this.bangumi.favorite_status = 0;
                     this.userFavoriteInfo = null;
@@ -127,9 +127,9 @@ export class FavoriteChooser implements OnInit, OnDestroy {
         this.bangumi.favorite_status = status;
         this._favoriteManagerService.manuallyChangeFavorite(this.bangumi)
             .subscribe(() => {
-                console.log('update favorite successful');
+                // console.log('update favorite successful');
             }, () => {
-                console.log('update favorite error');
+                // console.log('update favorite error');
             }, () => {
                 this.isSavingFavorite = false;
             });
@@ -171,9 +171,9 @@ export class FavoriteChooser implements OnInit, OnDestroy {
                     if (result.progressResult && result.progressResult.status === 0) {
                         this.reloadEpisodes.emit(true);
                     }
-                    console.log(result);
+                    // console.log(result);
                 }, (error) => {
-                    console.log(error);
+                    // console.log(error);
                 })
         );
         this._subscription.add(

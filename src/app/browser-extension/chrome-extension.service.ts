@@ -91,7 +91,7 @@ export class ChromeExtensionService {
                         this._isEnabled.next(ENABLED_STATUS.FALSE);
                     }
                 }, (err) => {
-                    console.log(err);
+                    // console.log(err);
                     this._isEnabled.next(ENABLED_STATUS.FALSE);
                 });
         } else {

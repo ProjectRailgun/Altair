@@ -29,7 +29,7 @@ export class AppsComponent implements OnInit, OnDestroy {
         this._subscription.add(
             this._route.params
                 .subscribe(params => {
-                    console.log(params);
+                    // console.log(params);
                     this.showAndroid = !!params['android'];
                 })
         );

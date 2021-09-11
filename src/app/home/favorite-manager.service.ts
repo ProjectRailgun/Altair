@@ -44,8 +44,8 @@ export class FavoriteManagerService extends BaseService {
                 })
             )
             .subscribe(result => {
-                console.log('episode progress synchronized', result);
-                toastRef.show('已与Bangumi同步');
+                // console.log('episode progress synchronized', result);
+                toastRef.show('已与 Bangumi 同步');
             });
 
         this.canSync()
@@ -56,7 +56,7 @@ export class FavoriteManagerService extends BaseService {
                             if (result.canSync) {
                                 return this._synchronizeService.updateFavoriteStatus(bangumi, Bangumi.WATCHED).pipe(
                                     map(() => {
-                                        toastRef.show('已与Bangumi同步');
+                                        toastRef.show('已与 Bangumi 同步');
                                         return bangumi;
                                     }));
                             } else {

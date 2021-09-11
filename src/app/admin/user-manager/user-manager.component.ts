@@ -109,7 +109,7 @@ export class UserManager implements OnInit, OnDestroy {
         inputElement.value = url;
         inputElement.select();
         document.execCommand('copy');
-        console.log('inviteCode: ', url);
+        // console.log('inviteCode: ', url);
         this._toastRef.show('邀请链接已经复制到剪贴板');
         document.body.removeChild(inputElement);
     }

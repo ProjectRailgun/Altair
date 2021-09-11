@@ -298,9 +298,9 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
             // TODO: We could add some handler for playback start and error situations.
             rst = mediaElement.play();
             rst.then(() => {
-                console.log('play start');
+                // console.log('play start');
             }, (reason) => {
-                console.log(reason);
+                // console.log(reason);
             })
         } else {
             this.setPendingState(PlayState.PLAYING);
@@ -567,9 +567,9 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
                             case PlayState.PLAYING:
                                 mediaElement.play()
                                     .then(() => {
-                                        console.log('play start');
+                                        // console.log('play start');
                                     }, (reason) => {
-                                        console.log(reason);
+                                        // console.log(reason);
                                     });
                                 this.setPendingState(PlayState.INVALID);
                                 break;

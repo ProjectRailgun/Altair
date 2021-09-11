@@ -126,7 +126,7 @@ export class UserActionComponent implements OnInit, OnDestroy, AfterViewInit {
                 .subscribe(() => {
                     this._persistStorage.setItem('USER_ACTION_HAS_ACKNOWLEDGED', 'true');
                 }, (error) => {
-                    console.log(error);
+                    // console.log(error);
                 })
         );
     }

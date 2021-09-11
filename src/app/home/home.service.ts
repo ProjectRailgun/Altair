@@ -63,9 +63,9 @@ export class HomeService extends BaseService {
         this._watchService.check_favorite(bangumi_id)
             .subscribe((data) => {
                 this.favoriteChecked.emit({bangumi_id: bangumi_id, check_time: data.data});
-                console.log(`bangumi ${bangumi_id} checked`);
+                // console.log(`bangumi ${bangumi_id} checked`);
             }, (error) => {
-                console.log(error);
+                // console.log(error);
             });
     }
 

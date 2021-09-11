@@ -70,7 +70,7 @@ export class DefaultComponent extends HomeChild implements OnInit, OnDestroy {
                         this.isLoading = false;
                     },
                     error => {
-                        console.log(error);
+                        // console.log(error);
                         this.isLoading = false;
                     }
                 )

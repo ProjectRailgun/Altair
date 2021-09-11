@@ -132,7 +132,7 @@ export class ListBangumi implements AfterViewInit, OnDestroy, OnInit {
             dialogRef.afterClosed()
                 .subscribe(
                     (result: any) => {
-                        console.log(result);
+                        // console.log(result);
                         if (result === 'cancelled') {
                             return;
                         }
@@ -183,7 +183,7 @@ export class ListBangumi implements AfterViewInit, OnDestroy, OnInit {
                         this.isLoading = false
                     },
                     (error: BaseError) => {
-                        console.log(error);
+                        // console.log(error);
                         this._toastRef.show(error.message);
                         this.isLoading = false
                     }
