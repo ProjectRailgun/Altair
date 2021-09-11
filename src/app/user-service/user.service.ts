@@ -1,10 +1,10 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { catchError, map, mergeMap, tap } from 'rxjs/operators';
-import { BaseService } from '../../helpers/base.service';
-import { User } from '../entity';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {catchError, map, mergeMap, tap} from 'rxjs/operators';
+import {BaseService} from '../../helpers/base.service';
+import {User} from '../entity';
 
 
 @Injectable()
@@ -19,7 +19,8 @@ export class UserService extends BaseService {
     ) {
         super();
         // console.log('init user service: #' + (Math.random()* 1000));
-        this.getUserInfo().subscribe(() => {});
+        this.getUserInfo().subscribe(() => {
+        });
     }
 
     get userInfo(): Observable<User> {
@@ -49,7 +50,7 @@ export class UserService extends BaseService {
     }
 
     getUserInfo(): Observable<User> {
-        return this._http.get<{data: User}>(`${this._baseUrl}/info`).pipe(
+        return this._http.get<{ data: User }>(`${this._baseUrl}/info`).pipe(
             map(res => res.data),
             tap(user => {
                 this._userInfoSubject.next(user);
@@ -75,7 +76,7 @@ export class UserService extends BaseService {
     }
 
     requestResetPass(email: string): Observable<any> {
-        return this._http.post<any>(`${this._baseUrl}/request-reset-pass`,{email: email}).pipe(
+        return this._http.post<any>(`${this._baseUrl}/request-reset-pass`, {email: email}).pipe(
             catchError(this.handleError),);
     }
 

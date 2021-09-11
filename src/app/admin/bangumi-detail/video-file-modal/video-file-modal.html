@@ -62,8 +62,12 @@
                 </div>
             </div>
             <div class="field">
-                <button class="ui red button" confirmDialog dialogTitle="确定删除吗，该操作无法撤销" (onConfirm)="deleteVideoFile(videoFileFormGroup)">删除</button>
-                <button class="ui primary button" (click)="saveVideoFile(videoFileFormGroup)" [disabled]="videoFileFormGroup.pristine">保存</button>
+                <button class="ui red button" confirmDialog dialogTitle="确定删除吗，该操作无法撤销"
+                        (onConfirm)="deleteVideoFile(videoFileFormGroup)">删除
+                </button>
+                <button class="ui primary button" (click)="saveVideoFile(videoFileFormGroup)"
+                        [disabled]="videoFileFormGroup.pristine">保存
+                </button>
             </div>
         </form>
     </div>

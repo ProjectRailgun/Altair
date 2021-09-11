@@ -1,7 +1,8 @@
 <div class="bangumi-list-container" *ngIf="!name && !isLoading">
     <form class="filter-container" (click)="onClickFilterContainer()">
         <div class="ui container">
-            <a class="sort-button anchor-button" (click)="onOrderChange($event)" [title]="sort === 'desc' ? 'Descending': 'Ascending'">
+            <a class="sort-button anchor-button" (click)="onOrderChange($event)"
+               [title]="sort === 'desc' ? 'Descending': 'Ascending'">
                 <i class="sort content icon" [ngClass]="{ascending: sort === 'asc', descending: sort === 'desc'}"></i>
             </a>
             <ui-toggle text="剧场版/特典" [(ngModel)]="isMovie" name="isMovie"></ui-toggle>
@@ -18,7 +19,8 @@
     </form>
     <div class="timeline-container">
         <ui-timeline-meter [rowHeight]="cardHeight" [timestampList]="timestampList">
-            <infinite-list [rowHeight]="cardHeight" [newScrollPosition]="lastScrollPosition" (scrollPosition)="onScrollPositionChange($event)">
+            <infinite-list [rowHeight]="cardHeight" [newScrollPosition]="lastScrollPosition"
+                           (scrollPosition)="onScrollPositionChange($event)">
                 <bangumi-card *infiniteFor="let bangumi of bangumiList" [bangumi]="bangumi"></bangumi-card>
             </infinite-list>
         </ui-timeline-meter>

@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-import { BaseService } from '../../../helpers/base.service';
-import { WebHook } from '../../entity/web-hook';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {catchError, map} from 'rxjs/operators';
+import {BaseService} from '../../../helpers/base.service';
+import {WebHook} from '../../entity/web-hook';
 
 @Injectable()
 export class WebHookService extends BaseService {
@@ -19,7 +19,7 @@ export class WebHookService extends BaseService {
      * @returns {Observable<WebHook[]>}
      */
     listWebHook(): Observable<WebHook[]> {
-        return this._http.get<{data: any[], total: number}>(`${this._baseUrl}/`).pipe(
+        return this._http.get<{ data: any[], total: number }>(`${this._baseUrl}/`).pipe(
             map((res) => {
                 return res.data.map(webHook => {
                     if (webHook.permissions) {

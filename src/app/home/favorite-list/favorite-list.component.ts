@@ -1,15 +1,14 @@
+import {interval as observableInterval, of, Subject, Subscription} from 'rxjs';
 
-import {interval as observableInterval, Subscription, Observable, Subject, of} from 'rxjs';
-
-import {mergeMap, map, take} from 'rxjs/operators';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { HomeService } from '../home.service';
-import { Bangumi } from '../../entity/bangumi';
-import { Home } from '../home.component';
-import { InfiniteList, UIToast, UIToastComponent, UIToastRef } from 'altair-ui';
-import { CARD_HEIGHT_REM } from '../bangumi-card/bangumi-card.component';
-import { getRemPixel } from '../../../helpers/dom';
-import { BaseError } from '../../../helpers/error/BaseError';
+import {map, mergeMap, take} from 'rxjs/operators';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {HomeService} from '../home.service';
+import {Bangumi} from '../../entity/bangumi';
+import {Home} from '../home.component';
+import {InfiniteList, UIToast, UIToastComponent, UIToastRef} from 'altair-ui';
+import {CARD_HEIGHT_REM} from '../bangumi-card/bangumi-card.component';
+import {getRemPixel} from '../../../helpers/dom';
+import {BaseError} from '../../../helpers/error/BaseError';
 import {catchError} from 'rxjs/internal/operators';
 
 
@@ -60,8 +59,8 @@ export class FavoriteListComponent implements OnInit, OnDestroy {
     @ViewChild(InfiniteList, {static: true}) infiniteList: InfiniteList;
 
     constructor(private _homeService: HomeService,
-        private _homeComponent: Home,
-        toastService: UIToast) {
+                private _homeComponent: Home,
+                toastService: UIToast) {
         if (window) {
             this.cardHeight = getRemPixel(CARD_HEIGHT_REM)
         }
@@ -197,10 +196,10 @@ export class FavoriteListComponent implements OnInit, OnDestroy {
                 }),
                 catchError(err => of([] as Bangumi[])))
                 .subscribe((bangumiList) => {
-                    this._favoriteList = bangumiList;
-                    this.filterFavorites();
-                    this.isLoading = false;
-                },
+                        this._favoriteList = bangumiList;
+                        this.filterFavorites();
+                        this.isLoading = false;
+                    },
                     (error: BaseError) => {
                         this._toastRef.show(error.message);
                         this.isLoading = false;

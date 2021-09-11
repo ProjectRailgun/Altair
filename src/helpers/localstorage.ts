@@ -37,8 +37,10 @@ export class LocalStorage implements Storage {
     }
 
     [key: string]: any;
+
     [index: number]: string;
 }
+
 export let localstorageSupport: boolean;
 export let storageAPI: Storage;
 try {

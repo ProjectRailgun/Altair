@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import {Component} from '@angular/core';
+import {Title} from '@angular/platform-browser';
 
 
 @Component({
@@ -8,10 +8,10 @@ import { Title } from '@angular/platform-browser';
 })
 export class TosComponent {
 
-  siteName: string = SITE_TITLE;
+    siteName: string = SITE_TITLE;
 
-  constructor(titleService: Title) {
-    titleService.setTitle(`使用条款 - ${this.siteName}`);
-  }
+    constructor(titleService: Title) {
+        titleService.setTitle(`使用条款 - ${this.siteName}`);
+    }
 
 }

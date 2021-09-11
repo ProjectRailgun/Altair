@@ -1,13 +1,13 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { UIDialog, UIToast, UIToastComponent, UIToastRef } from 'altair-ui';
-import { Subscription } from 'rxjs';
-import { filter, mergeMap } from 'rxjs/operators';
-import { getRemPixel } from '../../../helpers/dom';
-import { BaseError } from '../../../helpers/error/BaseError';
-import { WebHook } from '../../entity/web-hook';
-import { EditWebHookComponent } from './edit-web-hook/edit-web-hook.component';
-import { WebHookService } from './web-hook.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Title} from '@angular/platform-browser';
+import {UIDialog, UIToast, UIToastComponent, UIToastRef} from 'altair-ui';
+import {Subscription} from 'rxjs';
+import {filter, mergeMap} from 'rxjs/operators';
+import {getRemPixel} from '../../../helpers/dom';
+import {BaseError} from '../../../helpers/error/BaseError';
+import {WebHook} from '../../entity/web-hook';
+import {EditWebHookComponent} from './edit-web-hook/edit-web-hook.component';
+import {WebHookService} from './web-hook.service';
 
 const CARD_HEIGHT_REM = 12;
 
@@ -27,9 +27,9 @@ export class WebHookComponent implements OnInit, OnDestroy {
     cardHeight: number;
 
     constructor(private _webHookService: WebHookService,
-        private _dialog: UIDialog,
-        toast: UIToast,
-        titleService: Title) {
+                private _dialog: UIDialog,
+                toast: UIToast,
+                titleService: Title) {
         titleService.setTitle('WebHook管理 - ' + SITE_TITLE);
         this._toastRef = toast.makeText();
         if (window) {
@@ -38,7 +38,7 @@ export class WebHookComponent implements OnInit, OnDestroy {
     }
 
     addWebHook() {
-        const dialogRef = this._dialog.open(EditWebHookComponent, { stickyDialog: true, backdrop: true });
+        const dialogRef = this._dialog.open(EditWebHookComponent, {stickyDialog: true, backdrop: true});
         this._subscription.add(
             dialogRef.afterClosed().pipe(
                 filter(result => !!result),
@@ -54,7 +54,7 @@ export class WebHookComponent implements OnInit, OnDestroy {
     }
 
     editWebHook(webHook: WebHook) {
-        const dialogRef = this._dialog.open(EditWebHookComponent, { stickyDialog: true, backdrop: true });
+        const dialogRef = this._dialog.open(EditWebHookComponent, {stickyDialog: true, backdrop: true});
         dialogRef.componentInstance.webHook = webHook;
         this._subscription.add(
             dialogRef.afterClosed().pipe(

@@ -1,21 +1,21 @@
 .search-bangumi-modal {
   text-align: left;
-  @media(max-width: 767px) {
+  @media (max-width: 767px) {
     width: 100%;
   }
-  @media(min-width: 768px) and (max-width: 991px) {
+  @media (min-width: 768px) and (max-width: 991px) {
     width: 768px;
   }
-  @media(min-width: 992px) {
+  @media (min-width: 992px) {
     width: 933px;
   }
-  @media(min-height: 900px) {
+  @media (min-height: 900px) {
     height: 80%;
   }
-  @media(min-height: 600px) and (max-height: 899px) {
+  @media (min-height: 600px) and (max-height: 899px) {
     height: 90%;
   }
-  @media(max-height: 599px) {
+  @media (max-height: 599px) {
     height: 100%;
   }
   position: fixed;
@@ -25,6 +25,7 @@
   border-radius: 4px;
   background-color: #f0f0f0;
   overflow: hidden;
+
   .search-list {
     width: 100%;
     height: 100%;
@@ -35,11 +36,13 @@
     transition: transform 300ms ease-out;
     transform: translate3d(0, 0, 0);
   }
+
   &.show-detail {
     .search-list {
       transform: translate3d(-100%, 0, 0);
     }
   }
+
   .search-bar {
     position: absolute;
     top: 0;
@@ -54,6 +57,7 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+
     .back-button {
       display: inline-block;
       padding: 0.6rem;
@@ -62,6 +66,7 @@
       margin-left: 2rem;
       margin-right: 4rem;
     }
+
     .input {
       > input {
         width: 30rem;
@@ -71,7 +76,7 @@
 
   .search-result-container,
   .no-result-container,
-  .searching-wrapper{
+  .searching-wrapper {
     position: relative;
     width: 100%;
     height: 100%;
@@ -91,6 +96,7 @@
     font-size: 4rem;
     color: #9f9f9f;
   }
+
   .searching-wrapper .loader {
     color: #9f9f9f;
   }
@@ -98,6 +104,7 @@
   .bangumi-list {
     margin: 0 0.5rem 2rem 0.5rem;
   }
+
   .pagination-wrapper {
     text-align: center;
     padding-bottom: 2rem;

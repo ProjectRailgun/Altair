@@ -1,9 +1,9 @@
-import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
-import { UserService } from './user.service';
-import { RouterModule } from '@angular/router';
-import { Authentication } from './authentication.service';
-import { PersistStorage } from './persist-storage';
+import {HttpClientModule} from '@angular/common/http';
+import {NgModule} from '@angular/core';
+import {UserService} from './user.service';
+import {RouterModule} from '@angular/router';
+import {Authentication} from './authentication.service';
+import {PersistStorage} from './persist-storage';
 
 @NgModule({
     providers: [

@@ -41,7 +41,10 @@
                       placeholder="对新番的吐槽，最多200字"></textarea>
         </div>
         <div class="field">
-            <div class="word-left" [ngClass]="{warning: reviewForm.controls['comment'].invalid}">{{reviewForm.controls['comment'].value.length}}/200</div>
+            <div class="word-left"
+                 [ngClass]="{warning: reviewForm.controls['comment'].invalid}">{{reviewForm.controls['comment'].value.length}}
+                /200
+            </div>
         </div>
         <div class="field">
             <div class="ui huge star rating" (mouseleave)="onHoverRating(0)">
@@ -51,14 +54,16 @@
                    (click)="onSelectRating(s)"></i>
             </div>
             <div class="rating-text">
-                {{isHovering ? hoveringText: ratingText}}
+                {{isHovering ? hoveringText : ratingText}}
                 <span class="score" *ngIf="!!hoverScore || !!rating">{{isHovering ? hoverScore : rating}}</span>
                 <span class="warning-tip" *ngIf="isHovering && hoverScore === 10">(请谨慎评价)</span>
             </div>
         </div>
         <div class="footer">
             <button class="ui button" type="button" (click)="cancel()">取消</button>
-            <button class="ui primary button" type="button" (click)="save()" [disabled]="reviewForm.invalid || !favorite_status">提交</button>
+            <button class="ui primary button" type="button" (click)="save()"
+                    [disabled]="reviewForm.invalid || !favorite_status">提交
+            </button>
         </div>
     </form>
 </div>

@@ -1,4 +1,4 @@
-import {throwError as observableThrowError, Observable} from 'rxjs';
+import {throwError as observableThrowError} from 'rxjs';
 import {AuthError} from './error';
 import {ServerError} from './error/ServerError';
 import {ClientError} from './error/ClientError';

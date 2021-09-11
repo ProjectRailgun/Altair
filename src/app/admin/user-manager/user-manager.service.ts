@@ -1,10 +1,10 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-import { BaseService } from '../../../helpers/base.service';
-import { queryString } from '../../../helpers/url'
-import { User } from '../../entity';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {catchError, map} from 'rxjs/operators';
+import {BaseService} from '../../../helpers/base.service';
+import {queryString} from '../../../helpers/url'
+import {User} from '../../entity';
 
 @Injectable()
 export class UserManagerSerivce extends BaseService {
@@ -20,9 +20,9 @@ export class UserManagerSerivce extends BaseService {
         minlevel?: number,
         query_field?: string,
         query_value?: string
-    }): Observable<{data: User[], total: number}> {
+    }): Observable<{ data: User[], total: number }> {
         let queryParams = queryString(params);
-        return this._http.get<{data: User[], total: number}>(`${this._baseUrl}/?${queryParams}`).pipe(
+        return this._http.get<{ data: User[], total: number }>(`${this._baseUrl}/?${queryParams}`).pipe(
             catchError(this.handleError),);
     }
 
@@ -32,13 +32,13 @@ export class UserManagerSerivce extends BaseService {
     }
 
     listUnusedInviteCode(): Observable<string[]> {
-        return this._http.get<{data: string[]}>(`${this._baseUrl}/invite/unused`).pipe(
+        return this._http.get<{ data: string[] }>(`${this._baseUrl}/invite/unused`).pipe(
             map(res => res.data),
             catchError(this.handleError),);
     }
 
     createInviteCode(num: number = 1): Observable<string[]> {
-        return this._http.post<{data: string[]}>(`${this._baseUrl}/invite?num=${num}`, null).pipe(
+        return this._http.post<{ data: string[] }>(`${this._baseUrl}/invite?num=${num}`, null).pipe(
             map(res => res.data),
             catchError(this.handleError),);
     }

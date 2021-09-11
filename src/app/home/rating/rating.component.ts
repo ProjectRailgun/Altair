@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { Rating } from '../../entity/rating';
+import {Component, Input} from '@angular/core';
+import {Rating} from '../../entity/rating';
 
 export const RATING_TEXT = ['无评分', '不忍直视', '很差', '差', '较差', '不过不失', '还行', '推荐', '力荐', '神作', '超神作'];
 export const RATING_COLOR = [
@@ -31,7 +31,7 @@ export class RatingComponent {
                 .map(r => parseInt(r, 10))
                 .sort((r1, r2) => r2 - r1)
                 .map(r => {
-                    return { r: r, c: this.rating.count[r] };
+                    return {r: r, c: this.rating.count[r]};
                 });
         } else {
             return [];

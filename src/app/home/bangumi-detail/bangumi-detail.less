@@ -1,9 +1,11 @@
 .loading-wrapper {
   position: static !important;
 }
+
 .bangumi-default-container {
   padding-top: 2rem;
 }
+
 .bangumi-info {
   width: 100%;
   display: flex;
@@ -11,14 +13,17 @@
   justify-content: flex-start;
   align-items: stretch;
   flex-wrap: wrap;
+
   .bangumi-cover {
     display: inline-block;
     flex: 1 1 auto;
     width: 30%;
   }
+
   .bangumi-cover-revealer {
     display: none;
   }
+
   .bangumi-base-info {
     flex: 1 1 auto;
     width: 70%;
@@ -30,6 +35,7 @@
       padding-top: 0.6rem;
       border-top: 1px solid #a9a9a9;
       position: relative;
+
       &:before {
         display: block;
         font-size: 0.8rem;
@@ -46,8 +52,10 @@
 
     > .bangumi-title {
       margin: 0;
+
       &.name-cn {
         margin-bottom: 1.2rem;
+
         .external-link {
           display: inline-block;
           margin-left: 1.5rem;
@@ -55,8 +63,10 @@
           color: #818181;
         }
       }
+
       &.name {
         color: #696969;
+
         .tip {
           font-size: 0.8em;
           font-weight: normal;
@@ -64,6 +74,7 @@
           padding-right: 1em;
           vertical-align: bottom;
         }
+
         > .name-text {
           vertical-align: bottom;
         }
@@ -80,18 +91,22 @@
       .key {
         color: #767676;
       }
+
       .value {
         padding: 0 2rem 0 0;
       }
+
       &:before {
         content: "放送信息";
       }
     }
+
     .rating {
       &:before {
         content: "Bangumi 评分";
       }
     }
+
     .my-review {
       &:before {
         content: "我的评价";
@@ -105,6 +120,7 @@
     width: 100%;
     position: relative;
     display: block;
+
     .bangumi-cover {
       width: 100%;
       display: block;
@@ -112,6 +128,7 @@
       top: 0;
       left: 0;
     }
+
     .bangumi-cover-revealer {
       width: 100%;
       display: block;
@@ -119,6 +136,7 @@
       z-index: 100;
       transition: height 300ms ease;
     }
+
     .bangumi-base-info {
       width: 100%;
       display: block;
@@ -128,6 +146,7 @@
       padding: 1rem 1rem 2rem 1rem;
       border-top-left-radius: 1rem;
       border-top-right-radius: 1rem;
+
       &:before {
         display: block;
         content: " ";
@@ -153,6 +172,7 @@
   position: relative;
   z-index: 100;
   background-color: #fff;
+
   .episode-list-heading {
     margin: 0;
     padding: 2rem 0 0 0;
@@ -161,6 +181,7 @@
 
 .episode-card {
   overflow: hidden;
+
   .image-wrapper {
     display: block;
     position: relative;
@@ -168,6 +189,7 @@
     height: 0;
     padding-bottom: 56.25%;
     overflow: hidden;
+
     > img {
       position: absolute;
       top: 0;
@@ -178,7 +200,7 @@
     }
   }
 
-  .image-fallback{
+  .image-fallback {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -189,6 +211,7 @@
     height: 100%;
     background-color: #cfcfcf;
     color: #868686;
+
     .icon-holder {
       font-size: 2rem;
     }

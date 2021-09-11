@@ -1,10 +1,9 @@
-
-import {fromEvent as observableFromEvent,  Subscription ,  Observable } from 'rxjs';
+import {fromEvent as observableFromEvent, Subscription} from 'rxjs';
 
 import {skip} from 'rxjs/operators';
-import { UIPopoverContent, UIPopoverRef } from 'altair-ui';
-import { Component, Input, OnDestroy } from '@angular/core';
-import { User } from '../../../entity';
+import {UIPopoverContent, UIPopoverRef} from 'altair-ui';
+import {Component, Input, OnDestroy} from '@angular/core';
+import {User} from '../../../entity';
 
 @Component({
     selector: 'user-action-panel',

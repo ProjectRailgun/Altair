@@ -14,21 +14,24 @@
                }"
             [disabled]="isOnSynchronizing && syncEnabled"
             (click)="toggleFavoriteChooser()">
-        <i class="bookmark icon"></i>我{{FAVORITE_LABEL[bangumi.favorite_status]}}这部动画</button>
+        <i class="bookmark icon"></i>我{{FAVORITE_LABEL[bangumi.favorite_status]}}这部动画
+    </button>
     <button class="ui small basic button"
             *ngIf="!!bangumi.favorite_status"
             confirmDialog
             dialogTitle="确定要删除收藏么？"
             [dialogContent]="isExtensionEnabled ? '这将会取消您对这部动画的所有订阅服务，同时会取消您在 Bangumi 的收藏。' : '这将会取消您对这部动画的所有订阅服务。'"
             (onConfirm)="deleteFavorite()"
-            [disabled]="isOnSynchronizing && syncEnabled">删除收藏</button>
+            [disabled]="isOnSynchronizing && syncEnabled">删除收藏
+    </button>
     <span class="sync-loader-tip" *ngIf="isOnSynchronizing && syncEnabled">
         <span class="ui active inline tiny loader"></span> 正在与 Bangumi 同步
     </span>
     <span class="sync-complete-tip" *ngIf="!isOnSynchronizing && syncEnabled">
         <i class="icon checkmark"></i> 同步完成
     </span>
-    <span class="sync-disabled-tip" *ngIf="isExtensionEnabled && !syncEnabled">同步功能不可用，请确认 Bangumi 账户关联及 bgm.tv 登陆状态。</span>
+    <span class="sync-disabled-tip"
+          *ngIf="isExtensionEnabled && !syncEnabled">同步功能不可用，请确认 Bangumi 账户关联及 bgm.tv 登陆状态。</span>
     <div *ngIf="isChoosingFavorite" class="small ui basic buttons">
         <button class="ui button" [ngClass]="{active: bangumi.favorite_status === 1}" (click)="chooseFavoriteStatus(1)">
             想看
@@ -50,5 +53,6 @@
     </button>
 </div>
 <div class="my-review facade-item" *ngIf="!!userFavoriteInfo && loadBgmInfo">
-    <my-review [rating]="userFavoriteInfo.rating" [comment]="userFavoriteInfo.comment" (editReview)="onEditReview()"></my-review>
+    <my-review [rating]="userFavoriteInfo.rating" [comment]="userFavoriteInfo.comment"
+               (editReview)="onEditReview()"></my-review>
 </div>

@@ -6,10 +6,10 @@
         </div>
     </div>
     <div class="header-container">
-        <h3 class="ui header" *ngIf="!isLoading">{{!!posts ? posts.length: 0}} 条来自 Bangumi 的评论</h3>
+        <h3 class="ui header" *ngIf="!isLoading">{{!!posts ? posts.length : 0}} 条来自 Bangumi 的评论</h3>
         <a class="sort-button" (click)="onOrderChange($event)" [title]="sort === 'desc' ? '降序': '升序'">
             <i class="sort content icon" [ngClass]="{ascending: sort === 'asc', descending: sort === 'desc'}"></i>
-            {{sort === 'desc'? '新评论在前': '旧评论在前'}}
+            {{sort === 'desc' ? '新评论在前' : '旧评论在前'}}
         </a>
     </div>
     <div class="fake-comment-form" *ngIf="!!authInfo && !rootFormOpen && sort === 'desc'">
@@ -55,12 +55,12 @@
                                   (commentSent)="onCommentSent($event)"
                                   (cancel)="onCommentCancel($event)"></bangumi-comment-form>
         </div>
-        <bangumi-edit-comment  *ngIf="post.isEditing"
-                               [bgmEpsId]="bgmEpsId"
-                               [postId]="post.id"
-                               [avatar]="authInfo.avatar.medium"
-                               (commentUpdate)="onCommentUpdate($event)"
-                               (cancel)="onCommentEditCancel($event)"></bangumi-edit-comment>
+        <bangumi-edit-comment *ngIf="post.isEditing"
+                              [bgmEpsId]="bgmEpsId"
+                              [postId]="post.id"
+                              [avatar]="authInfo.avatar.medium"
+                              (commentUpdate)="onCommentUpdate()"
+                              (cancel)="onCommentEditCancel($event)"></bangumi-edit-comment>
         <div class="comments" *ngIf="!!post.subPosts && post.subPosts.length > 0">
             <div class="comment-post comment" *ngFor="let subPost of post.subPosts">
                 <a [href]="subPost.author.url" class="avatar" target="_blank" *ngIf="!subPost.isEditing">
@@ -72,7 +72,8 @@
                         <span class="date">{{subPost.date | date:'medium'}}</span>
                     </div>
                     <div class="quote" *ngIf="!!subPost.quote">
-                        <q><strong>{{subPost.quote.author}}</strong><span [innerHTML]="subPost.quote.content"></span></q>
+                        <q><strong>{{subPost.quote.author}}</strong><span
+                            [innerHTML]="subPost.quote.content"></span></q>
                     </div>
                     <div class="text" [innerHTML]="subPost.content"></div>
                     <div class="actions" *ngIf="!subPost.formOpen && !subPost.isEditing && !!formhash">
@@ -95,12 +96,12 @@
                                           (commentSent)="onCommentSent($event)"
                                           (cancel)="onCommentCancel($event)"></bangumi-comment-form>
                 </div>
-                <bangumi-edit-comment  *ngIf="subPost.isEditing"
-                                       [bgmEpsId]="bgmEpsId"
-                                       [postId]="subPost.id"
-                                       [avatar]="authInfo.avatar.medium"
-                                       (commentUpdate)="onCommentUpdate($event)"
-                                       (cancel)="onCommentEditCancel($event)"></bangumi-edit-comment>
+                <bangumi-edit-comment *ngIf="subPost.isEditing"
+                                      [bgmEpsId]="bgmEpsId"
+                                      [postId]="subPost.id"
+                                      [avatar]="authInfo.avatar.medium"
+                                      (commentUpdate)="onCommentUpdate()"
+                                      (cancel)="onCommentEditCancel($event)"></bangumi-edit-comment>
             </div>
         </div>
         <bangumi-comment-form [bgmEpsId]="bgmEpsId"

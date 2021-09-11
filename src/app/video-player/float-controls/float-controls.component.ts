@@ -1,20 +1,10 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import {
-    AfterViewInit,
-    Component,
-    ElementRef, HostBinding,
-    Injector,
-    Input,
-    OnDestroy,
-    OnInit,
-    Self,
-    ViewChild
-} from '@angular/core';
-import { fromEvent as observableFromEvent, merge, Subject, Subscription } from 'rxjs';
-import { filter, retry, tap, timeout } from 'rxjs/operators';
-import { CONTROL_FADE_OUT_TIME, VideoPlayerHelpers } from '../core/helpers';
-import { VideoPlayer } from '../video-player.component';
-import { VideoPlayerService } from '../video-player.service';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {AfterViewInit, Component, ElementRef, Injector, Input, OnDestroy, OnInit, Self} from '@angular/core';
+import {fromEvent as observableFromEvent, merge, Subject, Subscription} from 'rxjs';
+import {filter, retry, tap, timeout} from 'rxjs/operators';
+import {CONTROL_FADE_OUT_TIME, VideoPlayerHelpers} from '../core/helpers';
+import {VideoPlayer} from '../video-player.component';
+import {VideoPlayerService} from '../video-player.service';
 
 @Component({
     selector: 'video-player-float-controls',
@@ -58,7 +48,7 @@ export class FloatControlsComponent implements OnInit, AfterViewInit, OnDestroy 
         return VideoPlayerHelpers.convertTime(this.duration);
     }
 
-    get currentTimeClock() : string {
+    get currentTimeClock(): string {
         if (Number.isNaN(this.duration)) {
             return '-';
         }
@@ -159,7 +149,8 @@ export class FloatControlsComponent implements OnInit, AfterViewInit, OnDestroy 
         this._subscription.add(
             this._motion.asObservable().pipe(
                 timeout(this._fadeOutTime),
-                tap(() => {},
+                tap(() => {
+                    },
                     () => {
                         this.showControls = false;
                     }),

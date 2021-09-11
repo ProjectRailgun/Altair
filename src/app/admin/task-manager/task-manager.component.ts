@@ -5,7 +5,7 @@ import {Subscription} from 'rxjs';
 import {UIToast, UIToastComponent, UIToastRef} from 'altair-ui';
 import {BaseError} from '../../../helpers/error/BaseError';
 import {Episode} from '../../entity/episode';
-import { Title } from '@angular/platform-browser';
+import {Title} from '@angular/platform-browser';
 
 @Component({
     selector: 'task-manager',

@@ -1,24 +1,23 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
-import { UIDialog, UIToast, UIToastComponent, UIToastRef } from 'altair-ui';
-import { Subscription } from 'rxjs';
-import { filter, mergeMap } from 'rxjs/operators';
-import { BaseError } from '../../../helpers/error';
-import { Bangumi, Episode } from '../../entity';
-import { Announce } from '../../entity/announce';
-import { User } from '../../entity';
-import { AdminService } from '../admin.service';
-import { AnnounceService } from '../announce/announce.service';
-import { EditBangumiRecommendComponent } from '../announce/edit-bangumi-recommend/edit-bangumi-recommend.component';
-import { UserManagerSerivce } from '../user-manager/user-manager.service';
-import { BangumiBasic } from './bangumi-basic/bangumi-basic.component';
-import { BangumiMoeBuilder } from './bangumi-moe-builder/bangumi-moe-builder.component';
-import { EpisodeDetail } from './episode-detail/episode-detail.component';
-import { FeedService } from './feed.service';
-import { KeywordBuilder } from './keyword-builder/keyword-builder.component';
-import { UniversalBuilderComponent } from './universal-builder/universal-builder.component';
-import { VideoFileModal } from './video-file-modal/video-file-modal.component';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Title} from '@angular/platform-browser';
+import {ActivatedRoute, Router} from '@angular/router';
+import {UIDialog, UIToast, UIToastComponent, UIToastRef} from 'altair-ui';
+import {Subscription} from 'rxjs';
+import {filter, mergeMap} from 'rxjs/operators';
+import {BaseError} from '../../../helpers/error';
+import {Bangumi, Episode, User} from '../../entity';
+import {Announce} from '../../entity/announce';
+import {AdminService} from '../admin.service';
+import {AnnounceService} from '../announce/announce.service';
+import {EditBangumiRecommendComponent} from '../announce/edit-bangumi-recommend/edit-bangumi-recommend.component';
+import {UserManagerSerivce} from '../user-manager/user-manager.service';
+import {BangumiBasic} from './bangumi-basic/bangumi-basic.component';
+import {BangumiMoeBuilder} from './bangumi-moe-builder/bangumi-moe-builder.component';
+import {EpisodeDetail} from './episode-detail/episode-detail.component';
+import {FeedService} from './feed.service';
+import {KeywordBuilder} from './keyword-builder/keyword-builder.component';
+import {UniversalBuilderComponent} from './universal-builder/universal-builder.component';
+import {VideoFileModal} from './video-file-modal/video-file-modal.component';
 
 export enum AnnounceStatus {
     NOT_SET, NOT_YET, ANNOUNCING, EXPIRED
@@ -327,7 +326,7 @@ export class BangumiDetail implements OnInit, OnDestroy {
 
     private fetchAnnounceList(bangumi_id: string) {
         this._subscription.add(
-            this._announceService.listAnnounce(2,0, 10, bangumi_id)
+            this._announceService.listAnnounce(2, 0, 10, bangumi_id)
                 .subscribe(({data}) => {
                     this.announceList = data;
                     let currentTime = Date.now();

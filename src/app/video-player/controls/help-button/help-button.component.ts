@@ -1,5 +1,5 @@
-import { Component, HostListener } from '@angular/core';
-import { VideoPlayer } from '../../video-player.component';
+import {Component, HostListener} from '@angular/core';
+import {VideoPlayer} from '../../video-player.component';
 
 @Component({
     selector: 'video-player-help-button',

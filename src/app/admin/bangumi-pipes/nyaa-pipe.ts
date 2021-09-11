@@ -1,9 +1,13 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
 
 export const AVAILABLE_FILTER = ['No filter', 'No remakes', 'Trusted only'];
-export const AVAILABLE_CATEGORY = { '1_2': 'Anime - English-translated', '1_3': 'Anime - Non-English-translated', '1_4': 'Anime - Raw' };
+export const AVAILABLE_CATEGORY = {
+    '1_2': 'Anime - English-translated',
+    '1_3': 'Anime - Non-English-translated',
+    '1_4': 'Anime - Raw'
+};
 
-@Pipe({ name: 'NyaaPipe' })
+@Pipe({name: 'NyaaPipe'})
 export class NyaaPipe implements PipeTransform {
 
     transform(value: string, key: string): any {

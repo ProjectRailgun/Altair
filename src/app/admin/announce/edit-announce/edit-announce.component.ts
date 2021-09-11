@@ -1,15 +1,15 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UIDialogRef } from 'altair-ui';
-import { Announce } from '../../../entity/announce';
-import { ECalendarValue, IDatePickerConfig } from 'ng2-date-picker';
-import { Subscription } from 'rxjs';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UIDialogRef} from 'altair-ui';
+import {Announce} from '../../../entity/announce';
+import {ECalendarValue, IDatePickerConfig} from 'ng2-date-picker';
+import {Subscription} from 'rxjs';
 import * as moment from 'moment';
 
 export function rangeLimit(group: FormGroup) {
     let start_time = group.get('start_time').value;
     let end_time = group.get('end_time').value;
-    return end_time > start_time ? null : { dateRange: { end_time: end_time, start_time: start_time } };
+    return end_time > start_time ? null : {dateRange: {end_time: end_time, start_time: start_time}};
 }
 
 
@@ -62,7 +62,7 @@ export class EditAnnounceComponent implements OnInit, OnDestroy {
 
 
     constructor(private _dialogRef: UIDialogRef<EditAnnounceComponent>,
-        private _fb: FormBuilder) {
+                private _fb: FormBuilder) {
     }
 
     onPositionChange(position: number) {
@@ -106,7 +106,7 @@ export class EditAnnounceComponent implements OnInit, OnDestroy {
                 image_url: [this.announce.image_url, Validators.required],
                 start_time: [moment(this.announce.start_time), Validators.required],
                 end_time: [moment(this.announce.end_time), Validators.required]
-            }, { validator: rangeLimit });
+            }, {validator: rangeLimit});
             this.position = this.announce.position;
         } else {
             this.announceForm = this._fb.group({
@@ -115,7 +115,7 @@ export class EditAnnounceComponent implements OnInit, OnDestroy {
                 image_url: ['', Validators.required],
                 start_time: [moment(), Validators.required],
                 end_time: [moment().add(1, 'day'), Validators.required]
-            }, { validator: rangeLimit })
+            }, {validator: rangeLimit})
         }
 
         this.onFormChanged(this.announceFormErrors, this.validationMessages, this.announceForm);

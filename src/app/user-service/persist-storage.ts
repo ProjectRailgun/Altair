@@ -1,9 +1,8 @@
-
-import {distinctUntilChanged, map, filter} from 'rxjs/operators';
-import { Injectable } from '@angular/core';
-import { UserService } from './user.service';
-import { storageAPI } from '../../helpers/localstorage';
-import { Subject ,  Observable } from 'rxjs';
+import {distinctUntilChanged, filter, map} from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {UserService} from './user.service';
+import {storageAPI} from '../../helpers/localstorage';
+import {Observable, Subject} from 'rxjs';
 
 export const PREFIX = 'ps';
 
@@ -59,14 +58,14 @@ export class PersistStorageIterator implements IterableIterator<PersistEntry> {
         return this;
     }
 
-    private hasPrefix(key: string):boolean {
+    private hasPrefix(key: string): boolean {
         return key.startsWith(PREFIX + ':');
     }
 }
 
 @Injectable()
 export class PersistStorage {
-    private _itemChange = new Subject<{key: string, value: string}>();
+    private _itemChange = new Subject<{ key: string, value: string }>();
 
     constructor(private _userService: UserService) {
         this._userService.getUserInfo()
@@ -86,7 +85,7 @@ export class PersistStorage {
     getItem(key: string, defaultValue: string | null): string {
         let keyInStorage = `${PREFIX}:${key}`;
         let value = storageAPI.getItem(keyInStorage);
-        return value !== null ? value: defaultValue;
+        return value !== null ? value : defaultValue;
     }
 
     removeItem(key: string): void {

@@ -1,12 +1,11 @@
-
-import {fromEvent as observableFromEvent,  Subscription ,  Observable } from 'rxjs';
+import {fromEvent as observableFromEvent, Subscription} from 'rxjs';
 
 import {filter} from 'rxjs/operators';
-import { UIPopoverContent, UIPopoverRef } from 'altair-ui';
-import { Component, ElementRef, OnDestroy, Self } from '@angular/core';
-import { UserActionPanelComponent } from '../../../../home/user-action/user-action-panel/user-action-panel.component';
-import { Capture, FloatPlayer, PlayList } from '../../../core/settings';
-import { PersistStorage } from '../../../../user-service';
+import {UIPopoverContent, UIPopoverRef} from 'altair-ui';
+import {Component, ElementRef, OnDestroy, Self} from '@angular/core';
+import {UserActionPanelComponent} from '../../../../home/user-action/user-action-panel/user-action-panel.component';
+import {Capture, FloatPlayer, PlayList} from '../../../core/settings';
+import {PersistStorage} from '../../../../user-service';
 
 @Component({
     selector: 'video-config-panel',

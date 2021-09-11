@@ -1,14 +1,14 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { UIDialog, UIToast, UIToastComponent, UIToastRef } from 'altair-ui';
-import { Subscription } from 'rxjs';
-import { filter, mergeMap } from 'rxjs/operators';
-import { BaseError } from '../../../helpers/error/BaseError';
-import { ClientError } from '../../../helpers/error/ClientError';
-import { User } from '../../entity/user';
-import { UserService } from '../../user-service/user.service';
-import { UserManagerSerivce } from './user-manager.service';
-import { UserPromoteModal } from './user-promote-modal/user-promote-modal.component';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Title} from '@angular/platform-browser';
+import {UIDialog, UIToast, UIToastComponent, UIToastRef} from 'altair-ui';
+import {Subscription} from 'rxjs';
+import {filter, mergeMap} from 'rxjs/operators';
+import {BaseError} from '../../../helpers/error/BaseError';
+import {ClientError} from '../../../helpers/error/ClientError';
+import {User} from '../../entity/user';
+import {UserService} from '../../user-service/user.service';
+import {UserManagerSerivce} from './user-manager.service';
+import {UserPromoteModal} from './user-promote-modal/user-promote-modal.component';
 
 @Component({
     selector: 'user-manager',
@@ -112,6 +112,10 @@ export class UserManager implements OnInit, OnDestroy {
         // console.log('inviteCode: ', url);
         this._toastRef.show('邀请链接已经复制到剪贴板');
         document.body.removeChild(inputElement);
+    }
+
+    parseInteger(input: string) {
+        return parseInt(input);
     }
 
     generateInviteCode() {

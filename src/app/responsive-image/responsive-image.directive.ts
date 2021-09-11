@@ -1,9 +1,19 @@
 import {
-    ChangeDetectorRef, Directive, ElementRef, EventEmitter, HostBinding, HostListener, Input, OnChanges, OnDestroy,
-    OnInit, Output, SimpleChanges
+    ChangeDetectorRef,
+    Directive,
+    ElementRef,
+    EventEmitter,
+    HostBinding,
+    HostListener,
+    Input,
+    OnChanges,
+    OnDestroy,
+    OnInit,
+    Output,
+    SimpleChanges
 } from '@angular/core';
-import { ObservableStub, ResponsiveService } from './responsive.service';
-import { getRemPixel, getVhInPixel, getVwInPixel } from '../../helpers/dom';
+import {ObservableStub, ResponsiveService} from './responsive.service';
+import {getRemPixel, getVhInPixel, getVwInPixel} from '../../helpers/dom';
 
 export interface ResponsiveDimension {
     width: string; // px, rem, vw, auto, 100%
@@ -11,6 +21,7 @@ export interface ResponsiveDimension {
     originalWidth: number;
     originalHeight: number;
 }
+
 /**
  * This directive will let a normal HTMLImageElement load a resized image from source url according to its current dimension.
  * It use different approach to decide the dimension depends on `dimension` property.
@@ -76,8 +87,8 @@ export class ResponsiveImage implements OnInit, OnChanges, OnDestroy {
     }
 
     constructor(private _element: ElementRef,
-        private _responsiveService: ResponsiveService,
-        private _changeDetector: ChangeDetectorRef) {
+                private _responsiveService: ResponsiveService,
+                private _changeDetector: ChangeDetectorRef) {
     }
 
     @HostListener('load', ['$event'])

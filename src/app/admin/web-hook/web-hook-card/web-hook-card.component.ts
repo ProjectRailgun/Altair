@@ -1,5 +1,5 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { WebHook } from '../../../entity/web-hook';
+import {Component, Input, ViewEncapsulation} from '@angular/core';
+import {WebHook} from '../../../entity/web-hook';
 
 @Component({
     selector: 'web-hook-card',

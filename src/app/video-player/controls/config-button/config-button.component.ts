@@ -1,9 +1,9 @@
-import { Component, ElementRef, HostListener, OnDestroy, Self } from '@angular/core';
-import { UIPopover, UIPopoverRef } from 'altair-ui';
-import { VideoControls } from '../controls.component';
-import { VideoPlayer } from '../../video-player.component';
-import { VideoConfigPanelComponent } from './config-panel/config-panel.component';
-import { Subscription } from 'rxjs';
+import {Component, ElementRef, HostListener, OnDestroy, Self} from '@angular/core';
+import {UIPopover, UIPopoverRef} from 'altair-ui';
+import {VideoControls} from '../controls.component';
+import {VideoPlayer} from '../../video-player.component';
+import {VideoConfigPanelComponent} from './config-panel/config-panel.component';
+import {Subscription} from 'rxjs';
 
 @Component({
     selector: 'video-player-config-button',

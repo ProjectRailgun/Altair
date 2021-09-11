@@ -3,7 +3,8 @@
         <div class="search-bar">
             <a class="back-button" (click)="cancelSearch()"><i class="chevron left icon"></i></a>
             <div class="ui left action icon input">
-                <div class="ui basic floating dropdown button" #typePicker [ngClass]="{active: typePickerOpen, visible: typePickerOpen}">
+                <div class="ui basic floating dropdown button" #typePicker
+                     [ngClass]="{active: typePickerOpen, visible: typePickerOpen}">
                     <div class="text">{{ bangumiType | bangumiTypeName }}</div>
                     <i class="dropdown icon"></i>
                     <div class="menu transition" [ngClass]="{visible: typePickerOpen, hidden: !typePickerOpen}">
@@ -17,11 +18,13 @@
         </div>
         <div class="search-result-container" *ngIf="!isLoading && bangumiList?.length > 0">
             <div class="bangumi-list">
-                <bangumi-card *ngFor="let bangumi of bangumiList" [bangumi]="bangumi" [showAddedTag]="true" (click)="viewDetail(bangumi)"></bangumi-card>
+                <bangumi-card *ngFor="let bangumi of bangumiList" [bangumi]="bangumi" [showAddedTag]="true"
+                              (click)="viewDetail(bangumi)"></bangumi-card>
             </div>
 
             <div class="pagination-wrapper" *ngIf="total > bangumiList?.length">
-                <ui-pagination [currentPage]="currentPage" [total]="total" [max]="8" [countPerPage]="count" (pageChange)="onPageChanged($event)"></ui-pagination>
+                <ui-pagination [currentPage]="currentPage" [total]="total" [max]="8" [countPerPage]="count"
+                               (pageChange)="onPageChanged($event)"></ui-pagination>
             </div>
         </div>
         <div class="no-result-container" *ngIf="!isLoading && bangumiList?.length === 0">
@@ -33,7 +36,8 @@
             </div>
         </div>
     </div>
-    <result-detail [bgmId]="selectedBgmId" [typeId]="bangumiType" [showDetail]="showDetail" (finish)="fromDetail($event)"></result-detail>
+    <result-detail [bgmId]="selectedBgmId" [typeId]="bangumiType" [showDetail]="showDetail"
+                   (finish)="fromDetail($event)"></result-detail>
     <div class="saving-dimmer ui inverted dimmer" [ngClass]="{active: isSaving}">
         <div class="ui massive text loader">
             保存中...

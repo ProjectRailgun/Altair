@@ -4,12 +4,13 @@ import {
     ElementRef,
     EventEmitter,
     Input,
-    OnChanges, Output,
+    OnChanges,
+    Output,
     SimpleChanges,
     ViewChild
 } from '@angular/core';
-import { RATING_COLOR, RATING_TEXT } from '../rating.component';
-import { UIToast, UIToastComponent, UIToastRef } from 'altair-ui';
+import {RATING_COLOR, RATING_TEXT} from '../rating.component';
+import {UIToast, UIToastComponent, UIToastRef} from 'altair-ui';
 
 @Component({
     selector: 'my-review',

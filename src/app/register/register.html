@@ -13,7 +13,8 @@
                     <div class="ui orange horizontal label ng-star-inserted">秋</div>
                     <div class="sub header">The sparkle of anime, at your fingertips.</div>
                 </h2>
-                <form class="ui form" (ngSubmit)="onSubmit()" [formGroup]="registerForm" [ngClass]="{error: !registerForm.valid}">
+                <form class="ui form" (ngSubmit)="onSubmit()" [formGroup]="registerForm"
+                      [ngClass]="{error: !registerForm.valid}">
                     <div class="ui field">
                         <label for="name">用户名</label>
                         <input id="name" type="text" formControlName="name" placeholder="用户名">
@@ -24,7 +25,8 @@
                     </div>
                     <div class="ui field">
                         <label for="password_repeat">重复密码</label>
-                        <input id="password_repeat" type="password" formControlName="password_repeat" placeholder="重复密码">
+                        <input id="password_repeat" type="password" formControlName="password_repeat"
+                               placeholder="重复密码">
                     </div>
                     <div class="ui field">
                         <label for="email">邮箱</label>
@@ -35,7 +37,9 @@
                         <input id="invite_code" type="text" formControlName="invite_code" placeholder="邀请码">
                     </div>
                     <div>
-                        <button class="ui primary button large fluid submit" type="submit" [disabled]="!registerForm.valid">注册</button>
+                        <button class="ui primary button large fluid submit" type="submit"
+                                [disabled]="!registerForm.valid">注册
+                        </button>
                     </div>
                 </form>
                 <div class="ui row centered grid">
@@ -48,8 +52,10 @@
         </div>
         <footer id="page-footer">
             <div class="copyright-content">2019-2021 Project Railgun</div>
-            <div class="credits">Hosted by <a target="_blank" href="https://about.eve.network" rel="noopener nofollow">EVE Network</a></div>
-            <div class="credits">Powered by <a target="_blank" href="https://level5.network" rel="noopener nofollow">Level5 Network</a></div>
+            <div class="credits">Hosted by <a target="_blank" href="https://about.eve.network" rel="noopener nofollow">EVE
+                Network</a></div>
+            <div class="credits">Powered by <a target="_blank" href="https://level5.network" rel="noopener nofollow">Level5
+                Network</a></div>
             <div class="ui horizontal bulleted link list">
                 <a routerLink="/about/apps" class="item">移动客户端</a>
                 <a routerLink="/about/tos" class="item">使用条款</a>

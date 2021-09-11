@@ -1,20 +1,20 @@
-import { Injectable } from '@angular/core';
-import { UIToast } from 'altair-ui';
-import { Observable, of as observableOf, Subject, throwError as observableThrowError } from 'rxjs/index';
-import { filter, map, switchMap, tap } from 'rxjs/internal/operators';
-import { catchError } from 'rxjs/operators';
-import { BaseService } from '../../helpers/base.service';
+import {Injectable} from '@angular/core';
+import {UIToast} from 'altair-ui';
+import {Observable, of as observableOf, Subject, throwError as observableThrowError} from 'rxjs/index';
+import {filter, map, switchMap, tap} from 'rxjs/internal/operators';
+import {catchError} from 'rxjs/operators';
+import {BaseService} from '../../helpers/base.service';
 import {
     ChromeExtensionService,
     ENABLED_STATUS,
     INITIAL_STATE_VALUE,
     LOGON_STATUS
 } from '../browser-extension/chrome-extension.service';
-import { Bangumi } from '../entity';
-import { WatchProgress } from '../entity/watch-progress';
-import { VideoPlayerService } from '../video-player/video-player.service';
-import { SynchronizeService } from './synchronize.service';
-import { WatchService } from './watch.service';
+import {Bangumi} from '../entity';
+import {WatchProgress} from '../entity/watch-progress';
+import {VideoPlayerService} from '../video-player/video-player.service';
+import {SynchronizeService} from './synchronize.service';
+import {WatchService} from './watch.service';
 
 @Injectable()
 export class FavoriteManagerService extends BaseService {

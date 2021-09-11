@@ -1,14 +1,21 @@
+import {fromEvent as observableFromEvent, interval as observableInterval, Subscription} from 'rxjs';
 
-import {interval as observableInterval, fromEvent as observableFromEvent,  Subscription ,  Observable } from 'rxjs';
-
-import {takeUntil, mergeMap, tap, map, filter} from 'rxjs/operators';
+import {filter, map, mergeMap, takeUntil, tap} from 'rxjs/operators';
 import {
-    AfterViewInit, Component, ElementRef, EventEmitter, HostBinding, Input, OnDestroy, OnInit,
-    Output, Self,
+    AfterViewInit,
+    Component,
+    ElementRef,
+    EventEmitter,
+    HostBinding,
+    Input,
+    OnDestroy,
+    OnInit,
+    Output,
+    Self,
     ViewChild
 } from '@angular/core';
-import { VideoPlayerHelpers } from '../../core/helpers';
-import { VideoPlayer } from '../../video-player.component';
+import {VideoPlayerHelpers} from '../../core/helpers';
+import {VideoPlayer} from '../../video-player.component';
 
 @Component({
     selector: 'video-player-scrub-bar',

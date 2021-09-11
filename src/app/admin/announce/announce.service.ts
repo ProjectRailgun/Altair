@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-import { BaseService } from '../../../helpers/base.service';
-import { Announce } from '../../entity/announce';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {catchError} from 'rxjs/operators';
+import {BaseService} from '../../../helpers/base.service';
+import {Announce} from '../../entity/announce';
 
 @Injectable()
 export class AnnounceService extends BaseService {
@@ -14,8 +14,8 @@ export class AnnounceService extends BaseService {
         super();
     }
 
-    listAnnounce(position: number, offset: number, count: number, content?: string): Observable<{data: Announce[], total: number}> {
-        return this._http.get<{data: Announce[], total: number}>(this._baseUrl, {
+    listAnnounce(position: number, offset: number, count: number, content?: string): Observable<{ data: Announce[], total: number }> {
+        return this._http.get<{ data: Announce[], total: number }>(this._baseUrl, {
             params: {
                 position: position + '',
                 offset: offset + '',

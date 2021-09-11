@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Staff } from '../interfaces';
+import {Component, Input, OnInit} from '@angular/core';
+import {Staff} from '../interfaces';
 
 @Component({
     selector: 'bangumi-staff-info',

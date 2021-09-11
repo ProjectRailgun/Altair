@@ -1,8 +1,8 @@
-import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
-import { BangumiRaw } from '../../../entity/bangumi-raw';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AdminService } from '../../admin.service';
-import { Subscription } from 'rxjs';
+import {Component, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleChanges} from '@angular/core';
+import {BangumiRaw} from '../../../entity/bangumi-raw';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AdminService} from '../../admin.service';
+import {Subscription} from 'rxjs';
 
 @Component({
     selector: 'result-detail',

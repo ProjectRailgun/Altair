@@ -1,9 +1,8 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import { HttpClient } from '@angular/common/http';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Http } from '@angular/http';
-import { VideoFile } from '../../entity/video-file';
-import { VideoPlayer } from '../../video-player/video-player.component';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {HttpClient} from '@angular/common/http';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {VideoFile} from '../../entity/video-file';
+import {VideoPlayer} from '../../video-player/video-player.component';
 
 export interface PVManifest {
     name: string,

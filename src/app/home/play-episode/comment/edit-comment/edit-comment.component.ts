@@ -1,8 +1,8 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { ChromeExtensionService } from '../../../../browser-extension/chrome-extension.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UIToast, UIToastComponent, UIToastRef } from 'altair-ui';
-import { Subscription } from 'rxjs';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {ChromeExtensionService} from '../../../../browser-extension/chrome-extension.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UIToast, UIToastComponent, UIToastRef} from 'altair-ui';
+import {Subscription} from 'rxjs';
 
 @Component({
     selector: 'bangumi-edit-comment',
@@ -33,8 +33,8 @@ export class EditCommentComponent implements OnInit, OnDestroy {
     editCommentForm: FormGroup;
 
     constructor(private _chromeExtensionService: ChromeExtensionService,
-        private _fb: FormBuilder,
-        toast: UIToast) {
+                private _fb: FormBuilder,
+                toast: UIToast) {
         this._toastRef = toast.makeText();
     }
 
@@ -67,7 +67,7 @@ export class EditCommentComponent implements OnInit, OnDestroy {
         this._subscription.add(
             this._chromeExtensionService.invokeBangumiWebMethod('getEditComment', [this.postId, this.bgmEpsId])
                 .subscribe((result: any) => {
-                    this.editCommentForm.patchValue({ content: result.content });
+                    this.editCommentForm.patchValue({content: result.content});
                     this._formhash = result.formhash;
                     this.isLoading = false;
                 }, () => {

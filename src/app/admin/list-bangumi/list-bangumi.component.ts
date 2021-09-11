@@ -1,7 +1,6 @@
+import {fromEvent as observableFromEvent, Subscription} from 'rxjs';
 
-import {fromEvent as observableFromEvent, Observable, Subscription} from 'rxjs';
-
-import {distinctUntilChanged, debounceTime} from 'rxjs/operators';
+import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 import {Bangumi} from '../../entity';
 import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Title} from '@angular/platform-browser';
@@ -12,7 +11,7 @@ import {UIDialog, UIToast, UIToastComponent, UIToastRef} from 'altair-ui';
 import {BaseError} from '../../../helpers/error/BaseError';
 import {CARD_HEIGHT_REM} from '../bangumi-card/bangumi-card.component';
 import {SearchBangumi} from '../search-bangumi/search-bangumi.component';
-import { ListBangumiService } from './list-bangumi.service';
+import {ListBangumiService} from './list-bangumi.service';
 
 @Component({
     selector: 'list-bangumi',

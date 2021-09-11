@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-import { BaseService } from '../../helpers/base.service';
-import { PersistStorage } from '../user-service/persist-storage';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {catchError} from 'rxjs/operators';
+import {BaseService} from '../../helpers/base.service';
+import {PersistStorage} from '../user-service/persist-storage';
 
 export const PREFIX = 'watch_history';
 
@@ -78,7 +78,7 @@ export class WatchService extends BaseService {
         let watchHistoryRecords: WatchHistoryRecord[] = [];
         for (let result = iterator.next(); !result.done; result = iterator.next()) {
             let entry = result.value;
-            if(this._persistStorage.startsWith(entry.key, PREFIX) && entry.value) {
+            if (this._persistStorage.startsWith(entry.key, PREFIX) && entry.value) {
                 watchHistoryRecords.push(JSON.parse(entry.value));
             }
         }

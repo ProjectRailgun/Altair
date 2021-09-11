@@ -1,13 +1,13 @@
-import { HttpClient } from '@angular/common/http';
-import {throwError as observableThrowError,  Observable } from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {Observable, throwError as observableThrowError} from 'rxjs';
 
-import {filter, take, mergeMap, catchError, map} from 'rxjs/operators';
-import { Injectable } from '@angular/core';
-import { BaseService } from '../../../helpers/base.service';
-import { PERM_NAME, WebHook } from '../../entity/web-hook';
-import { UIDialog } from 'altair-ui';
-import { ConfirmDialogModal } from '../../confirm-dialog/confirm-dialog-modal.component';
-import { BaseError } from '../../../helpers/error/BaseError';
+import {catchError, filter, map, mergeMap, take} from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {BaseService} from '../../../helpers/base.service';
+import {PERM_NAME, WebHook} from '../../entity/web-hook';
+import {UIDialog} from 'altair-ui';
+import {ConfirmDialogModal} from '../../confirm-dialog/confirm-dialog-modal.component';
+import {BaseError} from '../../../helpers/error/BaseError';
 
 const PERMISSION_INFO = {
     [WebHook.PERMISSION_FAVORITE]: '用户的收藏信息',
@@ -28,7 +28,7 @@ export class UserCenterService extends BaseService {
      * @returns {Observable<WebHook[]>}
      */
     listWebHookToken(): Observable<WebHook[]> {
-        return this._http.get<{ data: any[], total: number}>('/api/web-hook/token').pipe(
+        return this._http.get<{ data: any[], total: number }>('/api/web-hook/token').pipe(
             map(res => res.data),
             map(webHookList => {
                 return webHookList.map(webHook => {

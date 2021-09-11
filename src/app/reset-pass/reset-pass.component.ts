@@ -1,11 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
-import { passwordMatch } from '../form-utils';
-import { Router } from '@angular/router';
-import { UserService } from '../user-service';
-import { UIToast, UIToastComponent, UIToastRef } from 'altair-ui';
-import { BaseError } from '../../helpers/error';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Subscription} from 'rxjs';
+import {passwordMatch} from '../form-utils';
+import {Router} from '@angular/router';
+import {UserService} from '../user-service';
+import {UIToast, UIToastComponent, UIToastRef} from 'altair-ui';
+import {BaseError} from '../../helpers/error';
+
 @Component({
     selector: 'reset-pass',
     templateUrl: './reset-pass.html',
@@ -33,14 +34,14 @@ export class ResetPass implements OnInit, OnDestroy {
     isPending = false;
 
     constructor(_fb: FormBuilder,
-        toast: UIToast,
-        private _router: Router,
-        private _userService: UserService) {
+                toast: UIToast,
+                private _router: Router,
+                private _userService: UserService) {
         this._toastRef = toast.makeText();
         this.passForm = _fb.group({
             new_pass: ['', Validators.required],
             new_pass_repeat: ['', Validators.required]
-        }, { validator: passwordMatch('new_pass', 'new_pass_repeat') });
+        }, {validator: passwordMatch('new_pass', 'new_pass_repeat')});
         this.onFormChanged(this.passFormErrors, this.passValidationMessages, this.passForm);
     }
 

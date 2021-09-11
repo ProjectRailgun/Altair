@@ -1,8 +1,10 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 export interface ObservableStub {
     target: Element;
+
     callback(rect: ClientRect): void;
+
     unobserveOnVisible: boolean;
 }
 

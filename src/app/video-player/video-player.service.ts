@@ -1,26 +1,19 @@
-import {
-    ApplicationRef,
-    ComponentFactoryResolver,
-    ComponentRef,
-    ElementRef,
-    Injectable,
-    Injector,
-} from '@angular/core';
-import { PRIMARY_OUTLET, Router } from '@angular/router';
-import { Observable, Subject, Subscription } from 'rxjs';
-import { interval as observableInterval } from 'rxjs/index';
-import { filter, map, switchMap, tap, throttleTime } from 'rxjs/internal/operators';
-import { take } from 'rxjs/operators';
-import { Bangumi, Episode } from '../entity';
-import { VideoFile } from '../entity/video-file';
-import { WatchProgress } from '../entity/watch-progress';
-import { MIN_WATCHED_PERCENTAGE } from '../home/play-episode/play-episode.component';
-import { WatchService } from '../home/watch.service';
-import { PersistStorage } from '../user-service';
-import { getComponentRootNode, VideoPlayerHelpers } from './core/helpers';
-import { FloatPlayer } from './core/settings';
-import { PlayState } from './core/state';
-import { FLOAT_PLAYER_SCALE_RATIO, VideoPlayer } from './video-player.component';
+import {ApplicationRef, ComponentFactoryResolver, ComponentRef, ElementRef, Injectable, Injector,} from '@angular/core';
+import {PRIMARY_OUTLET, Router} from '@angular/router';
+import {Observable, Subject, Subscription} from 'rxjs';
+import {interval as observableInterval} from 'rxjs/index';
+import {filter, map, switchMap, tap, throttleTime} from 'rxjs/internal/operators';
+import {take} from 'rxjs/operators';
+import {Bangumi, Episode} from '../entity';
+import {VideoFile} from '../entity/video-file';
+import {WatchProgress} from '../entity/watch-progress';
+import {MIN_WATCHED_PERCENTAGE} from '../home/play-episode/play-episode.component';
+import {WatchService} from '../home/watch.service';
+import {PersistStorage} from '../user-service';
+import {getComponentRootNode, VideoPlayerHelpers} from './core/helpers';
+import {FloatPlayer} from './core/settings';
+import {PlayState} from './core/state';
+import {FLOAT_PLAYER_SCALE_RATIO, VideoPlayer} from './video-player.component';
 
 @Injectable({
     providedIn: 'root'
@@ -134,7 +127,7 @@ export class VideoPlayerService {
      * if the video playback state is playing, we enter a float play state, otherwise just destroy the player
      */
     public onContainerDestroyed(): void {
-        if ((this._state != PlayState.PLAYING && this._pendingState != PlayState.PLAYING) || !this._autoFloatPlayWhenLeave ) {
+        if ((this._state != PlayState.PLAYING && this._pendingState != PlayState.PLAYING) || !this._autoFloatPlayWhenLeave) {
             this.onDestroy();
         } else {
             if (this.isPortrait && this._isFloatPlayerTooSmall()) {
@@ -245,7 +238,7 @@ export class VideoPlayerService {
     private _scrollToTop() {
         const step = 10;
         const totalDistance = document.documentElement.scrollTop;
-        const co = totalDistance / ((step - 1) * (step -1));
+        const co = totalDistance / ((step - 1) * (step - 1));
         this._onScrolling.next(true);
         observableInterval(30).pipe(
             take(step),
@@ -254,7 +247,8 @@ export class VideoPlayerService {
             }),)
             .subscribe((d) => {
                 document.documentElement.scrollTop = d;
-            }, () => {}, () => {
+            }, () => {
+            }, () => {
                 this._videoPlayerComponentRef.instance.toggleFloatPlay();
                 if (this._currentViewContainer) {
                     // remove size styles
@@ -275,7 +269,7 @@ export class VideoPlayerService {
             return false;
         }
         const container = this._currentViewContainer.nativeElement as HTMLElement;
-        if (!container){
+        if (!container) {
             return false;
         }
         return container.classList.contains('theater-backdrop');
@@ -293,7 +287,7 @@ export class VideoPlayerService {
         this._eventSubscribe();
     }
 
-    private _reAttachPlayer():void {
+    private _reAttachPlayer(): void {
         const containerElement = this._currentViewContainer.nativeElement as HTMLElement;
         containerElement.appendChild(getComponentRootNode(this._videoPlayerComponentRef));
     }
@@ -301,7 +295,7 @@ export class VideoPlayerService {
     private _initializeData(episode: Episode, bangumi: Bangumi, nextEpisode: Episode, videoFile: VideoFile) {
         let startPosition = 0;
         if (episode.watch_progress) {
-            startPosition =  episode.watch_progress.last_watch_position;
+            startPosition = episode.watch_progress.last_watch_position;
         }
         this._episode = Object.assign({}, episode);
         this._bangumi = Object.assign({}, bangumi);
@@ -438,7 +432,7 @@ export class VideoPlayerService {
         dv.style.top = '-1.2rem';
         dv.textContent = testStr;
         document.body.appendChild(dv);
-        const rect =  dv.getBoundingClientRect();
+        const rect = dv.getBoundingClientRect();
         document.body.removeChild(dv);
         return rect.width > scaledPlayerWidth;
     }

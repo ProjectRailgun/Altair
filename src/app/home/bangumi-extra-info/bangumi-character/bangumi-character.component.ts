@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { Bangumi } from '../../../entity';
-import { Character } from '../interfaces';
+import {Component, Input} from '@angular/core';
+import {Bangumi} from '../../../entity';
+import {Character} from '../interfaces';
 
 
 @Component({

@@ -1,10 +1,8 @@
+import {fromEvent as observableFromEvent, Subscription} from 'rxjs';
 
-import {fromEvent as observableFromEvent,  Subscription ,  Observable } from 'rxjs';
-
-import {map, tap, filter} from 'rxjs/operators';
-import { VideoPlayer } from '../video-player.component';
-import { VideoPlayerService } from '../video-player.service';
-import { VideoCapture } from './video-capture.service';
+import {filter, map, tap} from 'rxjs/operators';
+import {VideoPlayer} from '../video-player.component';
+import {VideoCapture} from './video-capture.service';
 
 export const KEY_MAP = {
     ENTER: 13,

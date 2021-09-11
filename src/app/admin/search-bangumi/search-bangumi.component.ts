@@ -1,7 +1,6 @@
+import {fromEvent as observableFromEvent, Subscription} from 'rxjs';
 
-import {fromEvent as observableFromEvent, Observable, Subscription} from 'rxjs';
-
-import {distinctUntilChanged, map, debounceTime, takeWhile, mergeMap, tap, filter} from 'rxjs/operators';
+import {debounceTime, distinctUntilChanged, filter, map, mergeMap, takeWhile, tap} from 'rxjs/operators';
 import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
 import {Bangumi} from '../../entity';
 import {AdminService} from '../admin.service';
@@ -47,8 +46,8 @@ export class SearchBangumi implements AfterViewInit {
     }
 
     ngAfterViewInit(): void {
-        let searchBox = <HTMLElement> this.searchBox.nativeElement;
-        let typePicker = <HTMLElement> this.typePicker.nativeElement;
+        let searchBox = <HTMLElement>this.searchBox.nativeElement;
+        let typePicker = <HTMLElement>this.typePicker.nativeElement;
 
         this._subscription.add(
             observableFromEvent(typePicker, 'click').pipe(
@@ -152,15 +151,15 @@ export class SearchBangumi implements AfterViewInit {
             bangumi.type = this.bangumiType; // Use user-defined bangumiType to override that from API.
             this._subscription.add(
                 this._adminService.addBangumi(bangumi)
-                .subscribe(
-                    (bangumi_id: string) => {
-                        this._dialogRef.close(bangumi_id);
-                    },
-                    (error: BaseError) => {
-                        this.isSaving = false;
-                        this._toastRef.show(error.message);
-                    }
-                )
+                    .subscribe(
+                        (bangumi_id: string) => {
+                            this._dialogRef.close(bangumi_id);
+                        },
+                        (error: BaseError) => {
+                            this.isSaving = false;
+                            this._toastRef.show(error.message);
+                        }
+                    )
             );
         } else {
             this.showDetail = false;

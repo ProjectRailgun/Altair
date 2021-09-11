@@ -1,14 +1,14 @@
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {BehaviorSubject, merge, of, Subscription} from 'rxjs';
 import {catchError, filter} from 'rxjs/internal/operators';
-import { mergeMap } from 'rxjs/operators';
-import { closest } from '../../../helpers/dom';
-import { Bangumi } from '../../entity';
-import { FAVORITE_LABEL } from '../../entity/constants';
-import { WatchProgress } from '../../entity/watch-progress';
-import { VideoPlayerService } from '../../video-player/video-player.service';
-import { FavoriteManagerService } from '../favorite-manager.service';
-import { HomeService } from '../home.service';
+import {mergeMap} from 'rxjs/operators';
+import {closest} from '../../../helpers/dom';
+import {Bangumi} from '../../entity';
+import {FAVORITE_LABEL} from '../../entity/constants';
+import {WatchProgress} from '../../entity/watch-progress';
+import {VideoPlayerService} from '../../video-player/video-player.service';
+import {FavoriteManagerService} from '../favorite-manager.service';
+import {HomeService} from '../home.service';
 
 @Component({
     selector: 'my-bangumi',

@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { PersistStorage } from '../../user-service';
-import { Capture } from './settings';
+import {Injectable} from '@angular/core';
+import {PersistStorage} from '../../user-service';
+import {Capture} from './settings';
 import download from 'downloadjs';
 
 export type PreviewImageParams = { bangumi_name: string, episode_no: number, currentPlayTime: number };

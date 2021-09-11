@@ -1,5 +1,3 @@
-import { Bangumi } from './bangumi';
-
 export const FAVORITE_LABEL = {
     1: '想看',
     2: '看过',

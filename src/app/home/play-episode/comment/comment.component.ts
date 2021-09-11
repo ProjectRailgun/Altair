@@ -2,18 +2,20 @@ import {
     AfterViewInit,
     Component,
     ElementRef,
-    Input, OnChanges,
+    Input,
+    OnChanges,
     OnDestroy,
-    OnInit, SimpleChanges,
+    OnInit,
+    SimpleChanges,
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { BehaviorSubject, Observable, Subject, Subscription, merge } from 'rxjs';
-import { filter, mergeMap } from 'rxjs/operators';
-import { ChromeExtensionService, IAuthInfo } from '../../../browser-extension/chrome-extension.service';
-import { ResponsiveService } from '../../../responsive-image/responsive.service';
-import { PersistStorage } from '../../../user-service';
+import {FormGroup} from '@angular/forms';
+import {BehaviorSubject, Observable, Subscription} from 'rxjs';
+import {filter, mergeMap} from 'rxjs/operators';
+import {ChromeExtensionService, IAuthInfo} from '../../../browser-extension/chrome-extension.service';
+import {ResponsiveService} from '../../../responsive-image/responsive.service';
+import {PersistStorage} from '../../../user-service';
 
 export interface PostUser {
     uid: string;
@@ -90,8 +92,8 @@ export class CommentComponent implements OnInit, OnDestroy, AfterViewInit, OnCha
     @ViewChild('headDivider', {static: false}) headDividerRef: ElementRef;
 
     constructor(private _chromeExtensionService: ChromeExtensionService,
-        private _persistStorage: PersistStorage,
-        private _responsiveService: ResponsiveService) {
+                private _persistStorage: PersistStorage,
+                private _responsiveService: ResponsiveService) {
         this.sort = this._persistStorage.getItem(COMMENT_SORT_ORDER, null);
         if (!this.sort) {
             this.sort = 'desc';

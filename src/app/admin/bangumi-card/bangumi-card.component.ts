@@ -1,11 +1,17 @@
 import {
-    Component, Input, OnChanges, OnDestroy, OnInit, Optional, SimpleChanges,
+    Component,
+    Input,
+    OnChanges,
+    OnDestroy,
+    OnInit,
+    Optional,
+    SimpleChanges,
     ViewEncapsulation
 } from '@angular/core';
-import { Bangumi } from '../../entity/bangumi';
-import { InfiniteList, SCROLL_STATE } from 'altair-ui';
-import { Subscription } from 'rxjs';
-import { ImageLoadingStrategy } from '../../home/bangumi-card/image-loading-strategy.service';
+import {Bangumi} from '../../entity/bangumi';
+import {InfiniteList, SCROLL_STATE} from 'altair-ui';
+import {Subscription} from 'rxjs';
+import {ImageLoadingStrategy} from '../../home/bangumi-card/image-loading-strategy.service';
 
 const IMAGE_LOAD_DELAY = 1000;
 
@@ -35,7 +41,7 @@ export class BangumiCard implements OnInit, OnChanges, OnDestroy {
     imageUrl: string;
 
     constructor(@Optional() private _infiniteList: InfiniteList,
-        private _imageLoadingStrategy: ImageLoadingStrategy) {
+                private _imageLoadingStrategy: ImageLoadingStrategy) {
         this.lazy = !!_infiniteList;
     }
 

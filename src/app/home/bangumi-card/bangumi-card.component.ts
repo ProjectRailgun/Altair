@@ -1,22 +1,20 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    ElementRef,
     Input,
     OnChanges,
     OnDestroy,
     OnInit,
     Optional,
     SimpleChanges,
-    ViewChild,
     ViewEncapsulation
 } from '@angular/core';
-import { Bangumi } from '../../entity/bangumi';
-import { FAVORITE_LABEL } from '../../entity/constants';
-import { InfiniteList, SCROLL_STATE } from 'altair-ui';
-import { Subscription } from 'rxjs';
-import { ImageLoadingStrategy } from './image-loading-strategy.service';
-import { Router } from '@angular/router';
+import {Bangumi} from '../../entity/bangumi';
+import {FAVORITE_LABEL} from '../../entity/constants';
+import {InfiniteList, SCROLL_STATE} from 'altair-ui';
+import {Subscription} from 'rxjs';
+import {ImageLoadingStrategy} from './image-loading-strategy.service';
+import {Router} from '@angular/router';
 
 export const CARD_HEIGHT_REM = 16;
 
@@ -48,8 +46,8 @@ export class BangumiCard implements OnInit, OnDestroy, OnChanges {
     // @ViewChild('image') imageRef: ElementRef;
 
     constructor(@Optional() private _infiniteList: InfiniteList,
-        private _router: Router,
-        private _imageLoadingStrategy: ImageLoadingStrategy) {
+                private _router: Router,
+                private _imageLoadingStrategy: ImageLoadingStrategy) {
         this.lazy = !!_infiniteList;
     }
 

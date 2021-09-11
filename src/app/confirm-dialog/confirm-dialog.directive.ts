@@ -1,7 +1,7 @@
-import { Directive, EventEmitter, HostListener, Input, OnDestroy, Output } from '@angular/core';
-import { UIDialog } from 'altair-ui';
-import { ConfirmDialogModal } from './confirm-dialog-modal.component';
-import { Subscription } from 'rxjs';
+import {Directive, EventEmitter, HostListener, Input, OnDestroy, Output} from '@angular/core';
+import {UIDialog} from 'altair-ui';
+import {ConfirmDialogModal} from './confirm-dialog-modal.component';
+import {Subscription} from 'rxjs';
 
 @Directive({
     selector: '[confirmDialog]'
@@ -22,13 +22,14 @@ export class ConfirmDialogDirective implements OnDestroy {
     @Output()
     onCancel = new EventEmitter<any>();
 
-    constructor(private _dialog: UIDialog) { }
+    constructor(private _dialog: UIDialog) {
+    }
 
     @HostListener('click', ['$event'])
     onClickHandler($event: MouseEvent) {
         $event.preventDefault();
 
-        let _dialogRef = this._dialog.open(ConfirmDialogModal, { stickyDialog: true, backdrop: true });
+        let _dialogRef = this._dialog.open(ConfirmDialogModal, {stickyDialog: true, backdrop: true});
         _dialogRef.componentInstance.title = this.dialogTitle;
         _dialogRef.componentInstance.content = this.dialogContent;
         this._subscription.add(

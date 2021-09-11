@@ -1,9 +1,9 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UIDialogRef, UIToast, UIToastComponent, UIToastRef } from 'altair-ui';
-import { Subscription } from 'rxjs';
-import { Bangumi } from '../../../entity';
-import { RATING_TEXT } from '../rating.component';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UIDialogRef, UIToast, UIToastComponent, UIToastRef} from 'altair-ui';
+import {Subscription} from 'rxjs';
+import {Bangumi} from '../../../entity';
+import {RATING_TEXT} from '../rating.component';
 
 @Component({
     selector: 'edit-review-dialog',

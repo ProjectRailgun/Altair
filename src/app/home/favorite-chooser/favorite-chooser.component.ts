@@ -1,21 +1,18 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { UIDialog, UIToast, UIToastComponent, UIToastRef } from 'altair-ui';
-import { Subscription } from 'rxjs';
-import { switchMap } from 'rxjs/internal/operators';
-import { filter, mergeMap, tap } from 'rxjs/operators';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewEncapsulation} from '@angular/core';
+import {UIDialog, UIToast, UIToastComponent, UIToastRef} from 'altair-ui';
+import {Subscription} from 'rxjs';
+import {switchMap} from 'rxjs/internal/operators';
+import {filter, tap} from 'rxjs/operators';
 import {
     AuthInfo,
     ChromeExtensionService,
     ENABLED_STATUS,
     LOGON_STATUS
 } from '../../browser-extension/chrome-extension.service';
-import { Bangumi } from '../../entity';
-import { BANGUMI_TYPE, FAVORITE_LABEL } from '../../entity/constants';
-import { FavoriteManagerService } from '../favorite-manager.service';
-import { HomeService } from '../home.service';
-import { EditReviewDialogComponent } from '../rating/edit-review-dialog/edit-review-dialog.component';
-import { WatchService } from '../watch.service';
-import { SynchronizeService } from '../synchronize.service';
+import {Bangumi} from '../../entity';
+import {BANGUMI_TYPE, FAVORITE_LABEL} from '../../entity/constants';
+import {FavoriteManagerService} from '../favorite-manager.service';
+import {EditReviewDialogComponent} from '../rating/edit-review-dialog/edit-review-dialog.component';
 
 @Component({
     selector: 'favorite-chooser',

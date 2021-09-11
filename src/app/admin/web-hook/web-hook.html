@@ -7,8 +7,8 @@
     <div class="all-web-hook-container" *ngIf="!isLoading && webHookList && webHookList.length > 0">
         <infinite-list [rowHeight]="cardHeight">
             <web-hook-card *infiniteFor="let webHook of webHookList"
-                          [webHook]="webHook"
-                          (click)="editWebHook(webHook)"></web-hook-card>
+                           [webHook]="webHook"
+                           (click)="editWebHook(webHook)"></web-hook-card>
         </infinite-list>
     </div>
     <div class="no-result-container" *ngIf="!isLoading && webHookList && webHookList.length === 0">

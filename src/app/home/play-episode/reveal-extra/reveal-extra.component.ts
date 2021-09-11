@@ -1,8 +1,8 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { ChromeExtensionService, ENABLED_STATUS } from '../../../browser-extension/chrome-extension.service';
-import { Subscription } from 'rxjs';
-import { UIToast, UIToastComponent, UIToastRef } from 'altair-ui';
-import { Bangumi } from '../../../entity';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {ChromeExtensionService, ENABLED_STATUS} from '../../../browser-extension/chrome-extension.service';
+import {Subscription} from 'rxjs';
+import {UIToast, UIToastComponent, UIToastRef} from 'altair-ui';
+import {Bangumi} from '../../../entity';
 
 @Component({
     selector: 'reveal-extra',
@@ -23,7 +23,7 @@ export class RevealExtraComponent implements OnInit, OnDestroy {
     isEnabled = false;
 
     constructor(private _chromeExtensionService: ChromeExtensionService,
-        toast: UIToast) {
+                toast: UIToast) {
         this._toastRef = toast.makeText();
     }
 

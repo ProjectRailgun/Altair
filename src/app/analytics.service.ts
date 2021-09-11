@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import {Injectable} from '@angular/core';
+import {NavigationEnd, Router} from '@angular/router';
 
 @Injectable()
 export class AnalyticsService {

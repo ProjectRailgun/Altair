@@ -1,11 +1,10 @@
-
 import {retry, tap, timeout} from 'rxjs/operators';
-import {AfterViewInit, Component, ElementRef, Injector, OnDestroy, OnInit, Self, ViewChild} from '@angular/core';
-import { CONTROL_FADE_OUT_TIME, VideoPlayerHelpers } from '../core/helpers';
-import { VideoPlayer } from '../video-player.component';
-import { Subscription ,  Subject } from 'rxjs';
+import {AfterViewInit, Component, ElementRef, Injector, OnDestroy, OnInit, Self} from '@angular/core';
+import {CONTROL_FADE_OUT_TIME, VideoPlayerHelpers} from '../core/helpers';
+import {VideoPlayer} from '../video-player.component';
+import {Subject, Subscription} from 'rxjs';
 import * as Hammer from 'hammerjs';
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 import {closest} from "../../../helpers/dom";
 
 @Component({
@@ -45,7 +44,7 @@ export class VideoTouchControls implements OnInit, OnDestroy, AfterViewInit {
         return VideoPlayerHelpers.convertTime(this.duration);
     }
 
-    get currentTimeClock() : string {
+    get currentTimeClock(): string {
         if (Number.isNaN(this.duration)) {
             return '-';
         }
@@ -85,7 +84,8 @@ export class VideoTouchControls implements OnInit, OnDestroy, AfterViewInit {
         this._subscription.add(
             this._motion.asObservable().pipe(
                 timeout(this._fadeOutTime),
-                tap(() => {},
+                tap(() => {
+                    },
                     () => {
                         this.showControls = false;
                     }),

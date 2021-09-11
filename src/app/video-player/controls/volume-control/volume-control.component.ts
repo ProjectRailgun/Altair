@@ -1,13 +1,9 @@
+import {fromEvent as observableFromEvent, interval as observableInterval, Subscription} from 'rxjs';
 
-import {interval as observableInterval, fromEvent as observableFromEvent,  Observable ,  Subscription } from 'rxjs';
-
-import {takeUntil, mergeMap, tap, distinctUntilChanged} from 'rxjs/operators';
-import {
-    AfterViewInit, Component, ElementRef, EventEmitter, OnDestroy, OnInit, Output,
-    ViewChild
-} from '@angular/core';
-import { VideoPlayerHelpers } from '../../core/helpers';
-import { VideoPlayer } from '../../video-player.component';
+import {distinctUntilChanged, mergeMap, takeUntil, tap} from 'rxjs/operators';
+import {AfterViewInit, Component, ElementRef, EventEmitter, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
+import {VideoPlayerHelpers} from '../../core/helpers';
+import {VideoPlayer} from '../../video-player.component';
 
 @Component({
     selector: 'video-volume-control',

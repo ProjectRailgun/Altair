@@ -4,10 +4,14 @@
     </div>
     <div class="confirmed" *ngIf="!isLoading && emailValid">
         <p>已成功验证您的邮箱。</p>
-        <p><button class="ui button" (click)="returnToHome()">好</button></p>
+        <p>
+            <button class="ui button" (click)="returnToHome()">好</button>
+        </p>
     </div>
     <div class="failed" *ngIf="!isLoading && !emailValid">
         <p>邮箱验证失败，请确认链接是否完整。</p>
-        <p><button class="ui button" (click)="returnToHome()">好</button></p>
+        <p>
+            <button class="ui button" (click)="returnToHome()">好</button>
+        </p>
     </div>
 </div>

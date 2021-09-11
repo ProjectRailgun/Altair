@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { UIDialogRef } from 'altair-ui';
+import {Component, Input} from '@angular/core';
+import {UIDialogRef} from 'altair-ui';
+
 @Component({
     selector: 'confirm-dialog-modal',
     templateUrl: './confirm-dialog-modal.html',
@@ -13,7 +14,8 @@ export class ConfirmDialogModal {
     @Input()
     content;
 
-    constructor(private _dialogRef: UIDialogRef<ConfirmDialogModal>) { }
+    constructor(private _dialogRef: UIDialogRef<ConfirmDialogModal>) {
+    }
 
     cancel() {
         this._dialogRef.close('cancel');

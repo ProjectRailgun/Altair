@@ -6,7 +6,8 @@
             </div>
         </div>
         <div class="ui vertical segment">
-            <swiper [config]="swiper_config" (mouseenter)="onSwiperHover( true )" (mouseleave)="onSwiperHover( false )" #swiper>
+            <swiper [config]="swiper_config" (mouseenter)="onSwiperHover( true )" (mouseleave)="onSwiperHover( false )"
+                    #swiper>
                 <div *ngFor="let announce_banner of announce_in_banner">
                     <a class="announcement" [href]="announce_banner.content" target="_blank">
                         <img [src]="announce_banner.image_url" alt="">
@@ -58,7 +59,8 @@
         <div class="ui vertical segment">
             <div class="ui two item stackable tabs menu">
                 <a class="item" [ngClass]="{active: bangumiType === 1001}" (click)="changeBangumiType(1001)">中文字幕</a>
-                <a class="item" [ngClass]="{active: bangumiType === 1002}" (click)="changeBangumiType(1002)">RAW (No Subtitle)</a>
+                <a class="item" [ngClass]="{active: bangumiType === 1002}" (click)="changeBangumiType(1002)">RAW (No
+                    Subtitle)</a>
             </div>
             <div class="ui active inverted dimmer on-air-loading-wrapper" *ngIf="isLoading">
                 <div class="ui medium loader"></div>

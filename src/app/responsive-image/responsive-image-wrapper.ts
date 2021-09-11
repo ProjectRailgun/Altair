@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ResponsiveDimension, ResponsiveImage } from './responsive-image.directive';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {ResponsiveDimension, ResponsiveImage} from './responsive-image.directive';
 
 export interface ResponsiveWrapperSize {
     /**
@@ -32,7 +32,7 @@ export const DEFAULT_HIDDEN_OPACITY = 0.01;
                     [originalSrc]="src"
                     [dimension]="dimension"
                     [style.width]="imageWidth"
-                    [style.height]="imageHeight" 
+                    [style.height]="imageHeight"
                     [style.position]="imagePosition"
                     [style.opacity]="imageOpacity"
                     (imageLoad)="onLoad($event)"

@@ -1,17 +1,16 @@
+import {fromEvent as observableFromEvent, Subscription} from 'rxjs';
 
-import {fromEvent as observableFromEvent,  Observable, Subscription } from 'rxjs';
-
-import {filter, tap, mergeMap} from 'rxjs/operators';
-import { ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { HomeChild, HomeService } from "../home.service";
-import { Bangumi, User } from "../../entity";
-import { ActivatedRoute } from '@angular/router';
-import { Title } from '@angular/platform-browser';
-import { UserService } from '../../user-service';
-import { ChromeExtensionService, ENABLED_STATUS } from '../../browser-extension/chrome-extension.service';
-import { UIDialog, UIToast, UIToastComponent, UIToastRef } from 'altair-ui';
-import { AuthError } from '../../../helpers/error';
-import { WatchService } from '../watch.service';
+import {filter, mergeMap, tap} from 'rxjs/operators';
+import {ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {HomeChild, HomeService} from "../home.service";
+import {Bangumi, User} from "../../entity";
+import {ActivatedRoute} from '@angular/router';
+import {Title} from '@angular/platform-browser';
+import {UserService} from '../../user-service';
+import {ChromeExtensionService, ENABLED_STATUS} from '../../browser-extension/chrome-extension.service';
+import {UIDialog, UIToast, UIToastComponent, UIToastRef} from 'altair-ui';
+import {AuthError} from '../../../helpers/error';
+import {WatchService} from '../watch.service';
 
 
 @Component({

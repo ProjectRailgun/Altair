@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Bangumi } from '../../../entity/bangumi';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UIDialogRef } from 'altair-ui';
-import { User } from '../../../entity/user';
+import {Component, Input, OnInit} from '@angular/core';
+import {Bangumi} from '../../../entity/bangumi';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UIDialogRef} from 'altair-ui';
+import {User} from '../../../entity/user';
 
 @Component({
     selector: 'bangumi-basic',
@@ -19,7 +19,7 @@ export class BangumiBasic implements OnInit {
     adminList: User[];
 
     constructor(private _fb: FormBuilder,
-        private _dialogRef: UIDialogRef<BangumiBasic>) {
+                private _dialogRef: UIDialogRef<BangumiBasic>) {
     }
 
     ngOnInit(): void {

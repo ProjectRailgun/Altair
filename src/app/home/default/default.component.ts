@@ -1,12 +1,12 @@
-import { Component, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
+import {Component, OnDestroy, OnInit, QueryList, ViewChildren} from '@angular/core';
 // import {Episode} from "../../entity/episode";
-import {HomeService, HomeChild} from "../home.service";
+import {HomeChild, HomeService} from "../home.service";
 import {Bangumi} from "../../entity/bangumi";
 import {FAVORITE_LABEL} from '../../entity/constants';
-import { Subscription } from 'rxjs';
-import { Announce } from '../../entity/announce';
-import { PersistStorage } from '../../user-service/persist-storage';
-import { SwiperConfigInterface, SwiperComponent } from 'ngx-swiper-wrapper';
+import {Subscription} from 'rxjs';
+import {Announce} from '../../entity/announce';
+import {PersistStorage} from '../../user-service/persist-storage';
+import {SwiperComponent, SwiperConfigInterface} from 'ngx-swiper-wrapper';
 
 const BANGUMI_TYPE_KEY = 'default_bangumi_type';
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -77,8 +77,8 @@ export class DefaultComponent extends HomeChild implements OnInit, OnDestroy {
         );
     }
 
-    onSwiperHover( hover: boolean ) {
-        if ( hover ) {
+    onSwiperHover(hover: boolean) {
+        if (hover) {
             this.Swiper.directiveRef.stopAutoplay();
         } else {
             this.Swiper.directiveRef.startAutoplay();

@@ -1,7 +1,9 @@
-import { Bangumi } from './bangumi';
-import { Episode } from './episode';
+import {Bangumi} from './bangumi';
+import {Episode} from './episode';
+
 export class BangumiRaw extends Bangumi {
     public episodes: Episode[];
+
     constructor(rawData: any) {
         super();
 

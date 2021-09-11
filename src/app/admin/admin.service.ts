@@ -1,12 +1,11 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-import { BaseService } from '../../helpers/base.service';
-import { queryString } from '../../helpers/url'
-import { Bangumi, BangumiRaw } from '../entity';
-import { Episode } from '../entity';
-import { VideoFile } from '../entity/video-file';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {catchError, map} from 'rxjs/operators';
+import {BaseService} from '../../helpers/base.service';
+import {queryString} from '../../helpers/url'
+import {Bangumi, BangumiRaw, Episode} from '../entity';
+import {VideoFile} from '../entity/video-file';
 
 
 @Injectable()
@@ -25,15 +24,15 @@ export class AdminService extends BaseService {
             catchError(this.handleError));
     }
 
-    searchBangumi(params: {name: string, type: number, offset: number, count: number}): Observable<{data: Bangumi[], total: number}> {
+    searchBangumi(params: { name: string, type: number, offset: number, count: number }): Observable<{ data: Bangumi[], total: number }> {
         let queryParams = queryString(params);
-        return this.http.get<{data: Bangumi[], total: number}>(`${this.baseUrl}/query?${queryParams}`).pipe(
+        return this.http.get<{ data: Bangumi[], total: number }>(`${this.baseUrl}/query?${queryParams}`).pipe(
             catchError(this.handleError),);
     }
 
     addBangumi(bangumiRaw: BangumiRaw): Observable<string> {
         let queryUrl = this.baseUrl + '/bangumi';
-        return this.http.post<{data:{id: string}}>(queryUrl, bangumiRaw).pipe(
+        return this.http.post<{ data: { id: string } }>(queryUrl, bangumiRaw).pipe(
             map(res => res.data.id),
             catchError(this.handleError),);
     }
@@ -44,7 +43,8 @@ export class AdminService extends BaseService {
         order_by: string,
         sort: string,
         name?: string,
-        type?: number}): Observable<{ data: Bangumi[], total: number }> {
+        type?: number
+    }): Observable<{ data: Bangumi[], total: number }> {
         let queryParams = queryString(params);
         return this.http.get<{ data: Bangumi[], total: number }>(`${this.baseUrl}/bangumi?${queryParams}`).pipe(
             catchError(this.handleError),);
@@ -64,8 +64,8 @@ export class AdminService extends BaseService {
             catchError(this.handleError),);
     }
 
-    deleteBangumi(bangumi_id: string): Observable<{delete_delay: number}> {
-        return this.http.delete<{ data: {delete_delay: number} }>(`${this.baseUrl}/bangumi/${bangumi_id}`).pipe(
+    deleteBangumi(bangumi_id: string): Observable<{ delete_delay: number }> {
+        return this.http.delete<{ data: { delete_delay: number } }>(`${this.baseUrl}/bangumi/${bangumi_id}`).pipe(
             map(res => res.data),
             catchError(this.handleError),)
     }
@@ -77,8 +77,8 @@ export class AdminService extends BaseService {
     }
 
     addEpisode(episode: Episode): Observable<string> {
-        return this.http.post<{ data: {id: string} }>(`${this.baseUrl}/episode`, episode).pipe(
-            map(res => <string> res.data.id),
+        return this.http.post<{ data: { id: string } }>(`${this.baseUrl}/episode`, episode).pipe(
+            map(res => <string>res.data.id),
             catchError(this.handleError),);
     }
 
@@ -93,7 +93,7 @@ export class AdminService extends BaseService {
     }
 
     getEpisodeVideoFiles(episode_id: string): Observable<VideoFile[]> {
-        return this.http.get<{data: VideoFile[]}>(`${this.baseUrl}/video-file?episode_id=${episode_id}`).pipe(
+        return this.http.get<{ data: VideoFile[] }>(`${this.baseUrl}/video-file?episode_id=${episode_id}`).pipe(
             map(res => res.data),
             catchError(this.handleError),);
     }
@@ -104,7 +104,7 @@ export class AdminService extends BaseService {
     }
 
     addVideoFile(videoFile: VideoFile): Observable<string> {
-        return this.http.post<{data: string}>(`${this.baseUrl}/video-file`, videoFile).pipe(
+        return this.http.post<{ data: string }>(`${this.baseUrl}/video-file`, videoFile).pipe(
             map(res => res.data),
             catchError(this.handleError),);
     }

@@ -1,8 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UIToast, UIToastComponent, UIToastRef } from 'altair-ui';
-import { Subscription } from 'rxjs';
-import { filter, mergeMap } from 'rxjs/operators';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UIToast, UIToastComponent, UIToastRef} from 'altair-ui';
+import {Subscription} from 'rxjs';
+import {filter, mergeMap} from 'rxjs/operators';
 import {
     ChromeExtensionService,
     IAuthInfo,
@@ -32,8 +32,8 @@ export class BangumiAccountBindingComponent implements OnInit, OnDestroy {
     isLoading = true;
 
     constructor(private _chromeExtensionService: ChromeExtensionService,
-        private _fb: FormBuilder,
-        toast: UIToast) {
+                private _fb: FormBuilder,
+                toast: UIToast) {
         this._toastRef = toast.makeText();
     }
 

@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
-import { UIDialog } from 'altair-ui';
-import { Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
-import { switchMap } from 'rxjs/internal/operators';
+import {Injectable} from '@angular/core';
+import {UIDialog} from 'altair-ui';
+import {Observable, of as observableOf, throwError as observableThrowError} from 'rxjs';
+import {switchMap} from 'rxjs/internal/operators';
 
-import { catchError, tap } from 'rxjs/operators';
-import { ChromeExtensionService } from '../browser-extension/chrome-extension.service';
-import { Bangumi } from '../entity';
-import { ConflictDialogComponent } from './favorite-chooser/conflict-dialog/conflict-dialog.component';
+import {catchError, tap} from 'rxjs/operators';
+import {ChromeExtensionService} from '../browser-extension/chrome-extension.service';
+import {Bangumi} from '../entity';
+import {ConflictDialogComponent} from './favorite-chooser/conflict-dialog/conflict-dialog.component';
 
 /**
  * Synchronize with bgm.tv, need browser extension support

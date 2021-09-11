@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { UIDialogRef } from 'altair-ui';
+import {Component, Input} from '@angular/core';
+import {UIDialogRef} from 'altair-ui';
 
 @Component({
     selector: 'alert-dialog',
@@ -17,7 +17,8 @@ export class AlertDialog {
     content: string;
 
 
-    constructor(private _dialogRef: UIDialogRef<AlertDialog>) { }
+    constructor(private _dialogRef: UIDialogRef<AlertDialog>) {
+    }
 
     confirm() {
         this._dialogRef.close('confirm');

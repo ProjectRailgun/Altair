@@ -1,11 +1,8 @@
-
-import {tap, filter} from 'rxjs/operators';
-import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject, Subject } from 'rxjs';
-import { BangumiAuthDialogComponent } from './bangumi-auth-dialog/bangumi-auth-dialog.component';
-import { Bangumi } from '../entity';
-import { RPCResult } from './extension-rpc';
-import { ExtensionRpcService } from './extension-rpc.service';
+import {filter, tap} from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {Bangumi} from '../entity';
+import {ExtensionRpcService} from './extension-rpc.service';
 
 export interface IAuthInfo {
     id: string; // user's uid

@@ -1,4 +1,4 @@
-import { ComponentRef, EmbeddedViewRef } from '@angular/core';
+import {ComponentRef, EmbeddedViewRef} from '@angular/core';
 
 export const CONTROL_FADE_OUT_TIME = 3000;
 

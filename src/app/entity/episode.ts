@@ -1,7 +1,7 @@
-import { Bangumi } from './bangumi';
-import { WatchProgress } from './watch-progress';
-import { VideoFile } from './video-file';
-import { Image } from './image';
+import {Bangumi} from './bangumi';
+import {WatchProgress} from './watch-progress';
+import {VideoFile} from './video-file';
+import {Image} from './image';
 
 export class Episode {
     static EPISODE_TYPE_NORMAL: number = 0;

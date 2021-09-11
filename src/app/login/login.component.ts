@@ -1,11 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { UserService } from '../user-service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User } from '../entity';
-import { AuthError } from '../../helpers/error/AuthError';
-import { Title } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {UserService} from '../user-service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {User} from '../entity';
+import {AuthError} from '../../helpers/error/AuthError';
+import {Title} from '@angular/platform-browser';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Subscription} from 'rxjs';
 
 
 @Component({
@@ -27,7 +27,7 @@ export class Login implements OnInit, OnDestroy {
     siteTitle: string = SITE_TITLE;
 
     coverStyle = {
-        'background-image':'url("' + PORTAL_COVER_IMAGE + '")',
+        'background-image': 'url("' + PORTAL_COVER_IMAGE + '")',
     };
 
     coverAuthor: string = PORTAL_COVER_AUTHOR;
@@ -37,10 +37,10 @@ export class Login implements OnInit, OnDestroy {
     sourceUrl: string;
 
     constructor(private userService: UserService,
-        private route: ActivatedRoute,
-        private router: Router,
-        private title: Title,
-        private formBuilder: FormBuilder) {
+                private route: ActivatedRoute,
+                private router: Router,
+                private title: Title,
+                private formBuilder: FormBuilder) {
         this.user = new User();
     }
 

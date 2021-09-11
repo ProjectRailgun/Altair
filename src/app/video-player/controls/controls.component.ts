@@ -1,4 +1,4 @@
-import { animate, keyframes, state, style, transition, trigger, AnimationEvent } from '@angular/animations';
+import {animate, AnimationEvent, keyframes, state, style, transition, trigger} from '@angular/animations';
 import {
     AfterViewInit,
     Component,
@@ -10,14 +10,14 @@ import {
     ViewChild,
     ViewContainerRef
 } from '@angular/core';
-import { fromEvent as observableFromEvent, merge, Subject, Subscription } from 'rxjs';
+import {fromEvent as observableFromEvent, merge, Subject, Subscription} from 'rxjs';
 
-import { filter, retry, tap, timeout } from 'rxjs/operators';
-import { PersistStorage } from '../../user-service';
-import { CONTROL_FADE_OUT_TIME } from '../core/helpers';
-import { PlayList } from "../core/settings";
-import { PlayState } from '../core/state';
-import { VideoPlayer } from '../video-player.component';
+import {filter, retry, tap, timeout} from 'rxjs/operators';
+import {PersistStorage} from '../../user-service';
+import {CONTROL_FADE_OUT_TIME} from '../core/helpers';
+import {PlayList} from "../core/settings";
+import {PlayState} from '../core/state';
+import {VideoPlayer} from '../video-player.component';
 
 @Component({
     selector: 'video-controls',

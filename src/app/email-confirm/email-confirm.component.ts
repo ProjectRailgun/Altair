@@ -1,9 +1,9 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
-import { UserService } from '../user-service/user.service';
-import { EmailConfirmService } from './email-confirm.service';
+import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {Router} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {mergeMap} from 'rxjs/operators';
+import {UserService} from '../user-service/user.service';
+import {EmailConfirmService} from './email-confirm.service';
 
 @Component({
     selector: 'email-confirm',
@@ -19,8 +19,8 @@ export class EmailConfirm implements OnInit, OnDestroy {
     emailValid = false;
 
     constructor(private _confirmService: EmailConfirmService,
-        private _userService: UserService,
-        private _router: Router) {
+                private _userService: UserService,
+                private _router: Router) {
     }
 
     ngOnInit(): void {

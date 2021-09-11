@@ -1,8 +1,8 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
-import { IMAGE_PROPERTY_NAME } from '../../../core/video-capture.service';
-import { UIDialogRef } from 'altair-ui';
-import { PersistStorage } from '../../../../user-service';
-import { Capture } from '../../../core/settings';
+import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
+import {IMAGE_PROPERTY_NAME} from '../../../core/video-capture.service';
+import {UIDialogRef} from 'altair-ui';
+import {PersistStorage} from '../../../../user-service';
+import {Capture} from '../../../core/settings';
 import download from 'downloadjs';
 
 export const RESULT_TWITTER = 'twitter';
@@ -31,7 +31,7 @@ export class CapturedImageOperationDialog implements AfterViewInit {
     @ViewChild('imageWrapper', {static: false}) imageWrapper: ElementRef;
 
     constructor(private _dialogRef: UIDialogRef<CapturedImageOperationDialog>,
-        private _persistStorage: PersistStorage) {
+                private _persistStorage: PersistStorage) {
         let savedAutoRemove = this._persistStorage.getItem(Capture.AUTO_REMOVE, 'true');
         this._autoRemove = savedAutoRemove === 'true';
     }
@@ -39,23 +39,23 @@ export class CapturedImageOperationDialog implements AfterViewInit {
     shareToTwitter(event: Event) {
         event.preventDefault();
         event.stopPropagation();
-        this._dialogRef.close({ result: RESULT_TWITTER, remove: this.autoRemove });
+        this._dialogRef.close({result: RESULT_TWITTER, remove: this.autoRemove});
     }
 
     download(event: Event) {
         event.preventDefault();
         event.stopPropagation();
         let dataURI = this.image.src;
-        let { bangumi_name, episode_no, currentPlayTime } = this.image[IMAGE_PROPERTY_NAME];
+        let {bangumi_name, episode_no, currentPlayTime} = this.image[IMAGE_PROPERTY_NAME];
         let filename = `${bangumi_name}_${episode_no}_${Math.round(currentPlayTime)}.png`;
         download(dataURI, filename, 'application/octet-stream');
-        this._dialogRef.close({ result: RESULT_DOWNLOAD, remove: this.autoRemove });
+        this._dialogRef.close({result: RESULT_DOWNLOAD, remove: this.autoRemove});
     }
 
     trash(event: Event) {
         event.preventDefault();
         event.stopPropagation();
-        this._dialogRef.close({ result: RESULT_TRASH, remove: true });
+        this._dialogRef.close({result: RESULT_TRASH, remove: true});
     }
 
     ngAfterViewInit(): void {

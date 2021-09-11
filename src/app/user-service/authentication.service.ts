@@ -1,12 +1,11 @@
-
-import {of as observableOf,  Observable } from 'rxjs';
+import {Observable, of as observableOf} from 'rxjs';
 
 import {catchError, map} from 'rxjs/operators';
-import { Injectable } from '@angular/core';
-import { UserService } from './user.service';
-import { User } from '../entity';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { AuthError } from '../../helpers/error/AuthError';
+import {Injectable} from '@angular/core';
+import {UserService} from './user.service';
+import {User} from '../entity';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+import {AuthError} from '../../helpers/error/AuthError';
 
 
 @Injectable()

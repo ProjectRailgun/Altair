@@ -1,14 +1,13 @@
-
-import { fromEvent as observableFromEvent,  Observable, Subscription } from 'rxjs';
-import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { HomeService } from './home.service';
-import { Bangumi, User } from '../entity';
-import { Router } from '@angular/router';
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import { AlertDialog } from '../alert-dialog/alert-dialog.component';
-import { UIDialog } from 'altair-ui';
-import { UserService } from '../user-service';
+import {fromEvent as observableFromEvent, Subscription} from 'rxjs';
+import {Component, EventEmitter, OnDestroy, OnInit} from '@angular/core';
+import {Title} from '@angular/platform-browser';
+import {HomeService} from './home.service';
+import {Bangumi, User} from '../entity';
+import {Router} from '@angular/router';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {AlertDialog} from '../alert-dialog/alert-dialog.component';
+import {UIDialog} from 'altair-ui';
+import {UserService} from '../user-service';
 
 const BREAK_POINT = 1330;
 
@@ -122,7 +121,8 @@ export class Home implements OnInit, OnDestroy {
                             dialogRef.componentInstance.title = '欢迎！';
                             dialogRef.componentInstance.content = '我们已经向你注册时填写的邮箱发送了一封邮件，请点击邮件中的链接激活你的账户。若收件箱中无新邮件，请检查是否位于垃圾邮件中。';
                             dialogRef.componentInstance.confirmButtonText = '好';
-                            this._subscription.add(dialogRef.afterClosed().subscribe(() => {}));
+                            this._subscription.add(dialogRef.afterClosed().subscribe(() => {
+                            }));
                         } else {
                             dialogRef.componentInstance.title = '请为您的账户设置一个邮箱地址';
                             dialogRef.componentInstance.content = '你的账户目前没有绑定邮箱，请设置邮箱地址来激活账户。';

@@ -33,7 +33,8 @@
             </tbody>
         </table>
         <div class="pagination-container" *ngIf="announceTotal > announceCount">
-            <ui-pagination [currentPage]="announcePage" [total]="announceTotal" [countPerPage]="announceCount" [max]="6" (pageChange)="refresh($event)"></ui-pagination>
+            <ui-pagination [currentPage]="announcePage" [total]="announceTotal" [countPerPage]="announceCount" [max]="6"
+                           (pageChange)="refresh($event)"></ui-pagination>
         </div>
     </div>
     <div class="ui segment">
@@ -66,7 +67,8 @@
             </tbody>
         </table>
         <div class="pagination-container" *ngIf="recommendTotal > recommendCount">
-            <ui-pagination [currentPage]="recommendPage" [total]="recommendTotal" [countPerPage]="recommendCount" [max]="6" (pageChange)="refreshRecommend($event)"></ui-pagination>
+            <ui-pagination [currentPage]="recommendPage" [total]="recommendTotal" [countPerPage]="recommendCount"
+                           [max]="6" (pageChange)="refreshRecommend($event)"></ui-pagination>
         </div>
     </div>
 </div>

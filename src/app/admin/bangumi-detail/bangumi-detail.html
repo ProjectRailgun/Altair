@@ -27,7 +27,8 @@
         <div class="bangumi-info-text">
             <h3 class="bangumi-title">
                 {{bangumi.name_cn || '暂无'}}
-                <a class="external-link" [href]="'https://bgm.tv/subject/' + bangumi.bgm_id" target="_blank" title="在bgm.tv页面查看">
+                <a class="external-link" [href]="'https://bgm.tv/subject/' + bangumi.bgm_id" target="_blank"
+                   title="在bgm.tv页面查看">
                     <i class="bgm-emo-47 bgm-link-icon"></i>
                 </a>
             </h3>
@@ -90,7 +91,8 @@
                 <div class="ui horizontal label">
                     {{universal.keyword}}
                 </div>
-                <a class="edit-button anchor-button" (click)="editBangumiUniversal(universal.mode)"><i class="edit icon"></i></a>
+                <a class="edit-button anchor-button" (click)="editBangumiUniversal(universal.mode)"><i
+                    class="edit icon"></i></a>
             </div>
         </div>
         <a class="anchor-button add-universal-button"
@@ -198,7 +200,8 @@
                     <td>{{episode.duration}}</td>
                     <td>
                         <a class="anchor-button" (click)="editEpisode(episode)" title="编辑"><i class="edit icon"></i></a>
-                        <a class="anchor-button" (click)="editVideoFile(episode)" title="文件列表"><i class="server icon"></i></a>
+                        <a class="anchor-button" (click)="editVideoFile(episode)" title="文件列表"><i
+                            class="server icon"></i></a>
                         <a class="anchor-button"
                            title="删除"
                            confirmDialog
@@ -211,7 +214,8 @@
             </table>
         </div>
     </div>
-    <button class="ui circular icon primary button float-action-button" (click)="editEpisode()" type="button"><i class="plus icon"></i></button>
+    <button class="ui circular icon primary button float-action-button" (click)="editEpisode()" type="button"><i
+        class="plus icon"></i></button>
     <div class="ui inverted dimmer" [ngClass]="{active: isLoading}">
         <div class="ui large loader"></div>
     </div>

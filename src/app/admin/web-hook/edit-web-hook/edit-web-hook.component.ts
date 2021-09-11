@@ -1,8 +1,8 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { UIDialogRef } from 'altair-ui';
-import { AbstractControl, Form, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
-import { WebHook } from '../../../entity/web-hook';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {UIDialogRef} from 'altair-ui';
+import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators} from '@angular/forms';
+import {Subscription} from 'rxjs';
+import {WebHook} from '../../../entity/web-hook';
 
 export function sharedSecretValidator(isEditMode: boolean) {
     return (control: AbstractControl): { [key: string]: any } => {
@@ -57,7 +57,7 @@ export class EditWebHookComponent implements OnInit, OnDestroy {
     deleteForm: FormGroup;
 
     constructor(private _dialogRef: UIDialogRef<EditWebHookComponent>,
-        private _fb: FormBuilder) {
+                private _fb: FormBuilder) {
     }
 
     onFormChanged(errors: any, errorMessages: any, form: FormGroup) {
@@ -75,7 +75,7 @@ export class EditWebHookComponent implements OnInit, OnDestroy {
     }
 
     reset_count() {
-        this.webHookForm.patchValue({ consecutive_failure_count: 0 });
+        this.webHookForm.patchValue({consecutive_failure_count: 0});
     }
 
     cancel() {
@@ -97,18 +97,18 @@ export class EditWebHookComponent implements OnInit, OnDestroy {
         if (this.webHook && !result.shared_secret) {
             result.shared_secret = undefined;
         }
-        this._dialogRef.close({ result: result });
+        this._dialogRef.close({result: result});
     }
 
     deleteWebHook() {
         if (this.deleteForm.invalid) {
             return;
         }
-        this._dialogRef.close({ deleteWebHook: true });
+        this._dialogRef.close({deleteWebHook: true});
     }
 
     nameValidation(control: AbstractControl): ValidationErrors | null {
-        return control.value !== this.webHook.name ? { nameMismatch: true } : null;
+        return control.value !== this.webHook.name ? {nameMismatch: true} : null;
     }
 
 

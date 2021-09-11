@@ -1,6 +1,6 @@
-import { Episode } from './episode';
-import { Image } from './image';
-import { User } from './user';
+import {Episode} from './episode';
+import {Image} from './image';
+import {User} from './user';
 
 export class Bangumi {
     static WISH = 1;
@@ -48,7 +48,8 @@ export class Bangumi {
     // @Optional
     favorite_check_time: number;
     // @Optional
-    eps_update_time; number;
+    eps_update_time;
+    number;
     // @Optional
     delete_mark: number;
 

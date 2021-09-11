@@ -1,6 +1,6 @@
-import { Injectable, NgZone } from '@angular/core';
-import { Observable } from 'rxjs';
-import { isChrome, isEdge, isFirefox } from '../../helpers/browser-detect';
+import {Injectable, NgZone} from '@angular/core';
+import {Observable} from 'rxjs';
+import {isChrome, isEdge, isFirefox} from '../../helpers/browser-detect';
 
 const MESSAGE_TYPE_EXT = 'SADR_FROM_EXT';
 const MESSAGE_TYPE_PAGE = 'SADR_FROM_PAGE';
@@ -43,6 +43,7 @@ export class ExtensionRpcService {
     get extensionId(): any {
         return this._extensionId;
     }
+
     private messageMap = new Map<number, MessageStub>();
     private _ID = 0;
     private defaultTimeout = 30000;

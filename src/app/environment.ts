@@ -1,6 +1,6 @@
-import { ApplicationRef, enableProdMode } from '@angular/core';
+import {ApplicationRef, enableProdMode} from '@angular/core';
 // Angular 2
-import { disableDebugTools, enableDebugTools } from '@angular/platform-browser';
+import {disableDebugTools, enableDebugTools} from '@angular/platform-browser';
 // Environment Providers
 let PROVIDERS: any[] = [
     // common env directives
@@ -33,10 +33,10 @@ if ('production' === ENV) {
         const appRef = modRef.injector.get(ApplicationRef);
         const cmpRef = appRef.components[0];
 
-        let _ng = (<any> window).ng;
+        let _ng = (<any>window).ng;
         enableDebugTools(cmpRef);
-        (<any> window).ng.probe = _ng.probe;
-        (<any> window).ng.coreTokens = _ng.coreTokens;
+        (<any>window).ng.probe = _ng.probe;
+        (<any>window).ng.coreTokens = _ng.coreTokens;
         return modRef;
     };
 

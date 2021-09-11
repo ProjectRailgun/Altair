@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-import { BaseService } from '../../../helpers/base.service';
-import { Bangumi, Episode } from '../../entity';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {catchError} from 'rxjs/operators';
+import {BaseService} from '../../../helpers/base.service';
+import {Bangumi, Episode} from '../../entity';
 
 @Injectable()
 export class TaskService extends BaseService {
@@ -13,13 +13,13 @@ export class TaskService extends BaseService {
         super();
     }
 
-    listPendingDeleteBangumi(): Observable<{data: Bangumi[], delete_delay: number}> {
-        return this._http.get<{data: Bangumi[], delete_delay: number}>(`${this._baseUrl}/bangumi`).pipe(
+    listPendingDeleteBangumi(): Observable<{ data: Bangumi[], delete_delay: number }> {
+        return this._http.get<{ data: Bangumi[], delete_delay: number }>(`${this._baseUrl}/bangumi`).pipe(
             catchError(this.handleError),);
     }
 
-    listPendingDeleteEpisode(): Observable<{data: Episode[], delete_delay: number}> {
-        return this._http.get<{data: Episode[], delete_delay: number}>(`${this._baseUrl}/episode`).pipe(
+    listPendingDeleteEpisode(): Observable<{ data: Episode[], delete_delay: number }> {
+        return this._http.get<{ data: Episode[], delete_delay: number }>(`${this._baseUrl}/episode`).pipe(
             catchError(this.handleError),);
     }
 

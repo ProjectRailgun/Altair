@@ -1,11 +1,11 @@
 /*
  * Angular 2 decorators and services
  */
-import { Component, ViewEncapsulation } from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 
-import { AnalyticsService } from './analytics.service';
-import { Router, NavigationEnd, NavigationStart } from '@angular/router';
-import { Subscription } from 'rxjs';
+import {AnalyticsService} from './analytics.service';
+import {NavigationEnd, Router} from '@angular/router';
+import {Subscription} from 'rxjs';
 
 /*
  * App Component

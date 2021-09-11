@@ -1,8 +1,8 @@
-import { Component, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { filter, merge } from 'rxjs/operators';
-import { PlayState } from '../../core/state';
-import { VideoPlayer } from '../../video-player.component';
+import {Component, HostListener, Input, OnDestroy, OnInit} from '@angular/core';
+import {Subscription} from 'rxjs';
+import {filter, merge} from 'rxjs/operators';
+import {PlayState} from '../../core/state';
+import {VideoPlayer} from '../../video-player.component';
 
 @Component({
     selector: 'video-play-button',

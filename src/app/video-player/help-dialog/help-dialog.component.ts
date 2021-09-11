@@ -1,9 +1,8 @@
-
-import {fromEvent as observableFromEvent,  Subscription ,  Observable } from 'rxjs';
+import {fromEvent as observableFromEvent, Subscription} from 'rxjs';
 
 import {filter} from 'rxjs/operators';
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, Self, ViewChild } from '@angular/core';
-import { UIDialogRef } from 'altair-ui';
+import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {UIDialogRef} from 'altair-ui';
 
 export const KEY_ESC = 27;
 

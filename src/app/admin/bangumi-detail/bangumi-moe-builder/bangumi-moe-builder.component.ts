@@ -1,13 +1,11 @@
+import {fromEvent as observableFromEvent, Subscription} from 'rxjs';
 
-import {fromEvent as observableFromEvent, Observable, Subscription} from 'rxjs';
-
-import {mergeMap, filter, distinctUntilChanged, debounceTime, map} from 'rxjs/operators';
+import {debounceTime, distinctUntilChanged, filter, map, mergeMap} from 'rxjs/operators';
 import {AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {UIDialogRef, UIToast, UIToastComponent, UIToastRef} from 'altair-ui';
 import {Bangumi} from '../../../entity/bangumi';
 import {BangumiMoeService} from './bangumi-moe.service';
 import {Tag, Torrent} from './bangum-moe-entity';
-import {Response} from '@angular/http';
 
 
 @Component({
@@ -55,16 +53,16 @@ export class BangumiMoeBuilder implements OnInit, OnDestroy, AfterViewInit {
         }
         this._subscription.add(
             this._bangumiMoeService.commonTags()
-            .subscribe(
-                (tags: Tag[]) => {
-                    this.formatTags = tags.filter(tag => tag.type === 'format');
-                    this.langTags = tags.filter(tag => tag.type === 'lang');
-                    this.miscTags = tags.filter(tag => tag.type === 'misc');
-                },
-                (error) => {
-                    this._toastRef.show(error);
-                }
-            )
+                .subscribe(
+                    (tags: Tag[]) => {
+                        this.formatTags = tags.filter(tag => tag.type === 'format');
+                        this.langTags = tags.filter(tag => tag.type === 'lang');
+                        this.miscTags = tags.filter(tag => tag.type === 'misc');
+                    },
+                    (error) => {
+                        this._toastRef.show(error);
+                    }
+                )
         );
         this._subscription.add(
             this._bangumiMoeService.miscTags()
@@ -121,7 +119,7 @@ export class BangumiMoeBuilder implements OnInit, OnDestroy, AfterViewInit {
                     }
                 ),)
                 .subscribe(
-                    (result: {success: boolean, found: boolean, tag: Tag[]}) => {
+                    (result: { success: boolean, found: boolean, tag: Tag[] }) => {
                         this.searchResultTags = result.tag;
                     }
                 )
@@ -153,7 +151,7 @@ export class BangumiMoeBuilder implements OnInit, OnDestroy, AfterViewInit {
     }
 
     searchTorrent() {
-        if(this.selectedTags.length === 0) {
+        if (this.selectedTags.length === 0) {
             return;
         }
         let tag_ids = this.selectedTags.map(tag => tag._id);

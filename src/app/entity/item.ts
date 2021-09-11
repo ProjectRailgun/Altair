@@ -1,6 +1,6 @@
-import { ItemType } from './item-type';
-import { Publisher } from './publisher';
-import { Team } from './team';
+import {ItemType} from './item-type';
+import {Publisher} from './publisher';
+import {Team} from './team';
 
 export class Item {
     id: any;

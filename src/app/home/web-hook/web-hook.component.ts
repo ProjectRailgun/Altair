@@ -1,11 +1,11 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { UIToast, UIToastComponent, UIToastRef } from 'altair-ui';
-import { Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { ChromeExtensionService, ENABLED_STATUS } from '../../browser-extension/chrome-extension.service';
-import { PERM_NAME, WebHook } from '../../entity/web-hook';
+import {HttpClient} from '@angular/common/http';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Title} from '@angular/platform-browser';
+import {UIToast, UIToastComponent, UIToastRef} from 'altair-ui';
+import {Subscription} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {ChromeExtensionService, ENABLED_STATUS} from '../../browser-extension/chrome-extension.service';
+import {PERM_NAME, WebHook} from '../../entity/web-hook';
 
 @Component({
     selector: 'web-hook',
@@ -31,7 +31,7 @@ export class WebHookComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this._subscription.add(
-            this._http.get<{data: any[]}>('/api/web-hook/').pipe(
+            this._http.get<{ data: any[] }>('/api/web-hook/').pipe(
                 map((res) => {
                     return res.data.map(webHook => {
                         if (webHook.permissions) {

@@ -1,19 +1,19 @@
-import { AfterViewInit, Component, ElementRef, HostBinding, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
-import { UIDialog, UIToast, UIToastComponent, UIToastRef } from 'altair-ui';
-import { fromEvent as observableFromEvent, Subscription } from 'rxjs';
-import { debounceTime, switchMap, throttleTime } from 'rxjs/internal/operators';
+import {AfterViewInit, Component, ElementRef, HostBinding, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Title} from '@angular/platform-browser';
+import {ActivatedRoute, Router} from '@angular/router';
+import {UIDialog, UIToast, UIToastComponent, UIToastRef} from 'altair-ui';
+import {fromEvent as observableFromEvent, Subscription} from 'rxjs';
+import {switchMap} from 'rxjs/internal/operators';
 
-import { filter, mergeMap, tap } from 'rxjs/operators';
-import { ChromeExtensionService, ENABLED_STATUS, LOGON_STATUS } from '../../browser-extension/chrome-extension.service';
-import { Bangumi, Episode } from "../../entity";
-import { VideoFile } from '../../entity/video-file';
-import { VideoPlayerHelpers } from '../../video-player/core/helpers';
-import { VideoPlayerService } from '../../video-player/video-player.service';
-import { HomeChild, HomeService } from "../home.service";
-import { WatchService } from '../watch.service';
-import { FeedbackComponent } from './feedback/feedback.component';
+import {filter, mergeMap, tap} from 'rxjs/operators';
+import {ChromeExtensionService, ENABLED_STATUS, LOGON_STATUS} from '../../browser-extension/chrome-extension.service';
+import {Bangumi, Episode} from "../../entity";
+import {VideoFile} from '../../entity/video-file';
+import {VideoPlayerHelpers} from '../../video-player/core/helpers';
+import {VideoPlayerService} from '../../video-player/video-player.service';
+import {HomeChild, HomeService} from "../home.service";
+import {WatchService} from '../watch.service';
+import {FeedbackComponent} from './feedback/feedback.component';
 
 export const MIN_WATCHED_PERCENTAGE = 0.95;
 

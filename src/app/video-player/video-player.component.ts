@@ -3,7 +3,8 @@ import {
     ChangeDetectorRef,
     Component,
     ComponentFactoryResolver,
-    ElementRef, EmbeddedViewRef,
+    ElementRef,
+    EmbeddedViewRef,
     EventEmitter,
     HostBinding,
     Injector,
@@ -17,29 +18,29 @@ import {
     ViewChild,
     ViewContainerRef
 } from '@angular/core';
-import { UIDialog } from 'altair-ui';
+import {UIDialog} from 'altair-ui';
 import {
     BehaviorSubject,
     fromEvent as observableFromEvent,
     interval as observableInterval,
+    merge,
     Observable,
     Subject,
-    Subscription,
-    merge
+    Subscription
 } from 'rxjs';
 
-import { filter, map, timeout } from 'rxjs/operators';
-import { Bangumi, Episode } from '../entity';
-import { VideoFile } from '../entity/video-file';
-import { VideoControls } from './controls/controls.component';
-import { FullScreenAPI } from './core/full-screen-api';
-import { getComponentRootNode, VideoPlayerHelpers } from './core/helpers';
-import { VideoPlayerShortcuts } from './core/shortcuts';
-import { PlayState, ReadyState } from './core/state';
-import { VideoCapture } from './core/video-capture.service';
-import { FloatControlsComponent } from './float-controls/float-controls.component';
-import { VideoPlayerHelpDialog } from './help-dialog/help-dialog.component';
-import { VideoTouchControls } from './touch-controls/touch-controls.component';
+import {filter, map, timeout} from 'rxjs/operators';
+import {Bangumi, Episode} from '../entity';
+import {VideoFile} from '../entity/video-file';
+import {VideoControls} from './controls/controls.component';
+import {FullScreenAPI} from './core/full-screen-api';
+import {VideoPlayerHelpers} from './core/helpers';
+import {VideoPlayerShortcuts} from './core/shortcuts';
+import {PlayState, ReadyState} from './core/state';
+import {VideoCapture} from './core/video-capture.service';
+import {FloatControlsComponent} from './float-controls/float-controls.component';
+import {VideoPlayerHelpDialog} from './help-dialog/help-dialog.component';
+import {VideoTouchControls} from './touch-controls/touch-controls.component';
 
 let nextId = 0;
 
@@ -473,10 +474,10 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
             merge(
                 observableFromEvent(window, 'resize'),
                 this.fullscreenAPI.onChangeFullscreen)
-            .pipe(
-                filter(() => {
-                    return Boolean(this.videoFile && this.videoFile.resolution_w && this.videoFile.resolution_h);
-                }),)
+                .pipe(
+                    filter(() => {
+                        return Boolean(this.videoFile && this.videoFile.resolution_w && this.videoFile.resolution_h);
+                    }),)
                 .subscribe(() => {
                     this.togglePlayerDimension(hostElement);
                 })
@@ -644,7 +645,7 @@ export class VideoPlayer implements AfterViewInit, OnInit, OnDestroy, OnChanges 
      * The applied size may not necessarily the same
      * @returns {{width: number; height: number}}
      */
-    private measurePlayerSize(): {width: number, height: number} {
+    private measurePlayerSize(): { width: number, height: number } {
         let viewportWidth = document.documentElement.clientWidth;
         let viewportHeight = document.documentElement.clientHeight;
         let videoWidth = this.videoFile.resolution_w;

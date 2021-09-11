@@ -1,16 +1,16 @@
-import { HttpClient } from '@angular/common/http';
-import { EventEmitter, Injectable } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { UIToastComponent, UIToastRef } from 'altair-ui';
-import { Observable } from "rxjs";
-import { catchError, map } from 'rxjs/operators';
-import { BaseService } from "../../helpers/base.service";
+import {HttpClient} from '@angular/common/http';
+import {EventEmitter, Injectable} from '@angular/core';
+import {NavigationEnd, Router} from '@angular/router';
+import {UIToastComponent, UIToastRef} from 'altair-ui';
+import {Observable} from "rxjs";
+import {catchError, map} from 'rxjs/operators';
+import {BaseService} from "../../helpers/base.service";
 // import {homeRoutes} from './home.routes';
-import { queryString } from '../../helpers/url'
-import { Bangumi, Episode } from "../entity";
-import { Announce } from '../entity/announce';
-import { WatchProgress } from "../entity/watch-progress";
-import { WatchService } from './watch.service';
+import {queryString} from '../../helpers/url'
+import {Bangumi, Episode} from "../entity";
+import {Announce} from '../entity/announce';
+import {WatchProgress} from "../entity/watch-progress";
+import {WatchService} from './watch.service';
 
 @Injectable()
 export class HomeService extends BaseService {
@@ -57,7 +57,7 @@ export class HomeService extends BaseService {
 
     childRouteChanges: EventEmitter<any> = new EventEmitter();
 
-    favoriteChecked: EventEmitter<{bangumi_id: string, check_time: number}> = new EventEmitter<{bangumi_id: string, check_time: number}>();
+    favoriteChecked: EventEmitter<{ bangumi_id: string, check_time: number }> = new EventEmitter<{ bangumi_id: string, check_time: number }>();
 
     checkFavorite(bangumi_id: string) {
         this._watchService.check_favorite(bangumi_id)
@@ -124,20 +124,21 @@ export class HomeService extends BaseService {
         count: number,
         order_by: string,
         sort: string,
-        type?: number}): Observable<{ data: Bangumi[], total: number }> {
+        type?: number
+    }): Observable<{ data: Bangumi[], total: number }> {
         let query = queryString(params);
         return this._http.get<{ data: Bangumi[], total: number }>(`${this._baseUrl}/bangumi?${query}`).pipe(
             catchError(this.handleError),);
     }
 
     myBangumi(status: number): Observable<Bangumi[]> {
-        return this._http.get<{data: Bangumi[]}>(`${this._baseUrl}/my_bangumi?status=${status}`).pipe(
-            map(res => <Bangumi[]> res.data),
+        return this._http.get<{ data: Bangumi[] }>(`${this._baseUrl}/my_bangumi?status=${status}`).pipe(
+            map(res => <Bangumi[]>res.data),
             catchError(this.handleError),);
     }
 
     listAnnounce(): Observable<Announce[]> {
-        return this._http.get<{data: Announce[]}>(`${this._baseUrl}/announce`).pipe(
+        return this._http.get<{ data: Announce[] }>(`${this._baseUrl}/announce`).pipe(
             map(res => res.data),
             catchError(this.handleError),);
     }

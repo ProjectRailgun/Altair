@@ -1,12 +1,13 @@
 <div class="action-bar">
     <a class="back-button" (click)="cancel()"><i class="chevron left icon"></i></a>
-    <div class="title">{{!webHook ? '新建WebHook': '编辑WebHook'}}</div>
+    <div class="title">{{!webHook ? '新建WebHook' : '编辑WebHook'}}</div>
     <a class="confirm-button" (click)="save()" [ngClass]="{disabled: webHookForm.invalid || webHookForm.pristine}">
         <i class="checkmark icon"></i> 确定保存
     </a>
 </div>
 <div class="content-area">
-    <form class="edit-web-hook-from ui form" [formGroup]="webHookForm" novalidate  [ngClass]="{error: webHookForm.invalid}">
+    <form class="edit-web-hook-from ui form" [formGroup]="webHookForm" novalidate
+          [ngClass]="{error: webHookForm.invalid}">
         <div class="field" [ngClass]="{error: webHookFormErrors.name.length > 0}">
             <label>名称</label>
             <input type="text" formControlName="name" name="name">
@@ -36,7 +37,8 @@
         </div>
         <div class="field" [ngClass]="{error: webHookFormErrors.shared_secret.length > 0}">
             <label>Shared Secret</label>
-            <input type="text" [placeholder]="!!webHook ? '留空为不修改': '输入任意内容，最少5个字符'" formControlName="shared_secret" name="shared_secret">
+            <input type="text" [placeholder]="!!webHook ? '留空为不修改': '输入任意内容，最少5个字符'" formControlName="shared_secret"
+                   name="shared_secret">
         </div>
         <div class="ui error message" *ngIf="webHookFormErrors.shared_secret.length > 0">
             <ul class="list">
@@ -46,10 +48,12 @@
         <div class="grouped field">
             <label>Permissions</label>
             <div class="field">
-                <ui-toggle text="用户收藏内容，用户收藏改变时会发送事件，TokenAdded事件会包含当前收藏内容" name="favorite" formControlName="permission_favorite"></ui-toggle>
+                <ui-toggle text="用户收藏内容，用户收藏改变时会发送事件，TokenAdded事件会包含当前收藏内容" name="favorite"
+                           formControlName="permission_favorite"></ui-toggle>
             </div>
             <div class="field">
-                <ui-toggle text="用户邮箱地址，用户邮箱地址变更确认之后会发送事件，TokenAdded事件会包含用户邮箱地址" name="email" formControlName="permission_email"></ui-toggle>
+                <ui-toggle text="用户邮箱地址，用户邮箱地址变更确认之后会发送事件，TokenAdded事件会包含用户邮箱地址" name="email"
+                           formControlName="permission_email"></ui-toggle>
             </div>
         </div>
         <div class="field">

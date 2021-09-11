@@ -12,7 +12,8 @@
                     <div class="item" *ngFor="let mode of availableMode" (click)="selectMode(mode)">{{mode}}</div>
                 </div>
             </div>
-            <input type="text" [formControl]="keywordControl" name="query" placeholder="请输入搜索关键词" (keyup.enter)="testFeed()">
+            <input type="text" [formControl]="keywordControl" name="query" placeholder="请输入搜索关键词"
+                   (keyup.enter)="testFeed()">
         </div>
         <button class="ui primary button test-button" type="button" (click)="testFeed()">Test</button>
     </div>
@@ -48,7 +49,8 @@
                 confirmDialog
                 [dialogTitle]="'确定要删除' + mode + '来源吗？'"
                 dialogContent="该操作立即生效，你可以在编辑番組界面重新添加该来源"
-                (onConfirm)="delete()">删除</button>
+                (onConfirm)="delete()">删除
+        </button>
         <button class="ui button" (click)="cancel()">取消</button>
         <button class="ui primary button" (click)="save()">保存</button>
     </div>

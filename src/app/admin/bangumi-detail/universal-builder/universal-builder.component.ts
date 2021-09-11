@@ -1,10 +1,10 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { UIDialogRef, UIToast, UIToastComponent, UIToastRef } from 'altair-ui';
-import { Subscription } from 'rxjs/index';
-import { Bangumi } from '../../../entity';
-import { Item } from '../../../entity/item';
-import { FeedService } from '../feed.service';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {FormControl} from '@angular/forms';
+import {UIDialogRef, UIToast, UIToastComponent, UIToastRef} from 'altair-ui';
+import {Subscription} from 'rxjs/index';
+import {Bangumi} from '../../../entity';
+import {Item} from '../../../entity/item';
+import {FeedService} from '../feed.service';
 
 @Component({
     selector: 'universal-builder',
@@ -64,7 +64,7 @@ export class UniversalBuilderComponent implements OnInit, OnDestroy {
         this.keywordControl = new FormControl();
         let universalList;
         if (this.bangumi.universal) {
-            universalList = JSON.parse(this.bangumi.universal) as {mode: string, keyword: string}[];
+            universalList = JSON.parse(this.bangumi.universal) as { mode: string, keyword: string }[];
             this.availableMode = this.modeList.filter(mode => {
                 if (!this.mode) {
                     return mode === this.mode || !universalList.some(u => u.mode === mode)

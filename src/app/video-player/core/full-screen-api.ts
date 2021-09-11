@@ -1,7 +1,7 @@
+import {fromEvent as observableFromEvent} from 'rxjs';
+import {VideoPlayerHelpers} from './helpers';
+import {EventEmitter} from '@angular/core';
 
-import {fromEvent as observableFromEvent,  Observable } from 'rxjs';
-import { VideoPlayerHelpers } from './helpers';
-import { EventEmitter } from '@angular/core';
 export const BROWSER_FULLSCREEN_API = {
     w3: {
         enabled: 'fullscreenEnabled',
@@ -62,8 +62,8 @@ export class FullScreenAPI {
 
     constructor(private _mediaElement: HTMLMediaElement, private _hostElement: Element) {
         for (let browser in BROWSER_FULLSCREEN_API) {
-            if (BROWSER_FULLSCREEN_API[ browser ].enabled in document) {
-                this.polyfill = BROWSER_FULLSCREEN_API[ browser ];
+            if (BROWSER_FULLSCREEN_API[browser].enabled in document) {
+                this.polyfill = BROWSER_FULLSCREEN_API[browser];
                 break;
             }
         }
@@ -92,7 +92,7 @@ export class FullScreenAPI {
         }
 
         observableFromEvent(fsElemDispatcher, this.polyfill.onchange).subscribe(() => {
-            this.isFullscreen = !!document[ this.polyfill.element ];
+            this.isFullscreen = !!document[this.polyfill.element];
             this.onChangeFullscreen.next(this.isFullscreen);
         });
 
@@ -102,8 +102,7 @@ export class FullScreenAPI {
     toggleFullscreen() {
         if (this.isFullscreen) {
             this.exit();
-        }
-        else {
+        } else {
             this.request();
         }
     }
@@ -117,15 +116,14 @@ export class FullScreenAPI {
             // Fullscreen for mobile devices
             if (VideoPlayerHelpers.isMobileDevice() && VideoPlayerHelpers.isiOSDevice()) {
                 this.enterElementInFullScreen(this._mediaElement);
-            }
-            else {
+            } else {
                 this.enterElementInFullScreen(this._hostElement);
             }
         }
     }
 
     enterElementInFullScreen(elem: any) {
-        elem[ this.polyfill.request ]();
+        elem[this.polyfill.request]();
     }
 
 
@@ -135,7 +133,7 @@ export class FullScreenAPI {
 
         // Exit from native fullscreen
         if (this.isAvailable && this.nativeFullscreen) {
-            document[ this.polyfill.exit ]();
+            document[this.polyfill.exit]();
         }
     }
 }

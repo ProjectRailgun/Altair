@@ -9,9 +9,12 @@
     </div>
     <div class="next-eps-button" tabindex="0" (click)="onClickNextButton($event)">
         <svg class="next-count-down" width="6em" height="6em" version="1.1" xmlns="http://www.w3.org/2000/svg">
-            <circle class="progress-background" [attr.r]="countdownRadius + 'em'" cx="3em" cy="3em" fill="transparent" [attr.stroke-dasharray]="circumference + 'em'" stroke-dashoffset="0em"></circle>
-            <circle class="progress-cover" [attr.r]="countdownRadius + 'em'" cx="3em" cy="3em" fill="transparent" [attr.stroke-dasharray]="circumference + 'em'" [attr.stroke-dashoffset]="progress + 'em'"></circle>
-            <circle class="progress-center" [attr.r]="(countdownRadius - 0.01) + 'em'" cx="3em" cy="3em" fill="transparent" [attr.stroke-dasharray]="circumference + 'em'" stroke-dashoffset="0em"></circle>
+            <circle class="progress-background" [attr.r]="countdownRadius + 'em'" cx="3em" cy="3em" fill="transparent"
+                    [attr.stroke-dasharray]="circumference + 'em'" stroke-dashoffset="0em"></circle>
+            <circle class="progress-cover" [attr.r]="countdownRadius + 'em'" cx="3em" cy="3em" fill="transparent"
+                    [attr.stroke-dasharray]="circumference + 'em'" [attr.stroke-dashoffset]="progress + 'em'"></circle>
+            <circle class="progress-center" [attr.r]="(countdownRadius - 0.01) + 'em'" cx="3em" cy="3em"
+                    fill="transparent" [attr.stroke-dasharray]="circumference + 'em'" stroke-dashoffset="0em"></circle>
         </svg>
         <i class="play icon"></i>
     </div>

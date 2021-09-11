@@ -1,17 +1,29 @@
+import {fromEvent as observableFromEvent, Subscription} from 'rxjs';
 
-import {fromEvent as observableFromEvent,  Subscription ,  Observable } from 'rxjs';
-
-import {tap, mergeMap, filter, map} from 'rxjs/operators';
+import {filter, map, mergeMap, tap} from 'rxjs/operators';
 import {
-    AfterViewInit, Component, ElementRef, EventEmitter, HostBinding, Input, OnDestroy, OnInit, Output,
+    AfterViewInit,
+    Component,
+    ElementRef,
+    EventEmitter,
+    HostBinding,
+    Input,
+    OnDestroy,
+    OnInit,
+    Output,
     ViewChild
 } from '@angular/core';
-import { PreviewContainer, VideoCapture, PreviewImageParams, IMAGE_PROPERTY_NAME } from '../../core/video-capture.service';
-import { UIDialog } from 'altair-ui';
-import { CapturedImageOperationDialog } from './operation-dialog/operation-dialog.component';
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import { VideoControls } from '../controls.component';
-import { VideoPlayer } from '../../video-player.component';
+import {
+    IMAGE_PROPERTY_NAME,
+    PreviewContainer,
+    PreviewImageParams,
+    VideoCapture
+} from '../../core/video-capture.service';
+import {UIDialog} from 'altair-ui';
+import {CapturedImageOperationDialog} from './operation-dialog/operation-dialog.component';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {VideoControls} from '../controls.component';
+import {VideoPlayer} from '../../video-player.component';
 
 @Component({
     selector: 'video-captured-frame-list',

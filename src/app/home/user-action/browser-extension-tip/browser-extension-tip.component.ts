@@ -1,7 +1,7 @@
-import { Component, OnDestroy } from '@angular/core';
-import { UIPopoverContent, UIPopoverRef } from 'altair-ui';
-import { Subscription ,  Observable } from 'rxjs';
-import { isChrome, isEdge, isFirefox } from '../../../../helpers/browser-detect';
+import {Component, OnDestroy} from '@angular/core';
+import {UIPopoverContent, UIPopoverRef} from 'altair-ui';
+import {Subscription} from 'rxjs';
+import {isChrome, isEdge, isFirefox} from '../../../../helpers/browser-detect';
 
 @Component({
     selector: 'chrome-extension-tip',
@@ -25,8 +25,9 @@ export class BrowserExtensionTipComponent extends UIPopoverContent implements On
 
     constructor(popoverRef: UIPopoverRef<BrowserExtensionTipComponent>) {
         super(popoverRef);
-        this.browserType = isChrome ? 'Chrome' : isFirefox ? 'Firefox' : isEdge ? 'Edge': 'Unsupported';
+        this.browserType = isChrome ? 'Chrome' : isFirefox ? 'Firefox' : isEdge ? 'Edge' : 'Unsupported';
     }
+
     // inline install temporarily disabled
     // installExtension(event: Event) {
     //     event.preventDefault();

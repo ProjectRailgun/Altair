@@ -1,4 +1,4 @@
-import { Bangumi } from './bangumi';
+import {Bangumi} from './bangumi';
 
 export class Announce {
     static POSITION_BANNER = 1;

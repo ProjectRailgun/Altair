@@ -1,22 +1,21 @@
+import {fromEvent as observableFromEvent, Subscription, throwError} from 'rxjs';
+import {map} from 'rxjs/internal/operators';
 
-import { fromEvent as observableFromEvent, Subscription, Observable, throwError } from 'rxjs';
-import { map } from 'rxjs/internal/operators';
-
-import { mergeMap, filter, tap} from 'rxjs/operators';
-import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {filter, mergeMap, tap} from 'rxjs/operators';
+import {AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {
     ChromeExtensionService,
     ENABLED_STATUS,
     INITIAL_STATE_VALUE
 } from '../../browser-extension/chrome-extension.service';
-import { ExtensionRpcService } from '../../browser-extension/extension-rpc.service';
-import { User } from '../../entity';
-import { BaseError } from '../../../helpers/error';
-import { PersistStorage, UserService } from '../../user-service';
-import { UIPopover, UIToast, UIToastComponent, UIToastRef } from 'altair-ui';
-import { Router } from '@angular/router';
-import { UserActionPanelComponent } from './user-action-panel/user-action-panel.component';
-import { BrowserExtensionTipComponent } from './browser-extension-tip/browser-extension-tip.component';
+import {ExtensionRpcService} from '../../browser-extension/extension-rpc.service';
+import {User} from '../../entity';
+import {BaseError} from '../../../helpers/error';
+import {PersistStorage, UserService} from '../../user-service';
+import {UIPopover, UIToast, UIToastComponent, UIToastRef} from 'altair-ui';
+import {Router} from '@angular/router';
+import {UserActionPanelComponent} from './user-action-panel/user-action-panel.component';
+import {BrowserExtensionTipComponent} from './browser-extension-tip/browser-extension-tip.component';
 
 @Component({
     selector: 'user-action',
@@ -34,7 +33,7 @@ export class UserActionComponent implements OnInit, OnDestroy, AfterViewInit {
 
     bgmAccountInfo: {
         nickname: string,
-        avatar: {large: string, medium: string, small: string},
+        avatar: { large: string, medium: string, small: string },
         username: string,
         id: string,
         url: string
@@ -55,7 +54,8 @@ export class UserActionComponent implements OnInit, OnDestroy, AfterViewInit {
     logout() {
         this._userService.logout()
             .subscribe(
-                () => {},
+                () => {
+                },
                 (error: BaseError) => {
                     this._toastRef.show(error.message);
                 }

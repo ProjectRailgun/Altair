@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { UIDialogRef } from 'altair-ui';
+import {Component, Input} from '@angular/core';
+import {UIDialogRef} from 'altair-ui';
 
 @Component({
     selector: 'conflict-dialog',
@@ -20,7 +20,8 @@ export class ConflictDialogComponent {
     @Input()
     bgmStatus: number;
 
-    constructor(private _dialogRef: UIDialogRef<ConflictDialogComponent>) { }
+    constructor(private _dialogRef: UIDialogRef<ConflictDialogComponent>) {
+    }
 
     chooseStatus(which: string) {
         this._dialogRef.close(which);

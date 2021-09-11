@@ -1,13 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { UserService } from '../user-service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { passwordMatch } from '../form-utils';
-import { register } from 'ts-node/dist/ts-node';
-import { AuthError } from '../../helpers/error';
-import { Title } from '@angular/platform-browser';
-import { Router, NavigationEnd } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { ClientError } from '../../helpers/error/ClientError';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {UserService} from '../user-service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {passwordMatch} from '../form-utils';
+import {AuthError} from '../../helpers/error';
+import {Title} from '@angular/platform-browser';
+import {Router} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {ClientError} from '../../helpers/error/ClientError';
 
 
 /**
@@ -31,7 +30,7 @@ export class Register implements OnInit, OnDestroy {
     siteTitle: string = SITE_TITLE;
 
     coverStyle = {
-        'background-image':'url("' + PORTAL_COVER_IMAGE + '")',
+        'background-image': 'url("' + PORTAL_COVER_IMAGE + '")',
     };
 
     coverAuthor: string = PORTAL_COVER_AUTHOR;
@@ -39,9 +38,9 @@ export class Register implements OnInit, OnDestroy {
     coverLink: string = PORTAL_COVER_LINK;
 
     constructor(private userService: UserService,
-        private formBuilder: FormBuilder,
-        private router: Router,
-        titleService: Title) {
+                private formBuilder: FormBuilder,
+                private router: Router,
+                titleService: Title) {
         titleService.setTitle(`注册 - ${SITE_TITLE}`);
         // if user already login, redirect to home, user must logout to visit this page.
         userService.getUserInfo()
@@ -105,6 +104,6 @@ export class Register implements OnInit, OnDestroy {
             password_repeat: ['', Validators.required],
             email: ['', [Validators.required, Validators.email]],
             invite_code: [inviteCode || '', Validators.required]
-        }, { validator: passwordMatch('password', 'password_repeat') });
+        }, {validator: passwordMatch('password', 'password_repeat')});
     }
 }

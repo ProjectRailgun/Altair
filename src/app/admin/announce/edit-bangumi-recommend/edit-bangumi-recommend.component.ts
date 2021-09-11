@@ -1,18 +1,18 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UIDialogRef } from 'altair-ui';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UIDialogRef} from 'altair-ui';
 import * as moment from 'moment';
-import { Subscription } from 'rxjs';
-import { Bangumi } from '../../../entity';
-import { Announce } from '../../../entity/announce';
+import {Subscription} from 'rxjs';
+import {Bangumi} from '../../../entity';
+import {Announce} from '../../../entity/announce';
 
 export const MAX_DATE_RANGE = 7; // days
 
 export function rangeLimitWithMaxRange(group: FormGroup) {
     let start_time = group.get('start_time').value;
     let end_time = group.get('end_time').value;
-    let result = end_time > start_time ? null : { dateRange: 'invalid range' };
-    result = !result ? (end_time - start_time <= MAX_DATE_RANGE * 24 * 3600 * 1000 ? null : { dateRange: 'exceed max range' }) : result;
+    let result = end_time > start_time ? null : {dateRange: 'invalid range'};
+    result = !result ? (end_time - start_time <= MAX_DATE_RANGE * 24 * 3600 * 1000 ? null : {dateRange: 'exceed max range'}) : result;
     return result;
 }
 
@@ -56,7 +56,7 @@ export class EditBangumiRecommendComponent implements OnInit, OnDestroy {
     };
 
     constructor(private _fb: FormBuilder,
-        private _dialogRef: UIDialogRef<EditBangumiRecommendComponent>) {
+                private _dialogRef: UIDialogRef<EditBangumiRecommendComponent>) {
 
     }
 
@@ -95,7 +95,7 @@ export class EditBangumiRecommendComponent implements OnInit, OnDestroy {
             sort_order: [0, Validators.required],
             start_time: [moment(), Validators.required],
             end_time: [moment().add(7, 'day'), Validators.required]
-        }, { validator: rangeLimitWithMaxRange });
+        }, {validator: rangeLimitWithMaxRange});
         if (this.announce) {
             this.bangumi = this.announce.bangumi;
             this.recommendForm.get('sort_order').patchValue(this.announce.sort_order);

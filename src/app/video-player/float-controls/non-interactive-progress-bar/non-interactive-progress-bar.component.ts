@@ -1,6 +1,6 @@
-import { Component, ElementRef, OnDestroy, OnInit, Self } from '@angular/core';
-import { Subscription } from 'rxjs/index';
-import { VideoPlayer } from '../../video-player.component';
+import {Component, ElementRef, OnDestroy, OnInit, Self} from '@angular/core';
+import {Subscription} from 'rxjs/index';
+import {VideoPlayer} from '../../video-player.component';
 
 @Component({
     selector: 'non-interactive-progress-bar',

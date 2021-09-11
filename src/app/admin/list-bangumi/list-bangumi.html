@@ -1,12 +1,14 @@
 <admin-navbar navTitle="已保存的新番">
     <div class="ui icon input action-item search-action">
-        <input type="text" placeholder="按名称过滤" #searchBox [disabled]="isLoading || !bangumiList || bangumiList.length === 0">
+        <input type="text" placeholder="按名称过滤" #searchBox
+               [disabled]="isLoading || !bangumiList || bangumiList.length === 0">
         <i class="search icon"></i>
     </div>
     <a class="action-item anchor-button" (click)="addBangumi()">
         <i class="plus icon"></i>添加番组
     </a>
-    <a class="sort-button anchor-button accessory-action" (click)="onOrderChange(orderBy, true)" [title]="sort === 'desc' ? '降序': '升序'">
+    <a class="sort-button anchor-button accessory-action" (click)="onOrderChange(orderBy, true)"
+       [title]="sort === 'desc' ? '降序': '升序'">
         <i class="sort content icon" [ngClass]="{ascending: sort === 'asc', descending: sort === 'desc'}"></i>
     </a>
     <form class="accessory-action is-movie-toggle">
@@ -34,7 +36,8 @@
 <div class="content-area">
     <div class="all-bangumi-container" *ngIf="!name && !isLoading && bangumiList && bangumiList.length > 0">
         <ui-timeline-meter [rowHeight]="cardHeight" [timestampList]="timestampList">
-            <infinite-list [rowHeight]="cardHeight" [newScrollPosition]="lastScrollPosition" (scrollPosition)="onScrollPositionChange($event)">
+            <infinite-list [rowHeight]="cardHeight" [newScrollPosition]="lastScrollPosition"
+                           (scrollPosition)="onScrollPositionChange($event)">
                 <bangumi-card *infiniteFor="let bangumi of bangumiList"
                               [bangumi]="bangumi"
                               [showAddedTag]="false"

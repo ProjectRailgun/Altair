@@ -1,7 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { VideoPlayer } from '../../video-player.component';
-import { Subscription } from 'rxjs';
-import { VideoPlayerHelpers } from '../../core/helpers';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {VideoPlayer} from '../../video-player.component';
+import {Subscription} from 'rxjs';
+import {VideoPlayerHelpers} from '../../core/helpers';
 
 @Component({
     selector: 'video-time-indicator',
