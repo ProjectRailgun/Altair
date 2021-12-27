@@ -18,6 +18,7 @@ export class KeywordBuilder implements OnInit, OnDestroy {
     keyword: string;
     @Input()
     siteName: string;
+    siteFriendlyName: string;
 
     libykCriteria: { t: string, q: string };
 
@@ -26,6 +27,7 @@ export class KeywordBuilder implements OnInit, OnDestroy {
     itemList: { title: string, eps_no: number }[];
 
     availableTable = ['yyets', 'tokyo', 'dmhy', 'fixsub'];
+    availableTableName = {'yyets': '人人影视', 'tokyo': 'Tokyo BT', 'dmhy': '动漫花园', 'fixsub': 'FIX字幕侠'};
 
     availableFilter = AVAILABLE_FILTER;
     availableCategory = Object.keys(AVAILABLE_CATEGORY);
@@ -149,6 +151,7 @@ export class KeywordBuilder implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         if (this.siteName === 'libyk_so') {
+            this.siteFriendlyName = 'LibYK';
             if (this.keyword) {
                 this.libykCriteria = JSON.parse(this.keyword);
                 this.keywordControl.patchValue(this.libykCriteria.q);
@@ -159,6 +162,7 @@ export class KeywordBuilder implements OnInit, OnDestroy {
                 };
             }
         } else if (this.siteName === 'nyaa') {
+            this.siteFriendlyName = 'NyaaV2';
             if (this.keyword) {
                 let params = new URLSearchParams(this.keyword);
                 this.nyaaCriteria = {
@@ -175,6 +179,12 @@ export class KeywordBuilder implements OnInit, OnDestroy {
                 };
             }
         } else {
+            if (this.siteName === 'dmhy') {
+                this.siteFriendlyName = '动漫花园';
+            }
+            if (this.siteName === 'acg_rip') {
+                this.siteFriendlyName = 'ACG.RIP';
+            }
             this.keywordControl.patchValue(this.keyword);
         }
     }

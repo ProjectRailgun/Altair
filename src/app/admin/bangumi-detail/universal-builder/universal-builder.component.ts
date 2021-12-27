@@ -16,6 +16,7 @@ export class UniversalBuilderComponent implements OnInit, OnDestroy {
     private _toastRef: UIToastRef<UIToastComponent>;
 
     availableMode: string[];
+    availableModeName = {'bangumi_moe': '萌番组', 'dmhy': '动漫花园', 'nyaa': 'NyaaV2'}
 
     @Input()
     bangumi: Bangumi;

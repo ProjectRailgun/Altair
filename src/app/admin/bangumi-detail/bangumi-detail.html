@@ -84,9 +84,10 @@
         <a class="edit-button anchor-button" (click)="editBasicInfo()"><i class="edit icon"></i></a>
     </div>
     <div class="download-info">
-        <h4 class="section-header">抓取来源(Universal)</h4>
+        <h4 class="section-header">抓取来源（聚合平台）</h4>
+        <div class="ui info message">聚合平台代理抓取可提供比直接访问更高的可靠性，但在部分情况下可能缺失大量结果。若聚合平台来源找不到想要的结果，请使用直接访问。</div>
         <div class="universal-entry entry" *ngFor="let universal of bangumi.universal | parseJson">
-            <div class="entry-key">{{universal.mode}}</div>
+            <div class="entry-key">{{universalMode[universal.mode]}}</div>
             <div class="entry-value">
                 <div class="ui horizontal label">
                     {{universal.keyword}}
@@ -97,16 +98,16 @@
         </div>
         <a class="anchor-button add-universal-button"
            *ngIf="availableModeCount > 0"
-           (click)="editBangumiUniversal()"><i class="plus icon"></i>添加来源</a>
+           (click)="editBangumiUniversal()"><i class="plus icon"></i>添加抓取来源</a>
         <div class="ui inverted dimmer" [ngClass]="{active: !modeList}">
             <div class="ui large loader"></div>
         </div>
     </div>
     <div class="download-info">
-        <h4 class="section-header">抓取来源</h4>
-        <div class="ui warning message">DMHY, ACG.RIP, NYAA在未来的版本将会默认被禁用，请使用Universal</div>
+        <h4 class="section-header">抓取来源（直接访问）</h4>
+        <div class="ui info message">若需要删除抓取来源，将对应源内的所有标签或搜索关键词清空后保存即可。</div>
         <div class="bangumi-moe-entry entry">
-            <div class="entry-key">BANGUMI.MOE</div>
+            <div class="entry-key">萌番组</div>
             <div class="entry-value">
                 <div class="ui horizontal label" *ngFor="let tag of bangumi.bangumi_moe | parseJson">
                     {{tag.locale.zh_cn || tag.name}}
@@ -115,7 +116,7 @@
             </div>
         </div>
         <div class="dmhy-entry entry">
-            <div class="entry-key">DMHY</div>
+            <div class="entry-key">动漫花园</div>
             <div class="entry-value">
                 <span class="ui horizontal label" *ngIf="bangumi.dmhy">{{bangumi.dmhy}}</span>
                 <a class="edit-button anchor-button" (click)="editKeyword('dmhy')"><i class="edit icon"></i></a>
@@ -129,7 +130,7 @@
             </div>
         </div>
         <div class="libyk-entry entry">
-            <div class="entry-key">LIBYK</div>
+            <div class="entry-key">LibYK</div>
             <div class="entry-value">
                 <div class="ui horizontal label" *ngIf="bangumi.libyk_so">
                     <i class="rss icon"></i>
@@ -140,7 +141,7 @@
             </div>
         </div>
         <div class="libyk-entry entry">
-            <div class="entry-key">NYAA</div>
+            <div class="entry-key">NyaaV2</div>
             <div class="entry-value">
                 <div class="ui horizontal label" *ngIf="bangumi.nyaa">
                     <i class="filter icon"></i>

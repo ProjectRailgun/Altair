@@ -1,6 +1,6 @@
 {
-  "name": "番組Collection",
-  "short_name": "BanColle",
+  "name": "Bangumi R.I.P.",
+  "short_name": "BGM.RIP",
   "icons": [
     {
       "src": "/assets/icon/favicon-36x36.png",
@@ -39,7 +39,7 @@
       "density": 4.0
     }
   ],
-  "start_url": "https://bangumi.co",
+  "start_url": "https://bgm.rip",
   "display": "standalone",
   "prefer_related_applications": true,
   "related_applications": [

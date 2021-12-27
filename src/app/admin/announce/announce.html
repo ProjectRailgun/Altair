@@ -26,7 +26,7 @@
                     <a class="anchor-button"
                        confirmDialog
                        dialogTitle="确认删除"
-                       [dialogContent]="'确认删除' + row.content + '吗？该操作不可恢复'"
+                       [dialogContent]="'确认删除公告' + row.content + '吗？该操作不可恢复。'"
                        (onConfirm)="deleteAnnounce(row.id)"><i class="remove circle outline icon"></i></a>
                 </td>
             </tr>
@@ -60,8 +60,8 @@
                     <a class="anchor-button"
                        confirmDialog
                        dialogTitle="确认删除"
-                       [dialogContent]="'确认删除' + row.bangumi.name + '吗？该操作不可恢复'"
-                       (onConfirm)="deleteRecommend(row.id)"><i class="remove circle outline icon"></i></a>
+                       [dialogContent]="'确认删除推荐番組' + row.bangumi.name + '吗？该操作不可恢复。'"
+                       (onConfirm)="deleteRecommend(row.id)"><i class="remove icon"></i></a>
                 </td>
             </tr>
             </tbody>

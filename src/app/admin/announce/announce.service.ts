@@ -20,7 +20,7 @@ export class AnnounceService extends BaseService {
                 position: position + '',
                 offset: offset + '',
                 count: count + '',
-                content: content
+                content: content ? content : ''
             }
         }).pipe(
             catchError(this.handleError),);

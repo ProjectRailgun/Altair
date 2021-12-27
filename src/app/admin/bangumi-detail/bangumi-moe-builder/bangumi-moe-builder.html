@@ -2,10 +2,10 @@
     <div class="search-bar">
         <div class="ui large label">
             <i class="rss icon"></i>
-            Bangumi.moe
+            萌番组
         </div>
         <div class="search-box ui input">
-            <input type="text" name="query" placeholder="请输入搜索关键词以搜索标签" #searchBox>
+            <input type="text" name="query" placeholder="输入关键词搜索更多标签" #searchBox>
         </div>
         <div class="selected-tag">
             <div class="ui blue label" *ngFor="let tag of selectedTags">
@@ -14,6 +14,7 @@
             </div>
         </div>
     </div>
+    <div class="ui info message">下方项目优先级高，例如，若当前标签匹配到多个第 1 集，最下方的第 1 集项目会被下载。</div>
     <div class="tag-container">
         <div class="tag-search-result" *ngIf="searchResultTags?.length > 0">
             <div class="tag-search-header">搜索结果</div>
@@ -75,7 +76,9 @@
                 <tr *ngFor="let torrent of torrentList">
                     <td>{{torrent.title}}</td>
                     <td>
-                        <span class="ui label" *ngFor="let eps_no of torrent.eps_no_list">{{eps_no}}</span>
+                        <span class="ui label" *ngFor="let eps_no of torrent.eps_no_list">
+                            {{eps_no === -1 ? "未知" : eps_no}}
+                        </span>
                     </td>
                 </tr>
                 </tbody>

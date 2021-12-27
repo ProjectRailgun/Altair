@@ -1,6 +1,6 @@
-<admin-navbar navTitle="Web Hook管理">
+<admin-navbar navTitle="Web Hook 管理">
     <a class="action-item anchor-button" (click)="addWebHook()">
-        <i class="plus icon"></i>添加Web Hook
+        <i class="plus icon"></i>添加 Web Hook
     </a>
 </admin-navbar>
 <div class="content-area">
@@ -12,7 +12,7 @@
         </infinite-list>
     </div>
     <div class="no-result-container" *ngIf="!isLoading && webHookList && webHookList.length === 0">
-        <div class="no-result-tips"><i class="warning circle icon"></i>还没有添加Web Hook</div>
+        <div class="no-result-tips"><i class="warning circle icon"></i>还没有添加 Web Hook</div>
     </div>
     <div class="searching-container" *ngIf="isLoading">
         <div class="ui inverted massive text active loader">Loading...</div>

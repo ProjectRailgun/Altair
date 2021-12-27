@@ -34,6 +34,8 @@ export class BangumiDetail implements OnInit, OnDestroy {
     private _toastRef: UIToastRef<UIToastComponent>;
     private _bangumi = <Bangumi>{};
 
+    universalMode = {'bangumi_moe': '萌番组', 'dmhy': '动漫花园', 'nyaa': 'NyaaV2'}
+
     set bangumi(bangumi: Bangumi) {
         this._bangumi = bangumi;
         if (this.bangumi.episodes && this.bangumi.episodes.length > 0) {

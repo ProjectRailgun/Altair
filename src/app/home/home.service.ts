@@ -112,7 +112,9 @@ export class HomeService extends BaseService {
         return this._http.get<{ data: Bangumi }>(`${this._baseUrl}/bangumi/${bangumi_id}`).pipe(
             map(res => res.data),
             map(bangumi => {
-                bangumi.episodes = bangumi.episodes.map(episode => this.synchronizeWatchProgressWithLocal(episode));
+                bangumi.episodes = bangumi.episodes.map(
+                    episode => this.synchronizeWatchProgressWithLocal(episode)
+                );
                 return bangumi;
             }),
             catchError(this.handleError),);
